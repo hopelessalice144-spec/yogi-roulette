@@ -8,12 +8,15 @@ export const FEEDBACK_CONFIG = Object.freeze({
   storageKey: 'turboRoulette.feedback',
 
   audio: Object.freeze({
-    masterGain: 0.52,
-    rollBaseHz: 60,
-    maxClackVoices: 3,
-    chipPlaceHz: 880,
-    betLockHz: [440, 330] as const,
-    spinCueMs: 280,
+    masterGain: 0.62,
+    rollBaseHz: 52,
+    maxClackVoices: 5,
+    chipPlaceHz: 1180,
+    betLockHz: [370, 277] as const,
+    spinCueMs: 380,
+    orbitTickMinSpeed: 0.28,
+    orbitTickBaseMs: 88,
+    trackRingHz: 3400,
   }),
 
   haptics: Object.freeze({

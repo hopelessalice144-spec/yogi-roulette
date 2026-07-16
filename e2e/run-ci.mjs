@@ -42,14 +42,15 @@ async function waitForServer(url, timeoutMs) {
   throw new Error(`E2E CI: preview server not ready at ${url}`);
 }
 
-function runCommand(cmd, args, env = process.env) {
+function runCommand(cmd, args, env = process.env, { shell } = {}) {
   const isWin = process.platform === 'win32';
+  const useShell = shell ?? isWin;
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, args, {
       cwd: ROOT,
       env,
       stdio: 'inherit',
-      shell: isWin,
+      shell: useShell,
     });
     child.on('error', reject);
     child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`${cmd} exited ${code}`))));
@@ -102,7 +103,8 @@ async function main() {
     await waitForServer(base, READY_TIMEOUT_MS);
     console.log(`E2E CI: preview ready at ${base}`);
     process.env.E2E_BASE_URL = base;
-    await runCommand(process.execPath, [path.join(ROOT, 'e2e', 'smoke.mjs')], process.env);
+  // shell:false — process.execPath often contains spaces (e.g. Program Files) on Windows
+    await runCommand(process.execPath, [path.join(ROOT, 'e2e', 'smoke.mjs')], process.env, { shell: false });
   } finally {
     await killPreview(preview);
   }

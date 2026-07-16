@@ -191,6 +191,7 @@ describe('audioSynth', () => {
       expect(engine.rollingSpeed).toBeCloseTo(2.828, 2);
       expect(engine.rumbleGain!.gain.setTargetAtTime).toHaveBeenCalled();
       expect(engine.rumbleFilter!.frequency.setTargetAtTime).toHaveBeenCalled();
+      expect(engine.trackRingGain!.gain.setTargetAtTime).toHaveBeenCalled();
     });
 
     it('no-ops when muted or context is not running', () => {
@@ -203,6 +204,14 @@ describe('audioSynth', () => {
       ctx.state = 'suspended';
       engine.setRollingVelocity({ x: 3, y: 0, z: 3 });
       expect(engine.rollingSpeed).toBe(0);
+    });
+  });
+
+  describe('playOrbitTick', () => {
+    it('plays a short transient when ball speed is high enough', () => {
+      const { engine, ctx } = readyEngine();
+      engine.playOrbitTick(1);
+      expect(ctx.createOscillator).toHaveBeenCalled();
     });
   });
 
@@ -235,7 +244,7 @@ describe('audioSynth', () => {
       const second = engine.playSettle();
       await Promise.all([first, second]);
       expect(engine['_settlePlaying']).toBe(true);
-      vi.advanceTimersByTime(520);
+      vi.advanceTimersByTime(900);
       expect(engine['_settlePlaying']).toBe(false);
     });
   });
