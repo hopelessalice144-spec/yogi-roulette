@@ -23,7 +23,6 @@ import { FairnessPanel } from './FairnessPanel.jsx';
 import { buildInsideBetZones, insideZoneStyle } from '../lib/insideBets.js';
 
 const INSIDE_BET_TYPES = new Set(['split', 'street', 'corner', 'line']);
-const INSIDE_BET_ZONE_LIST = buildInsideBetZones();
 
 const OUTSIDE = [
   { type: 'dozen', value: 1, label: '1st 12' },
@@ -442,6 +441,7 @@ export function BettingBoard() {
     return map;
   }, [ghostBets]);
 
+  const insideBetZones = useMemo(() => buildInsideBetZones(), []);
   const displayNumber = revealedWinningNumber;
   const displayColor = revealedWinningColor;
 
@@ -747,7 +747,7 @@ export function BettingBoard() {
               </div>
 
               <div className="inside-zones" data-testid="inside-bet-zones">
-                {INSIDE_BET_ZONE_LIST.map((zone) => {
+                {insideBetZones.map((zone) => {
                     const key = cellKey(zone.type, zone.value);
                     const props = betBtnProps(zone.type, zone.value);
                     return (

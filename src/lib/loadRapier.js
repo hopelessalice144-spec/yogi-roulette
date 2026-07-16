@@ -3,24 +3,30 @@
  */
 
 import { markProfile, measureProfile } from '../core/profileHarness.js';
-
-let rapierModulePromise = null;
-let rapierStagePromise = null;
+import {
+  getRapierModulePromise,
+  getRapierStagePromise,
+  setRapierModulePromise,
+  setRapierStagePromise,
+} from './rapierCache.js';
 
 /** Begin downloading @react-three/rapier (idempotent). */
 export function prefetchRapier() {
+  let rapierModulePromise = getRapierModulePromise();
   if (!rapierModulePromise) {
     markProfile('rapier-prefetch-start');
     rapierModulePromise = import('@react-three/rapier').then((mod) => {
       measureProfile('rapier-wasm-load', 'rapier-prefetch-start');
       return mod;
     });
+    setRapierModulePromise(rapierModulePromise);
   }
   return rapierModulePromise;
 }
 
 /** Dynamic import of the physics scene subtree. */
 export function loadRapierStage() {
+  let rapierStagePromise = getRapierStagePromise();
   if (!rapierStagePromise) {
     markProfile('rapier-stage-start');
     rapierStagePromise = prefetchRapier().then(() =>
@@ -29,12 +35,14 @@ export function loadRapierStage() {
         return mod;
       })
     );
+    setRapierStagePromise(rapierStagePromise);
   }
   return rapierStagePromise;
 }
 
 /** True when WASM module fetch has resolved. */
 export async function isRapierReady() {
+  const rapierModulePromise = getRapierModulePromise();
   if (!rapierModulePromise) return false;
   try {
     await rapierModulePromise;
@@ -48,10 +56,7 @@ export async function isRapierReady() {
 export const RAPIER_PREFETCH_AT = 17;
 
 /** Clear cached WASM/stage promises after WebGL context loss. */
-export function resetRapierCache() {
-  rapierModulePromise = null;
-  rapierStagePromise = null;
-}
+export { resetRapierCache } from './rapierCache.js';
 
 /** Whether the live physics stage should mount for this clock snapshot. */
 export function shouldMountPhysics(clock) {

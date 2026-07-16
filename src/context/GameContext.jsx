@@ -35,7 +35,7 @@ import { createHoverBridge } from '../lib/hoverBridge.js';
 import { createGhostEngine } from '../lib/ghostPlayers.js';
 import { wallClockSnapshot, computeBallKinematicSync, computeWheelAngleSync, missedSettleCycle } from '../lib/cycleResync.js';
 import { createWatchdogJournal } from '../lib/physicsWatchdog.js';
-import { resetRapierCache } from '../lib/loadRapier.js';
+import { resetRapierCache } from '../lib/rapierCache.js';
 import {
   createGameClock,
   resolveHudPhaseFromClock,

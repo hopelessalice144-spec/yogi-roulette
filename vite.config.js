@@ -4,9 +4,19 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const isProd = process.env.NODE_ENV === 'production';
 
-export default defineConfig({
+/** Vite only embeds VITE_* present at build time — default demo custody for static prod deploys. */
+function ensureProductionDemoCustody(mode) {
+  if (mode === 'production' && !process.env.VITE_ALLOW_DEMO_CUSTODY) {
+    process.env.VITE_ALLOW_DEMO_CUSTODY = '1';
+  }
+}
+
+export default defineConfig(({ mode }) => {
+  ensureProductionDemoCustody(mode);
+  const isProd = mode === 'production';
+
+  return {
   plugins: [react()],
   resolve: {
     alias: {
@@ -52,4 +62,5 @@ export default defineConfig({
     drop: isProd ? ['debugger'] : [],
     legalComments: 'none',
   },
+  };
 });
