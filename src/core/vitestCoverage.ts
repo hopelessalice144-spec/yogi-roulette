@@ -209,6 +209,10 @@ export const JSX_SURFACE_TEST_PARITY_MISSING_COUNT =
 
 /** Milestone flag — true when every probed JSX surface has a vitest sibling (30/30). */
 export const JSX_SURFACE_TEST_PARITY_COMPLETE =
+  JSX_UI_TEST_PARITY_MISSING_COUNT === 0 &&
+  JSX_SCENE_TEST_PARITY_MISSING_COUNT === 0 &&
+  JSX_CONTEXT_TEST_PARITY_MISSING_COUNT === 0 &&
+  JSX_ENTRY_TEST_PARITY_MISSING_COUNT === 0 &&
   JSX_SURFACE_TEST_PARITY_MISSING_COUNT === 0 &&
   JSX_SURFACE_TEST_PARITY_COVERED_COUNT === JSX_SURFACE_MODULE_COUNT &&
   JSX_SURFACE_MODULE_COUNT === JSX_SRC_SURFACE_MODULE_COUNT;
@@ -305,11 +309,64 @@ export const JS_TEST_PARITY_COMPLETE = JS_TEST_PARITY_MISSING_COUNT === 0;
 export const FULL_SURFACE_TEST_PARITY_MODULE_COUNT =
   VITEST_COVERAGE_MODULE_COUNT + JSX_SURFACE_MODULE_COUNT;
 
-/** Milestone flag — true when all gated JS and JSX surfaces have vitest siblings. */
+/** Combined gated JS + JSX surface modules with a vitest sibling in the production src tree. */
+export const FULL_SURFACE_TEST_PARITY_COVERED_COUNT =
+  JS_TEST_PARITY_COVERED_COUNT + JSX_SURFACE_TEST_PARITY_COVERED_COUNT;
+
+/** Combined gated JS + JSX surface modules still missing a vitest sibling in the production src tree. */
+export const FULL_SURFACE_TEST_PARITY_MISSING_COUNT =
+  FULL_SURFACE_TEST_PARITY_MODULE_COUNT - FULL_SURFACE_TEST_PARITY_COVERED_COUNT;
+
+/** Milestone flag — true when all gated JS and JSX surfaces have vitest siblings (92/92). */
 export const FULL_SURFACE_TEST_PARITY_COMPLETE =
   JS_TEST_PARITY_COMPLETE &&
   JSX_SURFACE_TEST_PARITY_COMPLETE &&
+  FULL_SURFACE_TEST_PARITY_MISSING_COUNT === 0 &&
+  FULL_SURFACE_TEST_PARITY_COVERED_COUNT === FULL_SURFACE_TEST_PARITY_MODULE_COUNT &&
   findModulesMissingTests(COVERAGE_SRC_DIR).length === 0;
+
+/** Canonical vitest surface parity aliases (62 JS + 30 JSX = 92/92). */
+export const VITEST_SURFACE_TEST_PARITY_MODULE_COUNT = FULL_SURFACE_TEST_PARITY_MODULE_COUNT;
+export const VITEST_SURFACE_TEST_PARITY_COVERED_COUNT = FULL_SURFACE_TEST_PARITY_COVERED_COUNT;
+export const VITEST_SURFACE_TEST_PARITY_MISSING_COUNT = FULL_SURFACE_TEST_PARITY_MISSING_COUNT;
+export const VITEST_SURFACE_TEST_PARITY_COMPLETE = FULL_SURFACE_TEST_PARITY_COMPLETE;
+
+/** Dual flat field pairs on runVitestVerifyAudits (module/covered/missing/complete). */
+export const SURFACE_FLAT_FIELD_PAIR_COUNT = 4;
+
+/** Total flat surface fields — 4 pairs × 2 field sets (fullSurface + vitestSurface). */
+export const SURFACE_FLAT_TOTAL_FIELD_COUNT = SURFACE_FLAT_FIELD_PAIR_COUNT * 2;
+
+/** Milestone — unified vitestSurfaceTestParity-derived flat closure for both surface field sets. */
+export const SURFACE_FLAT_UNIFIED_CLOSURE_COMPLETE =
+  VITEST_SURFACE_TEST_PARITY_COMPLETE &&
+  FULL_SURFACE_TEST_PARITY_COMPLETE &&
+  VITEST_SURFACE_TEST_PARITY_MODULE_COUNT === FULL_SURFACE_TEST_PARITY_MODULE_COUNT &&
+  SURFACE_FLAT_FIELD_PAIR_COUNT === 4;
+
+/** Milestone — surface flat trilogy: unified closure + pair count + total count balance. */
+export const SURFACE_FLAT_FIELD_TRILOGY_COMPLETE =
+  SURFACE_FLAT_UNIFIED_CLOSURE_COMPLETE &&
+  SURFACE_FLAT_FIELD_PAIR_COUNT === 4 &&
+  SURFACE_FLAT_TOTAL_FIELD_COUNT === SURFACE_FLAT_FIELD_PAIR_COUNT * 2;
+
+/** Report flat field count on runVitestVerifyAudits (closure + pair + total + trilogy + quartet + tail). */
+export const SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT = 6;
+
+/** Milestone — six report flat fields: unified closure, pair count, total count, trilogy complete, quartet complete, tail complete. */
+export const SURFACE_FLAT_REPORT_QUARTET_COMPLETE =
+  SURFACE_FLAT_UNIFIED_CLOSURE_COMPLETE &&
+  SURFACE_FLAT_FIELD_TRILOGY_COMPLETE &&
+  SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT === 6 &&
+  SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT === SURFACE_FLAT_FIELD_PAIR_COUNT + 2;
+
+/** Milestone — vitest surface flat report tail alias/report chain consolidated in unified closure guard. */
+export const VITEST_SURFACE_FLAT_REPORT_TAIL_COMPLETE =
+  SURFACE_FLAT_REPORT_QUARTET_COMPLETE &&
+  VITEST_SURFACE_TEST_PARITY_MODULE_COUNT === FULL_SURFACE_TEST_PARITY_MODULE_COUNT &&
+  VITEST_SURFACE_TEST_PARITY_COMPLETE === FULL_SURFACE_TEST_PARITY_COMPLETE &&
+  VITEST_SURFACE_TEST_PARITY_COVERED_COUNT === FULL_SURFACE_TEST_PARITY_COVERED_COUNT &&
+  VITEST_SURFACE_TEST_PARITY_MISSING_COUNT === FULL_SURFACE_TEST_PARITY_MISSING_COUNT;
 
 /** JSX modules in ui/ missing a mapped vitest sibling. */
 export function findJsxModulesMissingTests(
@@ -482,6 +539,81 @@ export function auditVitestCoverage(srcDir: string): {
   };
 }
 
+/** JS module test-parity audit — ok when every gated .js module has a vitest sibling. */
+export function auditJsTestParity(srcDir: string): {
+  ok: boolean;
+  missing: string[];
+  moduleCount: number;
+  coveredCount: number;
+  missingCount: number;
+} {
+  const modules = listJsModules(srcDir);
+  const missing = findModulesMissingTests(srcDir);
+  const moduleCount = modules.length;
+  const missingCount = missing.length;
+  const coveredCount = moduleCount - missingCount;
+  return {
+    ok: missingCount === 0 && coveredCount === moduleCount,
+    missing,
+    moduleCount,
+    coveredCount,
+    missingCount,
+  };
+}
+
+/** Combined JS + JSX surface test-parity audit — ok when all gated surfaces have vitest siblings. */
+export function auditFullSurfaceTestParity(srcDir: string): {
+  ok: boolean;
+  missing: string[];
+  moduleCount: number;
+  coveredCount: number;
+  missingCount: number;
+} {
+  const js = auditJsTestParity(srcDir);
+  const jsx = auditJsxSurfaceTestParity(srcDir);
+  const missing = [...js.missing, ...jsx.missing].sort();
+  const moduleCount = js.moduleCount + jsx.moduleCount;
+  const coveredCount = js.coveredCount + jsx.coveredCount;
+  const missingCount = missing.length;
+  return {
+    ok:
+      js.ok &&
+      jsx.ok &&
+      missingCount === 0 &&
+      coveredCount === moduleCount,
+    missing,
+    moduleCount,
+    coveredCount,
+    missingCount,
+  };
+}
+
+/** Vitest-branded surface test-parity audit — wraps full surface runtime audit with VITEST_SURFACE_* alias visibility. */
+export function auditVitestSurfaceTestParity(srcDir: string): {
+  ok: boolean;
+  missing: string[];
+  moduleCount: number;
+  coveredCount: number;
+  missingCount: number;
+  vitestSurfaceModuleCount: number;
+  vitestSurfaceCoveredCount: number;
+  vitestSurfaceMissingCount: number;
+  vitestSurfaceComplete: boolean;
+} {
+  const audit = auditFullSurfaceTestParity(srcDir);
+  return {
+    ok: audit.ok,
+    missing: audit.missing,
+    moduleCount: audit.moduleCount,
+    coveredCount: audit.coveredCount,
+    missingCount: audit.missingCount,
+    vitestSurfaceModuleCount: VITEST_SURFACE_TEST_PARITY_MODULE_COUNT,
+    vitestSurfaceCoveredCount: VITEST_SURFACE_TEST_PARITY_COVERED_COUNT,
+    vitestSurfaceMissingCount: VITEST_SURFACE_TEST_PARITY_MISSING_COUNT,
+    vitestSurfaceComplete: VITEST_SURFACE_TEST_PARITY_COMPLETE,
+  };
+}
+
 /** Combined verify.js runtime audits for module parity + upgrade milestone log. */
 export function runVitestVerifyAudits(srcDir: string): {
   ok: boolean;
@@ -490,6 +622,7 @@ export function runVitestVerifyAudits(srcDir: string): {
   upgradeCount: number;
   moduleCount: number;
   missingModules: string[];
+  jsTestParity: ReturnType<typeof auditJsTestParity>;
   jsTestParityCoveredCount: number;
   jsTestParityMissingCount: number;
   jsTestParityComplete: boolean;
@@ -517,11 +650,27 @@ export function runVitestVerifyAudits(srcDir: string): {
   jsxSurfaceTestParityCoveredCount: number;
   jsxSurfaceTestParityMissingCount: number;
   jsxSurfaceTestParityComplete: boolean;
+  fullSurfaceTestParity: ReturnType<typeof auditFullSurfaceTestParity>;
+  fullSurfaceTestParityCoveredCount: number;
+  fullSurfaceTestParityMissingCount: number;
   fullSurfaceTestParityModuleCount: number;
   fullSurfaceTestParityComplete: boolean;
+  vitestSurfaceTestParity: ReturnType<typeof auditVitestSurfaceTestParity>;
+  vitestSurfaceTestParityModuleCount: number;
+  vitestSurfaceTestParityCoveredCount: number;
+  vitestSurfaceTestParityMissingCount: number;
+  vitestSurfaceTestParityComplete: boolean;
+  surfaceFlatUnifiedClosureComplete: boolean;
+  surfaceFlatFieldPairCount: number;
+  surfaceFlatTotalFieldCount: number;
+  surfaceFlatFieldTrilogyComplete: boolean;
+  surfaceFlatReportFlatFieldCount: number;
+  surfaceFlatReportQuartetComplete: boolean;
+  vitestSurfaceFlatReportTailComplete: boolean;
 } {
   const upgradeLog = auditVitestUpgradeLog();
   const coverage = auditVitestCoverage(srcDir);
+  const jsTestParity = auditJsTestParity(srcDir);
   const jsxSurface = auditJsxSurface(srcDir);
   const jsxSurfaceComplete = auditJsxSurfaceComplete(srcDir);
   const jsxUiTestParity = auditJsxUiTestParity(srcDir);
@@ -529,10 +678,12 @@ export function runVitestVerifyAudits(srcDir: string): {
   const jsxContextTestParity = auditJsxContextTestParity(srcDir);
   const jsxEntryTestParity = auditJsxEntryTestParity(srcDir);
   const jsxSurfaceTestParity = auditJsxSurfaceTestParity(srcDir);
+  const fullSurfaceTestParity = auditFullSurfaceTestParity(srcDir);
+  const vitestSurfaceTestParity = auditVitestSurfaceTestParity(srcDir);
   return {
     ok:
       upgradeLog.ok &&
-      FULL_SURFACE_TEST_PARITY_COMPLETE &&
+      vitestSurfaceTestParity.ok &&
       upgradeLog.count === VITEST_COMPLETED_UPGRADE_COUNT &&
       coverage.moduleCount === VITEST_COVERAGE_MODULE_COUNT,
     upgradeLog,
@@ -540,9 +691,10 @@ export function runVitestVerifyAudits(srcDir: string): {
     upgradeCount: VITEST_COMPLETED_UPGRADE_COUNT,
     moduleCount: VITEST_COVERAGE_MODULE_COUNT,
     missingModules: coverage.missing,
-    jsTestParityCoveredCount: JS_TEST_PARITY_COVERED_COUNT,
-    jsTestParityMissingCount: JS_TEST_PARITY_MISSING_COUNT,
-    jsTestParityComplete: JS_TEST_PARITY_COMPLETE,
+    jsTestParity,
+    jsTestParityCoveredCount: jsTestParity.coveredCount,
+    jsTestParityMissingCount: jsTestParity.missingCount,
+    jsTestParityComplete: jsTestParity.ok,
     jsxSurface,
     jsxSurfaceCount: JSX_SURFACE_MODULE_COUNT,
     jsxUiSurfaceCount: JSX_UI_SURFACE_MODULE_COUNT,
@@ -564,10 +716,25 @@ export function runVitestVerifyAudits(srcDir: string): {
     jsxEntryTestParityCoveredCount: JSX_ENTRY_TEST_PARITY_COVERED_COUNT,
     jsxEntryTestParityMissingCount: JSX_ENTRY_TEST_PARITY_MISSING_COUNT,
     jsxSurfaceTestParity,
-    jsxSurfaceTestParityCoveredCount: JSX_SURFACE_TEST_PARITY_COVERED_COUNT,
-    jsxSurfaceTestParityMissingCount: JSX_SURFACE_TEST_PARITY_MISSING_COUNT,
-    jsxSurfaceTestParityComplete: JSX_SURFACE_TEST_PARITY_COMPLETE,
-    fullSurfaceTestParityModuleCount: FULL_SURFACE_TEST_PARITY_MODULE_COUNT,
-    fullSurfaceTestParityComplete: FULL_SURFACE_TEST_PARITY_COMPLETE,
+    jsxSurfaceTestParityCoveredCount: jsxSurfaceTestParity.coveredCount,
+    jsxSurfaceTestParityMissingCount: jsxSurfaceTestParity.missingCount,
+    jsxSurfaceTestParityComplete: jsxSurfaceTestParity.ok,
+    fullSurfaceTestParity,
+    fullSurfaceTestParityCoveredCount: vitestSurfaceTestParity.coveredCount,
+    fullSurfaceTestParityMissingCount: vitestSurfaceTestParity.missingCount,
+    fullSurfaceTestParityModuleCount: vitestSurfaceTestParity.moduleCount,
+    fullSurfaceTestParityComplete: vitestSurfaceTestParity.ok,
+    vitestSurfaceTestParity,
+    vitestSurfaceTestParityModuleCount: vitestSurfaceTestParity.moduleCount,
+    vitestSurfaceTestParityCoveredCount: vitestSurfaceTestParity.coveredCount,
+    vitestSurfaceTestParityMissingCount: vitestSurfaceTestParity.missingCount,
+    vitestSurfaceTestParityComplete: vitestSurfaceTestParity.ok,
+    surfaceFlatUnifiedClosureComplete: vitestSurfaceTestParity.ok,
+    surfaceFlatFieldPairCount: SURFACE_FLAT_FIELD_PAIR_COUNT,
+    surfaceFlatTotalFieldCount: SURFACE_FLAT_TOTAL_FIELD_COUNT,
+    surfaceFlatFieldTrilogyComplete: SURFACE_FLAT_FIELD_TRILOGY_COMPLETE,
+    surfaceFlatReportFlatFieldCount: SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT,
+    surfaceFlatReportQuartetComplete: SURFACE_FLAT_REPORT_QUARTET_COMPLETE,
+    vitestSurfaceFlatReportTailComplete: VITEST_SURFACE_FLAT_REPORT_TAIL_COMPLETE,
   };
 }
