@@ -69,7 +69,9 @@ function ScreenEffects() {
 }
 
 function AppInner() {
-  const { qualitySettings, simulationPaused, recoverWebGLContext } = useGame();
+  const { qualitySettings, simulationPaused, recoverWebGLContext, clock, hudPhase } = useGame();
+  const isWheelSpinning =
+    clock.name === 'spinning' || hudPhase === 'spin-focus' || hudPhase === 'settle-reveal';
   const { canvasKey, webglStatus, attachToCanvas } = useWebGLRecovery({
     onRestore: recoverWebGLContext,
   });
@@ -91,7 +93,7 @@ function AppInner() {
       <PayoutToast />
       <InstallPrompt />
       <div className="layout">
-        <div className="canvas-wrap vignette-edge">
+        <div className={`canvas-wrap vignette-edge${isWheelSpinning ? ' spin-active' : ''}`}>
           <Canvas
             key={canvasKey}
             frameloop={simulationPaused ? 'never' : 'always'}

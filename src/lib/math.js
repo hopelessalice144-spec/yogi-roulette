@@ -1,4 +1,4 @@
-/** European roulette colors + payout helpers (ESM). */
+import { insideNumbers } from './insideBets.js';
 
 export const RED_NUMBERS = new Set([
   1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36,
@@ -89,6 +89,15 @@ export function evaluateBet(bet, winningNumber) {
       const c = Number(value);
       won = win !== 0 && ((win - 1) % 3) + 1 === c;
       ratio = PAYOUTS.column;
+      break;
+    }
+    case 'split':
+    case 'street':
+    case 'corner':
+    case 'line': {
+      const covered = insideNumbers(type, value);
+      won = covered.includes(win);
+      ratio = type === 'line' ? PAYOUTS.sixLine : PAYOUTS[type];
       break;
     }
     default:

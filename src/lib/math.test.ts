@@ -85,7 +85,15 @@ describe('math', () => {
     });
 
     it('rejects unknown bet types', () => {
-      expect(() => evaluateBet({ type: 'corner', amount: 5 }, 7)).toThrow(/Unknown bet type/);
+      expect(() => evaluateBet({ type: 'unknown', amount: 5 }, 7)).toThrow(/Unknown bet type/);
+    });
+
+    it('pays inside bets', () => {
+      expect(evaluateBet({ type: 'split', value: '1,2', amount: 10 }, 1)).toBe(180);
+      expect(evaluateBet({ type: 'split', value: '1,2', amount: 10 }, 3)).toBe(0);
+      expect(evaluateBet({ type: 'street', value: '1,2,3', amount: 5 }, 2)).toBe(60);
+      expect(evaluateBet({ type: 'corner', value: '1,2,4,5', amount: 4 }, 5)).toBe(36);
+      expect(evaluateBet({ type: 'line', value: '1,2,3,4,5,6', amount: 6 }, 4)).toBe(36);
     });
   });
 

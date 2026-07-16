@@ -20,6 +20,7 @@ import { disposeMaterial } from '../lib/disposeUtils.js';
 import { InstancedPins } from './WheelInstanced.jsx';
 import { RimStreaks } from './RimStreaks.jsx';
 import { WheelSectorNeon } from './WheelSectorNeon.jsx';
+import { blendWheelSpinVelocity } from '../lib/wheelSpinEase.js';
 
 /** Full physics wheel — only imported from lazy RapierStage. */
 export function EuropeanWheel({
@@ -29,7 +30,7 @@ export function EuropeanWheel({
   onWheelAngle,
 }) {
   const mats = useMaterials();
-  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef } = useGame();
+  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock } = useGame();
 
   const pocketMats = useMemo(
     () => EUROPEAN_SEQUENCE.map((num) => mats.pocket[getColor(num)].clone()),
@@ -74,7 +75,12 @@ export function EuropeanWheel({
       }
     }
 
-    spinVelRef.current = THREE.MathUtils.damp(spinVelRef.current, spinSpeed, 4, delta);
+    spinVelRef.current = blendWheelSpinVelocity(
+      spinVelRef.current,
+      spinSpeed,
+      delta,
+      clock?.cycleSecond ?? 0,
+    );
     angleRef.current += delta * spinVelRef.current;
     onWheelAngle?.(angleRef.current);
 

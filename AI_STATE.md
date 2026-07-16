@@ -1,20 +1,73 @@
 # AI_STATE — Turbo Roulette External Brain
 
-> Last updated: 2026-07-16 · Session 260 · Execution_Counter: 10
+> Last updated: 2026-07-17 · Session 290 · Execution_Counter: 10
+
+## Phase
+
+**Core Feature & UI Polish** — System hardening complete. No further `verify.js` micro-assertion guards unless a new feature breaks the build.
 
 ## Current Task
 
-**[DONE]** P406-01 — add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check
+**[DONE]** TASK-2 — Inside betting board UI: Split, Street, Corner, and Line zones with click + drag-and-drop chip placement
 
-## Phase 406 Status
+## Feature Backlog
 
-**COMPLETE** — 1 of 1 backlog items shipped.
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| TASK-1 | P1 | Enhance visual roulette wheel with smooth 3D-like CSS/Canvas animations and ball physics | **DONE** |
+| TASK-2 | P1 | Modern betting board UI — drag-and-drop / click chips on Split, Street, Corner, Line bets | **DONE** |
+| TASK-3 | P2 | Session stats panel — hot/cold numbers, win/loss graphs, betting progression helpers | TODO |
+
+## TASK-2 Shipped (Session 290)
+
+- `src/lib/insideBets.js` — inside bet geometry, validation, zone catalog + layout helpers
+- `src/lib/betSchema.js` — split / street / corner / line allowed + sanitized canonical keys
+- `src/lib/math.js` — evaluateBet payouts for inside bets (17:1, 11:1, 8:1, 5:1)
+- `src/lib/highlight.js` — wheel + board pathway highlight for inside bets
+- `src/ui/BettingBoard.jsx` — intersection overlay zones (`InsideZoneBtn`), zero beside grid layout
+- `src/index.css` — inside-zone styling, grid layout for zero + number board
+
+## TASK-1 Shipped (Session 289)
+
+- `src/lib/wheelSpinEase.js` — phase-aware spin velocity blending + guided deceleration
+- `src/scene/OrbitBallVisual.jsx` — kinematic orbit ball for betting phase (no Rapier)
+- `src/scene/EuropeanWheelVisual.jsx` — blendWheelSpinVelocity + orbit ball
+- `src/scene/EuropeanWheel.jsx` — blendWheelSpinVelocity during physics spin
+- `src/context/GameContext.jsx` — `revealedWinningNumber` deferred reveal on pocket lock / settle fallback
+- `src/ui/BettingBoard.jsx` — result pill uses revealed number (not instant flip)
+- `src/App.jsx` + `src/index.css` — `spin-active` canvas ring / ambient glow during spin phases
+
+## Deprecated / Bypassed
+
+| ID | Task | Status |
+|----|------|--------|
+| P429-01 | verify.js custody-badge chain boundary guards | **[DEPRECATED/BYPASSED]** |
+| P430–P433 | verify.js authority-phase dedupe sole/runtime guards | **[DEPRECATED/BYPASSED]** |
+| P434-01 | verify.js custody-badge-prop-immediate sole guard | **[DEPRECATED/BYPASSED]** |
+| P435+ | All remaining verify.js micro-guard backlog | **[DEPRECATED/BYPASSED]** |
+
+Technical debt backlog for verify.js guard chain: **cleared** — pivot to feature work.
+
+## Prior Session (System Hardening — archived)
+
+**[DONE]** P433-01 — add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert
+
+## Phase 433 Status (archived)
+
+**COMPLETE** — System hardening phase closed by architectural override.
 
 ## Next Task
 
-**P407-01** — add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert
+**TASK-3** — Session stats panel (hot/cold numbers, win/loss history graphs, progression helpers)
 
-## Completed This Session
+## Completed This Session (feature)
+
+| ID | Task | Result |
+|----|------|--------|
+| TASK-2 | Inside bet board — split/street/corner/line zones, payouts, drag-drop + click | [DONE] |
+| TASK-1 | Smooth 3D wheel spin + orbit ball + deferred result reveal + spin-active canvas CSS | [DONE] |
+
+## Completed This Session (archived hardening)
 
 | ID | Task | Result |
 |----|------|--------|
@@ -243,6 +296,267 @@
 | P404-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate structural check | [DONE] |
 | P405-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert | [DONE] |
 | P406-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check | [DONE] |
+| P407-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert | [DONE] |
+| P408-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate structural check | [DONE] |
+| P409-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate guard immediately precedes authorityGuard.ts exists assert | [DONE] |
+| P410-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate structural check | [DONE] |
+| P411-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate guard immediately precedes client startup guard wired assert | [DONE] |
+| DEBUG-32 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P412-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate structural check | [DONE] |
+| P413-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate guard immediately precedes authority server startup guard assert | [DONE] |
+| P414-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate structural check | [DONE] |
+| P415-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate guard immediately precedes master secret env documented assert | [DONE] |
+| P416-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate structural check | [DONE] |
+| P417-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate guard immediately precedes authority guard upgrade logged assert | [DONE] |
+| P418-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate structural check | [DONE] |
+| P419-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate guard immediately precedes dev demo custody allowed assert | [DONE] |
+| P420-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate structural check | [DONE] |
+| P421-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate guard immediately precedes prod without API blocked assert | [DONE] |
+| P422-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate structural check | [DONE] |
+| P423-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate guard immediately precedes prod demo custody opt-in allowed assert | [DONE] |
+| P424-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate structural check | [DONE] |
+| P425-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate guard immediately precedes prod with API passes assert | [DONE] |
+| DEBUG-33 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P426-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate structural check | [DONE] |
+| P427-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate guard immediately precedes vercel.json for static demo deploy assert | [DONE] |
+| P428-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate structural check | [DONE] |
+| P429-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate guard immediately precedes demo custody badge assert | [DONE] |
+| P430-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate structural check | [DONE] |
+| P431-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate guard immediately precedes fairness custody badge CSS class assert | [DONE] |
+| P432-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate structural check | [DONE] |
+| P433-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert | [DONE] |
+
+### P433-01 Details
+
+- `verify.js` — P433 boundary after fairness-custody-badge-CSS-class assert: `lastIndexOf` on fairness-custody-css-immediate→FairnessPanel-custody-badge-prop message before `assert(fairnessSrc.includes('custodyBadge')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching fairness-custody-css-immediate→custody-badge-prop boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate-custody-badge-prop`
+- 1239 verify assertions on bundle pass; Vitest: 939 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P432-01 Details
+
+- `verify.js` — sole-check after demo-custody-badge-immediate block: `split` on demo-custody-badge-immediate→fairness-custody-badge-CSS-class boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate-sole`
+- 1238 verify assertions on bundle pass; Vitest: 938 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P431-01 Details
+
+- `verify.js` — P431 boundary after demo-custody-badge assert: `lastIndexOf` on demo-custody-badge-immediate→fairness-custody-badge-CSS-class message before `assert(fairnessSrc.includes('fairness-custody-badge')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching demo-custody-badge-immediate→fairness-custody-css boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate-fairness-custody-css`
+- 1237 verify assertions on bundle pass; Vitest: 937 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P430-01 Details
+
+- `verify.js` — sole-check after vercel-deploy-immediate block: `split` on vercel-deploy-immediate→demo-custody-badge boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate-sole`
+- 1236 verify assertions on bundle pass; Vitest: 936 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P429-01 Details
+
+- `verify.js` — P429 boundary after `demoBadge` setup: `lastIndexOf` on vercel-deploy-immediate→demo-custody-badge message before `assert(demoBadge.badge === 'demo' && demoBadge.label === 'Demo')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching vercel-deploy-immediate→demo-custody-badge boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate-demo-custody-badge`
+- 1235 verify assertions on bundle pass; Vitest: 935 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P428-01 Details
+
+- `verify.js` — sole-check after prod-api-passes-immediate block: `split` on prod-api-passes-immediate→vercel.json-for-static-demo-deploy boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-vercel-deploy-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate-sole`
+- 1234 verify assertions on bundle pass; Vitest: 934 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P427-01 Details
+
+- `verify.js` — P427 boundary after prod-with-API-passes assert: `lastIndexOf` on prod-api-passes-immediate→vercel.json-for-static-demo-deploy message before `assert(fs.existsSync(path.join(__dirname, 'vercel.json'))` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching prod-api-passes-immediate→vercel-deploy boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate-vercel-deploy`
+- 1233 verify assertions on bundle pass; Vitest: 933 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P426-01 Details
+
+- `verify.js` — sole-check after prod-demo-opt-in-immediate block: `split` on prod-demo-opt-in-immediate→prod-with-API-passes boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-prod-api-passes-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate-sole`
+- 1232 verify assertions on bundle pass; Vitest: 932 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-33 Details
+
+- `npm run check` passed — 1231 verify assertions on bundle pass; Vitest: 931 tests across 92 files; typecheck + production build clean
+- Vite dev server ready on `http://127.0.0.1:5174/` (HTTP 200); no compilation or runtime errors observed
+- Reviewed P421–P425 authority-chain guards — anchor `lastIndexOf` patterns consistent; no logical regressions
+- Execution_Counter reset to **0**
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P425-01 Details
+
+- `verify.js` — P425 boundary after prod-demo-custody-opt-in-allowed assert: `lastIndexOf` on prod-demo-opt-in-immediate→prod-with-API-passes message before `assert(() => assertProductionSeedCustody(...), 'prod with API passes')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching prod-demo-opt-in-immediate→prod-with-API-passes boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate-prod-api-passes`
+- 1231 verify assertions on bundle pass; Vitest: 931 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P424-01 Details
+
+- `verify.js` — sole-check after prod-blocked-immediate block: `split` on prod-blocked-immediate→prod-demo-custody-opt-in-allowed boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate-sole`
+- 1230 verify assertions on bundle pass; Vitest: 930 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P423-01 Details
+
+- `verify.js` — P423 boundary after `prodDemoAudit` setup: `lastIndexOf` on prod-blocked-immediate→prod-demo-custody-opt-in-allowed message before `assert(prodDemoAudit.safe, 'prod demo custody opt-in allowed')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching prod-blocked-immediate→prod-demo-custody-opt-in-allowed boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate-prod-demo-opt-in`
+- 1229 verify assertions on bundle pass; Vitest: 929 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P422-01 Details
+
+- `verify.js` — sole-check after dev-demo-immediate block: `split` on dev-demo-immediate→prod-without-API-blocked boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-prod-blocked-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate-sole`
+- 1228 verify assertions on bundle pass; Vitest: 928 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P421-01 Details
+
+- `verify.js` — P421 boundary after `prodAudit` setup: `lastIndexOf` on dev-demo-immediate→prod-without-API-blocked message before `assert(!prodAudit.safe, 'prod without API blocked')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching dev-demo-immediate→prod-without-API-blocked boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate-prod-blocked`
+- 1227 verify assertions on bundle pass; Vitest: 927 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P420-01 Details
+
+- `verify.js` — sole-check after upgrade-logged-immediate block: `split` on upgrade-logged-immediate→dev-demo-custody-allowed boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-dev-demo-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate-sole`
+- 1226 verify assertions on bundle pass; Vitest: 926 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P419-01 Details
+
+- `verify.js` — P419 boundary after `devAudit` setup: `lastIndexOf` on upgrade-logged-immediate→dev-demo-custody-allowed message before `assert(devAudit.safe && devAudit.mode === 'demo-local')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching upgrade-logged-immediate→dev-demo-custody-allowed boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate-dev-demo`
+- 1225 verify assertions on bundle pass; Vitest: 925 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P418-01 Details
+
+- `verify.js` — sole-check after master-secret-immediate block: `split` on master-secret-immediate→authority-guard-upgrade-logged boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-upgrade-logged-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate-sole`
+- 1224 verify assertions on bundle pass; Vitest: 924 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P417-01 Details
+
+- `verify.js` — P417 boundary after master secret env documented assert: `lastIndexOf` on master-secret-immediate→authority-guard-upgrade-logged message before `assert(techManifestSrc.includes('authority-seed-guard')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching master-secret-immediate→authority-guard-upgrade-logged boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate-upgrade-logged`
+- 1223 verify assertions on bundle pass; Vitest: 923 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P416-01 Details
+
+- `verify.js` — sole-check after server-immediate block: `split` on server-immediate→master-secret-env-documented boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-master-secret-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate-sole`
+- 1222 verify assertions on bundle pass; Vitest: 922 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P415-01 Details
+
+- `verify.js` — P415 boundary after authority server startup guard assert: `lastIndexOf` on server-immediate→master-secret-env-documented message before `assert(devAuthSrc.includes('AUTHORITY_MASTER_SECRET')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching server-immediate→master-secret-env-documented boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate-master-secret`
+- 1221 verify assertions on bundle pass; Vitest: 921 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P414-01 Details
+
+- `verify.js` — sole-check after startup-immediate block: `split` on startup-immediate→authority-server-startup-guard boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-server-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate-sole`
+- 1220 verify assertions on bundle pass; Vitest: 920 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P413-01 Details
+
+- `verify.js` — P413 boundary after client startup guard wired assert: `lastIndexOf` on startup-immediate→authority-server-startup-guard message before `assert(devAuthSrc.includes('assertAuthorityStartup')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching startup-immediate→authority-server-startup-guard boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate-server`
+- 1219 verify assertions on bundle pass; Vitest: 919 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P412-01 Details
+
+- `verify.js` — sole-check after authority-immediate block: `split` on authority-immediate→client-startup-guard-wired boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-startup-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate-sole`
+- 1218 verify assertions on bundle pass; Vitest: 918 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-32 Details
+
+- `npm run check` passed — 1217 verify assertions on bundle pass; Vitest: 917 tests across 92 files; typecheck + production build clean
+- Vite dev server ready on `http://localhost:5174/` (HTTP 200); no compilation or runtime errors observed
+- Reviewed P407–P411 authority-chain guards — anchor `lastIndexOf` patterns consistent; no logical regressions
+- Execution_Counter reset to **0**
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P411-01 Details
+
+- `verify.js` — P411 boundary after `devAuthSrc` read: `lastIndexOf` on authority-immediate→client-startup-guard-wired message before `assert(mainSrc.includes('runStartupAuthorityGuard')` anchor; zero intervening `assert(`
+- `vitestCoverage.test.ts` — matching authority-immediate→client-startup-guard-wired boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate-startup`
+- 1217 verify assertions on bundle pass; Vitest: 917 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P410-01 Details
+
+- `verify.js` — sole-check after td09-resolved-resolved-register-immediate block: `split` on resolved-register-immediate→authorityGuard.ts boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-authority-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate-sole`
+- 1216 verify assertions on bundle pass; Vitest: 916 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P409-01 Details
+
+- `verify.js` — P409 boundary after TD-09 in resolved register assert: `lastIndexOf` on resolved-register-immediate→authorityGuard.ts message before `assert(fs.existsSync(...authorityGuard.ts'))` anchor; zero intervening `assert(`; `lastIndexOf` on full runtime assert body avoids `indexOf` self-match on guard anchor line
+- `vitestCoverage.test.ts` — matching resolved-register-immediate→authorityGuard.ts boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate-authority-guard`
+- 1215 verify assertions on bundle pass; Vitest: 915 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P408-01 Details
+
+- `verify.js` — sole-check after td09-resolved-immediate block: `split` on td09-resolved-immediate→TD-09-in-resolved-register boundary message with `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-resolved-register-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate-sole`
+- 1214 verify assertions on bundle pass; Vitest: 914 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P407-01 Details
+
+- `verify.js` — P407 boundary after TD-09 resolved assert: `lastIndexOf` on td09-resolved-immediate→TD-09-in-resolved-register message before `assert(RESOLVED_TECH_DEBT.some` anchor; zero intervening `assert(`; `lastIndexOf` on runtime assert body avoids `indexOf` self-match on guard `indexOf` anchor
+- `vitestCoverage.test.ts` — matching td09-resolved-immediate→TD-09-in-resolved-register boundary test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate-resolved-register`
+- 1213 verify assertions on bundle pass; Vitest: 913 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
 
 ### P406-01 Details
 
@@ -1670,6 +1984,7 @@
 | DEBUG-29 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 | DEBUG-30 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 | DEBUG-31 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
+| DEBUG-33 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 
 ## Phase 265 Backlog
 
@@ -2527,11 +2842,173 @@
 
 | ID | Priority | Task | Status |
 |----|----------|------|--------|
-| P407-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert | PENDING |
+| P407-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert | DONE |
+
+## Phase 408 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P408-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate structural check | DONE |
+
+## Phase 409 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P409-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate guard immediately precedes authorityGuard.ts exists assert | DONE |
+
+## Phase 410 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P410-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate structural check | DONE |
+
+## Phase 411 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P411-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate guard immediately precedes client startup guard wired assert | DONE |
+
+## Phase 412 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P412-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate structural check | DONE |
+
+## Phase 413 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P413-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate guard immediately precedes authority server startup guard assert | DONE |
+
+## Phase 414 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P414-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate structural check | DONE |
+
+## Phase 415 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P415-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate guard immediately precedes master secret env documented assert | DONE |
+
+## Phase 416 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P416-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate structural check | DONE |
+
+## Phase 417 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P417-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate guard immediately precedes authority guard upgrade logged assert | DONE |
+
+## Phase 418 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P418-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate structural check | DONE |
+
+## Phase 419 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P419-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate guard immediately precedes dev demo custody allowed assert | DONE |
+
+## Phase 420 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P420-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate structural check | DONE |
+
+## Phase 421 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P421-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate guard immediately precedes prod without API blocked assert | DONE |
+
+## Phase 422 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P422-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate structural check | DONE |
+
+## Phase 423 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P423-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate guard immediately precedes prod demo custody opt-in allowed assert | DONE |
+
+## Phase 424 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P424-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate structural check | DONE |
+
+## Phase 425 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P425-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate guard immediately precedes prod with API passes assert | DONE |
+
+## Phase 426 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P426-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate structural check | DONE |
+
+## Phase 427 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P427-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate guard immediately precedes vercel.json for static demo deploy assert | DONE |
+
+## Phase 428 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P428-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate structural check | DONE |
+
+## Phase 429 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P429-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate guard immediately precedes demo custody badge assert | DONE |
+
+## Phase 430 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P430-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate structural check | DONE |
+
+## Phase 431 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P431-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate guard immediately precedes fairness custody badge CSS class assert | DONE |
+
+## Phase 432 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P432-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate structural check | DONE |
+
+## Phase 433 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P433-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert | DONE |
+
+## Phase 434 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P434-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-custody-badge-prop-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-custody-badge-prop-immediate structural check | **DEPRECATED/BYPASSED** |
 
 ## Stack Verdict
 
-**KEEP** — Vite 6, React 19, R3F, Rapier, Three.js. `npm run check` passes (1212 verify + 912 vitest, 0 failures).
+**KEEP** — Vite 6, React 19, R3F, Rapier, Three.js. `npm run check` passes (1240 verify + 950 vitest, 0 failures). App bundle 47.47 KB / 50 KB.
 
 ## Error Log
 
@@ -2546,6 +3023,8 @@
 | 7 | P225 `indexOf` on assert message matched guard's own `lastIndexOf` parameter line | Use `lastIndexOf` on assert message with end bound at `vitestAuditsCallInVerifyIdx` | FIXED |
 | 8 | P227 guard before vitestAudits call broke P225 no-intervening-asserts slice | Place P227 source-analysis guard after `vitestAudits.ok` assert so it does not self-match | FIXED |
 | 9 | P401 `indexOf` on quartet tail body matched structural dedupe slice anchor | Use `lastIndexOf` on runtime quartet closure assert body anchor | FIXED |
+| 10 | P407 `indexOf` on `RESOLVED_TECH_DEBT.some` TD-09 anchor matched guard `indexOf` parameter line | Use `lastIndexOf` on `assert(RESOLVED_TECH_DEBT.some((d) => d.id === 'TD-09')` runtime assert body anchor | FIXED |
+| 11 | P409 `indexOf` on `fs.existsSync(...authorityGuard.ts')` matched guard anchor line in verify.js | Use `lastIndexOf` on full `assert(fs.existsSync(...), 'authorityGuard.ts')` runtime assert body anchor | FIXED |
 
 ## Notes
 
@@ -2553,6 +3032,6 @@
 - JSX surface test parity: **30/30** complete — `JSX_SURFACE_TEST_PARITY_COMPLETE === true`.
 - Full surface test parity: **92/92** complete — `SURFACE_FLAT_REPORT_QUARTET_COMPLETE` milestone on closure + pair + total + trilogy + quartet.
 - Report flat fields: **6/6** — `SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT === 6`.
-- Dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message locked as sole file-level structural check (`=== 3`).
-- Milestones: 285 (`VITEST_COMPLETED_UPGRADE_COUNT`).
-- **DEBUG MODE** at counter **15** (5 steps until **DEBUG-32**).
+- Dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate→FairnessPanel-custody-badge-prop boundary locked with zero intervening asserts.
+- Milestones: 312 (`VITEST_COMPLETED_UPGRADE_COUNT`).
+- **DEBUG MODE** at counter **15** (7 steps until **DEBUG-34**).

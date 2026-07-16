@@ -1850,6 +1850,90 @@ assert(
   dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateMessageCount === 2,
   'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check',
 );
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate guard immediately precedes authorityGuard.ts exists assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate guard immediately precedes client startup guard wired assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate guard immediately precedes authority server startup guard assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate guard immediately precedes master secret env documented assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate guard immediately precedes authority guard upgrade logged assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate guard immediately precedes dev demo custody allowed assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate guard immediately precedes prod without API blocked assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate guard immediately precedes prod demo custody opt-in allowed assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate guard immediately precedes prod with API passes assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate guard immediately precedes vercel.json for static demo deploy assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate guard immediately precedes demo custody badge assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate guard immediately precedes fairness custody badge CSS class assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate structural check',
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterCustodyBadgePropImmediateMessageCount =
+  verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert').length - 1;
+assert(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterCustodyBadgePropImmediateMessageCount === 3,
+  'dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-custody-badge-prop-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-custody-badge-prop-immediate structural check',
+);
 const vitestStructuralStart = verifySrc.indexOf(
   "verifySrc.includes('unified surface flat closure from vitestSurfaceTestParity report')",
 );
@@ -5487,28 +5571,435 @@ assert(
     vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateToTd09ResolvedSlice.split('assert(').length - 1 === 0,
   'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert',
 );
+const td09InResolvedRegisterAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(RESOLVED_TECH_DEBT.some((d) => d.id === 'TD-09')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert',
+  td09InResolvedRegisterAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardMessageInVerifyIdx,
+);
+const td09InResolvedRegisterAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  td09InResolvedRegisterAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateToTd09InResolvedRegisterSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardCloseInVerifyIdx,
+  td09InResolvedRegisterAssertOpenInVerifyIdx,
+);
+assert(
+  td09InResolvedRegisterAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardCloseInVerifyIdx !== -1 &&
+    td09InResolvedRegisterAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateGuardCloseInVerifyIdx <
+      td09InResolvedRegisterAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedImmediateToTd09InResolvedRegisterSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert',
+);
 assert(RESOLVED_TECH_DEBT.some((d) => d.id === 'TD-09'), 'TD-09 in resolved register');
+
+const authorityGuardTsExistsAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(fs.existsSync(path.join(__dirname, 'src/core/authorityGuard.ts')), 'authorityGuard.ts')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate guard immediately precedes authorityGuard.ts exists assert',
+  authorityGuardTsExistsAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardMessageInVerifyIdx,
+);
+const authorityGuardTsExistsAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  authorityGuardTsExistsAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateToAuthorityGuardTsExistsSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardCloseInVerifyIdx,
+  authorityGuardTsExistsAssertOpenInVerifyIdx,
+);
+assert(
+  authorityGuardTsExistsAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardCloseInVerifyIdx !== -1 &&
+    authorityGuardTsExistsAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateGuardCloseInVerifyIdx <
+      authorityGuardTsExistsAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterImmediateToAuthorityGuardTsExistsSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-immediate guard immediately precedes authorityGuard.ts exists assert',
+);
 
 console.log('\n=== Architect Phase 11: authority seed custody guard ===');
 assert(fs.existsSync(path.join(__dirname, 'src/core/authorityGuard.ts')), 'authorityGuard.ts');
 const devAuthSrc = fs.readFileSync(path.join(__dirname, 'server/devAuthority.mjs'), 'utf8');
+const clientStartupGuardWiredAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(mainSrc.includes('runStartupAuthorityGuard'), 'client startup guard wired')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate guard immediately precedes client startup guard wired assert',
+  clientStartupGuardWiredAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardMessageInVerifyIdx,
+);
+const clientStartupGuardWiredAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  clientStartupGuardWiredAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateToClientStartupGuardWiredSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardCloseInVerifyIdx,
+  clientStartupGuardWiredAssertOpenInVerifyIdx,
+);
+assert(
+  clientStartupGuardWiredAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardCloseInVerifyIdx !== -1 &&
+    clientStartupGuardWiredAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateGuardCloseInVerifyIdx <
+      clientStartupGuardWiredAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterAuthorityImmediateToClientStartupGuardWiredSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-authority-immediate guard immediately precedes client startup guard wired assert',
+);
 assert(mainSrc.includes('runStartupAuthorityGuard'), 'client startup guard wired');
+const authorityServerStartupGuardAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(devAuthSrc.includes('assertAuthorityStartup'), 'authority server startup guard')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate guard immediately precedes authority server startup guard assert',
+  authorityServerStartupGuardAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardMessageInVerifyIdx,
+);
+const authorityServerStartupGuardAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  authorityServerStartupGuardAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateToAuthorityServerStartupGuardSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardCloseInVerifyIdx,
+  authorityServerStartupGuardAssertOpenInVerifyIdx,
+);
+assert(
+  authorityServerStartupGuardAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardCloseInVerifyIdx !== -1 &&
+    authorityServerStartupGuardAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateGuardCloseInVerifyIdx <
+      authorityServerStartupGuardAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterStartupImmediateToAuthorityServerStartupGuardSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-startup-immediate guard immediately precedes authority server startup guard assert',
+);
 assert(devAuthSrc.includes('assertAuthorityStartup'), 'authority server startup guard');
+const masterSecretEnvDocumentedAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(devAuthSrc.includes('AUTHORITY_MASTER_SECRET'), 'master secret env documented')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate guard immediately precedes master secret env documented assert',
+  masterSecretEnvDocumentedAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardMessageInVerifyIdx,
+);
+const masterSecretEnvDocumentedAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  masterSecretEnvDocumentedAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateToMasterSecretEnvDocumentedSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardCloseInVerifyIdx,
+  masterSecretEnvDocumentedAssertOpenInVerifyIdx,
+);
+assert(
+  masterSecretEnvDocumentedAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardCloseInVerifyIdx !== -1 &&
+    masterSecretEnvDocumentedAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateGuardCloseInVerifyIdx <
+      masterSecretEnvDocumentedAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterServerImmediateToMasterSecretEnvDocumentedSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-server-immediate guard immediately precedes master secret env documented assert',
+);
 assert(devAuthSrc.includes('AUTHORITY_MASTER_SECRET'), 'master secret env documented');
+const authorityGuardUpgradeLoggedAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(techManifestSrc.includes('authority-seed-guard'), 'authority guard upgrade logged')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate guard immediately precedes authority guard upgrade logged assert',
+  authorityGuardUpgradeLoggedAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardMessageInVerifyIdx,
+);
+const authorityGuardUpgradeLoggedAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  authorityGuardUpgradeLoggedAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateToAuthorityGuardUpgradeLoggedSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardCloseInVerifyIdx,
+  authorityGuardUpgradeLoggedAssertOpenInVerifyIdx,
+);
+assert(
+  authorityGuardUpgradeLoggedAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardCloseInVerifyIdx !== -1 &&
+    authorityGuardUpgradeLoggedAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateGuardCloseInVerifyIdx <
+      authorityGuardUpgradeLoggedAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterMasterSecretImmediateToAuthorityGuardUpgradeLoggedSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-master-secret-immediate guard immediately precedes authority guard upgrade logged assert',
+);
 assert(techManifestSrc.includes('authority-seed-guard'), 'authority guard upgrade logged');
 const { auditSeedCustody, assertProductionSeedCustody } = await import('./src/core/authorityGuard.ts');
 const devAudit = auditSeedCustody({ PROD: false });
+const devDemoCustodyAllowedAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(devAudit.safe && devAudit.mode === 'demo-local', 'dev demo custody allowed')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate guard immediately precedes dev demo custody allowed assert',
+  devDemoCustodyAllowedAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardMessageInVerifyIdx,
+);
+const devDemoCustodyAllowedAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  devDemoCustodyAllowedAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateToDevDemoCustodyAllowedSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardCloseInVerifyIdx,
+  devDemoCustodyAllowedAssertOpenInVerifyIdx,
+);
+assert(
+  devDemoCustodyAllowedAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardCloseInVerifyIdx !== -1 &&
+    devDemoCustodyAllowedAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateGuardCloseInVerifyIdx <
+      devDemoCustodyAllowedAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterUpgradeLoggedImmediateToDevDemoCustodyAllowedSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-upgrade-logged-immediate guard immediately precedes dev demo custody allowed assert',
+);
 assert(devAudit.safe && devAudit.mode === 'demo-local', 'dev demo custody allowed');
 const prodAudit = auditSeedCustody({ PROD: true });
+const prodWithoutApiBlockedAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(!prodAudit.safe, 'prod without API blocked')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate guard immediately precedes prod without API blocked assert',
+  prodWithoutApiBlockedAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardMessageInVerifyIdx,
+);
+const prodWithoutApiBlockedAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  prodWithoutApiBlockedAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateToProdWithoutApiBlockedSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardCloseInVerifyIdx,
+  prodWithoutApiBlockedAssertOpenInVerifyIdx,
+);
+assert(
+  prodWithoutApiBlockedAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardCloseInVerifyIdx !== -1 &&
+    prodWithoutApiBlockedAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateGuardCloseInVerifyIdx <
+      prodWithoutApiBlockedAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDevDemoImmediateToProdWithoutApiBlockedSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-dev-demo-immediate guard immediately precedes prod without API blocked assert',
+);
 assert(!prodAudit.safe, 'prod without API blocked');
 const prodDemoAudit = auditSeedCustody({ PROD: true, VITE_ALLOW_DEMO_CUSTODY: '1' });
+const prodDemoCustodyOptInAllowedAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(prodDemoAudit.safe, 'prod demo custody opt-in allowed')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate guard immediately precedes prod demo custody opt-in allowed assert',
+  prodDemoCustodyOptInAllowedAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardMessageInVerifyIdx,
+);
+const prodDemoCustodyOptInAllowedAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  prodDemoCustodyOptInAllowedAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateToProdDemoCustodyOptInAllowedSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardCloseInVerifyIdx,
+  prodDemoCustodyOptInAllowedAssertOpenInVerifyIdx,
+);
+assert(
+  prodDemoCustodyOptInAllowedAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardCloseInVerifyIdx !== -1 &&
+    prodDemoCustodyOptInAllowedAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateGuardCloseInVerifyIdx <
+      prodDemoCustodyOptInAllowedAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdBlockedImmediateToProdDemoCustodyOptInAllowedSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-blocked-immediate guard immediately precedes prod demo custody opt-in allowed assert',
+);
 assert(prodDemoAudit.safe, 'prod demo custody opt-in allowed');
+const prodWithApiPassesAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(() => assertProductionSeedCustody({ PROD: true, VITE_API_BASE: 'http://127.0.0.1:8787' }) === undefined, 'prod with API passes')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate guard immediately precedes prod with API passes assert',
+  prodWithApiPassesAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardMessageInVerifyIdx,
+);
+const prodWithApiPassesAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  prodWithApiPassesAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateToProdWithApiPassesSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardCloseInVerifyIdx,
+  prodWithApiPassesAssertOpenInVerifyIdx,
+);
+assert(
+  prodWithApiPassesAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardCloseInVerifyIdx !== -1 &&
+    prodWithApiPassesAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateGuardCloseInVerifyIdx <
+      prodWithApiPassesAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdDemoOptInImmediateToProdWithApiPassesSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-demo-opt-in-immediate guard immediately precedes prod with API passes assert',
+);
 assert(() => assertProductionSeedCustody({ PROD: true, VITE_API_BASE: 'http://127.0.0.1:8787' }) === undefined, 'prod with API passes');
+const vercelJsonForStaticDemoDeployAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(fs.existsSync(path.join(__dirname, 'vercel.json')), 'vercel.json for static demo deploy')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate guard immediately precedes vercel.json for static demo deploy assert',
+  vercelJsonForStaticDemoDeployAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardMessageInVerifyIdx,
+);
+const vercelJsonForStaticDemoDeployAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  vercelJsonForStaticDemoDeployAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateToVercelJsonForStaticDemoDeploySlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardCloseInVerifyIdx,
+  vercelJsonForStaticDemoDeployAssertOpenInVerifyIdx,
+);
+assert(
+  vercelJsonForStaticDemoDeployAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardCloseInVerifyIdx !== -1 &&
+    vercelJsonForStaticDemoDeployAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateGuardCloseInVerifyIdx <
+      vercelJsonForStaticDemoDeployAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterProdApiPassesImmediateToVercelJsonForStaticDemoDeploySlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-prod-api-passes-immediate guard immediately precedes vercel.json for static demo deploy assert',
+);
 assert(fs.existsSync(path.join(__dirname, 'vercel.json')), 'vercel.json for static demo deploy');
 const { resolveSeedCustodyBadge } = await import('./src/core/authorityGuard.ts');
 const demoBadge = resolveSeedCustodyBadge(auditSeedCustody({ PROD: false }));
+const demoCustodyBadgeAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(demoBadge.badge === 'demo' && demoBadge.label === 'Demo', 'demo custody badge')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate guard immediately precedes demo custody badge assert',
+  demoCustodyBadgeAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardMessageInVerifyIdx,
+);
+const demoCustodyBadgeAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  demoCustodyBadgeAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateToDemoCustodyBadgeSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardCloseInVerifyIdx,
+  demoCustodyBadgeAssertOpenInVerifyIdx,
+);
+assert(
+  demoCustodyBadgeAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardCloseInVerifyIdx !== -1 &&
+    demoCustodyBadgeAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateGuardCloseInVerifyIdx <
+      demoCustodyBadgeAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterVercelDeployImmediateToDemoCustodyBadgeSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-vercel-deploy-immediate guard immediately precedes demo custody badge assert',
+);
 assert(demoBadge.badge === 'demo' && demoBadge.label === 'Demo', 'demo custody badge');
+const fairnessCustodyBadgeCssClassAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(fairnessSrc.includes('fairness-custody-badge'), 'fairness custody badge CSS class')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate guard immediately precedes fairness custody badge CSS class assert',
+  fairnessCustodyBadgeCssClassAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardMessageInVerifyIdx,
+);
+const fairnessCustodyBadgeCssClassAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  fairnessCustodyBadgeCssClassAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateToFairnessCustodyBadgeCssClassSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardCloseInVerifyIdx,
+  fairnessCustodyBadgeCssClassAssertOpenInVerifyIdx,
+);
+assert(
+  fairnessCustodyBadgeCssClassAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardCloseInVerifyIdx !== -1 &&
+    fairnessCustodyBadgeCssClassAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateGuardCloseInVerifyIdx <
+      fairnessCustodyBadgeCssClassAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterDemoCustodyBadgeImmediateToFairnessCustodyBadgeCssClassSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-demo-custody-badge-immediate guard immediately precedes fairness custody badge CSS class assert',
+);
 assert(fairnessSrc.includes('fairness-custody-badge'), 'fairness custody badge CSS class');
+const fairnessPanelCustodyBadgePropAssertBodyInVerifyIdx = verifySrc.lastIndexOf(
+  "assert(fairnessSrc.includes('custodyBadge'), 'FairnessPanel custody badge prop')",
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardMessageInVerifyIdx = verifySrc.lastIndexOf(
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert',
+  fairnessPanelCustodyBadgePropAssertBodyInVerifyIdx,
+);
+const dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardCloseInVerifyIdx = verifySrc.indexOf(
+  ');',
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardMessageInVerifyIdx,
+);
+const fairnessPanelCustodyBadgePropAssertOpenInVerifyIdx = verifySrc.lastIndexOf(
+  'assert(',
+  fairnessPanelCustodyBadgePropAssertBodyInVerifyIdx,
+);
+const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateToFairnessPanelCustodyBadgePropSlice = verifySrc.slice(
+  dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardCloseInVerifyIdx,
+  fairnessPanelCustodyBadgePropAssertOpenInVerifyIdx,
+);
+assert(
+  fairnessPanelCustodyBadgePropAssertBodyInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardMessageInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardCloseInVerifyIdx !== -1 &&
+    fairnessPanelCustodyBadgePropAssertOpenInVerifyIdx !== -1 &&
+    dedupeBlockVitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateGuardCloseInVerifyIdx <
+      fairnessPanelCustodyBadgePropAssertOpenInVerifyIdx &&
+    vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedResolvedRegisterFairnessCustodyCssImmediateToFairnessPanelCustodyBadgePropSlice.split('assert(').length - 1 === 0,
+  'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate guard immediately precedes FairnessPanel custody badge prop assert',
+);
 assert(fairnessSrc.includes('custodyBadge'), 'FairnessPanel custody badge prop');
 assert(boardSrc.includes('seedCustodyBadge'), 'board passes seed custody badge');
 assert(ctxSrc.includes('resolveSeedCustodyBadge'), 'context resolves custody badge');

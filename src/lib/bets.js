@@ -14,7 +14,7 @@ export function placeChip(bets, target, chip) {
   const safeChip = Math.floor(chip);
   const next = bets.map((b) => ({ ...b }));
   const idx = next.findIndex(
-    (b) => b.type === target.type && b.value === target.value
+    (b) => b.type === target.type && String(b.value ?? '') === String(target.value ?? '')
   );
 
   if (idx >= 0) {
@@ -24,7 +24,11 @@ export function placeChip(bets, target, chip) {
   } else {
     const entry = { type: target.type, amount: safeChip };
     if (target.value !== undefined && target.value !== null && target.value !== '') {
-      entry.value = Number(target.value);
+      if (target.type === 'straight' || target.type === 'dozen' || target.type === 'column') {
+        entry.value = Number(target.value);
+      } else {
+        entry.value = String(target.value);
+      }
     }
     const sanitized = sanitizeBet(entry);
     if (!sanitized) return bets;

@@ -19,6 +19,8 @@ describe('betSchema', () => {
     expect(MAX_BET_PER_CELL).toBe(50_000);
     expect(MAX_TOTAL_STAKED).toBe(200_000);
     expect(ALLOWED_BET_TYPES).toContain('straight');
+    expect(ALLOWED_BET_TYPES).toContain('split');
+    expect(ALLOWED_BET_TYPES).toContain('line');
     expect(ALLOWED_BET_TYPES).toContain('column');
   });
 
@@ -52,6 +54,10 @@ describe('betSchema', () => {
       expect(validateBetTarget({ type: 'straight', value: 0 })).toBe(true);
       expect(validateBetTarget({ type: 'dozen', value: 2 })).toBe(true);
       expect(validateBetTarget({ type: 'column', value: 3 })).toBe(true);
+      expect(validateBetTarget({ type: 'split', value: '1,2' })).toBe(true);
+      expect(validateBetTarget({ type: 'street', value: '1,2,3' })).toBe(true);
+      expect(validateBetTarget({ type: 'corner', value: '1,2,4,5' })).toBe(true);
+      expect(validateBetTarget({ type: 'line', value: '1,2,3,4,5,6' })).toBe(true);
     });
 
     it('rejects malformed targets', () => {

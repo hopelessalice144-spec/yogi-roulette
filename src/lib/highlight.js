@@ -1,4 +1,5 @@
 import { RED_NUMBERS, BLACK_NUMBERS } from './math.js';
+import { insideNumbers } from './insideBets.js';
 import { EUROPEAN_SEQUENCE } from './wheel.js';
 
 /** Map UI hover bet → winning numbers on the wheel. */
@@ -29,6 +30,11 @@ export function numbersForHighlight({ type, value }) {
       const c = Number(value);
       return Array.from({ length: 12 }, (_, i) => i * 3 + c);
     }
+    case 'split':
+    case 'street':
+    case 'corner':
+    case 'line':
+      return insideNumbers(type, value);
     default:
       return [];
   }

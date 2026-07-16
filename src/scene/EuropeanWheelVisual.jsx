@@ -19,11 +19,13 @@ import { disposeMaterial } from '../lib/disposeUtils.js';
 import { InstancedPins } from './WheelInstanced.jsx';
 import { RimStreaks } from './RimStreaks.jsx';
 import { WheelSectorNeon } from './WheelSectorNeon.jsx';
+import { OrbitBallVisual } from './OrbitBallVisual.jsx';
+import { blendWheelSpinVelocity } from '../lib/wheelSpinEase.js';
 
 /** Rapier-free wheel for betting phase — defers WASM until lock. */
 export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onWheelAngle }) {
   const mats = useMaterials();
-  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef } = useGame();
+  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock } = useGame();
 
   const pocketMats = useMemo(
     () => EUROPEAN_SEQUENCE.map((num) => mats.pocket[getColor(num)].clone()),
@@ -68,7 +70,12 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
       }
     }
 
-    spinVelRef.current = THREE.MathUtils.damp(spinVelRef.current, spinSpeed, 4, delta);
+    spinVelRef.current = blendWheelSpinVelocity(
+      spinVelRef.current,
+      spinSpeed,
+      delta,
+      clock?.cycleSecond ?? 0,
+    );
     angleRef.current += delta * spinVelRef.current;
     onWheelAngle?.(angleRef.current);
 
@@ -190,6 +197,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
           );
         })}
       </group>
+      <OrbitBallVisual spinSpeed={spinSpeed} />
     </group>
   );
 }

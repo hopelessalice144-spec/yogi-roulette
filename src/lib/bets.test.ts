@@ -43,7 +43,10 @@ describe('bets', () => {
     });
 
     it('ignores invalid bet targets', () => {
-      expect(placeChip([], { type: 'corner', value: 1 }, 25)).toEqual([]);
+      expect(placeChip([], { type: 'corner', value: '1,2' }, 25)).toEqual([]);
+      expect(placeChip([], { type: 'corner', value: '1,2,4,5' }, 25)).toEqual([
+        { type: 'corner', value: '1,2,4,5', amount: 25 },
+      ]);
       expect(placeChip([], { type: 'straight', value: 99 }, 25)).toEqual([]);
     });
 

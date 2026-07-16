@@ -43,6 +43,15 @@ describe('highlight', () => {
         Array.from({ length: 12 }, (_, i) => i * 3 + 3),
       );
     });
+
+    it('maps inside bets to covered pockets', () => {
+      expect(numbersForHighlight({ type: 'split', value: '1,2' })).toEqual([1, 2]);
+      expect(numbersForHighlight({ type: 'street', value: '1,2,3' })).toEqual([1, 2, 3]);
+      expect(numbersForHighlight({ type: 'corner', value: '1,2,4,5' })).toEqual([1, 2, 4, 5]);
+      expect(numbersForHighlight({ type: 'line', value: '1,2,3,4,5,6' })).toEqual([
+        1, 2, 3, 4, 5, 6,
+      ]);
+    });
   });
 
   describe('pocketIndicesForHighlight', () => {

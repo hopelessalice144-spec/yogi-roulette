@@ -2,6 +2,8 @@
  * Bet & chip schema validation — reject tampered / invalid client inputs.
  */
 
+import { validateInsideBet, encodeInsideValue, parseInsideValue } from './insideBets.js';
+
 export const CHIP_VALUES = Object.freeze([1, 5, 25, 100, 500]);
 export const MAX_BALANCE = 1_000_000;
 export const MAX_BET_PER_CELL = 50_000;
@@ -9,6 +11,10 @@ export const MAX_TOTAL_STAKED = 200_000;
 
 export const ALLOWED_BET_TYPES = Object.freeze([
   'straight',
+  'split',
+  'street',
+  'corner',
+  'line',
   'red',
   'black',
   'odd',
@@ -53,6 +59,11 @@ export function validateBetTarget(target) {
       const c = Number(target.value);
       return c === 1 || c === 2 || c === 3;
     }
+    case 'split':
+    case 'street':
+    case 'corner':
+    case 'line':
+      return validateInsideBet(type, target.value);
     case 'red':
     case 'black':
     case 'odd':
@@ -77,6 +88,10 @@ export function sanitizeBet(raw) {
   const target = { type, amount };
   if (type === 'straight' || type === 'dozen' || type === 'column') {
     target.value = Number(raw.value);
+  } else if (type === 'split' || type === 'street' || type === 'corner' || type === 'line') {
+    const nums = parseInsideValue(raw.value);
+    if (!nums) return null;
+    target.value = encodeInsideValue(nums);
   }
 
   if (!validateBetTarget(target)) return null;

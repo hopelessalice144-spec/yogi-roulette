@@ -126,6 +126,8 @@ export function GameProvider({ children }) {
   const [clock, setClock] = useState(() => mergeEngineClock(wallClockSnapshot()));
   const [winningNumber, setWinningNumber] = useState(null);
   const [winningColor, setWinningColor] = useState(null);
+  const [revealedWinningNumber, setRevealedWinningNumber] = useState(null);
+  const [revealedWinningColor, setRevealedWinningColor] = useState(null);
   const [message, setMessage] = useState('Place your bets.');
   const [lastWin, setLastWin] = useState(0);
   const [particleBurst, setParticleBurst] = useState(0);
@@ -179,6 +181,8 @@ export function GameProvider({ children }) {
   const clockIntervalRef = useRef(null);
   const settleRoundRef = useRef(null);
   const pocketSettlePlayedRef = useRef(false);
+  const revealTimerRef = useRef(null);
+  const pendingRevealRef = useRef(null);
   const watchdogJournalRef = useRef(createWatchdogJournal());
   const wheelResyncRef = useRef({ token: 0, angle: 0 });
   const hiddenAtRef = useRef(null);
@@ -485,7 +489,11 @@ export function GameProvider({ children }) {
     const pos = ballPosRef.current;
     emitSpark(pos.x, pos.y + 0.03, pos.z, 1.12);
     feedbackRef.current?.settle();
-  }, [emitSpark]);
+    const pending = pendingRevealRef.current;
+    if (pending) {
+      scheduleResultReveal(pending.result, pending.color, 180);
+    }
+  }, [emitSpark, scheduleResultReveal]);
 
   const updateQualityTier = useCallback((tier, step = 0) => {
     setQualityTier((prev) => (prev === tier ? prev : tier));
@@ -509,6 +517,16 @@ export function GameProvider({ children }) {
     window.setTimeout(() => setSettleFlash(false), 420);
   }, []);
 
+  const scheduleResultReveal = useCallback((result, color, delayMs = 280) => {
+    if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
+    revealTimerRef.current = window.setTimeout(() => {
+      setRevealedWinningNumber(result);
+      setRevealedWinningColor(color);
+      triggerSettleFlash();
+      revealTimerRef.current = null;
+    }, delayMs);
+  }, [triggerSettleFlash]);
+
   const refreshFairRoundHistory = useCallback(() => {
     setFairRoundHistory(
       listFairRoundHistory()
@@ -531,14 +549,16 @@ export function GameProvider({ children }) {
     const color = getColor(result);
     setWinningNumber(result);
     setWinningColor(color);
-    triggerSettleFlash();
+    pendingRevealRef.current = { result, color };
+    const revealDelay = pocketSettlePlayedRef.current ? 140 : 480;
+    scheduleResultReveal(result, color, revealDelay);
 
     const pos = ballPosRef.current;
     if (!pocketSettlePlayedRef.current) {
-      pocketSettlePlayedRef.current = true;
       registerCollisionShake(0.75);
       emitSpark(pos.x, pos.y + 0.03, pos.z, 1.15);
       feedbackRef.current?.settle();
+      pocketSettlePlayedRef.current = true;
     } else {
       audioRef.current?.setRolling(0);
     }
@@ -570,15 +590,32 @@ export function GameProvider({ children }) {
     } else {
       setMessage(`Ball settled on ${result} (${color}).`);
     }
-  }, [commitWallet, registerCollisionShake, emitSpark, triggerSettleFlash, refreshFairRoundHistory]);
+  }, [commitWallet, registerCollisionShake, emitSpark, scheduleResultReveal, refreshFairRoundHistory]);
 
   settleRoundRef.current = settleRound;
 
   useEffect(() => {
     if (clock.cycleSecond === 0) {
       pocketSettlePlayedRef.current = false;
+      if (clock.name === 'betting') {
+        setWinningNumber(null);
+        setWinningColor(null);
+        setRevealedWinningNumber(null);
+        setRevealedWinningColor(null);
+        pendingRevealRef.current = null;
+        if (revealTimerRef.current) {
+          clearTimeout(revealTimerRef.current);
+          revealTimerRef.current = null;
+        }
+      }
     }
-  }, [clock.cycleSecond]);
+  }, [clock.cycleSecond, clock.name]);
+
+  useEffect(() => {
+    return () => {
+      if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const { cycleSecond, cycleId } = clock;
@@ -724,6 +761,8 @@ export function GameProvider({ children }) {
       clock,
       winningNumber,
       winningColor,
+      revealedWinningNumber,
+      revealedWinningColor,
       message,
       lastWin,
       particleBurst,
@@ -796,6 +835,8 @@ export function GameProvider({ children }) {
       clock,
       winningNumber,
       winningColor,
+      revealedWinningNumber,
+      revealedWinningColor,
       message,
       lastWin,
       particleBurst,

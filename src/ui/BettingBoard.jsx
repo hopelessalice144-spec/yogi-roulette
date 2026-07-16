@@ -20,6 +20,10 @@ import {
 import { useGame } from '../context/GameContext.jsx';
 import { GhostChipStack, GhostConfettiBurst } from './GhostBetLayer.jsx';
 import { FairnessPanel } from './FairnessPanel.jsx';
+import { buildInsideBetZones, insideZoneStyle } from '../lib/insideBets.js';
+
+const INSIDE_BET_TYPES = new Set(['split', 'street', 'corner', 'line']);
+const INSIDE_BET_ZONE_LIST = buildInsideBetZones();
 
 const OUTSIDE = [
   { type: 'dozen', value: 1, label: '1st 12' },
@@ -39,11 +43,18 @@ const SPRING_PREMIUM = '0.3s cubic-bezier(0.25, 1, 0.5, 1)';
 
 function parseBetTarget(el) {
   if (!el?.dataset?.betType) return null;
+  const type = el.dataset.betType;
   const raw = el.dataset.betValue;
-  const parsed = raw === '' ? undefined : Number(raw);
   const target = {
-    type: el.dataset.betType,
-    value: raw === '' || Number.isNaN(parsed) ? raw || undefined : parsed,
+    type,
+    value:
+      raw === '' || raw === undefined
+        ? undefined
+        : INSIDE_BET_TYPES.has(type)
+          ? raw
+          : Number.isNaN(Number(raw))
+            ? raw || undefined
+            : Number(raw),
     color: el.dataset.betColor || undefined,
   };
   return validateBetTarget(target) ? target : null;
@@ -240,6 +251,50 @@ function MagneticChip({
   );
 }
 
+function InsideZoneBtn({
+  zone,
+  amount,
+  isDropTarget,
+  isWinning,
+  justPlaced,
+  ghostBets,
+  onClick,
+  disabled,
+  fullQuality,
+}) {
+  return (
+    <button
+      type="button"
+      className={[
+        'inside-zone',
+        `inside-${zone.kind}`,
+        amount ? 'has-chip' : '',
+        isDropTarget ? 'drop-target' : '',
+        isWinning ? 'winning-cell' : '',
+        justPlaced ? 'chip-landed' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={insideZoneStyle(zone)}
+      data-bet-type={zone.type}
+      data-bet-value={zone.value}
+      disabled={disabled}
+      onClick={() => onClick({ type: zone.type, value: zone.value })}
+      aria-label={
+        amount > 0
+          ? `${zone.type} ${zone.value.replace(/,/g, ' ')} — $${amount} staked`
+          : `${zone.type} ${zone.value.replace(/,/g, ' ')}`
+      }
+    >
+      <span className="inside-zone-mark" aria-hidden>
+        {zone.label}
+      </span>
+      {amount > 0 && <ChipStack amount={amount} justPlaced={justPlaced} />}
+      <GhostChipStack bets={ghostBets} fullQuality={fullQuality} />
+    </button>
+  );
+}
+
 function ChipRack({ chipValues, selectedChip, onSelect, onDragStart, onDragMove, onDragEnd, onChipHover }) {
   const rackRef = useRef(null);
   const chipRegistry = useRef(new Map());
@@ -311,8 +366,8 @@ export function BettingBoard() {
     setSelectedChip,
     chipValues,
     clock,
-    winningNumber,
-    winningColor,
+    revealedWinningNumber,
+    revealedWinningColor,
     message,
     hoverHighlight,
     recentResults,
@@ -371,7 +426,7 @@ export function BettingBoard() {
   }, [hoverHighlight, pathwayNumbers]);
 
   const betAmount = (type, value) =>
-    bets.find((b) => b.type === type && b.value === value)?.amount ?? 0;
+    bets.find((b) => b.type === type && String(b.value ?? '') === String(value ?? ''))?.amount ?? 0;
 
   const cellKey = (type, value) => `${type}:${value ?? ''}`;
 
@@ -387,10 +442,13 @@ export function BettingBoard() {
     return map;
   }, [ghostBets]);
 
+  const displayNumber = revealedWinningNumber;
+  const displayColor = revealedWinningColor;
+
   const ghostConfettiEvents = useMemo(() => {
-    if (!isSettleReveal || winningNumber == null) return [];
+    if (!isSettleReveal || displayNumber == null) return [];
     return ghostConfetti;
-  }, [ghostConfetti, isSettleReveal, winningNumber]);
+  }, [ghostConfetti, isSettleReveal, displayNumber]);
 
   const col1 = [];
   const col2 = [];
@@ -504,6 +562,9 @@ export function BettingBoard() {
     if (hoverHighlight.type === 'straight' && hoverHighlight.value === n) {
       return 'pathway-source';
     }
+    if (INSIDE_BET_TYPES.has(hoverHighlight.type)) {
+      return isStraightPathwayLit(n, hoverHighlight) ? 'pathway-lit' : '';
+    }
     return isStraightPathwayLit(n, hoverHighlight) ? 'pathway-lit' : '';
   };
 
@@ -530,7 +591,7 @@ export function BettingBoard() {
       disabled: !bettingOpen,
       onMagnetMove: handleMagnetMove,
       isDropTarget: dropTargetKey === key,
-      isWinning: isSettleReveal && cellIsWinner(type, value, winningNumber),
+      isWinning: isSettleReveal && cellIsWinner(type, value, displayNumber),
       justPlaced: placedFlash === key,
       ghostBets: ghostByCell.get(key) ?? [],
       fullQuality: fullGhostQuality,
@@ -598,11 +659,11 @@ export function BettingBoard() {
               ${balance.toLocaleString()}
             </div>
           </div>
-          <div className={`result-pill ${winningNumber !== null ? 'result-reveal' : ''}`}>
-            {winningNumber !== null ? (
+          <div className={`result-pill ${displayNumber !== null ? 'result-reveal' : ''}`}>
+            {displayNumber !== null ? (
               <>
-                <span className={`ball ${winningColor}`}>{winningNumber}</span>
-                <span className="result-text">{winningColor}</span>
+                <span className={`ball ${displayColor}`}>{displayNumber}</span>
+                <span className="result-text">{displayColor}</span>
               </>
             ) : (
               <span className="result-text">Awaiting spin</span>
@@ -654,31 +715,58 @@ export function BettingBoard() {
             </div>
           )}
 
-          <BetBtn
-            label="0"
-            color="green"
-            pathwayClass={
-              hoverHighlight?.type === 'straight' && hoverHighlight.value === 0
-                ? 'pathway-source'
-                : ''
-            }
-            {...betBtnProps('straight', 0)}
-          />
+          <div className="inside-board-wrap">
+            <div className="number-grid-wrap">
+              <BetBtn
+                label="0"
+                color="green"
+                pathwayClass={
+                  hoverHighlight?.type === 'straight' && hoverHighlight.value === 0
+                    ? 'pathway-source'
+                    : hoverHighlight?.type === 'split' && hoverHighlight.value?.startsWith('0,')
+                      ? 'pathway-source'
+                      : ''
+                }
+                {...betBtnProps('straight', 0)}
+              />
 
-          <div className="number-grid">
-            {[col3, col2, col1].map((col, ri) => (
-              <div key={ri} className="number-row">
-                {col.map((n) => (
-                  <BetBtn
-                    key={n}
-                    label={String(n)}
-                    color={getColor(n)}
-                    pathwayClass={straightPathwayClass(n)}
-                    {...betBtnProps('straight', n)}
-                  />
+              <div className="number-grid">
+                {[col3, col2, col1].map((col, ri) => (
+                  <div key={ri} className="number-row">
+                    {col.map((n) => (
+                      <BetBtn
+                        key={n}
+                        label={String(n)}
+                        color={getColor(n)}
+                        pathwayClass={straightPathwayClass(n)}
+                        {...betBtnProps('straight', n)}
+                      />
+                    ))}
+                  </div>
                 ))}
               </div>
-            ))}
+
+              <div className="inside-zones" data-testid="inside-bet-zones">
+                {INSIDE_BET_ZONE_LIST.map((zone) => {
+                    const key = cellKey(zone.type, zone.value);
+                    const props = betBtnProps(zone.type, zone.value);
+                    return (
+                      <InsideZoneBtn
+                        key={`${zone.kind}-${zone.value}`}
+                        zone={zone}
+                        amount={betAmount(zone.type, zone.value)}
+                        ghostBets={ghostByCell.get(key) ?? []}
+                        isWinning={isSettleReveal && cellIsWinner(zone.type, zone.value, displayNumber)}
+                        justPlaced={placedFlash === key}
+                        isDropTarget={props.isDropTarget}
+                        disabled={props.disabled}
+                        onClick={props.onClick}
+                        fullQuality={fullGhostQuality}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
           </div>
 
           <div className="outside-grid">
