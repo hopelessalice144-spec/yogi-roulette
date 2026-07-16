@@ -482,6 +482,21 @@ export function GameProvider({ children }) {
     if (sparkQueueRef.current.length > 40) sparkQueueRef.current.shift();
   }, []);
 
+  const triggerSettleFlash = useCallback(() => {
+    setSettleFlash(true);
+    window.setTimeout(() => setSettleFlash(false), 420);
+  }, []);
+
+  const scheduleResultReveal = useCallback((result, color, delayMs = 280) => {
+    if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
+    revealTimerRef.current = window.setTimeout(() => {
+      setRevealedWinningNumber(result);
+      setRevealedWinningColor(color);
+      triggerSettleFlash();
+      revealTimerRef.current = null;
+    }, delayMs);
+  }, [triggerSettleFlash]);
+
   /** T-0 pocket lock — wood thud + settle haptics (once per cycle). */
   const onBallPocketLock = useCallback(() => {
     if (pocketSettlePlayedRef.current) return;
@@ -511,21 +526,6 @@ export function GameProvider({ children }) {
     const next = feedbackRef.current?.toggleAudio() ?? !audioMuted;
     setAudioMuted(next);
   }, [audioMuted]);
-
-  const triggerSettleFlash = useCallback(() => {
-    setSettleFlash(true);
-    window.setTimeout(() => setSettleFlash(false), 420);
-  }, []);
-
-  const scheduleResultReveal = useCallback((result, color, delayMs = 280) => {
-    if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
-    revealTimerRef.current = window.setTimeout(() => {
-      setRevealedWinningNumber(result);
-      setRevealedWinningColor(color);
-      triggerSettleFlash();
-      revealTimerRef.current = null;
-    }, delayMs);
-  }, [triggerSettleFlash]);
 
   const refreshFairRoundHistory = useCallback(() => {
     setFairRoundHistory(
