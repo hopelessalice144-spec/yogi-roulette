@@ -37,6 +37,11 @@ import { wallClockSnapshot, computeBallKinematicSync, computeWheelAngleSync, mis
 import { createWatchdogJournal } from '../lib/physicsWatchdog.js';
 import { resetRapierCache } from '../lib/rapierCache.js';
 import {
+  appendSessionRound,
+  loadSessionRounds,
+  saveSessionRounds,
+} from '../lib/sessionStats.js';
+import {
   createGameClock,
   resolveHudPhaseFromClock,
 } from '../core/gameEngine.js';
@@ -72,6 +77,21 @@ import { sanitizeText } from '../lib/domSanitize.js';
 const GameContext = createContext(null);
 
 const MAX_RECENT = 8;
+
+function hydrateSession() {
+  const rounds = loadSessionRounds();
+  return {
+    rounds,
+    recent: rounds.slice(0, MAX_RECENT).map((r) => ({
+      number: r.number,
+      color: r.color,
+      net: r.net,
+      cycleId: r.cycleId,
+    })),
+  };
+}
+
+const SESSION_BOOT = hydrateSession();
 
 /** Authoritative cycle outcome — provably fair via committed server seed. */
 function cycleTargetNumber(cycleId) {
@@ -141,7 +161,8 @@ export function GameProvider({ children }) {
   const [hoverHighlight, setHoverHighlightState] = useState(null);
   const [qualityTier, setQualityTier] = useState('high');
   const [settleFlash, setSettleFlash] = useState(false);
-  const [recentResults, setRecentResults] = useState([]);
+  const [sessionRounds, setSessionRounds] = useState(() => SESSION_BOOT.rounds);
+  const [recentResults, setRecentResults] = useState(() => SESSION_BOOT.recent);
   const [audioMuted, setAudioMuted] = useState(() => loadFeedbackPrefs().audioMuted);
   const [liveFps, setLiveFps] = useState(60);
   const [ghostBets, setGhostBets] = useState([]);
@@ -567,10 +588,13 @@ export function GameProvider({ children }) {
     const returned = settleAll(currentBets, result, evaluateBet);
     const net = returned - risked;
 
-    setRecentResults((prev) => [
-      { number: result, color, net, cycleId },
-      ...prev.slice(0, MAX_RECENT - 1),
-    ]);
+    const roundEntry = { number: result, color, net, cycleId, risked };
+    setRecentResults((prev) => [roundEntry, ...prev.slice(0, MAX_RECENT - 1)]);
+    setSessionRounds((prev) => {
+      const next = appendSessionRound(prev, roundEntry);
+      saveSessionRounds(next);
+      return next;
+    });
 
     commitWallet(clampBalance(balanceRef.current + returned), []);
     ballPhaseRef.current = 'orbit';
@@ -774,6 +798,7 @@ export function GameProvider({ children }) {
       qualitySettings,
       settleFlash,
       recentResults,
+      sessionRounds,
       audioMuted,
       liveFps,
       godModeStep,
@@ -848,6 +873,7 @@ export function GameProvider({ children }) {
       qualitySettings,
       settleFlash,
       recentResults,
+      sessionRounds,
       audioMuted,
       liveFps,
       godModeStep,

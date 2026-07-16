@@ -1,6 +1,6 @@
 # AI_STATE — Turbo Roulette External Brain
 
-> Last updated: 2026-07-17 · Session 290 · Execution_Counter: 10
+> Last updated: 2026-07-17 · Session 291 · Execution_Counter: 11
 
 ## Phase
 
@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-2 — Inside betting board UI: Split, Street, Corner, and Line zones with click + drag-and-drop chip placement
+**[DONE]** TASK-3 — Session stats panel: hot/cold numbers, P/L trend, progression helper
 
 ## Feature Backlog
 
@@ -16,7 +16,17 @@
 |----|----------|------|--------|
 | TASK-1 | P1 | Enhance visual roulette wheel with smooth 3D-like CSS/Canvas animations and ball physics | **DONE** |
 | TASK-2 | P1 | Modern betting board UI — drag-and-drop / click chips on Split, Street, Corner, Line bets | **DONE** |
-| TASK-3 | P2 | Session stats panel — hot/cold numbers, win/loss graphs, betting progression helpers | TODO |
+| TASK-3 | P2 | Session stats panel — hot/cold numbers, win/loss graphs, betting progression helpers | **DONE** |
+
+## TASK-3 Shipped (Session 291)
+
+- `src/lib/sessionStats.js` — round history, hot/cold frequency, cumulative P/L series, progression advice, sessionStorage persistence
+- `src/lib/sessionStats.test.ts` — unit tests for stats engine
+- `src/ui/SessionStatsPanel.jsx` — collapsible HUD panel (recent strip, hot/cold, P/L sparkline, chip suggestion)
+- `src/ui/SessionStatsPanel.test.tsx` — parity export test
+- `src/context/GameContext.jsx` — `sessionRounds` tracked on settle, hydrated from sessionStorage
+- `src/ui/BettingBoard.jsx` — SessionStatsPanel wired below FairnessPanel
+- `src/index.css` — session stats + inside-zone pointer-events fix (straight bets no longer blocked by invisible zones)
 
 ## TASK-2 Shipped (Session 290)
 
@@ -58,14 +68,13 @@ Technical debt backlog for verify.js guard chain: **cleared** — pivot to featu
 
 ## Next Task
 
-**TASK-3** — Session stats panel (hot/cold numbers, win/loss history graphs, progression helpers)
+Feature backlog **complete** for current polish phase. Await user direction for next scope.
 
 ## Completed This Session (feature)
 
 | ID | Task | Result |
 |----|------|--------|
-| TASK-2 | Inside bet board — split/street/corner/line zones, payouts, drag-drop + click | [DONE] |
-| TASK-1 | Smooth 3D wheel spin + orbit ball + deferred result reveal + spin-active canvas CSS | [DONE] |
+| TASK-3 | Session stats panel — hot/cold, P/L trend, progression helper, sessionStorage | [DONE] |
 
 ## Completed This Session (archived hardening)
 

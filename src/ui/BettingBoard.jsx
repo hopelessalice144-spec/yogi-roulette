@@ -20,6 +20,7 @@ import {
 import { useGame } from '../context/GameContext.jsx';
 import { GhostChipStack, GhostConfettiBurst } from './GhostBetLayer.jsx';
 import { FairnessPanel } from './FairnessPanel.jsx';
+import { SessionStatsPanel } from './SessionStatsPanel.jsx';
 import { buildInsideBetZones, insideZoneStyle } from '../lib/insideBets.js';
 
 const INSIDE_BET_TYPES = new Set(['split', 'street', 'corner', 'line']);
@@ -370,6 +371,7 @@ export function BettingBoard() {
     message,
     hoverHighlight,
     recentResults,
+    sessionRounds,
     placeBet,
     clearBets,
     requestFaucet,
@@ -392,6 +394,7 @@ export function BettingBoard() {
   const [dragGhost, setDragGhost] = useState(null);
   const [placedFlash, setPlacedFlash] = useState(null);
   const [fairnessOpen, setFairnessOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
   const dragValue = useRef(null);
 
   const bettingOpen = clock.acceptsBets ?? clock.name === 'betting';
@@ -684,19 +687,16 @@ export function BettingBoard() {
           custodyBadge={seedCustodyBadge}
         />
 
-        {recentResults.length > 0 && (
-          <div className="recent-strip" aria-label="Recent results">
-            {recentResults.map((r) => (
-              <span
-                key={r.cycleId}
-                className={`recent-chip ${r.color} ${r.net > 0 ? 'won' : ''}`}
-                title={r.net > 0 ? `+$${r.net}` : r.net < 0 ? `-$${Math.abs(r.net)}` : 'No bet'}
-              >
-                {r.number}
-              </span>
-            ))}
-          </div>
-        )}
+        <SessionStatsPanel
+          rounds={sessionRounds}
+          recentResults={recentResults}
+          chipValues={chipValues}
+          selectedChip={selectedChip}
+          balance={balance}
+          onSelectChip={setSelectedChip}
+          expanded={statsOpen}
+          onToggle={() => setStatsOpen((o) => !o)}
+        />
 
         <div
           className="board-grid"
@@ -746,7 +746,10 @@ export function BettingBoard() {
                 ))}
               </div>
 
-              <div className="inside-zones" data-testid="inside-bet-zones">
+              <div
+                className={`inside-zones${dragGhost ? ' drag-active' : ''}`}
+                data-testid="inside-bet-zones"
+              >
                 {insideBetZones.map((zone) => {
                     const key = cellKey(zone.type, zone.value);
                     const props = betBtnProps(zone.type, zone.value);

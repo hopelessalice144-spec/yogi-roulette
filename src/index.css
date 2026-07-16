@@ -337,6 +337,194 @@ html.frame-blocked body {
 .recent-chip.black { background: #1a1a1a; }
 .recent-chip.green { background: #0d5c38; }
 
+.session-stats {
+  margin: 0.35rem 0 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.65rem;
+  background: rgba(6, 10, 18, 0.55);
+  overflow: hidden;
+}
+
+.session-stats-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.session-stats-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 215, 142, 0.9);
+}
+
+.session-net-badge {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.session-net-badge.up {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.session-net-badge.down {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.session-spins {
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.session-stats-body {
+  padding: 0 0.65rem 0.65rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.stats-summary-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.stats-kicker {
+  display: block;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  margin-bottom: 0.15rem;
+}
+
+.text-up { color: #6ee7b7; }
+.text-down { color: #fca5a5; }
+
+.stats-recent {
+  padding: 0;
+}
+
+.hot-cold-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.stats-section-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.stats-number-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stats-number-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+}
+
+.stats-ball {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.58rem;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stats-ball.red { background: #9b1c1c; }
+.stats-ball.black { background: #1a1a1a; }
+.stats-ball.green { background: #0d5c38; }
+
+.stats-hit-count {
+  opacity: 0.7;
+  font-size: 0.65rem;
+}
+
+.stats-empty {
+  margin: 0;
+  font-size: 0.68rem;
+  opacity: 0.55;
+}
+
+.pl-sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 3.25rem;
+  padding: 0.25rem 0;
+}
+
+.pl-bar {
+  flex: 1;
+  min-width: 3px;
+  border-radius: 2px 2px 0 0;
+  background: rgba(255, 255, 255, 0.15);
+  transition: height 0.25s ease;
+}
+
+.pl-bar.up {
+  background: linear-gradient(180deg, rgba(110, 231, 183, 0.9), rgba(16, 185, 129, 0.35));
+}
+
+.pl-bar.down {
+  background: linear-gradient(180deg, rgba(252, 165, 165, 0.9), rgba(239, 68, 68, 0.35));
+}
+
+.progression-card {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.progression-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.progression-detail {
+  margin: 0 0 0.45rem;
+  font-size: 0.68rem;
+  opacity: 0.7;
+  line-height: 1.35;
+}
+
+.progression-apply {
+  width: 100%;
+  font-size: 0.72rem;
+}
+
 .recent-chip.won {
   outline: 2px solid #f5d78e;
   box-shadow: 0 0 12px rgba(245, 215, 142, 0.4);
@@ -1119,7 +1307,7 @@ html.frame-blocked body {
 
 .inside-zone {
   position: absolute;
-  pointer-events: auto;
+  pointer-events: none;
   padding: 0;
   border: 1px solid rgba(245, 215, 142, 0.35);
   border-radius: 999px;
@@ -1147,6 +1335,16 @@ html.frame-blocked body {
 .inside-zone-mark {
   opacity: 0;
   transition: opacity 0.2s ease;
+}
+
+.inside-zone:hover:not(:disabled),
+.inside-zone.drop-target,
+.inside-zone.has-chip {
+  pointer-events: auto;
+}
+
+.inside-zones.drag-active .inside-zone:not(:disabled) {
+  pointer-events: auto;
 }
 
 .inside-zone:hover:not(:disabled),
