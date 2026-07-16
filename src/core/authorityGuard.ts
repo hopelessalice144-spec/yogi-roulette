@@ -18,6 +18,7 @@ export interface AuthorityGuardEnv {
   readonly DEV?: boolean;
   readonly VITE_API_BASE?: string;
   readonly VITE_SEED_CUSTODY_BYPASS?: string;
+  readonly VITE_ALLOW_DEMO_CUSTODY?: string;
 }
 
 export interface SeedCustodyAudit {
@@ -40,6 +41,11 @@ function isCiE2eBypass(env: AuthorityGuardEnv): boolean {
   return env.VITE_SEED_CUSTODY_BYPASS === CI_E2E_BYPASS;
 }
 
+function isDemoCustodyAllowed(env: AuthorityGuardEnv): boolean {
+  const flag = env.VITE_ALLOW_DEMO_CUSTODY;
+  return flag === '1' || flag === 'true';
+}
+
 function apiBaseFromEnv(env: AuthorityGuardEnv): string | null {
   const base = env.VITE_API_BASE;
   if (typeof base !== 'string' || base.trim() === '') return null;
@@ -52,26 +58,35 @@ export function auditSeedCustody(env: AuthorityGuardEnv = import.meta.env): Read
   const apiBase = apiBaseFromEnv(env);
   const authorityEnabled = apiBase != null;
   const mode: SeedCustodyMode = authorityEnabled ? 'authoritative' : 'demo-local';
+  const ciBypass = isCiE2eBypass(env);
+  const demoCustodyAllowed = isDemoCustodyAllowed(env);
   const warnings: string[] = [];
 
   if (!authorityEnabled) {
-    warnings.push(
-      production
-        ? INSECURE_PROD_MESSAGE
-        : 'Demo mode: server seeds generated client-side. Set VITE_API_BASE for authoritative custody.'
-    );
+    if (production && demoCustodyAllowed) {
+      warnings.push(
+        'Demo custody explicitly allowed for this production build (VITE_ALLOW_DEMO_CUSTODY).'
+      );
+    } else if (production) {
+      warnings.push(INSECURE_PROD_MESSAGE);
+    } else {
+      warnings.push(
+        'Demo mode: server seeds generated client-side. Set VITE_API_BASE for authoritative custody.'
+      );
+    }
   }
 
-  const ciBypass = isCiE2eBypass(env);
   if (ciBypass && !authorityEnabled) {
     warnings.push('CI e2e bypass active — demo seed custody (not for production deploy).');
   }
 
-  const safe = authorityEnabled || !production || ciBypass;
+  const safe = authorityEnabled || !production || ciBypass || demoCustodyAllowed;
   const custody = authorityEnabled
     ? `Server-held seeds via ${apiBase}`
     : production
-      ? 'BLOCKED — client-side seeds in production'
+      ? demoCustodyAllowed
+        ? 'Client-side demo seeds (production demo build)'
+        : 'BLOCKED — client-side seeds in production'
       : 'Client-side demo seeds (development only)';
 
   return Object.freeze({

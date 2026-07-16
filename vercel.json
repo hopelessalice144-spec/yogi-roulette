@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "build": {
+    "env": {
+      "VITE_ALLOW_DEMO_CUSTODY": "1"
+    }
+  }
+}

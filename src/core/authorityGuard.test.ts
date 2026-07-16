@@ -48,6 +48,13 @@ describe('authorityGuard', () => {
     expect(audit.safe).toBe(true);
   });
 
+  it('allows explicit demo custody in production when opted in', () => {
+    const audit = auditSeedCustody({ PROD: true, VITE_ALLOW_DEMO_CUSTODY: '1' });
+    expect(audit.safe).toBe(true);
+    expect(audit.custody).toContain('production demo build');
+    expect(() => runStartupAuthorityGuard({ PROD: true, VITE_ALLOW_DEMO_CUSTODY: '1' })).not.toThrow();
+  });
+
   it('allows CI e2e bypass in production-like builds', () => {
     const audit = auditSeedCustody({ PROD: true, VITE_SEED_CUSTODY_BYPASS: 'ci-e2e' });
     expect(audit.safe).toBe(true);
