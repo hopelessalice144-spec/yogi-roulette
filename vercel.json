@@ -1,10 +1,15 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "build": {
-    "env": {
-      "VITE_ALLOW_DEMO_CUSTODY": "1"
+  "env": {
+    "VITE_ALLOW_DEMO_CUSTODY": "1"
+  },
+  "rewrites": [
+    {
+      "source": "/((?!assets/|icons/|manifest\\.webmanifest|sw\\.js|api/).*)",
+      "destination": "/index.html"
     }
-  }
+  ]
 }
