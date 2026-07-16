@@ -1,0 +1,43 @@
+{
+  "name": "turbo-roulette",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Yogi Roulette — casino-grade WebGL European roulette with provably-fair core",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite",
+    "test": "node --experimental-strip-types verify.js",
+    "test:unit": "vitest run",
+    "test:bundle": "node --experimental-strip-types verify.js --bundle",
+    "test:e2e": "node e2e/smoke.mjs",
+    "test:e2e:playwright": "playwright test",
+    "test:e2e:ci": "node e2e/run-ci.mjs",
+    "test:legacy": "node legacy/verify.js",
+    "check": "npm test && npm run test:unit && npm run typecheck && npm run build && npm run test:bundle",
+    "check:ci": "npm run check && node e2e/run-ci.mjs",
+    "typecheck": "tsc --noEmit",
+    "dev:authority": "node server/devAuthority.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "10.7.7",
+    "@react-three/fiber": "9.6.1",
+    "@react-three/postprocessing": "3.0.4",
+    "@react-three/rapier": "2.2.0",
+    "postprocessing": "6.39.2",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "three": "0.175.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.52.0",
+    "@types/node": "^26.1.1",
+    "@vitejs/plugin-react": "4.7.0",
+    "fake-indexeddb": "^6.0.0",
+    "typescript": "^5.8.3",
+    "vite": "6.4.3",
+    "vitest": "^3.2.4"
+  }
+}

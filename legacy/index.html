@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbo Roulette</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --felt: #064e3b;
+        --gold: #fbbf24;
+      }
+      body {
+        font-family: 'IBM Plex Sans', sans-serif;
+        background:
+          radial-gradient(ellipse at top, #0f766e 0%, transparent 55%),
+          radial-gradient(ellipse at bottom right, #14532d 0%, #022c22 60%);
+        min-height: 100vh;
+        color: #ecfdf5;
+      }
+      .font-display {
+        font-family: 'Playfair Display', Georgia, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="app"></main>
+    <script src="game.js"></script>
+    <script src="timer.js"></script>
+    <script src="storage.js"></script>
+    <script src="bets.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

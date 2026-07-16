@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Yogi Roulette">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#1a2548"/>
+      <stop offset="55%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#030408"/>
+    </radialGradient>
+    <radialGradient id="hub" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0f4fa"/>
+      <stop offset="100%" stop-color="#9aa8bc"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#00dcb9" stroke-width="10" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="176" fill="#12182a" stroke="#2a3550" stroke-width="4"/>
+  <g transform="translate(256 256)">
+    <path d="M0-176 L15-8 A176 176 0 0 1 120 120 Z" fill="#c41e3a"/>
+    <path d="M120 120 L8 15 A176 176 0 0 1 176 0 Z" fill="#1a1a22"/>
+    <path d="M176 0 L-8 15 A176 176 0 0 1 120 -120 Z" fill="#c41e3a"/>
+    <path d="M120 -120 L-15 8 A176 176 0 0 1 0 -176 Z" fill="#1a1a22"/>
+    <path d="M0-176 L-15-8 A176 176 0 0 0 -120 -120 Z" fill="#c41e3a"/>
+    <path d="M-120 -120 L-8 -15 A176 176 0 0 0 -176 0 Z" fill="#1a1a22"/>
+    <path d="M-176 0 L8 -15 A176 176 0 0 0 -120 120 Z" fill="#c41e3a"/>
+    <path d="M-120 120 L15 -8 A176 176 0 0 0 0 176 Z" fill="#1a1a22"/>
+  </g>
+  <circle cx="256" cy="256" r="52" fill="url(#hub)" stroke="#5a6478" stroke-width="3"/>
+  <circle cx="256" cy="256" r="18" fill="#0d4d3f" stroke="#00dcb9" stroke-width="3"/>
+  <text x="256" y="430" text-anchor="middle" fill="#00dcb9" font-family="Segoe UI, system-ui, sans-serif" font-size="42" font-weight="700" letter-spacing="4">TURBO</text>
+</svg>
