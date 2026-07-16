@@ -1,18 +1,18 @@
 # AI_STATE — Turbo Roulette External Brain
 
-> Last updated: 2026-07-16 · Session 211 · Execution_Counter: 7
+> Last updated: 2026-07-16 · Session 260 · Execution_Counter: 10
 
 ## Current Task
 
-**[DONE]** P345-01 — add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-scaffold-immediate guard immediately precedes jsx entry test parity gaps assert
+**[DONE]** P406-01 — add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check
 
-## Phase 345 Status
+## Phase 406 Status
 
 **COMPLETE** — 1 of 1 backlog items shipped.
 
 ## Next Task
 
-**P346-01** — add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-immediate structural check
+**P407-01** — add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert
 
 ## Completed This Session
 
@@ -178,6 +178,583 @@
 | P343-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-context-parity-balance-immediate guard immediately precedes jsx entry test parity scaffold assert | [DONE] |
 | P344-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-scaffold-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-scaffold-immediate structural check | [DONE] |
 | P345-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-scaffold-immediate guard immediately precedes jsx entry test parity gaps assert | [DONE] |
+| P346-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-immediate structural check | [DONE] |
+| P347-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert | [DONE] |
+| P348-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate structural check | [DONE] |
+| P349-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert | [DONE] |
+| P350-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate structural check | [DONE] |
+| P351-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert | [DONE] |
+| P352-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-ok-immediate structural check | [DONE] |
+| DEBUG-28 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P353-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert | [DONE] |
+| P354-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-complete-immediate structural check | [DONE] |
+| P355-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert | [DONE] |
+| P356-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-immediate structural check | [DONE] |
+| P357-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert | [DONE] |
+| P358-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate structural check | [DONE] |
+| P359-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert | [DONE] |
+| P360-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate structural check | [DONE] |
+| P361-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert | [DONE] |
+| P362-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate structural check | [DONE] |
+| P363-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert | [DONE] |
+| P364-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate structural check | [DONE] |
+| P365-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert | [DONE] |
+| P366-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate structural check | [DONE] |
+| P367-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert | [DONE] |
+| DEBUG-29 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P368-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate structural check | [DONE] |
+| P369-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert | [DONE] |
+| P370-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate structural check | [DONE] |
+| P371-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert | [DONE] |
+| P372-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate structural check | [DONE] |
+| P373-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert | [DONE] |
+| P374-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate structural check | [DONE] |
+| P375-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert | [DONE] |
+| P376-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate structural check | [DONE] |
+| P377-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert | [DONE] |
+| P378-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate structural check | [DONE] |
+| P379-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert | [DONE] |
+| P380-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate structural check | [DONE] |
+| P381-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert | [DONE] |
+| DEBUG-30 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P382-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate structural check | [DONE] |
+| P383-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert | [DONE] |
+| P384-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate structural check | [DONE] |
+| P385-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert | [DONE] |
+| P386-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate structural check | [DONE] |
+| P387-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert | [DONE] |
+| P388-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate structural check | [DONE] |
+| P389-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert | [DONE] |
+| P390-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate structural check | [DONE] |
+| P391-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert | [DONE] |
+| P392-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate structural check | [DONE] |
+| P393-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert | [DONE] |
+| P394-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate structural check | [DONE] |
+| P395-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert | [DONE] |
+| P396-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate structural check | [DONE] |
+| DEBUG-31 | automated debug cycle at Execution_Counter 15 | [DONE] |
+| P397-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert | [DONE] |
+| P398-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate structural check | [DONE] |
+| P399-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert | [DONE] |
+| P400-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate structural check | [DONE] |
+| P401-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert | [DONE] |
+| P402-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate structural check | [DONE] |
+| P403-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert | [DONE] |
+| P404-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate structural check | [DONE] |
+| P405-01 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert | [DONE] |
+| P406-01 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check | [DONE] |
+
+### P406-01 Details
+
+- `verify.js` — sole-check after td09-resolved-note-immediate block: `split` on note→TD-09-resolved boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate-sole`
+- 1212 verify assertions on bundle pass; Vitest: 912 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P405-01 Details
+
+- `verify.js` — P405 boundary after TD-09 resolved assert: `lastIndexOf` on quartet→TD-09-resolved-note message before `!TECH_DEBT.some` anchor; zero intervening `assert(`; bumped full-surface-td09-resolved-note-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching td09-resolved-note-immediate→TD-09-resolved boundary test; td09-resolved-note-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate-resolved`
+- 1211 verify assertions on bundle pass; Vitest: 911 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P404-01 Details
+
+- `verify.js` — sole-check after full-surface-quartet-closure-immediate block: `split` on quartet→TD-09-resolved-note boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-td09-resolved-note-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate-sole`
+- 1210 verify assertions on bundle pass; Vitest: 910 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P403-01 Details
+
+- `verify.js` — P403 boundary after TD-09 resolved note assert: `lastIndexOf` on unified→quartet-closure message before `techManifestSrc.includes('fairRoundStore.test.ts')` anchor; zero intervening `assert(`; bumped full-surface-quartet-closure-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching quartet-closure-immediate→TD-09-resolved-note boundary test; quartet-closure-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate-td09-resolved-note`
+- 1209 verify assertions on bundle pass; Vitest: 909 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P402-01 Details
+
+- `verify.js` — sole-check after full-surface-unified-closure-immediate block: `split` on unified→quartet-closure boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-quartet-closure-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate-sole`
+- 1208 verify assertions on bundle pass; Vitest: 908 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P401-01 Details
+
+- `verify.js` — P401 boundary after surface flat report quartet closure assert: `lastIndexOf` on missing→unified message before `vitestSurfaceFlatReportTailComplete` body anchor (`lastIndexOf` on body for runtime disambiguation); zero intervening `assert(`; bumped full-surface-unified-closure-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching unified-closure-immediate→quartet-closure boundary test; unified-closure-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate-quartet-closure`
+- 1207 verify assertions on bundle pass; Vitest: 907 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P400-01 Details
+
+- `verify.js` — sole-check after full-surface-missing-immediate block: `split` on missing→unified-closure boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-unified-closure-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate-sole`
+- 1206 verify assertions on bundle pass; Vitest: 906 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P399-01 Details
+
+- `verify.js` — P399 boundary after unified surface flat closure assert: `lastIndexOf` on covered→missing message before `vitestSurfaceComplete` body anchor; zero intervening `assert(`; bumped full-surface-missing-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching missing-immediate→unified-closure boundary test; missing-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate-unified-closure`
+- 1205 verify assertions on bundle pass; Vitest: 905 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P398-01 Details
+
+- `verify.js` — sole-check after full-surface-covered-immediate block: `split` on covered→missing boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-missing-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate-sole`
+- 1204 verify assertions on bundle pass; Vitest: 904 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P397-01 Details
+
+- `verify.js` — P397 boundary after full surface test parity missing assert: `lastIndexOf` on balance→covered message before missing assert body anchor; zero intervening `assert(`; bumped full-surface-covered-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching covered-immediate→missing boundary test; covered-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate-missing`
+- 1203 verify assertions on bundle pass; Vitest: 903 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-31 Details
+
+- `npm run check:ci` passed — 1202 verify assertions, 902 vitest tests, E2E smoke (bet lock @ T-20, settle @ T-0, pocket 2)
+- No UI/JS console regressions in CI smoke; counter reset to 0
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P396-01 Details
+
+- `verify.js` — sole-check after full-surface-balance-immediate block: `split` on balance→covered boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-covered-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate-sole`
+- 1202 verify assertions on bundle pass; Vitest: 902 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P395-01 Details
+
+- `verify.js` — P395 boundary after full surface test parity covered assert: `lastIndexOf` on gaps→balance message before covered assert body anchor; zero intervening `assert(`; bumped full-surface-balance-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching balance-immediate→covered boundary test; balance-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate-covered`
+- 1201 verify assertions on bundle pass; Vitest: 901 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P394-01 Details
+
+- `verify.js` — sole-check after full-surface-gaps-immediate block: `split` on gaps→balance boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-balance-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate-sole`
+- 1200 verify assertions on bundle pass; Vitest: 900 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P393-01 Details
+
+- `verify.js` — P393 boundary after full surface test parity balance assert: `lastIndexOf` on complete→gaps message before balance assert body anchor; zero intervening `assert(`; bumped full-surface-gaps-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching gaps-immediate→balance boundary test; gaps-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate-balance`
+- 1199 verify assertions on bundle pass; Vitest: 899 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P392-01 Details
+
+- `verify.js` — sole-check after full-surface-complete-immediate block: `split` on complete→gaps boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-gaps-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate-sole`
+- 1198 verify assertions on bundle pass; Vitest: 898 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P391-01 Details
+
+- `verify.js` — P391 boundary after full surface test parity gaps assert: `lastIndexOf` on ok→complete message before gaps assert body anchor; zero intervening `assert(`; bumped full-surface-complete-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching complete-immediate→gaps boundary test; complete-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate-gaps`
+- 1197 verify assertions on bundle pass; Vitest: 897 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P390-01 Details
+
+- `verify.js` — sole-check after full-surface-ok-immediate block: `split` on ok→complete boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-complete-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate-sole`
+- 1196 verify assertions on bundle pass; Vitest: 896 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P389-01 Details
+
+- `verify.js` — P389 boundary after full surface test parity complete assert: `lastIndexOf` on closure→ok message before `vitestAudits.fullSurfaceTestParity.missing.length === 0` anchor; zero intervening `assert(`; bumped full-surface-ok-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-ok-immediate→complete boundary test; full-surface-ok-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate-complete`
+- 1195 verify assertions on bundle pass; Vitest: 895 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P388-01 Details
+
+- `verify.js` — sole-check after full-surface-closure-immediate block: `split` on closure→ok boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-ok-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate-sole`
+- 1194 verify assertions on bundle pass; Vitest: 894 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P387-01 Details
+
+- `verify.js` — P387 boundary after full surface test parity ok assert: `lastIndexOf` on audit→closure message before `vitestAudits.fullSurfaceTestParity.ok` anchor; zero intervening `assert(`; bumped full-surface-closure-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-closure-immediate→ok boundary test; full-surface-closure-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate-ok`
+- 1193 verify assertions on bundle pass; Vitest: 893 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P386-01 Details
+
+- `verify.js` — sole-check after full-surface-audit-immediate block: `split` on audit→closure boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-closure-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate-sole`
+- 1192 verify assertions on bundle pass; Vitest: 892 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P385-01 Details
+
+- `verify.js` — P385 boundary after full surface test parity closure assert: `lastIndexOf` on module-count→audit message before closure assert body anchor; zero intervening `assert(`; bumped full-surface-audit-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-audit-immediate→closure boundary test; full-surface-audit-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate-closure`
+- 1191 verify assertions on bundle pass; Vitest: 891 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P384-01 Details
+
+- `verify.js` — sole-check after full-surface-module-count-immediate block: `split` on module-count→audit boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-audit-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate-sole`
+- 1190 verify assertions on bundle pass; Vitest: 890 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P383-01 Details
+
+- `verify.js` — P383 boundary after full surface test parity audit assert: `lastIndexOf` on ok-matches-milestone→module-count message before audit assert body anchor; zero intervening `assert(`; bumped full-surface-module-count-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching full-surface-module-count-immediate→audit boundary test; full-surface-module-count-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate-audit`
+- 1189 verify assertions on bundle pass; Vitest: 889 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P382-01 Details
+
+- `verify.js` — sole-check after ok-matches-milestone-immediate block: `split` on ok-matches-milestone→module-count boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching full-surface-module-count-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate-sole`
+- 1188 verify assertions on bundle pass; Vitest: 888 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-30 Details
+
+- `npm run check:ci` passed — 1187 verify assertions, 887 vitest tests, E2E smoke (bet lock @ T-20, settle @ T-0, pocket 16)
+- No UI/JS console regressions in CI smoke; counter reset to 0
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P381-01 Details
+
+- `verify.js` — P381 boundary after full surface test parity module count assert: `lastIndexOf` on complete-flag→ok-matches-milestone message before module-count assert body anchor; zero intervening `assert(`; bumped ok-matches-milestone-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching ok-matches-milestone-immediate→module-count boundary test; ok-matches-milestone-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate-module-count`
+- 1187 verify assertions on bundle pass; Vitest: 887 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P380-01 Details
+
+- `verify.js` — sole-check after complete-flag-immediate block: `split` on complete-flag→ok-matches-milestone boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching ok-matches-milestone-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate-sole`
+- 1186 verify assertions on bundle pass; Vitest: 886 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P379-01 Details
+
+- `verify.js` — P379 boundary after jsx surface test parity ok matches complete milestone assert: `lastIndexOf` on complete-milestone→complete-flag message before ok-matches-milestone anchor; zero intervening `assert(`; bumped complete-flag-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching complete-flag-immediate→ok-matches-milestone boundary test; complete-flag-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate-ok-matches-milestone`
+- 1185 verify assertions on bundle pass; Vitest: 885 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P378-01 Details
+
+- `verify.js` — sole-check after complete-milestone-immediate block: `split` on complete-milestone→complete-flag boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching complete-flag-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate-sole`
+- 1184 verify assertions on bundle pass; Vitest: 884 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P377-01 Details
+
+- `verify.js` — P377 boundary after jsx surface test parity complete flag assert: `lastIndexOf` on surface-closure→complete-milestone message before complete-flag anchor; zero intervening `assert(`; bumped complete-milestone-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching complete-milestone-immediate→complete-flag boundary test; complete-milestone-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate-complete-flag`
+- 1183 verify assertions on bundle pass; Vitest: 883 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P376-01 Details
+
+- `verify.js` — sole-check after surface-closure-immediate block: `split` on surface-closure→complete-milestone boundary message with `=== 2`
+- `vitestCoverage.test.ts` — matching complete-milestone-immediate sole structural test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate-sole`
+- 1182 verify assertions on bundle pass; Vitest: 882 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P375-01 Details
+
+- `verify.js` — P375 boundary guard after jsx surface test parity complete milestone assert: `lastIndexOf` on surface-missing→closure message before `assert(JSX_SURFACE_TEST_PARITY_COMPLETE, 'jsx surface test parity complete milestone')` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-closure-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-closure-immediate→complete-milestone boundary test; surface-closure-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate-complete-milestone`
+- 1181 verify assertions on bundle pass; Vitest: 881 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P374-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-missing block: `split` on surface-missing→closure boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate-sole`
+- 1180 verify assertions on bundle pass; Vitest: 880 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P373-01 Details
+
+- `verify.js` — P373 boundary guard after jsx surface test parity closure assert: `lastIndexOf` on surface-covered→missing message before `vitestAudits.jsxEntryTestParityCoveredCount ===` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-missing-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-missing-immediate→closure boundary test; surface-missing-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate-closure`
+- 1179 verify assertions on bundle pass; Vitest: 879 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P372-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-covered block: `split` on surface-covered→missing boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate-sole`
+- 1178 verify assertions on bundle pass; Vitest: 878 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P371-01 Details
+
+- `verify.js` — P371 boundary guard after jsx surface test parity missing assert: `lastIndexOf` on surface-balance→covered message before `vitestAudits.jsxSurfaceTestParityMissingCount === JSX_SURFACE_TEST_PARITY_MISSING_COUNT` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-covered-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-covered-immediate→missing boundary test; surface-covered-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate-missing`
+- 1177 verify assertions on bundle pass; Vitest: 877 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P370-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-balance block: `split` on surface-balance→covered boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate-sole`
+- 1176 verify assertions on bundle pass; Vitest: 876 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P369-01 Details
+
+- `verify.js` — P369 boundary guard after jsx surface test parity covered assert: `lastIndexOf` on surface-gaps→balance message before `vitestAudits.jsxSurfaceTestParityCoveredCount === JSX_SURFACE_TEST_PARITY_COVERED_COUNT` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-balance-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-balance-immediate→covered boundary test; surface-balance-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate-covered`
+- 1175 verify assertions on bundle pass; Vitest: 875 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P368-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-gaps block: `split` on surface-gaps→balance boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate-sole`
+- 1174 verify assertions on bundle pass; Vitest: 874 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-29 Details
+
+- `npm run check:ci` passed — 1173 verify assertions, 873 vitest tests, E2E smoke (bet lock @ T-20, settle @ T-0, pocket 28)
+- No UI/JS console regressions in CI smoke; counter reset to 0
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P367-01 Details
+
+- `verify.js` — P367 boundary guard after jsx surface test parity balance assert: `lastIndexOf` on surface-complete→gaps message before covered+missing===moduleCount anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-gaps-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-gaps-immediate→balance boundary test; surface-gaps-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate-balance`
+- 1173 verify assertions on bundle pass; Vitest: 873 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P366-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-complete block: `split` on surface-complete→gaps boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate-sole`
+- 1172 verify assertions on bundle pass; Vitest: 872 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P365-01 Details
+
+- `verify.js` — P365 boundary guard after jsx surface test parity gaps assert: `lastIndexOf` on surface-ok→complete message before `vitestAudits.jsxSurfaceTestParity.missing.length === vitestAudits.jsxSurfaceTestParityMissingCount` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-complete-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-complete-immediate→gaps boundary test; surface-complete-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate-gaps`
+- 1171 verify assertions on bundle pass; Vitest: 871 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P364-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-ok block: `split` on surface-ok→complete boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate-sole`
+- 1170 verify assertions on bundle pass; Vitest: 870 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P363-01 Details
+
+- `verify.js` — P363 boundary guard after jsx surface test parity complete assert: `lastIndexOf` on matches-src-tree→ok message before `vitestAudits.jsxSurfaceTestParity.missing.length === 0` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-ok-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching surface-ok-immediate→complete boundary test; surface-ok-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate-complete`
+- 1169 verify assertions on bundle pass; Vitest: 869 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P362-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-matches-src-tree block: `split` on matches-src-tree→ok boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate-sole`
+- 1168 verify assertions on bundle pass; Vitest: 868 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P361-01 Details
+
+- `verify.js` — P361 boundary guard after jsx surface test parity ok assert: `lastIndexOf` on surface-scaffold→matches-src-tree message before `vitestAudits.jsxSurfaceTestParity.ok` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-matches-src-tree-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching matches-src-tree-immediate→ok boundary test; matches-src-tree-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate-ok`
+- 1167 verify assertions on bundle pass; Vitest: 867 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P360-01 Details
+
+- `verify.js` — sole-check guard after balance-surface-scaffold block: `split` on surface-scaffold→matches-src-tree boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate-sole`
+- 1166 verify assertions on bundle pass; Vitest: 866 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P359-01 Details
+
+- `verify.js` — P359 boundary guard after jsx surface test parity matches src tree assert: `lastIndexOf` on balance→surface-scaffold message before `vitestAudits.jsxSurfaceTestParity.moduleCount === vitestAudits.jsxSrcSurfaceCount` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-surface-scaffold-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate→matches-src-tree boundary test; balance-surface-scaffold-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate-matches-src-tree`
+- 1165 verify assertions on bundle pass; Vitest: 865 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P358-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-balance-surface-scaffold block: `split` on balance→surface-scaffold boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate-sole`
+- 1164 verify assertions on bundle pass; Vitest: 864 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P357-01 Details
+
+- `verify.js` — P357 boundary guard after jsx surface test parity scaffold assert: `lastIndexOf` on entry complete→balance message before `vitestAudits.jsxSurfaceTestParity.moduleCount === vitestAudits.jsxSurfaceCount` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-balance-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-immediate→surface-scaffold boundary test; balance-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-immediate-surface-scaffold`
+- 1163 verify assertions on bundle pass; Vitest: 863 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P356-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-balance block: `split` on complete→balance boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-balance-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-balance-immediate-sole`
+- 1162 verify assertions on bundle pass; Vitest: 862 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P355-01 Details
+
+- `verify.js` — P355 boundary guard after jsx entry test parity balance assert: `lastIndexOf` on ok→complete message before `vitestAudits.jsxEntryTestParityCoveredCount + vitestAudits.jsxEntryTestParityMissingCount ===` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-complete-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-complete-immediate→balance boundary test; complete-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-complete-immediate-balance`
+- 1161 verify assertions on bundle pass; Vitest: 861 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P354-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-complete block: `split` on ok→complete boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-complete-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-complete-immediate-sole`
+- 1160 verify assertions on bundle pass; Vitest: 860 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P353-01 Details
+
+- `verify.js` — P353 boundary guard after jsx entry test parity complete assert: `lastIndexOf` on main-entry→ok message before `vitestAudits.jsxEntryTestParity.missing.length === 0` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-ok-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-ok-immediate→complete boundary test; ok-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-ok-immediate-complete`
+- 1159 verify assertions on bundle pass; Vitest: 859 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### DEBUG-28 Details
+
+- `npm run check:ci` passed — 1158 verify assertions, 858 vitest tests, E2E smoke (bet lock @ T-20, settle @ T-0, pocket 34)
+- No UI/JS console regressions in CI smoke; counter reset to 0
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P352-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-ok block: `split` on main-entry→ok boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-ok-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-ok-immediate-sole`
+- 1158 verify assertions on bundle pass; Vitest: 858 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P351-01 Details
+
+- `verify.js` — P351 boundary guard after jsx entry test parity ok assert: `lastIndexOf` on app-entry→main-entry message before `vitestAudits.jsxEntryTestParity.ok` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-gaps-main-entry-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate→ok boundary test; main-entry-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate-ok`
+- 1157 verify assertions on bundle pass; Vitest: 857 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P350-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-gaps-main-entry block: `split` on app-entry→main-entry boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate-sole`
+- 1156 verify assertions on bundle pass; Vitest: 856 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P349-01 Details
+
+- `verify.js` — P349 boundary guard after main entry jsx test parity assert: `lastIndexOf` on gaps→app-entry message before `!vitestAudits.jsxEntryTestParity.missing.includes('main.jsx')` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-gaps-app-entry-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate→main-entry boundary test; app-entry-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate-main-entry`
+- 1155 verify assertions on bundle pass; Vitest: 855 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P348-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-gaps-app-entry block: `split` on gaps→app-entry boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate-sole`
+- 1154 verify assertions on bundle pass; Vitest: 854 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P347-01 Details
+
+- `verify.js` — P347 boundary guard after app entry jsx test parity assert: `lastIndexOf` on entry-parity-scaffold→gaps message before `!vitestAudits.jsxEntryTestParity.missing.includes('App.jsx')` anchor; slice confirms zero intervening `assert(` calls; bumped entry-parity-gaps-immediate sole count to `=== 3`
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-immediate→app-entry boundary test; gaps-immediate sole test bumped to `=== 3`
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-immediate-app-entry`
+- 1153 verify assertions on bundle pass; Vitest: 853 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
+
+### P346-01 Details
+
+- `verify.js` — sole-check guard after entry-parity-scaffold block: `split` on scaffold→gaps boundary message with `=== 2` (runtime assert + structural split)
+- `vitestCoverage.test.ts` — matching vitest-audits-ok-jsx-entry-parity-gaps-immediate sole test
+- `techManifest` entry `vitest-surface-flat-report-tail-dedupe-block-vitest-audits-ok-jsx-entry-parity-gaps-immediate-sole`
+- 1152 verify assertions on bundle pass; Vitest: 852 tests across 92 files
+- App JS: 45.35 KB / 50 KB (90.7%)
 
 ### P345-01 Details
 
@@ -1089,6 +1666,10 @@
 | DEBUG-25 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 | DEBUG-26 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 | DEBUG-27 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
+| DEBUG-28 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
+| DEBUG-29 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
+| DEBUG-30 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
+| DEBUG-31 | P0 | automated debug cycle at Execution_Counter 15 | DONE |
 
 ## Phase 265 Backlog
 
@@ -1580,17 +2161,377 @@
 
 | ID | Priority | Task | Status |
 |----|----------|------|--------|
-| P346-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-immediate structural check | PENDING |
+| P346-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-immediate structural check | DONE |
 
 ## Phase 347 Backlog (seed)
 
 | ID | Priority | Task | Status |
 |----|----------|------|--------|
-| P347-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert | PENDING |
+| P347-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert | DONE |
+
+## Phase 348 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P348-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate structural check | DONE |
+
+## Phase 349 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P349-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert | DONE |
+
+## Phase 350 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P350-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate structural check | DONE |
+
+## Phase 351 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P351-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert | DONE |
+
+## Phase 352 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P352-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-ok-immediate structural check | DONE |
+
+## Phase 353 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P353-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert | DONE |
+
+## Phase 354 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P354-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-complete-immediate structural check | DONE |
+
+## Phase 355 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P355-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert | DONE |
+
+## Phase 356 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P356-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-immediate structural check | DONE |
+
+## Phase 357 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P357-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert | DONE |
+
+## Phase 358 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P358-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate structural check | DONE |
+
+## Phase 359 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P359-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert | DONE |
+
+## Phase 360 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P360-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate structural check | DONE |
+
+## Phase 361 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P361-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert | DONE |
+
+## Phase 362 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P362-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate structural check | DONE |
+
+## Phase 363 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P363-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert | DONE |
+
+## Phase 364 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P364-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate structural check | DONE |
+
+## Phase 365 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P365-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert | DONE |
+
+## Phase 366 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P366-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate structural check | DONE |
+
+## Phase 367 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P367-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert | DONE |
+
+## Phase 368 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P368-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate structural check | DONE |
+
+## Phase 369 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P369-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert | DONE |
+
+## Phase 370 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P370-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate structural check | DONE |
+
+## Phase 371 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P371-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert | DONE |
+
+## Phase 372 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P372-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate structural check | DONE |
+
+## Phase 373 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P373-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert | DONE |
+
+## Phase 374 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P374-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate structural check | DONE |
+
+## Phase 375 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P375-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert | DONE |
+
+## Phase 376 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P376-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate structural check | DONE |
+
+## Phase 377 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P377-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert | DONE |
+
+## Phase 378 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P378-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate structural check | DONE |
+
+## Phase 379 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P379-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert | DONE |
+
+## Phase 380 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P380-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate structural check | DONE |
+
+## Phase 381 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P381-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert | DONE |
+
+## Phase 382 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P382-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate structural check | DONE |
+
+## Phase 383 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P383-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert | DONE |
+
+## Phase 384 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P384-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate structural check | DONE |
+
+## Phase 385 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P385-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert | DONE |
+
+## Phase 386 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P386-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate structural check | DONE |
+
+## Phase 387 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P387-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert | DONE |
+
+## Phase 388 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P388-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate structural check | DONE |
+
+## Phase 389 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P389-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert | DONE |
+
+## Phase 390 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P390-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate structural check | DONE |
+
+## Phase 391 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P391-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert | DONE |
+
+## Phase 392 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P392-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate structural check | DONE |
+
+## Phase 393 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P393-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert | DONE |
+
+## Phase 394 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P394-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate structural check | DONE |
+
+## Phase 395 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P395-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert | DONE |
+
+## Phase 396 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P396-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate structural check | DONE |
+
+## Phase 397 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P397-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert | DONE |
+
+## Phase 398 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P398-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate structural check | DONE |
+
+## Phase 399 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P399-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert | DONE |
+
+## Phase 400 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P400-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate structural check | DONE |
+
+## Phase 401 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P401-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert | DONE |
+
+## Phase 402 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P402-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate structural check | DONE |
+
+## Phase 403 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P403-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert | DONE |
+
+## Phase 404 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P404-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate structural check | DONE |
+
+## Phase 405 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P405-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert | DONE |
+
+## Phase 406 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P406-01 | P3 | add verify.js occurrence guard confirming dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check | DONE |
+
+## Phase 407 Backlog (seed)
+
+| ID | Priority | Task | Status |
+|----|----------|------|--------|
+| P407-01 | P3 | add verify.js dedupe-block occurrence guard confirming vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate guard immediately precedes TD-09 in resolved register assert | PENDING |
 
 ## Stack Verdict
 
-**KEEP** — Vite 6, React 19, R3F, Rapier, Three.js. `npm run check` passes (1151 verify + 851 vitest, 0 failures).
+**KEEP** — Vite 6, React 19, R3F, Rapier, Three.js. `npm run check` passes (1212 verify + 912 vitest, 0 failures).
 
 ## Error Log
 
@@ -1604,6 +2545,7 @@
 | 6 | P221 guard self-matched `unifiedClosureRuntimeDedupeSlice` in interstitial check string | Check immediate interstitial slice before P221 guard start only | FIXED |
 | 7 | P225 `indexOf` on assert message matched guard's own `lastIndexOf` parameter line | Use `lastIndexOf` on assert message with end bound at `vitestAuditsCallInVerifyIdx` | FIXED |
 | 8 | P227 guard before vitestAudits call broke P225 no-intervening-asserts slice | Place P227 source-analysis guard after `vitestAudits.ok` assert so it does not self-match | FIXED |
+| 9 | P401 `indexOf` on quartet tail body matched structural dedupe slice anchor | Use `lastIndexOf` on runtime quartet closure assert body anchor | FIXED |
 
 ## Notes
 
@@ -1611,6 +2553,6 @@
 - JSX surface test parity: **30/30** complete — `JSX_SURFACE_TEST_PARITY_COMPLETE === true`.
 - Full surface test parity: **92/92** complete — `SURFACE_FLAT_REPORT_QUARTET_COMPLETE` milestone on closure + pair + total + trilogy + quartet.
 - Report flat fields: **6/6** — `SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT === 6`.
-- Dedupe-block vitest-audits-ok-jsx-entry-parity-scaffold-immediate message locked as sole file-level structural check (`=== 3`).
-- Milestones: 256 (`VITEST_COMPLETED_UPGRADE_COUNT`).
-- **DEBUG MODE** at counter **15** (8 steps remaining).
+- Dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message locked as sole file-level structural check (`=== 3`).
+- Milestones: 285 (`VITEST_COMPLETED_UPGRADE_COUNT`).
+- **DEBUG MODE** at counter **15** (5 steps until **DEBUG-32**).

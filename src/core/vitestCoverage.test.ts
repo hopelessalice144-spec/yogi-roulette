@@ -4500,6 +4500,1486 @@ describe('vitestCoverage', () => {
       );
     });
 
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-scaffold-immediate guard immediately precedes jsx entry test parity gaps assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const appEntryJsxTestParityAssertBodyIdx = verifySrc.indexOf(
+        "!vitestAudits.jsxEntryTestParity.missing.includes('App.jsx')",
+      );
+      const vitestAuditsOkJsxEntryParityGapsImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-scaffold-immediate guard immediately precedes jsx entry test parity gaps assert',
+        appEntryJsxTestParityAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityGapsImmediateGuardMessageIdx,
+      );
+      const appEntryJsxTestParityAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        appEntryJsxTestParityAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsImmediateToAppEntryJsxTestParitySlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityGapsImmediateGuardCloseIdx,
+        appEntryJsxTestParityAssertOpenIdx,
+      );
+      expect(appEntryJsxTestParityAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(appEntryJsxTestParityAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsImmediateGuardCloseIdx).toBeLessThan(
+        appEntryJsxTestParityAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityGapsImmediateToAppEntryJsxTestParitySlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const mainEntryJsxTestParityAssertBodyIdx = verifySrc.indexOf(
+        "!vitestAudits.jsxEntryTestParity.missing.includes('main.jsx')",
+      );
+      const vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert',
+        mainEntryJsxTestParityAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardMessageIdx,
+      );
+      const mainEntryJsxTestParityAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        mainEntryJsxTestParityAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsAppEntryImmediateToMainEntryJsxTestParitySlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardCloseIdx,
+        mainEntryJsxTestParityAssertOpenIdx,
+      );
+      expect(mainEntryJsxTestParityAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(mainEntryJsxTestParityAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsAppEntryImmediateGuardCloseIdx).toBeLessThan(
+        mainEntryJsxTestParityAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityGapsAppEntryImmediateToMainEntryJsxTestParitySlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-gaps-immediate guard immediately precedes app entry jsx test parity assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxEntryTestParityOkAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxEntryTestParity.ok',
+      );
+      const vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-gaps-app-entry-immediate guard immediately precedes main entry jsx test parity assert',
+        jsxEntryTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardMessageIdx,
+      );
+      const jsxEntryTestParityOkAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxEntryTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityGapsMainEntryImmediateToJsxEntryTestParityOkSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardCloseIdx,
+        jsxEntryTestParityOkAssertOpenIdx,
+      );
+      expect(jsxEntryTestParityOkAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxEntryTestParityOkAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityGapsMainEntryImmediateGuardCloseIdx).toBeLessThan(
+        jsxEntryTestParityOkAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityGapsMainEntryImmediateToJsxEntryTestParityOkSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxEntryTestParityCompleteAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxEntryTestParity.missing.length === 0',
+      );
+      const vitestAuditsOkJsxEntryParityOkImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert',
+        jsxEntryTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityOkImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityOkImmediateGuardMessageIdx,
+      );
+      const jsxEntryTestParityCompleteAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxEntryTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityOkImmediateToJsxEntryTestParityCompleteSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityOkImmediateGuardCloseIdx,
+        jsxEntryTestParityCompleteAssertOpenIdx,
+      );
+      expect(jsxEntryTestParityCompleteAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityOkImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityOkImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxEntryTestParityCompleteAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityOkImmediateGuardCloseIdx).toBeLessThan(
+        jsxEntryTestParityCompleteAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityOkImmediateToJsxEntryTestParityCompleteSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-complete-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxEntryTestParityBalanceAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxEntryTestParityCoveredCount + vitestAudits.jsxEntryTestParityMissingCount ===',
+      );
+      const vitestAuditsOkJsxEntryParityCompleteImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-ok-immediate guard immediately precedes jsx entry test parity complete assert',
+        jsxEntryTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityCompleteImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityCompleteImmediateGuardMessageIdx,
+      );
+      const jsxEntryTestParityBalanceAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxEntryTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityCompleteImmediateToJsxEntryTestParityBalanceSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityCompleteImmediateGuardCloseIdx,
+        jsxEntryTestParityBalanceAssertOpenIdx,
+      );
+      expect(jsxEntryTestParityBalanceAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityCompleteImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityCompleteImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxEntryTestParityBalanceAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityCompleteImmediateGuardCloseIdx).toBeLessThan(
+        jsxEntryTestParityBalanceAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityCompleteImmediateToJsxEntryTestParityBalanceSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityScaffoldAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParity.moduleCount === vitestAudits.jsxSurfaceCount',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-complete-immediate guard immediately precedes jsx entry test parity balance assert',
+        jsxSurfaceTestParityScaffoldAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityScaffoldAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityScaffoldAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceImmediateToJsxSurfaceTestParityScaffoldSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceImmediateGuardCloseIdx,
+        jsxSurfaceTestParityScaffoldAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityScaffoldAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityScaffoldAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityScaffoldAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceImmediateToJsxSurfaceTestParityScaffoldSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityMatchesSrcTreeAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParity.moduleCount === vitestAudits.jsxSrcSurfaceCount',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-immediate guard immediately precedes jsx surface test parity scaffold assert',
+        jsxSurfaceTestParityMatchesSrcTreeAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityMatchesSrcTreeAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityMatchesSrcTreeAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateToJsxSurfaceTestParityMatchesSrcTreeSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardCloseIdx,
+        jsxSurfaceTestParityMatchesSrcTreeAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityMatchesSrcTreeAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityMatchesSrcTreeAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityMatchesSrcTreeAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceScaffoldImmediateToJsxSurfaceTestParityMatchesSrcTreeSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityOkAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParity.ok',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-scaffold-immediate guard immediately precedes jsx surface test parity matches src tree assert',
+        jsxSurfaceTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityOkAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateToJsxSurfaceTestParityOkSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardCloseIdx,
+        jsxSurfaceTestParityOkAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityOkAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityOkAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityOkAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMatchesSrcTreeImmediateToJsxSurfaceTestParityOkSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityCompleteAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParity.missing.length === 0',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-matches-src-tree-immediate guard immediately precedes jsx surface test parity ok assert',
+        jsxSurfaceTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityCompleteAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateToJsxSurfaceTestParityCompleteSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardCloseIdx,
+        jsxSurfaceTestParityCompleteAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityCompleteAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityCompleteAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityCompleteAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkImmediateToJsxSurfaceTestParityCompleteSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityGapsAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParity.missing.length === vitestAudits.jsxSurfaceTestParityMissingCount',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-ok-immediate guard immediately precedes jsx surface test parity complete assert',
+        jsxSurfaceTestParityGapsAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityGapsAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityGapsAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateToJsxSurfaceTestParityGapsSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardCloseIdx,
+        jsxSurfaceTestParityGapsAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityGapsAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityGapsAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityGapsAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteImmediateToJsxSurfaceTestParityGapsSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityBalanceAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParityCoveredCount + vitestAudits.jsxSurfaceTestParityMissingCount ===',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-immediate guard immediately precedes jsx surface test parity gaps assert',
+        jsxSurfaceTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityBalanceAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateToJsxSurfaceTestParityBalanceSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardCloseIdx,
+        jsxSurfaceTestParityBalanceAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityBalanceAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityBalanceAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityBalanceAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceGapsImmediateToJsxSurfaceTestParityBalanceSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityCoveredAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParityCoveredCount === JSX_SURFACE_TEST_PARITY_COVERED_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-gaps-immediate guard immediately precedes jsx surface test parity balance assert',
+        jsxSurfaceTestParityCoveredAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityCoveredAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityCoveredAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateToJsxSurfaceTestParityCoveredSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardCloseIdx,
+        jsxSurfaceTestParityCoveredAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityCoveredAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityCoveredAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityCoveredAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceBalanceImmediateToJsxSurfaceTestParityCoveredSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityMissingAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxSurfaceTestParityMissingCount === JSX_SURFACE_TEST_PARITY_MISSING_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-balance-immediate guard immediately precedes jsx surface test parity covered assert',
+        jsxSurfaceTestParityMissingAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityMissingAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityMissingAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateToJsxSurfaceTestParityMissingSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardCloseIdx,
+        jsxSurfaceTestParityMissingAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityMissingAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityMissingAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityMissingAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCoveredImmediateToJsxSurfaceTestParityMissingSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityClosureAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsxEntryTestParityCoveredCount ===',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-covered-immediate guard immediately precedes jsx surface test parity missing assert',
+        jsxSurfaceTestParityClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityClosureAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateToJsxSurfaceTestParityClosureSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardCloseIdx,
+        jsxSurfaceTestParityClosureAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityClosureAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityClosureAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityClosureAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceMissingImmediateToJsxSurfaceTestParityClosureSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityCompleteMilestoneAssertBodyIdx = verifySrc.indexOf(
+        "assert(JSX_SURFACE_TEST_PARITY_COMPLETE, 'jsx surface test parity complete milestone')",
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-missing-immediate guard immediately precedes jsx surface test parity closure assert',
+        jsxSurfaceTestParityCompleteMilestoneAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityCompleteMilestoneAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityCompleteMilestoneAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateToJsxSurfaceTestParityCompleteMilestoneSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardCloseIdx,
+        jsxSurfaceTestParityCompleteMilestoneAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityCompleteMilestoneAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityCompleteMilestoneAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityCompleteMilestoneAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceClosureImmediateToJsxSurfaceTestParityCompleteMilestoneSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityCompleteFlagAssertBodyIdx = verifySrc.indexOf(
+        "'jsx surface test parity complete flag',",
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-closure-immediate guard immediately precedes jsx surface test parity complete milestone assert',
+        jsxSurfaceTestParityCompleteFlagAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityCompleteFlagAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityCompleteFlagAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateToJsxSurfaceTestParityCompleteFlagSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardCloseIdx,
+        jsxSurfaceTestParityCompleteFlagAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityCompleteFlagAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityCompleteFlagAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityCompleteFlagAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteMilestoneImmediateToJsxSurfaceTestParityCompleteFlagSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertBodyIdx = verifySrc.indexOf(
+        "'jsx surface test parity ok matches complete milestone'",
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-milestone-immediate guard immediately precedes jsx surface test parity complete flag assert',
+        jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardMessageIdx,
+      );
+      const jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateToOkMatchesMilestoneSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardCloseIdx,
+        jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertOpenIdx,
+      );
+      expect(jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateGuardCloseIdx).toBeLessThan(
+        jsxSurfaceTestParityOkMatchesCompleteMilestoneAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceCompleteFlagImmediateToOkMatchesMilestoneSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityModuleCountAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.moduleCount + vitestAudits.jsxSurfaceCount === FULL_SURFACE_TEST_PARITY_MODULE_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-complete-flag-immediate guard immediately precedes jsx surface test parity ok matches complete milestone assert',
+        fullSurfaceTestParityModuleCountAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityModuleCountAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityModuleCountAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateToFullSurfaceTestParityModuleCountSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardCloseIdx,
+        fullSurfaceTestParityModuleCountAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityModuleCountAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityModuleCountAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityModuleCountAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceOkMatchesMilestoneImmediateToFullSurfaceTestParityModuleCountSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityAuditAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParity.moduleCount === FULL_SURFACE_TEST_PARITY_MODULE_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-ok-matches-milestone-immediate guard immediately precedes full surface test parity module count assert',
+        fullSurfaceTestParityAuditAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityAuditAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityAuditAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateToFullSurfaceTestParityAuditSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardCloseIdx,
+        fullSurfaceTestParityAuditAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityAuditAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityAuditAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityAuditAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceModuleCountImmediateToFullSurfaceTestParityAuditSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityClosureAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.jsTestParityCoveredCount + vitestAudits.jsxSurfaceTestParityCoveredCount ===',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-module-count-immediate guard immediately precedes full surface test parity audit assert',
+        fullSurfaceTestParityClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityClosureAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateToFullSurfaceTestParityClosureSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardCloseIdx,
+        fullSurfaceTestParityClosureAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityClosureAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityClosureAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityClosureAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceAuditImmediateToFullSurfaceTestParityClosureSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityOkAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParity.ok,',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-audit-immediate guard immediately precedes full surface test parity closure assert',
+        fullSurfaceTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityOkAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityOkAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateToFullSurfaceTestParityOkSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardCloseIdx,
+        fullSurfaceTestParityOkAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityOkAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityOkAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityOkAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceClosureImmediateToFullSurfaceTestParityOkSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityCompleteAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParity.missing.length === 0',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-closure-immediate guard immediately precedes full surface test parity ok assert',
+        fullSurfaceTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityCompleteAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityCompleteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateToFullSurfaceTestParityCompleteSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardCloseIdx,
+        fullSurfaceTestParityCompleteAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityCompleteAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityCompleteAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityCompleteAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceOkImmediateToFullSurfaceTestParityCompleteSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityGapsAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParity.missing.length === vitestAudits.fullSurfaceTestParityMissingCount',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-ok-immediate guard immediately precedes full surface test parity complete assert',
+        fullSurfaceTestParityGapsAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityGapsAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityGapsAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateToFullSurfaceTestParityGapsSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardCloseIdx,
+        fullSurfaceTestParityGapsAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityGapsAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityGapsAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityGapsAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCompleteImmediateToFullSurfaceTestParityGapsSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityBalanceAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParityCoveredCount + vitestAudits.fullSurfaceTestParityMissingCount ===',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert',
+        fullSurfaceTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityBalanceAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityBalanceAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateToFullSurfaceTestParityBalanceSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardCloseIdx,
+        fullSurfaceTestParityBalanceAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityBalanceAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityBalanceAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityBalanceAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceGapsImmediateToFullSurfaceTestParityBalanceSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityCoveredAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParityCoveredCount === FULL_SURFACE_TEST_PARITY_COVERED_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert',
+        fullSurfaceTestParityCoveredAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityCoveredAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityCoveredAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateToFullSurfaceTestParityCoveredSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardCloseIdx,
+        fullSurfaceTestParityCoveredAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityCoveredAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityCoveredAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityCoveredAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceBalanceImmediateToFullSurfaceTestParityCoveredSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const fullSurfaceTestParityMissingAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.fullSurfaceTestParityMissingCount === FULL_SURFACE_TEST_PARITY_MISSING_COUNT',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert',
+        fullSurfaceTestParityMissingAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardMessageIdx,
+      );
+      const fullSurfaceTestParityMissingAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        fullSurfaceTestParityMissingAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateToFullSurfaceTestParityMissingSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardCloseIdx,
+        fullSurfaceTestParityMissingAssertOpenIdx,
+      );
+      expect(fullSurfaceTestParityMissingAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(fullSurfaceTestParityMissingAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateGuardCloseIdx).toBeLessThan(
+        fullSurfaceTestParityMissingAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceCoveredImmediateToFullSurfaceTestParityMissingSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const unifiedSurfaceFlatClosureAssertBodyIdx = verifySrc.indexOf(
+        'vitestAudits.vitestSurfaceTestParity.vitestSurfaceComplete === VITEST_SURFACE_TEST_PARITY_COMPLETE',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert',
+        unifiedSurfaceFlatClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardMessageIdx,
+      );
+      const unifiedSurfaceFlatClosureAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        unifiedSurfaceFlatClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateToUnifiedSurfaceFlatClosureSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardCloseIdx,
+        unifiedSurfaceFlatClosureAssertOpenIdx,
+      );
+      expect(unifiedSurfaceFlatClosureAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(unifiedSurfaceFlatClosureAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateGuardCloseIdx).toBeLessThan(
+        unifiedSurfaceFlatClosureAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceMissingImmediateToUnifiedSurfaceFlatClosureSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const surfaceFlatReportQuartetClosureAssertBodyIdx = verifySrc.lastIndexOf(
+        'vitestAudits.vitestSurfaceFlatReportTailComplete === VITEST_SURFACE_FLAT_REPORT_TAIL_COMPLETE',
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert',
+        surfaceFlatReportQuartetClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardMessageIdx,
+      );
+      const surfaceFlatReportQuartetClosureAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        surfaceFlatReportQuartetClosureAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateToSurfaceFlatReportQuartetClosureSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardCloseIdx,
+        surfaceFlatReportQuartetClosureAssertOpenIdx,
+      );
+      expect(surfaceFlatReportQuartetClosureAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(surfaceFlatReportQuartetClosureAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateGuardCloseIdx).toBeLessThan(
+        surfaceFlatReportQuartetClosureAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceUnifiedClosureImmediateToSurfaceFlatReportQuartetClosureSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const td09ResolvedNoteAssertBodyIdx = verifySrc.indexOf(
+        "techManifestSrc.includes('fairRoundStore.test.ts')",
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert',
+        td09ResolvedNoteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardMessageIdx,
+      );
+      const td09ResolvedNoteAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        td09ResolvedNoteAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateToTd09ResolvedNoteSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardCloseIdx,
+        td09ResolvedNoteAssertOpenIdx,
+      );
+      expect(td09ResolvedNoteAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(td09ResolvedNoteAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateGuardCloseIdx).toBeLessThan(
+        td09ResolvedNoteAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceQuartetClosureImmediateToTd09ResolvedNoteSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      const td09ResolvedAssertBodyIdx = verifySrc.indexOf(
+        "!TECH_DEBT.some((d) => d.id === 'TD-09')",
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardMessageIdx = verifySrc.lastIndexOf(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert',
+        td09ResolvedAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardCloseIdx = verifySrc.indexOf(
+        ');',
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardMessageIdx,
+      );
+      const td09ResolvedAssertOpenIdx = verifySrc.lastIndexOf(
+        'assert(',
+        td09ResolvedAssertBodyIdx,
+      );
+      const vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateToTd09ResolvedSlice = verifySrc.slice(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardCloseIdx,
+        td09ResolvedAssertOpenIdx,
+      );
+      expect(td09ResolvedAssertBodyIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardMessageIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardCloseIdx).toBeGreaterThan(-1);
+      expect(td09ResolvedAssertOpenIdx).toBeGreaterThan(-1);
+      expect(vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateGuardCloseIdx).toBeLessThan(
+        td09ResolvedAssertOpenIdx,
+      );
+      expect(
+        vitestAuditsOkJsxEntryParityBalanceSurfaceFullSurfaceTd09ResolvedNoteImmediateToTd09ResolvedSlice.split('assert(').length - 1,
+      ).toBe(0);
+      expect(verifySrc).toContain(
+        'vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert',
+      );
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate guard immediately precedes TD-09 resolved assert').length - 1,
+      ).toBe(2);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-note-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate guard immediately precedes TD-09 resolved note assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-quartet-closure-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate guard immediately precedes surface flat report quartet closure from runVitestVerifyAudits report assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-unified-closure-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate guard immediately precedes unified surface flat closure from vitestSurfaceTestParity report assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-missing-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate guard immediately precedes full surface test parity missing assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-covered-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate guard immediately precedes full surface test parity covered assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-balance-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate guard immediately precedes full surface test parity balance assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-gaps-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-complete-immediate guard immediately precedes full surface test parity gaps assert').length - 1,
+      ).toBe(3);
+    });
+
+    it('verify.js dedupe-block vitest-audits-ok-jsx-entry-parity-ok-immediate message is sole file-level vitest-audits-ok-jsx-entry-parity-ok-immediate structural check', () => {
+      const verifySrc = fs.readFileSync(
+        path.resolve(SRC_ROOT, '..', 'verify.js'),
+        'utf8',
+      );
+      expect(
+        verifySrc.split('vitest-audits-ok-jsx-entry-parity-gaps-main-entry-immediate guard immediately precedes jsx entry test parity ok assert').length - 1,
+      ).toBe(3);
+    });
+
     it('verify.js structural section excludes file-level verifySrc.includes lastIndexOf anchor pattern', () => {
       const verifySrc = fs.readFileSync(
         path.resolve(SRC_ROOT, '..', 'verify.js'),
