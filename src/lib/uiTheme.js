@@ -8,6 +8,10 @@ export const UI_THEME_LIGHT = 'light';
 export const UI_THEMES = Object.freeze([UI_THEME_LOUNGE, UI_THEME_NEON, UI_THEME_LIGHT]);
 export const DEFAULT_UI_THEME = UI_THEME_LOUNGE;
 
+export const THEME_COLOR_LOUNGE = '#0a0814';
+export const THEME_COLOR_NEON = '#06040f';
+export const THEME_COLOR_LIGHT = '#e8eef5';
+
 const STORAGE_KEY = 'turboRoulette.uiTheme';
 
 export function normalizeUiTheme(theme) {
@@ -38,9 +42,9 @@ export function saveUiTheme(theme) {
 /** Browser chrome / PWA status bar tint per theme profile. */
 export function themeColor(theme) {
   const normalized = normalizeUiTheme(theme);
-  if (normalized === UI_THEME_NEON) return '#06040f';
-  if (normalized === UI_THEME_LIGHT) return '#e8eef5';
-  return '#0a0814';
+  if (normalized === UI_THEME_NEON) return THEME_COLOR_NEON;
+  if (normalized === UI_THEME_LIGHT) return THEME_COLOR_LIGHT;
+  return THEME_COLOR_LOUNGE;
 }
 
 /** Apply `data-theme` on the document root for CSS token overrides. */

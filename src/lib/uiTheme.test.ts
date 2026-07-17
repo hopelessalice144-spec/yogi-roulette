@@ -4,6 +4,9 @@ import {
   DEFAULT_UI_THEME,
   loadUiTheme,
   normalizeUiTheme,
+  THEME_COLOR_LIGHT,
+  THEME_COLOR_LOUNGE,
+  THEME_COLOR_NEON,
   themeColor,
   themeLabel,
   themeSubtitle,
@@ -36,8 +39,8 @@ describe('uiTheme', () => {
   });
 
   it('maps theme profiles to browser theme-color', () => {
-    expect(themeColor(UI_THEME_LOUNGE)).toBe('#0a0814');
-    expect(themeColor(UI_THEME_NEON)).toBe('#06040f');
-    expect(themeColor(UI_THEME_LIGHT)).toBe('#e8eef5');
+    expect(themeColor(UI_THEME_LOUNGE)).toBe(THEME_COLOR_LOUNGE);
+    expect(themeColor(UI_THEME_NEON)).toBe(THEME_COLOR_NEON);
+    expect(themeColor(UI_THEME_LIGHT)).toBe(THEME_COLOR_LIGHT);
   });
 });

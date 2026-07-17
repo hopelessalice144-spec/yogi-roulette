@@ -1,4 +1,5 @@
 import { RED_NUMBERS, BLACK_NUMBERS } from './math.js';
+import { FELT_GOLD, FELT_GOLD_MID } from './designTokens.js';
 import { insideNumbers } from './insideBets.js';
 import { EUROPEAN_SEQUENCE } from './wheel.js';
 
@@ -112,7 +113,7 @@ export function warmGlowColorForHighlight(highlight) {
     case 'black':
       return '#88aaff';
     case 'straight':
-      return highlight.value === 0 ? '#f5d78e' : '#ffcc66';
+      return highlight.value === 0 ? FELT_GOLD : '#ffcc66';
     case 'even':
     case 'odd':
       return '#ff9955';
@@ -124,7 +125,7 @@ export function warmGlowColorForHighlight(highlight) {
     case 'column':
       return '#77bbff';
     case 'split':
-      return '#e8c878';
+      return FELT_GOLD_MID;
     case 'street':
       return '#d4b060';
     case 'corner':
@@ -132,7 +133,7 @@ export function warmGlowColorForHighlight(highlight) {
     case 'line':
       return '#ffaa88';
     case 'wheel-set':
-      return '#f5d78e';
+      return FELT_GOLD;
     default:
       return '#ffaa44';
   }

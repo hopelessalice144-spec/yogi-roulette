@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-276 — Lounge theme-color bootstrap + felt-gold token DRY
+**[DONE]** TASK-277 — Felt gold RGB token + designTokens + theme color exports
 
 ## Feature Backlog
 
@@ -277,6 +277,14 @@
 | TASK-274 | P2 | Bet neon underline + warm wheel glow map + PWA icon accents — gold lounge | **DONE** |
 | TASK-275 | P2 | Felt gold CSS tokens, ghost VIP default hue, progression tray, `theme-color` meta sync | **DONE** |
 | TASK-276 | P2 | `index.html` lounge theme-color bootstrap; `--felt-gold` DRY across index.css; stats chart tray | **DONE** |
+| TASK-277 | P2 | `--felt-gold-rgb` migrates lounge alphas; `designTokens.js`; `THEME_COLOR_*` exports | **DONE** |
+
+## TASK-277 Shipped (Session 335)
+
+- `src/index.css` — `--felt-gold-rgb: 245 215 142`; 239 `rgba(245,215,142,α)` → `rgb(var(--felt-gold-rgb) / α)`
+- `src/lib/designTokens.js` — `FELT_GOLD` / `FELT_GOLD_MID` for JS (highlight warm glow)
+- `src/lib/uiTheme.js` — `THEME_COLOR_LOUNGE|NEON|LIGHT` constants drive `themeColor()`
+- `verify.js` — rgb token + designTokens coverage
 
 ## TASK-276 Shipped (Session 335)
 
