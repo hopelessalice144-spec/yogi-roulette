@@ -171,9 +171,12 @@ describe('loadRapier', () => {
       const mod = await loadModule();
       mod.prefetchRapier();
       await mod.isRapierReady();
+      mod.loadRapierStage();
+      await mod.isRapierStageReady();
       mod.resetRapierCache();
 
       await expect(mod.isRapierReady()).resolves.toBe(false);
+      await expect(mod.isRapierStageReady()).resolves.toBe(false);
 
       mod.prefetchRapier();
       await mod.isRapierReady();

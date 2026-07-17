@@ -50,11 +50,18 @@ export function GameScene() {
     onWheelAngle,
     particleBurst,
     lastWin,
+    physicsLoadState,
     setPhysicsLoadState,
   } = useGame();
 
   const mountPhysics = shouldMountPhysics(clock);
   const [stageReady, setStageReady] = useState(false);
+
+  useEffect(() => {
+    if (physicsLoadState === 'idle') {
+      setStageReady(false);
+    }
+  }, [physicsLoadState]);
 
   const completeRapierPrefetch = useCallback((isCancelled) => {
     setPhysicsLoadState?.('prefetching');

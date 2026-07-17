@@ -737,8 +737,9 @@ html.frame-blocked body {
   margin: 0.15rem 0 0.35rem;
   padding: 0.35rem 0.45rem;
   border-radius: 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(4, 8, 16, 0.42);
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(245, 215, 142, 0.1);
+  background: rgba(0, 0, 0, 0.22);
 }
 
 .recent-results-rail--empty {
@@ -3589,7 +3590,8 @@ html.frame-blocked body {
   position: relative;
   height: 0.35rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   overflow: hidden;
   margin-bottom: 0.15rem;
 }

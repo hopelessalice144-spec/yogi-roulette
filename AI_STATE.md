@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-265 — `isRapierStageReady` for accurate hot mount; lock-phase cycle bar gold
+**[DONE]** TASK-266 — Clear stageReady on WebGL recovery; felt tray for cycle track and results rail
 
 ## Feature Backlog
 
@@ -266,6 +266,7 @@
 | TASK-263 | P2 | Hot-cache physics mount at lock — stageReady when WASM prefetched; gold panel pointer underline | **DONE** |
 | TASK-264 | P2 | Lock-phase Rapier fallback — load WASM at mount if prefetch missed; gold betting cycle bar | **DONE** |
 | TASK-265 | P2 | Rapier stage readiness probe — hot mount uses stage chunk not WASM alone; lock cycle bar gold | **DONE** |
+| TASK-266 | P2 | WebGL recovery stage reset — stageReady clears when physicsLoadState idle; felt cycle/results rail | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
