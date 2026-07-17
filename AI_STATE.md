@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-272 — Gold sector glow, inside drop-target pulse, cycle tick pulse
+**[DONE]** TASK-273 — Root neon tokens, holo border, spin canvas, panel inset gold lounge
 
 ## Feature Backlog
 
@@ -273,6 +273,11 @@
 | TASK-270 | P2 | btn-scale gold chrome; panel repeat/batch header pulses; scale-board pulse vars | **DONE** |
 | TASK-271 | P2 | Status line + install prompt gold lounge pulses; progression card felt tray | **DONE** |
 | TASK-272 | P2 | Sector glow + inside drop-target + cycle tick pulses — gold lounge (pathway column CSS aligned) | **DONE** |
+| TASK-273 | P2 | Root `--neon-accent` / holo border / spin canvas / glass depth / tier-high badge — gold lounge default | **DONE** |
+
+## TASK-273 Shipped (Session 335)
+
+- `src/index.css` — default `--neon-accent` / `--neon-glow` gold; holo-border gradient gold-forward; spin-active conic/ambient gold; betting-panel inset + glass-depth teal removed; tier-high quality badge + recent-streak green border aligned to lounge gold
 
 ## TASK-255 Shipped (Session 335)
 

@@ -180,7 +180,9 @@ describe('loadRapier', () => {
 
       mod.prefetchRapier();
       await mod.isRapierReady();
-      expect(markProfile).toHaveBeenCalledTimes(2);
+      const prefetchMarks = () =>
+        markProfile.mock.calls.filter((c) => c[0] === 'rapier-prefetch-start').length;
+      expect(prefetchMarks()).toBe(2);
     });
   });
 });

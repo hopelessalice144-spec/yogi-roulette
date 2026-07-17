@@ -8,8 +8,8 @@
   --touch-min: 44px;
   --elev-border: rgba(255, 255, 255, 0.082);
   --glass-border: rgba(255, 255, 255, 0.12);
-  --neon-accent: rgba(0, 220, 185, 0.38);
-  --neon-glow: rgba(0, 220, 185, 0.14);
+  --neon-accent: rgba(245, 215, 142, 0.4);
+  --neon-glow: rgba(245, 215, 142, 0.14);
   --focus-ring-color: #7c3aed;
   --focus-ring: 0 0 0 2px var(--focus-ring-color), 0 0 0 4px rgba(124, 58, 237, 0.35);
   --text-on-glass: #f0f4fa;
@@ -243,8 +243,8 @@ html.frame-blocked body {
 }
 
 .quality-badge.tier-high-active {
-  border-color: rgba(0, 255, 200, 0.35);
-  color: #7af8e8;
+  border-color: rgba(245, 215, 142, 0.42);
+  color: #fff0c8;
 }
 
 .quality-badge.tier-medium-active {
@@ -289,7 +289,7 @@ html.frame-blocked body {
   40% {
     filter: brightness(1.38);
     transform: scale(1.07);
-    box-shadow: 0 0 20px rgba(0, 255, 200, 0.45);
+    box-shadow: 0 0 20px rgba(245, 215, 142, 0.42);
   }
   100% {
     filter: brightness(1);
@@ -796,7 +796,7 @@ html.frame-blocked body {
 .recent-streak-badge.green {
   background: rgba(13, 92, 56, 0.65);
   color: #b8ffe8;
-  border-color: rgba(0, 255, 200, 0.35);
+  border-color: rgba(245, 215, 142, 0.32);
 }
 
 .recent-streak-badge.tier-warm-active {
@@ -2936,7 +2936,7 @@ html.frame-blocked body {
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    rgba(0, 255, 200, 0.07) 55deg,
+    rgba(245, 215, 142, 0.08) 55deg,
     transparent 110deg,
     rgba(255, 60, 120, 0.05) 180deg,
     transparent 240deg,
@@ -2955,7 +2955,7 @@ html.frame-blocked body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(0, 255, 200, 0.06), transparent 68%);
+  background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(245, 215, 142, 0.06), transparent 68%);
   animation: spin-ambient 3.2s ease-in-out infinite alternate;
 }
 
@@ -3119,7 +3119,7 @@ html.frame-blocked body {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
     0 24px 64px rgba(0, 0, 0, 0.62),
-    0 0 0 1px rgba(0, 255, 200, 0.04) inset,
+    0 0 0 1px rgba(245, 215, 142, 0.05) inset,
     inset 0 1px 0 var(--elev-border),
     inset 0 -1px 0 rgba(0, 0, 0, 0.28);
   display: flex;
@@ -3382,11 +3382,11 @@ html.frame-blocked body {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 200, 0.45) 0%,
-    rgba(160, 80, 255, 0.35) 28%,
-    rgba(245, 215, 142, 0.5) 52%,
-    rgba(255, 80, 120, 0.3) 76%,
-    rgba(0, 255, 200, 0.4) 100%
+    rgba(245, 215, 142, 0.48) 0%,
+    rgba(200, 160, 80, 0.32) 28%,
+    rgba(245, 215, 142, 0.52) 52%,
+    rgba(255, 120, 140, 0.28) 76%,
+    rgba(230, 190, 100, 0.42) 100%
   );
   background-size: 320% 320%;
   -webkit-mask:
@@ -3467,7 +3467,7 @@ html.frame-blocked body {
   border-radius: inherit;
   background:
     radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.09), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0, 255, 200, 0.05), transparent 50%);
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(245, 215, 142, 0.05), transparent 50%);
   z-index: 0;
 }
 
