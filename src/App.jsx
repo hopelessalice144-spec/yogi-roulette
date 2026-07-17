@@ -134,9 +134,17 @@ function TopHud({ onOpenShortcuts, bettingOpen, shortcutsOpen }) {
 
   return (
     <div className="hud-top">
-      <div className="brand">
-        {APP_CONFIG.name}
-        <span className={subtitleEntryPulsing ? 'brand-subtitle-entry-pulse' : ''}>{themeSubtitle(uiTheme)}</span>
+      <div className="brand" aria-label={APP_CONFIG.name}>
+        <span className="brand-mark" aria-hidden>
+          <span>Y</span>
+        </span>
+        <span className="brand-copy">
+          <span className="brand-eyebrow">Private table · European</span>
+          <strong>{APP_CONFIG.name}</strong>
+          <span className={subtitleEntryPulsing ? 'brand-subtitle-entry-pulse' : ''}>
+            {themeSubtitle(uiTheme)}
+          </span>
+        </span>
       </div>
       <PhasePill clock={clock} phaseLabel={phaseLabel} />
       <WinStreakBadge sessionRounds={sessionRounds} />
@@ -149,8 +157,9 @@ function TopHud({ onOpenShortcuts, bettingOpen, shortcutsOpen }) {
           ]
             .filter(Boolean)
             .join(' ')}
-          title="Adaptive quality tier"
+          title="Adaptive rendering quality"
         >
+          <span className="quality-dot" aria-hidden />
           {qualityTier.toUpperCase()} · {liveFps} FPS
         </span>
         <button
@@ -166,7 +175,7 @@ function TopHud({ onOpenShortcuts, bettingOpen, shortcutsOpen }) {
           aria-label="Show keyboard shortcuts"
           title="Keyboard shortcuts (?)"
         >
-          ?
+          <span aria-hidden>?</span>
         </button>
         <button
           type="button"
@@ -319,6 +328,14 @@ function AppInner() {
           key={winCelebration?.pulse ?? 0}
           className={`canvas-wrap vignette-edge${isWheelSpinning ? ' spin-active-active' : ''}${spinActiveEntryPulsing ? ' spin-active-entry-pulse' : ''}${settleRimGlow ? ' settle-rim-glow-active' : ''}${settleRimGlowEntryPulsing ? ' settle-rim-glow-entry-pulse' : ''}${winShakeClass}`}
         >
+          <div className="table-meta" aria-hidden>
+            <span className="table-meta-line" />
+            <span>Live table</span>
+            <strong>European single zero</strong>
+          </div>
+          <div className="table-watermark" aria-hidden>
+            <span>Y</span>
+          </div>
           {settleRimGlow && (
             <div className="canvas-settle-rim" aria-hidden key={rimGlowKey} />
           )}

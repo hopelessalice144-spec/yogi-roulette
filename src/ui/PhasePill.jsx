@@ -134,10 +134,21 @@ export function PhasePill({ clock, phaseLabel }) {
             : undefined
         }
       >
-        <strong>{clock.name}</strong>{' '}
-        ·{' '}
-        <span className={labelEntryPulsing ? 'phase-label-entry-pulse' : ''}>{phaseLabel}</span> · Cycle{' '}
-        {clock.cycleId} · {clock.cycleSecond}s
+        <span className="phase-status-dot" aria-hidden />
+        <span className="phase-copy">
+          <strong>
+            {clock.name === 'betting'
+              ? 'Bets open'
+              : clock.name === 'locked'
+                ? 'Bets closed'
+                : 'Wheel live'}
+          </strong>
+          <span className={labelEntryPulsing ? 'phase-label-entry-pulse' : ''}>{phaseLabel}</span>
+        </span>
+        <span className="phase-time">
+          {countdown.active ? countdown.secondsLeft : Math.max(0, 30 - Math.floor(clock.cycleSecond))}
+          <small>s</small>
+        </span>
       </div>
     </div>
   );

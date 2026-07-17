@@ -1629,7 +1629,7 @@ export function BettingBoard() {
         onMouseMove={handlePanelMove}
         onMouseLeave={handlePanelLeave}
         aria-label="VIP betting dashboard"
-        aria-hidden={isSpinFocus ? true : undefined}
+        inert={isSpinFocus ? true : undefined}
         data-testid="betting-panel"
         data-hud-phase={hudPhase}
         data-spin-dim={spinDimLevel}
@@ -1744,8 +1744,6 @@ export function BettingBoard() {
           </span>
         </div>
 
-        <RecentResultsRail recentResults={recentResults} />
-
         <div
           className={[
             'panel-header',
@@ -1820,6 +1818,8 @@ export function BettingBoard() {
           </div>
         </div>
 
+        <RecentResultsRail recentResults={recentResults} />
+
         <FairnessPanel
           commit={fairnessCommit}
           audit={lastFairnessAudit}
@@ -1851,6 +1851,11 @@ export function BettingBoard() {
           onApply={applyFavoriteBets}
           onDelete={deleteFavoriteBet}
         />
+
+        <div className="betting-section-heading">
+          <span>Place your bets</span>
+          <small>Minimum $1 · Maximum $10,000</small>
+        </div>
 
         <div className="board-mode-tabs" role="tablist" aria-label="Betting layout">
           <button
