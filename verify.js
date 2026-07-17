@@ -727,6 +727,7 @@ assert(ctxSrc.includes('physicsLoadState'), 'physics load state in context');
 assert(pkgJson.includes('"typecheck"'), 'typecheck script');
 assert(loadRapierSrc.includes('RAPIER_PREFETCH_AT_MEDIUM'), 'medium-tier prefetch timing');
 assert(gameSceneSrc.includes('shouldPrefetchPhysics(clock, qualityTier)'), 'tier-aware prefetch');
+assert(gameSceneSrc.includes('visibilitychange'), 'resume rapier prefetch on tab focus');
 const {
   shouldPrefetchPhysics,
   shouldMountPhysics,

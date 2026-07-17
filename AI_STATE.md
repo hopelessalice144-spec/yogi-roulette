@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-259 — Unified gold felt pathway highlights (classic board + racetrack stakes + 3D wheel-set glow)
+**[DONE]** TASK-260 — Resume Rapier prefetch after tab focus; gold felt bet hover and neighbor picker active state
 
 ## Feature Backlog
 
@@ -260,6 +260,7 @@
 | TASK-257 | P2 | Low-tier Rapier WASM prefetch — start at betting second 15 (T-15) on adaptive low tier | **DONE** |
 | TASK-258 | P2 | Medium-tier Rapier WASM prefetch — start at betting second 16 (T-14) on adaptive medium tier | **DONE** |
 | TASK-259 | P2 | Gold felt pathway highlight parity — classic board pathway-lit, racetrack staked pockets, wheel-set 3D glow | **DONE** |
+| TASK-260 | P2 | Tab-focus Rapier prefetch resume — re-kick WASM load after background cancel; gold bet hover chrome | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 

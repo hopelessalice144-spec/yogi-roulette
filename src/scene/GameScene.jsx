@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { AdaptiveDpr, AdaptiveEvents, ContactShadows, Environment, Stars } from '@react-three/drei';
 import { useGame } from '../context/GameContext.jsx';
 import {
@@ -39,6 +39,7 @@ function IdleWheelStage({ wheelSpinSpeed, winningNumber, onWheelAngle }) {
 export function GameScene() {
   const {
     clock,
+    clockRef,
     wheelSpinSpeed,
     targetNumber,
     winningNumber,
@@ -53,6 +54,18 @@ export function GameScene() {
 
   const mountPhysics = shouldMountPhysics(clock);
   const [stageReady, setStageReady] = useState(false);
+
+  const kickRapierPrefetch = useCallback(() => {
+    setPhysicsLoadState?.('prefetching');
+    return loadRapierStage()
+      .then(() => {
+        setStageReady(true);
+        setPhysicsLoadState?.('ready');
+      })
+      .catch(() => {
+        setPhysicsLoadState?.('error');
+      });
+  }, [setPhysicsLoadState]);
 
   useEffect(() => {
     if (!shouldPrefetchPhysics(clock, qualityTier)) return;
@@ -72,6 +85,17 @@ export function GameScene() {
       cancelled = true;
     };
   }, [clock.cycleId, clock.name, clock.cycleSecond, qualityTier, setPhysicsLoadState]);
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden) return;
+      const snap = clockRef?.current ?? clock;
+      if (!shouldPrefetchPhysics(snap, qualityTier)) return;
+      void kickRapierPrefetch();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [clock, clockRef, qualityTier, kickRapierPrefetch]);
 
   useEffect(() => {
     if (!mountPhysics) {
