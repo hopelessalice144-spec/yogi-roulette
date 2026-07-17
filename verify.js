@@ -624,7 +624,7 @@ assert(appSrc.includes('IconVolumeOn'), 'App uses SVG audio icons');
 assert(boardSrc.includes('FairnessPanel'), 'fairness panel in betting board');
 assert(boardSrc.includes('fairnessCommit'), 'fairness commit wired');
 assert(fairnessSrc.includes('serverSeedHash'), 'fairness shows commit hash');
-assert(uiCss.includes('.fairness-panel'), 'fairness panel CSS');
+assert(uiCss.includes('.fairness-panel.status-verified'), 'fairness verified panel');
 assert(uiCss.includes('fairness-expand'), 'fairness expand animation');
 
 console.log('\n=== Architect Phase 4: realtime + authority ===');

@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-267 — Physics error clears stageReady; felt trays for stats panel and chip rack
+**[DONE]** TASK-268 — Felt trays for favorites/fairness panels; gold lounge ready-glow accents
 
 ## Feature Backlog
 
@@ -268,6 +268,7 @@
 | TASK-265 | P2 | Rapier stage readiness probe — hot mount uses stage chunk not WASM alone; lock cycle bar gold | **DONE** |
 | TASK-266 | P2 | WebGL recovery stage reset — stageReady clears when physicsLoadState idle; felt cycle/results rail | **DONE** |
 | TASK-267 | P2 | Physics load error handling — stageReady clears on error; felt stats + chip rack trays | **DONE** |
+| TASK-268 | P2 | Favorites/fairness panel felt trays — gold verified state and lounge ready-glow accents | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
