@@ -705,6 +705,7 @@ describe('vitestCoverage', () => {
         'hooks/useBetShortcuts.js',
         'hooks/useLiveClock.js',
         'hooks/usePortraitMobile.js',
+        'hooks/useRoundSync.js',
         'hooks/useWebGLRecovery.js',
       ]);
       expect(findModulesMissingTests(SRC_ROOT, ['hooks'])).toEqual([]);

@@ -134,6 +134,7 @@ describe('cameraDirector', () => {
         ballVel: { x: 0, y: 0, z: 0 },
         wheelAngle: 0,
         targetNumber: undefined,
+        winningNumber: null,
         elapsedTime: 4,
         cycleTimeFloat: 8,
       });
@@ -152,6 +153,7 @@ describe('cameraDirector', () => {
         ballVel: { x: -0.4, y: 0, z: 0.5 },
         wheelAngle: 0.2,
         targetNumber: undefined,
+        winningNumber: null,
         elapsedTime: 10,
         cycleTimeFloat: 27,
       });
@@ -197,6 +199,7 @@ describe('cameraDirector', () => {
         ballVel: { x: 0, y: 0, z: 0 },
         wheelAngle: 0.5,
         targetNumber: 7,
+        winningNumber: null,
         elapsedTime: 12,
         cycleTimeFloat: 29.5,
       });
