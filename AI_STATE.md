@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-269 — Gold repeat + ½×/2× stake cluster felt styling (lounge theme)
+**[DONE]** TASK-270 — Gold ½×/2× buttons and panel header stake/repeat pulses (lounge)
 
 ## Feature Backlog
 
@@ -270,6 +270,7 @@
 | TASK-267 | P2 | Physics load error handling — stageReady clears on error; felt stats + chip rack trays | **DONE** |
 | TASK-268 | P2 | Favorites/fairness panel felt trays — gold verified state and lounge ready-glow accents | **DONE** |
 | TASK-269 | P2 | Repeat button + stake scale cluster — gold felt chrome and inset tray (lounge) | **DONE** |
+| TASK-270 | P2 | btn-scale gold chrome; panel repeat/batch header pulses; scale-board pulse vars | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
