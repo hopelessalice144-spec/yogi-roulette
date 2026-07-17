@@ -12,9 +12,19 @@ function assert(cond, msg) {
   if (!cond) throw new Error(`E2E FAIL: ${msg}`);
 }
 
-async function advanceClock(page, seconds) {
+async function waitForPhaseName(page, name, timeoutMs = 15_000) {
+  await page.waitForFunction(
+    (expected) =>
+      document.querySelector('[data-testid="phase-pill"] strong')?.textContent?.trim() === expected,
+    name,
+    { timeout: timeoutMs },
+  );
+}
+
+async function advanceClock(page, seconds, expectPhase) {
   await page.evaluate((s) => window.__e2eAdvanceSeconds(s), seconds);
-  await page.waitForTimeout(1200);
+  if (expectPhase) await waitForPhaseName(page, expectPhase);
+  else await page.waitForTimeout(1200);
 }
 
 async function main() {
@@ -36,7 +46,7 @@ async function main() {
 
     const stakedBefore = await page.locator('.staked strong').textContent();
 
-    await advanceClock(page, 15);
+    await advanceClock(page, 15, 'locked');
     const phaseName = await page.locator('[data-testid="phase-pill"] strong').textContent();
     assert(phaseName === 'locked', `bet lock at T-20 (got ${phaseName})`);
 
@@ -52,7 +62,7 @@ async function main() {
     const clearDisabled = await page.getByRole('button', { name: 'Clear all bets' }).isDisabled();
     assert(clearDisabled, 'clear disabled when locked');
 
-    await advanceClock(page, 9);
+    await advanceClock(page, 9, 'spinning');
     const hudPhase = await page.getAttribute('[data-testid="betting-panel"]', 'data-hud-phase');
     assert(hudPhase === 'settle-reveal', `settle reveal at T-0 (got ${hudPhase})`);
 

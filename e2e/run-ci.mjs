@@ -92,6 +92,7 @@ async function main() {
   await runCommand(npm, ['run', 'build'], {
     ...process.env,
     VITE_SEED_CUSTODY_BYPASS: 'ci-e2e',
+    VITE_API_BASE: '',
   });
 
   const preview = spawnPreview(port);
