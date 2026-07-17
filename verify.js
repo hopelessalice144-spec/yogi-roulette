@@ -734,6 +734,7 @@ assert(gameSceneSrc.includes('if (!mountPhysics || stageReady) return'), 'lock-p
 assert(loadRapierSrc.includes('isRapierStageReady'), 'rapier stage readiness probe');
 assert(gameSceneSrc.includes('isRapierStageReady'), 'physics stage cache probe');
 assert(gameSceneSrc.includes("physicsLoadState === 'idle'"), 'webgl recovery clears stage ready');
+assert(gameSceneSrc.includes("physicsLoadState === 'error'"), 'physics load errors clear stage');
 const {
   shouldPrefetchPhysics,
   shouldMountPhysics,

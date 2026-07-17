@@ -58,7 +58,7 @@ export function GameScene() {
   const [stageReady, setStageReady] = useState(false);
 
   useEffect(() => {
-    if (physicsLoadState === 'idle') {
+    if (physicsLoadState === 'idle' || physicsLoadState === 'error') {
       setStageReady(false);
     }
   }, [physicsLoadState]);
