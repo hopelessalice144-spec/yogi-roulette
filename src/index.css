@@ -252,7 +252,7 @@ html.frame-blocked body {
 
 .quality-badge.tier-medium-active {
   border-color: rgba(245, 215, 142, 0.35);
-  color: #f5d78e;
+  color: var(--felt-gold);
 }
 
 .quality-badge.tier-low-active {
@@ -522,7 +522,7 @@ html.frame-blocked body {
   background: rgba(12, 18, 32, 0.88);
   backdrop-filter: blur(8px);
   cursor: pointer;
-  color: #f5d78e;
+  color: var(--felt-gold);
   transition: transform var(--ease-soft-fast), border-color var(--ease-soft), box-shadow var(--ease-soft);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 var(--elev-border);
 }
@@ -1388,8 +1388,9 @@ html.frame-blocked body {
 .stats-chart-block {
   padding: 0.35rem 0.15rem 0.15rem;
   border-radius: 0.45rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.18);
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(245, 215, 142, 0.08);
 }
 
 .progression-card {
@@ -1826,7 +1827,7 @@ html.frame-blocked body {
 }
 
 .board-mode-tab.active {
-  color: #f5d78e;
+  color: var(--felt-gold);
   background: rgba(245, 215, 142, 0.12);
   box-shadow: inset 0 0 0 1px rgba(245, 215, 142, 0.28);
 }
@@ -2216,7 +2217,7 @@ html.frame-blocked body {
   font-size: 0.48rem;
   font-weight: 800;
   font-style: normal;
-  color: #f5d78e;
+  color: var(--felt-gold);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
   white-space: nowrap;
 }
@@ -2290,7 +2291,7 @@ html.frame-blocked body {
 }
 
 .recent-chip.won {
-  outline: 2px solid #f5d78e;
+  outline: 2px solid var(--felt-gold);
   box-shadow: 0 0 12px rgba(245, 215, 142, 0.4);
 }
 
@@ -2303,7 +2304,7 @@ html.frame-blocked body {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #f5d78e;
+  color: var(--felt-gold);
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
 }
 
@@ -2872,7 +2873,7 @@ html.frame-blocked body {
 }
 
 .phase-pill strong {
-  color: #f5d78e;
+  color: var(--felt-gold);
   text-transform: uppercase;
   margin-right: 0.4rem;
 }
@@ -3858,7 +3859,7 @@ html.frame-blocked body {
 .cycle-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #b8860b, #f5d78e);
+  background: linear-gradient(90deg, #b8860b, var(--felt-gold));
   transition: width 0.15s linear;
   box-shadow: 0 0 10px rgba(245, 215, 142, 0.28);
 }
@@ -3869,7 +3870,7 @@ html.frame-blocked body {
 }
 
 .betting-panel.phase-locked .cycle-fill {
-  background: linear-gradient(90deg, #c9922e, #f5d78e);
+  background: linear-gradient(90deg, #c9922e, var(--felt-gold));
   box-shadow: 0 0 12px rgba(245, 215, 142, 0.32);
 }
 
@@ -3935,7 +3936,7 @@ html.frame-blocked body {
 .balance-value {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #f5d78e;
+  color: var(--felt-gold);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
   transition: color 0.2s ease, text-shadow 0.2s ease;
 }
@@ -3987,7 +3988,7 @@ html.frame-blocked body {
 @keyframes balance-low-glow {
   0%,
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
   }
   50% {
@@ -4004,7 +4005,7 @@ html.frame-blocked body {
 
 @keyframes balance-low-entry-pulse {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4016,7 +4017,7 @@ html.frame-blocked body {
     transform: scale(1.1);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4024,7 +4025,7 @@ html.frame-blocked body {
 
 @keyframes faucet-refill-entry-pulse {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4036,7 +4037,7 @@ html.frame-blocked body {
     transform: scale(1.1);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4044,7 +4045,7 @@ html.frame-blocked body {
 
 @keyframes balance-settle-win-entry-pulse {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4056,7 +4057,7 @@ html.frame-blocked body {
     transform: scale(1.08);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4064,7 +4065,7 @@ html.frame-blocked body {
 
 @keyframes balance-settle-loss-entry-pulse {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4076,7 +4077,7 @@ html.frame-blocked body {
     transform: scale(0.96);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -4594,7 +4595,7 @@ html.frame-blocked body {
 }
 
 .audio-toggle .icon-svg {
-  color: #f5d78e;
+  color: var(--felt-gold);
 }
 
 .audio-toggle.muted .icon-svg {
@@ -5915,7 +5916,7 @@ html.frame-blocked body {
 }
 
 .bet-cell.drop-target-active {
-  outline: 2px dashed #f5d78e;
+  outline: 2px dashed var(--felt-gold);
   transform: translate(var(--ox), calc(var(--oy) - 4px)) scale(1.06);
   box-shadow: 0 0 24px rgba(245, 215, 142, 0.45);
 }
@@ -6248,7 +6249,7 @@ html.frame-blocked body {
 
 .btn-repeat:not(:disabled):hover {
   border-color: rgba(245, 215, 142, 0.58);
-  color: #f5d78e;
+  color: var(--felt-gold);
 }
 
 .btn-repeat.repeat-ready-glow-active:not(:disabled):not(.repeat-round-ready-entry-pulse) {
@@ -6415,7 +6416,7 @@ html.frame-blocked body {
 
 .btn-undo:not(:disabled):hover {
   border-color: rgba(245, 215, 142, 0.55);
-  color: #f5d78e;
+  color: var(--felt-gold);
 }
 
 .btn-undo.undo-ready-glow-active:not(:disabled):not(.undo-round-ready-entry-pulse) {
@@ -6832,7 +6833,7 @@ html.frame-blocked body {
   right: -0.35rem;
   font-size: 0.45rem;
   font-weight: 800;
-  color: #f5d78e;
+  color: var(--felt-gold);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   z-index: 20;
 }
@@ -6845,7 +6846,7 @@ html.frame-blocked body {
   font-style: normal;
   font-size: 0.48rem;
   background: rgba(8, 12, 20, 0.92);
-  color: #f5d78e;
+  color: var(--felt-gold);
   padding: 0.05rem 0.3rem;
   border-radius: 999px;
   font-weight: 700;
@@ -7195,7 +7196,7 @@ html.frame-blocked body {
 }
 
 .chip.active {
-  outline: 3px solid #f5d78e;
+  outline: 3px solid var(--felt-gold);
   --chip-scale: 1.14;
   box-shadow: 0 0 22px rgba(245, 215, 142, 0.5);
 }
@@ -7380,7 +7381,7 @@ html.frame-blocked body {
   font-weight: 800;
   color: #1a1008;
   background: linear-gradient(145deg, #e8c84a, #9a7210);
-  border: 2px solid #f5d78e;
+  border: 2px solid var(--felt-gold);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 24px rgba(245, 215, 142, 0.5);
   pointer-events: none;
   transform: scale(1.12) rotate(-6deg);
@@ -8176,7 +8177,7 @@ html.frame-blocked body {
 
 .btn-scale:not(:disabled):hover {
   border-color: rgba(245, 215, 142, 0.52);
-  color: #f5d78e;
+  color: var(--felt-gold);
   box-shadow: 0 0 14px rgba(245, 215, 142, 0.16);
 }
 
@@ -8221,7 +8222,7 @@ html.frame-blocked body {
 .btn.gold {
   background: linear-gradient(135deg, #d4af37, #a67c00);
   color: #1a1008;
-  border-color: #f5d78e;
+  border-color: var(--felt-gold);
 }
 
 .btn.gold.faucet-ready-glow-active:not(.faucet-ready-entry-pulse) {
@@ -9693,7 +9694,7 @@ html.frame-blocked body {
   border: 1px solid var(--elev-border);
   background: rgba(12, 18, 32, 0.88);
   backdrop-filter: blur(8px);
-  color: #f5d78e;
+  color: var(--felt-gold);
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 800;
@@ -9881,7 +9882,7 @@ html.frame-blocked body {
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #f5d78e;
+  color: var(--felt-gold);
 }
 
 .shortcuts-close {
@@ -10211,7 +10212,7 @@ html.frame-blocked body {
 
 @keyframes balance-settle-win-entry-pulse-neon {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     transform: scale(1);
   }
   28% {
@@ -10222,7 +10223,7 @@ html.frame-blocked body {
     transform: scale(1.1);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -10230,7 +10231,7 @@ html.frame-blocked body {
 
 @keyframes balance-settle-loss-entry-pulse-neon {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     transform: scale(1);
   }
   28% {
@@ -10241,7 +10242,7 @@ html.frame-blocked body {
     transform: scale(0.95);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }
@@ -10253,7 +10254,7 @@ html.frame-blocked body {
 
 @keyframes faucet-refill-entry-pulse-neon {
   0% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     transform: scale(1);
   }
   32% {
@@ -10264,7 +10265,7 @@ html.frame-blocked body {
     transform: scale(1.12);
   }
   100% {
-    color: #f5d78e;
+    color: var(--felt-gold);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
     transform: scale(1);
   }

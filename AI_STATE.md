@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-275 — Ghost VIP gold hues, felt tokens, theme-color sync
+**[DONE]** TASK-276 — Lounge theme-color bootstrap + felt-gold token DRY
 
 ## Feature Backlog
 
@@ -276,6 +276,13 @@
 | TASK-273 | P2 | Root `--neon-accent` / holo border / spin canvas / glass depth / tier-high badge — gold lounge default | **DONE** |
 | TASK-274 | P2 | Bet neon underline + warm wheel glow map + PWA icon accents — gold lounge | **DONE** |
 | TASK-275 | P2 | Felt gold CSS tokens, ghost VIP default hue, progression tray, `theme-color` meta sync | **DONE** |
+| TASK-276 | P2 | `index.html` lounge theme-color bootstrap; `--felt-gold` DRY across index.css; stats chart tray | **DONE** |
+
+## TASK-276 Shipped (Session 335)
+
+- `index.html` — initial `theme-color` `#0a0814` matches lounge `themeColor()` before hydration
+- `src/index.css` — hardcoded `#f5d78e` text/border accents → `var(--felt-gold)`; stats chart block gold inset tray
+- `verify.js` — lounge theme-color bootstrap + felt-gold usage asserts
 
 ## TASK-275 Shipped (Session 335)
 
