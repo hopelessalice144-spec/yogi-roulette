@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-270 — Gold ½×/2× buttons and panel header stake/repeat pulses (lounge)
+**[DONE]** TASK-271 — Gold status line + PWA install prompt; progression card felt tray
 
 ## Feature Backlog
 
@@ -271,6 +271,7 @@
 | TASK-268 | P2 | Favorites/fairness panel felt trays — gold verified state and lounge ready-glow accents | **DONE** |
 | TASK-269 | P2 | Repeat button + stake scale cluster — gold felt chrome and inset tray (lounge) | **DONE** |
 | TASK-270 | P2 | btn-scale gold chrome; panel repeat/batch header pulses; scale-board pulse vars | **DONE** |
+| TASK-271 | P2 | Status line + install prompt gold lounge pulses; progression card felt tray | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
