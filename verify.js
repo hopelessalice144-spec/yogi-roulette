@@ -731,7 +731,8 @@ assert(gameSceneSrc.includes('visibilitychange'), 'resume rapier prefetch on tab
 assert(gameSceneSrc.includes('completeRapierPrefetch'), 'shared rapier prefetch helper');
 assert(gameSceneSrc.includes('if (!cancelled && ready) setStageReady(true)'), 'hot-cache physics mount');
 assert(gameSceneSrc.includes('if (!mountPhysics || stageReady) return'), 'lock-phase rapier fallback load');
-assert(gameSceneSrc.includes('isRapierReady'), 'physics load state respects wasm cache');
+assert(loadRapierSrc.includes('isRapierStageReady'), 'rapier stage readiness probe');
+assert(gameSceneSrc.includes('isRapierStageReady'), 'physics stage cache probe');
 const {
   shouldPrefetchPhysics,
   shouldMountPhysics,

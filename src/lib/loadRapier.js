@@ -52,6 +52,18 @@ export async function isRapierReady() {
   }
 }
 
+/** True when the RapierStage dynamic import has resolved. */
+export async function isRapierStageReady() {
+  const rapierStagePromise = getRapierStagePromise();
+  if (!rapierStagePromise) return false;
+  try {
+    await rapierStagePromise;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Seconds before lock when prefetch should begin (betting phase). */
 export const RAPIER_PREFETCH_AT = 17;
 

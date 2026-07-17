@@ -153,6 +153,19 @@ describe('loadRapier', () => {
     });
   });
 
+  describe('isRapierStageReady', () => {
+    it('returns false before stage load begins', async () => {
+      const { isRapierStageReady } = await loadModule();
+      await expect(isRapierStageReady()).resolves.toBe(false);
+    });
+
+    it('returns true after loadRapierStage resolves', async () => {
+      const { loadRapierStage, isRapierStageReady } = await loadModule();
+      loadRapierStage();
+      await expect(isRapierStageReady()).resolves.toBe(true);
+    });
+  });
+
   describe('resetRapierCache', () => {
     it('clears cached promises so prefetch can restart', async () => {
       const mod = await loadModule();
