@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { AdaptiveDpr, AdaptiveEvents, ContactShadows, Environment, Stars } from '@react-three/drei';
 import { useGame } from '../context/GameContext.jsx';
 import {
+  isRapierReady,
   loadRapierStage,
   shouldMountPhysics,
   shouldPrefetchPhysics,
@@ -90,10 +91,11 @@ export function GameScene() {
   }, [clock, clockRef, qualityTier, completeRapierPrefetch]);
 
   useEffect(() => {
-    if (!mountPhysics) {
-      setStageReady(false);
-      setPhysicsLoadState?.('idle');
-    }
+    if (mountPhysics) return;
+    setStageReady(false);
+    void isRapierReady().then((ready) => {
+      setPhysicsLoadState?.(ready ? 'ready' : 'idle');
+    });
   }, [mountPhysics, setPhysicsLoadState]);
 
   const showPhysics = mountPhysics && stageReady;

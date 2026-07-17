@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-261 — Gold felt inside-bet zones; shared `completeRapierPrefetch` in GameScene
+**[DONE]** TASK-262 — Gold bet-cell spotlight/casing; keep physicsLoadState ready after WASM prefetch
 
 ## Feature Backlog
 
@@ -262,6 +262,7 @@
 | TASK-259 | P2 | Gold felt pathway highlight parity — classic board pathway-lit, racetrack staked pockets, wheel-set 3D glow | **DONE** |
 | TASK-260 | P2 | Tab-focus Rapier prefetch resume — re-kick WASM load after background cancel; gold bet hover chrome | **DONE** |
 | TASK-261 | P2 | Inside-bet zone gold felt hover — splits/streets/corners match board highlight language | **DONE** |
+| TASK-262 | P2 | Bet-cell hover decorative layers gold felt; physicsLoadState stays ready when WASM cached | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 

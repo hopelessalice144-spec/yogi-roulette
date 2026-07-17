@@ -729,6 +729,7 @@ assert(loadRapierSrc.includes('RAPIER_PREFETCH_AT_MEDIUM'), 'medium-tier prefetc
 assert(gameSceneSrc.includes('shouldPrefetchPhysics(clock, qualityTier)'), 'tier-aware prefetch');
 assert(gameSceneSrc.includes('visibilitychange'), 'resume rapier prefetch on tab focus');
 assert(gameSceneSrc.includes('completeRapierPrefetch'), 'shared rapier prefetch helper');
+assert(gameSceneSrc.includes('isRapierReady'), 'physics load state respects wasm cache');
 const {
   shouldPrefetchPhysics,
   shouldMountPhysics,
