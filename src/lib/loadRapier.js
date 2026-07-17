@@ -55,6 +55,9 @@ export async function isRapierReady() {
 /** Seconds before lock when prefetch should begin (betting phase). */
 export const RAPIER_PREFETCH_AT = 17;
 
+/** Earlier prefetch on low tier — more time for WASM on constrained devices. */
+export const RAPIER_PREFETCH_AT_LOW = 15;
+
 /** Clear cached WASM/stage promises after WebGL context loss. */
 export { resetRapierCache } from './rapierCache.js';
 
@@ -64,11 +67,21 @@ export function shouldMountPhysics(clock) {
   return clock.name === 'locked' || clock.name === 'spinning';
 }
 
+/** Betting-phase second when prefetch should start for the given quality tier. */
+export function rapierPrefetchAt(qualityTier = 'high') {
+  return qualityTier === 'low' ? RAPIER_PREFETCH_AT_LOW : RAPIER_PREFETCH_AT;
+}
+
 /** Whether to start prefetching WASM during late betting. */
-export function shouldPrefetchPhysics(clock) {
+export function shouldPrefetchPhysics(clock, qualityTier = 'high') {
   if (!clock) return false;
   if (clock.name === 'locked' || clock.name === 'spinning') return true;
-  return clock.name === 'betting' && clock.cycleSecond >= RAPIER_PREFETCH_AT;
+  const prefetchAt = rapierPrefetchAt(qualityTier);
+  return clock.name === 'betting' && clock.cycleSecond >= prefetchAt;
 }
 
 console.assert(shouldPrefetchPhysics({ name: 'betting', cycleSecond: 17 }), 'prefetch at T-13');
+console.assert(
+  shouldPrefetchPhysics({ name: 'betting', cycleSecond: 15 }, 'low'),
+  'low-tier prefetch at T-15'
+);

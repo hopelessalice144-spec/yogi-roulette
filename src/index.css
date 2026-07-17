@@ -2057,31 +2057,33 @@ html.frame-blocked body {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.12rem 0.35rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.18rem 0.4rem;
+  border-radius: 0.35rem;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .heat-key.hot {
-  border-color: rgba(255, 90, 60, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 60, 0.5);
   color: #ffb8a0;
   background: rgba(255, 90, 60, 0.12);
 }
 
 .heat-key.warm {
-  border-color: rgba(255, 180, 80, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 180, 80, 0.45);
   color: #ffe0a8;
   background: rgba(255, 180, 80, 0.1);
 }
 
 .heat-key.cool {
-  border-color: rgba(100, 180, 255, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(100, 180, 255, 0.4);
   color: #b8d8ff;
   background: rgba(100, 180, 255, 0.1);
 }
 
 .heat-key.cold {
-  border-color: rgba(60, 140, 255, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(60, 140, 255, 0.5);
   color: #9ec8ff;
   background: rgba(60, 140, 255, 0.12);
 }

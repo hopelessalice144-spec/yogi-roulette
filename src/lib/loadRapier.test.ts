@@ -53,6 +53,23 @@ describe('loadRapier', () => {
       expect(shouldPrefetchPhysics({ name: 'locked', cycleSecond: 22 })).toBe(true);
       expect(shouldPrefetchPhysics({ name: 'spinning', cycleSecond: 27 })).toBe(true);
     });
+
+    it('prefetches earlier on low quality tier', async () => {
+      const { shouldPrefetchPhysics, RAPIER_PREFETCH_AT_LOW, RAPIER_PREFETCH_AT } =
+        await loadModule();
+      expect(
+        shouldPrefetchPhysics({ name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_LOW }, 'low'),
+      ).toBe(true);
+      expect(
+        shouldPrefetchPhysics(
+          { name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_LOW - 1 },
+          'low',
+        ),
+      ).toBe(false);
+      expect(
+        shouldPrefetchPhysics({ name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_LOW }, 'high'),
+      ).toBe(false);
+    });
   });
 
   describe('shouldMountPhysics', () => {

@@ -43,6 +43,7 @@ export function GameScene() {
     targetNumber,
     winningNumber,
     qualitySettings,
+    qualityTier,
     onPocketHit,
     onWheelAngle,
     particleBurst,
@@ -54,7 +55,7 @@ export function GameScene() {
   const [stageReady, setStageReady] = useState(false);
 
   useEffect(() => {
-    if (!shouldPrefetchPhysics(clock)) return;
+    if (!shouldPrefetchPhysics(clock, qualityTier)) return;
     let cancelled = false;
     setPhysicsLoadState?.('prefetching');
     loadRapierStage()
@@ -70,7 +71,7 @@ export function GameScene() {
     return () => {
       cancelled = true;
     };
-  }, [clock.cycleId, clock.name, clock.cycleSecond, setPhysicsLoadState]);
+  }, [clock.cycleId, clock.name, clock.cycleSecond, qualityTier, setPhysicsLoadState]);
 
   useEffect(() => {
     if (!mountPhysics) {

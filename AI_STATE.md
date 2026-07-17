@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-256 — BettingBoard panel pointer layer polish — `panelPointer*` state and `panel-pointer-*` CSS (was `magneticGlow*` / `magnetic-glow-*`)
+**[DONE]** TASK-257 — Low-tier Rapier prefetch at T-15; racetrack heat legend felt tray styling
 
 ## Feature Backlog
 
@@ -256,7 +256,8 @@
 | TASK-253 | P3 | BettingBoard panel glass-reflection entry pulse cleanup — panel glass reflection uses entry-only glass-reflection-active variant on pointer enter | **DONE** |
 | TASK-254 | P3 | BettingBoard panel holo-border entry pulse cleanup — panel holo border uses entry-only holo-border-active variant on pointer enter | **DONE** |
 | TASK-255 | P3 | BettingBoard panel glass-depth-layer entry pulse cleanup — panel glass depth layer uses entry-only glass-depth-layer-active variant on pointer enter | **DONE** |
-| TASK-256 | P3 | BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from magneticGlow* to panelPointer* | **PENDING** |
+| TASK-256 | P3 | BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from magneticGlow* to panelPointer* | **DONE** |
+| TASK-257 | P2 | Low-tier Rapier WASM prefetch — start at betting second 15 (T-15) on adaptive low tier | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
