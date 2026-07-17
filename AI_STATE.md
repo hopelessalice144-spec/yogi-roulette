@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-271 — Gold status line + PWA install prompt; progression card felt tray
+**[DONE]** TASK-272 — Gold sector glow, inside drop-target pulse, cycle tick pulse
 
 ## Feature Backlog
 
@@ -272,6 +272,7 @@
 | TASK-269 | P2 | Repeat button + stake scale cluster — gold felt chrome and inset tray (lounge) | **DONE** |
 | TASK-270 | P2 | btn-scale gold chrome; panel repeat/batch header pulses; scale-board pulse vars | **DONE** |
 | TASK-271 | P2 | Status line + install prompt gold lounge pulses; progression card felt tray | **DONE** |
+| TASK-272 | P2 | Sector glow + inside drop-target + cycle tick pulses — gold lounge (pathway column CSS aligned) | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
