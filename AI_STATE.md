@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-273 — Root neon tokens, holo border, spin canvas, panel inset gold lounge
+**[DONE]** TASK-274 — Bet underline, wheel warm glow, PWA icons gold lounge
 
 ## Feature Backlog
 
@@ -274,6 +274,13 @@
 | TASK-271 | P2 | Status line + install prompt gold lounge pulses; progression card felt tray | **DONE** |
 | TASK-272 | P2 | Sector glow + inside drop-target + cycle tick pulses — gold lounge (pathway column CSS aligned) | **DONE** |
 | TASK-273 | P2 | Root `--neon-accent` / holo border / spin canvas / glass depth / tier-high badge — gold lounge default | **DONE** |
+| TASK-274 | P2 | Bet neon underline + warm wheel glow map + PWA icon accents — gold lounge | **DONE** |
+
+## TASK-274 Shipped (Session 335)
+
+- `src/index.css` — default `.neon-underline-active` gradient matches pathway gold
+- `src/lib/highlight.js` — lounge `warmGlowColorForHighlight` for zero/split/street gold-forward
+- `public/icons/icon.svg`, `maskable.svg` — gold ring and typography (teal retired)
 
 ## TASK-273 Shipped (Session 335)
 

@@ -18,7 +18,7 @@
     </filter>
   </defs>
   <rect width="512" height="512" rx="108" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="196" fill="none" stroke="#00dcb9" stroke-width="10" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#f5d78e" stroke-width="10" opacity="0.55" filter="url(#glow)"/>
   <circle cx="256" cy="256" r="176" fill="#12182a" stroke="#2a3550" stroke-width="4"/>
   <g transform="translate(256 256)">
     <path d="M0-176 L15-8 A176 176 0 0 1 120 120 Z" fill="#c41e3a"/>
@@ -31,6 +31,6 @@
     <path d="M-120 120 L15 -8 A176 176 0 0 0 0 176 Z" fill="#1a1a22"/>
   </g>
   <circle cx="256" cy="256" r="52" fill="url(#hub)" stroke="#5a6478" stroke-width="3"/>
-  <circle cx="256" cy="256" r="18" fill="#0d4d3f" stroke="#00dcb9" stroke-width="3"/>
-  <text x="256" y="430" text-anchor="middle" fill="#00dcb9" font-family="Segoe UI, system-ui, sans-serif" font-size="42" font-weight="700" letter-spacing="4">TURBO</text>
+  <circle cx="256" cy="256" r="18" fill="#2a2210" stroke="#f5d78e" stroke-width="3"/>
+  <text x="256" y="430" text-anchor="middle" fill="#f5d78e" font-family="Segoe UI, system-ui, sans-serif" font-size="42" font-weight="700" letter-spacing="4">TURBO</text>
 </svg>

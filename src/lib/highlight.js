@@ -112,7 +112,7 @@ export function warmGlowColorForHighlight(highlight) {
     case 'black':
       return '#88aaff';
     case 'straight':
-      return highlight.value === 0 ? '#44ffbb' : '#ffcc66';
+      return highlight.value === 0 ? '#f5d78e' : '#ffcc66';
     case 'even':
     case 'odd':
       return '#ff9955';
@@ -124,9 +124,9 @@ export function warmGlowColorForHighlight(highlight) {
     case 'column':
       return '#77bbff';
     case 'split':
-      return '#66ffee';
+      return '#e8c878';
     case 'street':
-      return '#88ddff';
+      return '#d4b060';
     case 'corner':
       return '#ffcc77';
     case 'line':

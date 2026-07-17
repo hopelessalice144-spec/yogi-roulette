@@ -5815,7 +5815,7 @@ html.frame-blocked body {
   bottom: 3px;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, transparent, #00dcb9, #8ae8f0, transparent);
+  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
   opacity: 0;
   transform: scaleX(0.3);
   transition:
