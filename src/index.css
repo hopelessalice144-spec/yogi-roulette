@@ -1796,8 +1796,9 @@ html.frame-blocked body {
   margin: 0.35rem 0 0.45rem;
   padding: 0.2rem;
   border-radius: 0.55rem;
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: none;
 }
 
 .board-mode-tab {
@@ -5287,15 +5288,17 @@ html.frame-blocked body {
 
 .inside-zone:hover:not(:disabled),
 .inside-zone.drop-target-active {
-  background: rgba(0, 255, 200, 0.2);
-  box-shadow: 0 0 12px rgba(0, 255, 200, 0.22);
+  background: rgba(245, 215, 142, 0.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 215, 142, 0.58),
+    0 0 10px rgba(245, 215, 142, 0.16);
   z-index: 6;
 }
 
 .inside-zone.has-chip {
-  border: 1px solid rgba(245, 215, 142, 0.45);
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(245, 215, 142, 0.52);
   background: rgba(12, 18, 32, 0.65);
-  box-shadow: 0 0 8px rgba(245, 215, 142, 0.15);
 }
 
 .inside-zone:hover:not(:disabled) .inside-zone-mark,

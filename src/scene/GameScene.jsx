@@ -55,14 +55,16 @@ export function GameScene() {
   const mountPhysics = shouldMountPhysics(clock);
   const [stageReady, setStageReady] = useState(false);
 
-  const kickRapierPrefetch = useCallback(() => {
+  const completeRapierPrefetch = useCallback((isCancelled) => {
     setPhysicsLoadState?.('prefetching');
     return loadRapierStage()
       .then(() => {
+        if (isCancelled?.()) return;
         setStageReady(true);
         setPhysicsLoadState?.('ready');
       })
       .catch(() => {
+        if (isCancelled?.()) return;
         setPhysicsLoadState?.('error');
       });
   }, [setPhysicsLoadState]);
@@ -70,32 +72,22 @@ export function GameScene() {
   useEffect(() => {
     if (!shouldPrefetchPhysics(clock, qualityTier)) return;
     let cancelled = false;
-    setPhysicsLoadState?.('prefetching');
-    loadRapierStage()
-      .then(() => {
-        if (!cancelled) {
-          setStageReady(true);
-          setPhysicsLoadState?.('ready');
-        }
-      })
-      .catch(() => {
-        if (!cancelled) setPhysicsLoadState?.('error');
-      });
+    void completeRapierPrefetch(() => cancelled);
     return () => {
       cancelled = true;
     };
-  }, [clock.cycleId, clock.name, clock.cycleSecond, qualityTier, setPhysicsLoadState]);
+  }, [clock.cycleId, clock.name, clock.cycleSecond, qualityTier, completeRapierPrefetch]);
 
   useEffect(() => {
     const onVisibility = () => {
       if (document.hidden) return;
       const snap = clockRef?.current ?? clock;
       if (!shouldPrefetchPhysics(snap, qualityTier)) return;
-      void kickRapierPrefetch();
+      void completeRapierPrefetch();
     };
     document.addEventListener('visibilitychange', onVisibility);
     return () => document.removeEventListener('visibilitychange', onVisibility);
-  }, [clock, clockRef, qualityTier, kickRapierPrefetch]);
+  }, [clock, clockRef, qualityTier, completeRapierPrefetch]);
 
   useEffect(() => {
     if (!mountPhysics) {
