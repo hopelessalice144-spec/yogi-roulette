@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-263 — Instant Rapier stage when WASM cached at lock; gold panel pointer and pathway underlines
+**[DONE]** TASK-264 — Lock-phase Rapier fallback load; gold cycle progress bar during betting
 
 ## Feature Backlog
 
@@ -264,6 +264,7 @@
 | TASK-261 | P2 | Inside-bet zone gold felt hover — splits/streets/corners match board highlight language | **DONE** |
 | TASK-262 | P2 | Bet-cell hover decorative layers gold felt; physicsLoadState stays ready when WASM cached | **DONE** |
 | TASK-263 | P2 | Hot-cache physics mount at lock — stageReady when WASM prefetched; gold panel pointer underline | **DONE** |
+| TASK-264 | P2 | Lock-phase Rapier fallback — load WASM at mount if prefetch missed; gold betting cycle bar | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 

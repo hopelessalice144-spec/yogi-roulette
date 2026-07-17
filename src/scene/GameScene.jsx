@@ -109,6 +109,15 @@ export function GameScene() {
     };
   }, [mountPhysics]);
 
+  useEffect(() => {
+    if (!mountPhysics || stageReady) return;
+    let cancelled = false;
+    void completeRapierPrefetch(() => cancelled);
+    return () => {
+      cancelled = true;
+    };
+  }, [mountPhysics, stageReady, completeRapierPrefetch]);
+
   const showPhysics = mountPhysics && stageReady;
 
   return (
