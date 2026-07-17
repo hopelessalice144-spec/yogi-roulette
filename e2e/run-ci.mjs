@@ -62,7 +62,7 @@ function spawnPreview(port) {
   const cmd = isWin ? 'npm.cmd' : 'npm';
   return spawn(cmd, ['run', 'preview', '--', '--host', HOST, '--port', String(port)], {
     cwd: ROOT,
-    stdio: 'pipe',
+    stdio: 'ignore',
     shell: process.platform === 'win32',
   });
 }
