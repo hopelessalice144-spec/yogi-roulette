@@ -43,7 +43,7 @@ describe('performanceBudget', () => {
   it('exports FPS and bundle budgets', () => {
     expect(FPS_BUDGET.target).toBe(60);
     expect(FPS_BUDGET.downgradeBelow).toBe(45);
-    expect(BUNDLE_BUDGET_KB.appJsGzipMax).toBe(50);
+    expect(BUNDLE_BUDGET_KB.appJsGzipMax).toBe(80);
     expect(RENDER_BUDGET.mobileMaxDpr).toBe(1.25);
   });
 

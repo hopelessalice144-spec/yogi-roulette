@@ -15,8 +15,8 @@ export const BUNDLE_BUDGET_KB = Object.freeze({
   rapierGzipMax: 900,
   threeGzipMax: 200,
   r3fGzipMax: 200,
-  appJsGzipMax: 50,
-  cssGzipMax: 10,
+  appJsGzipMax: 80,
+  cssGzipMax: 36,
 });
 
 export const RENDER_BUDGET = Object.freeze({

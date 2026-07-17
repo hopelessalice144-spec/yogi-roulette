@@ -89,7 +89,7 @@ describe('bundleBudgetCheck', () => {
     });
 
     it('fails when a chunk exceeds its budget', () => {
-      const dist = makeDist({ 'index-fat.js': randomBytes(80_000) });
+      const dist = makeDist({ 'index-fat.js': randomBytes(120_000) });
       const app = measureDistBundles(dist).find((row) => row.budgetKey === 'appJsGzipMax');
       expect(app).toBeDefined();
       expect(app!.gzipKb).toBeGreaterThan(BUNDLE_BUDGET_KB.appJsGzipMax);
