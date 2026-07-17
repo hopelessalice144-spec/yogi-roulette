@@ -174,13 +174,14 @@ function settleTargets(targetNumber, wheelAngle, out) {
 
   const idx = numberToPocketIndex(targetNumber);
   const pocketAngle = pocketIndexToAngle(idx) + wheelAngle;
-  const [px, , pz] = positionOnRing(WHEEL.trackRadius - 0.1, pocketAngle, 0.105);
+  const [px, , pz] = positionOnRing(WHEEL.trackRadius - 0.08, pocketAngle, 0.105);
   _normal.set(Math.sin(pocketAngle), 0, Math.cos(pocketAngle));
-  const d = CAMERA_MODES.macro.dist;
+  const d = CAMERA_MODES.macro.dist * 1.12;
+  const lift = CAMERA_MODES.macro.height + 0.08;
 
-  out.position.set(px + _normal.x * d, CAMERA_MODES.macro.height, pz + _normal.z * d);
-  out.lookAt.set(px, 0.14, pz);
-  out.fov = CAMERA_MODES.macro.fov;
+  out.position.set(px + _normal.x * d, lift, pz + _normal.z * d);
+  out.lookAt.set(px, 0.11, pz);
+  out.fov = CAMERA_MODES.macro.fov + 1;
   out.roll = 0;
   out.stiffness = CAMERA_MODES.macro.stiffness;
 }

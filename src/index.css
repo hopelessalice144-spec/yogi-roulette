@@ -2192,38 +2192,50 @@ html.frame-blocked body {
   align-items: center;
   justify-content: space-between;
   gap: 0.35rem;
-  padding: 0.42rem 0.55rem;
-  border-radius: 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: inherit;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.4rem;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.22);
+  color: #e8f0f8;
   font: inherit;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.call-bet-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .call-bet-btn:hover:not(:disabled) {
   transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 215, 142, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .call-bet-btn.sector-voisins {
-  border-color: rgba(124, 58, 237, 0.35);
-  background: rgba(124, 58, 237, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.4);
+  background: rgba(124, 58, 237, 0.14);
 }
 
 .call-bet-btn.sector-tiers {
-  border-color: rgba(59, 130, 246, 0.35);
-  background: rgba(59, 130, 246, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.14);
 }
 
 .call-bet-btn.sector-orphelins {
-  border-color: rgba(245, 158, 11, 0.35);
-  background: rgba(245, 158, 11, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.12);
 }
 
 .call-bet-btn.sector-jeuZero {
-  border-color: rgba(236, 72, 153, 0.35);
-  background: rgba(236, 72, 153, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(236, 72, 153, 0.45);
+  background: rgba(236, 72, 153, 0.12);
 }
 
 .call-bet-short {

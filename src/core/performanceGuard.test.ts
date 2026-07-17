@@ -21,6 +21,8 @@ describe('performanceGuard', () => {
       expect(QUALITY_TIERS.high.quantumArc).toBe(true);
       expect(QUALITY_TIERS.high.postFx).toBe(true);
       expect(QUALITY_TIERS.medium.chromaticAberration).toBe(false);
+      expect(QUALITY_TIERS.medium.quantumArc).toBe(false);
+      expect(QUALITY_TIERS.medium.ballVapor).toBe(false);
       expect(QUALITY_TIERS.low.postFx).toBe(false);
       expect(QUALITY_TIERS.low.quantumArc).toBe(false);
     });
