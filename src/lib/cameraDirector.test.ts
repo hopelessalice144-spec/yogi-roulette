@@ -11,6 +11,7 @@ import {
   LOOK_EMA_LAMBDA,
   LOOK_SHADOW_LAMBDA,
   resolveCameraState,
+  resolvePresentationOutcome,
   springVec3,
 } from './cameraDirector.js';
 
@@ -23,8 +24,8 @@ describe('cameraDirector', () => {
       SPIN_DROP: 'spin_drop',
       SETTLE: 'settle',
     });
-    expect(CAMERA_MODES.lounge.fov).toBe(55);
-    expect(CAMERA_MODES.macro.fov).toBe(22);
+    expect(CAMERA_MODES.lounge.fov).toBe(48);
+    expect(CAMERA_MODES.macro.fov).toBe(32);
   });
 
   describe('getCycleTimeFloat', () => {
@@ -102,6 +103,28 @@ describe('cameraDirector', () => {
     });
   });
 
+  describe('resolvePresentationOutcome', () => {
+    it('prefers guide target before settle blend', () => {
+      expect(
+        resolvePresentationOutcome({
+          winningNumber: 17,
+          targetNumber: 3,
+          settleWeight: 0,
+        })
+      ).toBe(3);
+    });
+
+    it('uses winning number during settle reveal', () => {
+      expect(
+        resolvePresentationOutcome({
+          winningNumber: 17,
+          targetNumber: 3,
+          settleWeight: 0.5,
+        })
+      ).toBe(17);
+    });
+  });
+
   describe('computeCameraTargets', () => {
     it('returns lounge-weighted targets during betting', () => {
       const targets = computeCameraTargets({
@@ -117,7 +140,7 @@ describe('cameraDirector', () => {
 
       expect(targets.stateWeights.betting).toBe(1);
       expect(targets.position.length()).toBeGreaterThan(4);
-      expect(targets.lookAt.y).toBeCloseTo(0.35, 5);
+      expect(targets.lookAt.y).toBeCloseTo(0.3, 5);
       expect(targets.fov).toBeCloseTo(CAMERA_MODES.lounge.fov, 5);
     });
 
@@ -133,11 +156,37 @@ describe('cameraDirector', () => {
         cycleTimeFloat: 27,
       });
 
-      expect(targets.stateWeights.spinDrop).toBeGreaterThan(0.9);
-      expect(targets.position.y).toBeGreaterThan(0.5);
-      expect(targets.fov).toBeLessThan(CAMERA_MODES.lounge.fov);
-      expect(targets.vertigoProgress).toBeGreaterThan(0);
-      expect(targets.stiffness).toBeGreaterThan(CAMERA_MODES.lounge.stiffness);
+      expect(targets.stateWeights.spinDrop).toBeGreaterThan(0.5);
+      expect(targets.position.y).toBeGreaterThan(2.5);
+      expect(targets.fov).toBeLessThanOrEqual(CAMERA_MODES.lounge.fov);
+      expect(targets.stiffness).toBeGreaterThan(1.5);
+    });
+
+    it('prefers winning number for macro framing during settle', () => {
+      const guide = computeCameraTargets({
+        mode: undefined,
+        clock: { name: 'spinning', cycleSecond: 29.5 },
+        ballPos: { x: 0.4, y: 0.15, z: 0.3 },
+        ballVel: { x: 0, y: 0, z: 0 },
+        wheelAngle: 0.5,
+        targetNumber: 3,
+        winningNumber: 7,
+        elapsedTime: 12,
+        cycleTimeFloat: 29.5,
+      });
+      const pocketOnly = computeCameraTargets({
+        mode: undefined,
+        clock: { name: 'spinning', cycleSecond: 29.5 },
+        ballPos: { x: 0.4, y: 0.15, z: 0.3 },
+        ballVel: { x: 0, y: 0, z: 0 },
+        wheelAngle: 0.5,
+        targetNumber: 7,
+        winningNumber: 7,
+        elapsedTime: 12,
+        cycleTimeFloat: 29.5,
+      });
+      expect(guide.presentationOutcome).toBe(7);
+      expect(guide.position.equals(pocketOnly.position)).toBe(true);
     });
 
     it('focuses macro settle framing on the winning pocket', () => {

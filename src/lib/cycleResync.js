@@ -54,7 +54,7 @@ export function computeBallKinematicSync(clock, wheelAngle = 0, wheelSpinSpeed =
 
   if (phase === 'free') {
     const orbitAngle = (BALL_DROP_AT * ORBIT_ANGULAR_BASE) % (Math.PI * 2);
-    const angle = orbitAngle + wheelAngle * 0.2;
+    const angle = orbitAngle + wheelAngle;
     return {
       phase,
       orbitAngle,

@@ -10,6 +10,7 @@ import {
   resolveAuthoritativeAudit,
   resolveAuthoritativeCommit,
   resolveAuthoritativeOutcome,
+  resolveVisualTargetNumber,
 } from './authorityClient.js';
 
 const API_BASE = 'http://authority.test';
@@ -158,6 +159,26 @@ describe('authorityClient', () => {
       );
       const commit = await resolveAuthoritativeCommit(CYCLE_ID);
       expect(commit.serverSeedHash).toBe(hash);
+    });
+  });
+
+  describe('resolveVisualTargetNumber', () => {
+    it('returns local outcome when authority is disabled', async () => {
+      vi.stubEnv('VITE_API_BASE', '');
+      expect(await resolveVisualTargetNumber(CYCLE_ID)).toBe(outcomeForCycle(CYCLE_ID));
+    });
+
+    it('returns remote result when authority is enabled', async () => {
+      vi.stubEnv('VITE_API_BASE', API_BASE);
+      const winning = deriveWinningNumber(SERVER_SEED, CLIENT_SEED, CYCLE_ID);
+      fetchMock.mockResolvedValueOnce(jsonResponse({ cycleId: CYCLE_ID, winningNumber: winning }));
+      expect(await resolveVisualTargetNumber(CYCLE_ID)).toBe(winning);
+    });
+
+    it('returns null when remote result is locked', async () => {
+      vi.stubEnv('VITE_API_BASE', API_BASE);
+      fetchMock.mockRejectedValueOnce(new Error('HTTP 403'));
+      expect(await resolveVisualTargetNumber(CYCLE_ID)).toBeNull();
     });
   });
 

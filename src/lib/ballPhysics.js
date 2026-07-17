@@ -137,8 +137,8 @@ export function nestlePose(current, target, alpha, dt) {
 /** Resolve capture stage from distance and speed. */
 export function resolveCaptureStage(dist, speed, currentStage) {
   if (currentStage >= CAPTURE_STAGE.NESTLE) return currentStage;
-  if (dist < POCKET_CAPTURE.lockRadius && speed < 0.22) return CAPTURE_STAGE.NESTLE;
-  if (dist < POCKET_CAPTURE.captureRadius || currentStage >= CAPTURE_STAGE.CAPTURE) {
+  if (dist < POCKET_CAPTURE.lockRadius * 1.35 && speed < 0.35) return CAPTURE_STAGE.NESTLE;
+  if (dist < POCKET_CAPTURE.captureRadius * 1.2 || currentStage >= CAPTURE_STAGE.CAPTURE) {
     return Math.max(currentStage, CAPTURE_STAGE.CAPTURE);
   }
   return CAPTURE_STAGE.GUIDE;

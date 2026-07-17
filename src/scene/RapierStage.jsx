@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Physics, RigidBody } from '@react-three/rapier';
 import { useGame } from '../context/GameContext.jsx';
 import { FeltTable } from './FeltTable.jsx';
@@ -15,8 +16,12 @@ export function RapierStage() {
     onPocketHit,
     onWheelAngle,
     onBallPosition,
+    resyncPresentationKinematics,
   } = useGame();
 
+  useEffect(() => {
+    resyncPresentationKinematics?.();
+  }, [resyncPresentationKinematics]);
   return (
     <Physics
       gravity={[0, -9.81, 0]}

@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { RigidBody } from '@react-three/rapier';
 import { useGame } from '../context/GameContext.jsx';
-import { useMaterials } from './MaterialLibrary.jsx';
+import { IvoryBallMesh } from './IvoryBallMesh.jsx';
 import {
   descentPose,
   descentVelocity,
@@ -36,6 +36,8 @@ import {
 } from '../lib/physicsWatchdog.js';
 import { resetTimestepAccumulator } from '../lib/disposeUtils.js';
 import { impactToClackIntensity } from '../lib/audioSynth.js';
+import { computeBallKinematicSync } from '../lib/cycleResync.js';
+import { isPhysicsHitch, postHitchSimulationDelta } from '../lib/simulationHitch.js';
 
 const RB_DYNAMIC = 0;
 const RB_KINEMATIC_POSITION = 2;
@@ -54,11 +56,13 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
     simulationPausedRef,
     ballResyncRef,
     clockRef,
+    clock,
+    targetNumberRef,
+    resyncPresentationKinematics,
     watchdogJournalRef,
   } = useGame();
-  const { ivoryBall } = useMaterials();
   const bodyRef = useRef();
-  const orbitAngle = useRef(Math.random() * Math.PI * 2);
+  const orbitAngle = useRef(0);
   const releasedRef = useRef(false);
   const lockedRef = useRef(false);
   const descentT = useRef(0);
@@ -76,6 +80,12 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
   const lastMovingMs = useRef(Date.now());
 
   phaseRef.current = phase;
+
+  useEffect(() => {
+    const snap = computeBallKinematicSync(clock, wheelAngleRef.current ?? 0, wheelSpinSpeed);
+    orbitAngle.current = snap.orbitAngle;
+    descentT.current = snap.descentT ?? 0;
+  }, [clock.cycleId, clock, wheelSpinSpeed, wheelAngleRef]);
 
   const enterKinematicLock = (rb) => {
     if (!rb || lockedRef.current) return;
@@ -375,10 +385,13 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
       }
     }
 
-    if (currentPhase === 'guided' && targetNumber != null) {
-      const pocketIdx = numberToPocketIndex(targetNumber);
-      const strength = guideStrengthRef.current ?? 0.7;
-      simulateGuidedCapture(rb, stepDt, pocketIdx, strength);
+    if (currentPhase === 'guided') {
+      const guideNumber = targetNumberRef?.current ?? targetNumber;
+      if (guideNumber != null) {
+        const pocketIdx = numberToPocketIndex(guideNumber);
+        const strength = guideStrengthRef.current ?? 0.7;
+        simulateGuidedCapture(rb, stepDt, pocketIdx, strength);
+      }
     }
   };
 
@@ -387,11 +400,19 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
     const rb = bodyRef.current;
     if (!rb) return;
 
-    syncFromResync(rb);
-    runFixedSteps(physicsAccum.current, delta, (fixedDt) => simulateStep(fixedDt, rb));
+    if (isPhysicsHitch(delta)) {
+      resyncPresentationKinematics?.();
+      syncFromResync(rb);
+      resetTimestepAccumulator(physicsAccum.current);
+    } else {
+      syncFromResync(rb);
+    }
+
+    const simDelta = postHitchSimulationDelta(delta);
+    runFixedSteps(physicsAccum.current, simDelta, (fixedDt) => simulateStep(fixedDt, rb));
 
     const t = rb.translation();
-    const dt = Math.max(delta, 0.001);
+    const dt = Math.max(simDelta, 0.001);
     ballVelRef.current = {
       x: (t.x - _prevPos.x) / dt,
       y: (t.y - _prevPos.y) / dt,
@@ -415,9 +436,7 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
       ccd
       onCollisionEnter={handleCollision}
     >
-      <mesh castShadow receiveShadow userData={{ isBall: true }} material={ivoryBall}>
-        <sphereGeometry args={[BALL_RADIUS, 24, 24]} />
-      </mesh>
+      <IvoryBallMesh velocityRef={ballVelRef} rollSpeedRef={rollSpeedRef} />
     </RigidBody>
   );
 }

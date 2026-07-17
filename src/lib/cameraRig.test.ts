@@ -7,6 +7,8 @@ import {
   adaptiveLookLag,
   adaptiveLookStiffness,
   applyDistanceCompensation,
+  applyAspectFraming,
+  aspectFramingScale,
   cinematicHandheld,
   computeImpactShake,
   descentProgress,
@@ -158,6 +160,27 @@ describe('cameraRig', () => {
       const betting = cinematicHandheld(2, 0.02, { betting: 1 }).clone();
       const spinDrop = cinematicHandheld(2, 0.02, { spinDrop: 1 }).clone();
       expect(spinDrop.length()).toBeLessThan(betting.length());
+    });
+  });
+
+  describe('aspectFramingScale', () => {
+    it('leaves landscape targets unchanged at reference aspect', () => {
+      expect(aspectFramingScale(16 / 9)).toEqual({ distanceScale: 1, fovScale: 1 });
+    });
+
+    it('pulls back on portrait viewports', () => {
+      const portrait = aspectFramingScale(9 / 16);
+      expect(portrait.distanceScale).toBeGreaterThan(1);
+      expect(portrait.fovScale).toBeGreaterThan(1);
+    });
+
+    it('applyAspectFraming moves camera away from look-at on narrow screens', () => {
+      const pos = new THREE.Vector3(0, 2, 5);
+      const look = new THREE.Vector3(0, 0, 0);
+      const out = new THREE.Vector3();
+      const { fov } = applyAspectFraming(pos, look, 42, 9 / 16, out);
+      expect(out.distanceTo(look)).toBeGreaterThan(pos.distanceTo(look));
+      expect(fov).toBeGreaterThan(42);
     });
   });
 });

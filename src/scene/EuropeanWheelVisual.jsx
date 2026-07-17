@@ -1,6 +1,5 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { getColor } from '../lib/math.js';
 import { UI_THEME_LOUNGE } from '../lib/uiTheme.js';
@@ -21,6 +20,7 @@ import { InstancedPins } from './WheelInstanced.jsx';
 import { RimStreaks } from './RimStreaks.jsx';
 import { WheelSectorNeon } from './WheelSectorNeon.jsx';
 import { OrbitBallVisual } from './OrbitBallVisual.jsx';
+import { WheelNumberRing } from './WheelNumberRing.jsx';
 import { blendWheelSpinVelocity } from '../lib/wheelSpinEase.js';
 
 /** Rapier-free wheel for betting phase — defers WASM until lock. */
@@ -66,7 +66,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
     const wheelResync = wheelResyncRef?.current;
     if (wheelResync && wheelResync.token !== lastWheelResyncToken.current) {
       lastWheelResyncToken.current = wheelResync.token;
-      if (Number.isFinite(wheelResync.angle)) {
+      if (wheelResync.hard !== false && Number.isFinite(wheelResync.angle)) {
         angleRef.current = wheelResync.angle;
       }
     }
@@ -88,7 +88,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
     if (spindle) {
       const v = spinVelRef.current;
       const t = state.clock.elapsedTime;
-      const amp = 0.007 + v * 0.006;
+      const amp = 0.0035 + v * 0.003;
       const settle = THREE.MathUtils.clamp(1 - Math.abs(v - spinSpeed) * 0.35, 0.3, 1);
       spindle.rotation.x = Math.sin(t * 12.1) * amp * settle;
       spindle.rotation.z = Math.cos(t * 9.3) * amp * 0.9 * settle;
@@ -156,6 +156,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
 
         <InstancedPins material={mats.gold} hoverHighlightRef={hoverHighlightRef} />
         <RimStreaks spinSpeed={spinSpeed} wheelAngleRef={angleRef} />
+        <WheelNumberRing />
         <WheelSectorNeon />
 
         {EUROPEAN_SEQUENCE.map((num, i) => {
@@ -173,7 +174,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
                 receiveShadow
                 material={pocketMats[i]}
               >
-                <boxGeometry args={[pocketDepth, 0.04, pocketWidth]} />
+                <boxGeometry args={[pocketDepth, 0.028, pocketWidth]} />
               </mesh>
               <mesh
                 ref={(el) => {
@@ -185,24 +186,11 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
               >
                 <boxGeometry args={[pocketDepth * 0.92, 0.006, pocketWidth * 0.88]} />
               </mesh>
-              <Text
-                position={positionOnRing(WHEEL.trackRadius - 0.08, centerAngle, 0.11)}
-                rotation={[-Math.PI / 2, 0, centerAngle + Math.PI]}
-                fontSize={0.062}
-                color="#fff8ee"
-                anchorX="center"
-                anchorY="middle"
-                outlineWidth={0.003}
-                outlineColor="#1a0808"
-                fillOpacity={0.95}
-              >
-                {String(num)}
-              </Text>
             </group>
           );
         })}
+        <OrbitBallVisual spinSpeed={spinSpeed} wheelLocal />
       </group>
-      <OrbitBallVisual spinSpeed={spinSpeed} />
     </group>
   );
 }

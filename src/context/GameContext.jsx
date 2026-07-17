@@ -47,7 +47,8 @@ import {
 } from '../lib/uiTheme.js';
 import { createHoverBridge } from '../lib/hoverBridge.js';
 import { createGhostEngine } from '../lib/ghostPlayers.js';
-import { wallClockSnapshot, computeBallKinematicSync, computeWheelAngleSync, missedSettleCycle } from '../lib/cycleResync.js';
+import { wallClockSnapshot, missedSettleCycle } from '../lib/cycleResync.js';
+import { buildPresentationResync } from '../lib/presentationResync.js';
 import { createWatchdogJournal } from '../lib/physicsWatchdog.js';
 import { resetRapierCache } from '../lib/rapierCache.js';
 import {
@@ -69,9 +70,9 @@ import {
   createGameClock,
   resolveHudPhaseFromClock,
 } from '../core/gameEngine.js';
+import { resolveRoundPhase } from '../core/roundStateMachine.js';
 import { betRejectionReason, createBetMutex, isBettingOpen } from '../core/betGate.js';
 import {
-  fairContextForCycle,
   hydrateFairRoundsFromStorage,
   listFairRoundHistory,
   outcomeForCycle,
@@ -79,11 +80,8 @@ import {
   restoreStoredFairnessAudit,
 } from '../core/fairRoundStore.js';
 import {
-  isAuthorityEnabled,
   resolveAuthoritativeAudit,
-  resolveAuthoritativeCommit,
   resolveAuthoritativeOutcome,
-  fetchRemoteResult,
 } from '../core/authorityClient.js';
 import { auditSeedCustody, resolveSeedCustodyBadge } from '../core/authorityGuard.js';
 import { createRealtimeHub } from '../core/realtimeHub.js';
@@ -97,6 +95,7 @@ import {
 } from '../lib/betSchema.js';
 import { StateIntegrityGuard } from '../lib/stateIntegrity.js';
 import { sanitizeText } from '../lib/domSanitize.js';
+import { useRoundSync } from '../hooks/useRoundSync.js';
 
 const GameContext = createContext(null);
 
@@ -232,6 +231,7 @@ export function GameProvider({ children }) {
   const clockRef = useRef(clock);
   const ballPhaseRef = useRef(ballPhase);
   const targetNumberRef = useRef(targetNumber);
+  const winningNumberRef = useRef(winningNumber);
   const hoverHighlightRef = useRef(null);
   const shakeRef = useRef({ amount: 0 });
   const sparkQueueRef = useRef([]);
@@ -273,6 +273,7 @@ export function GameProvider({ children }) {
   clockRef.current = clock;
   ballPhaseRef.current = ballPhase;
   targetNumberRef.current = targetNumber;
+  winningNumberRef.current = winningNumber;
   hoverHighlightRef.current = hoverHighlight;
   syncModeRef.current = syncMode;
 
@@ -306,6 +307,33 @@ export function GameProvider({ children }) {
 
   simulationPausedRef.current = simulationPaused;
 
+  const bumpKinematicResync = useCallback(
+    (clockSnap, { syncWheel = false } = {}) => {
+      const snap = clockSnap ?? clockRef.current;
+      const { kinematic, wheelAngle, syncWheel: hardWheel } = buildPresentationResync({
+        clockSnap: snap,
+        wheelAngle: wheelAngleRef.current,
+        wheelSpinSpeed,
+        syncWheel,
+      });
+      const token = ballResyncRef.current.token + 1;
+      ballResyncRef.current = { token, snapshot: kinematic };
+      if (hardWheel) wheelAngleRef.current = wheelAngle;
+      wheelResyncRef.current = { token, angle: wheelAngle, hard: hardWheel };
+    },
+    [wheelSpinSpeed]
+  );
+
+  const resyncPresentationKinematics = useCallback(() => {
+    bumpKinematicResync(mergeEngineClock(wallClockSnapshot()), { syncWheel: true });
+  }, [bumpKinematicResync]);
+
+  const applyVisualTarget = useCallback((n) => {
+    if (!Number.isInteger(n) || n < 0 || n > 36) return;
+    setTargetNumber(n);
+    targetNumberRef.current = n;
+  }, []);
+
   const syncWallClock = useCallback((nowMs = Date.now()) => {
     const next = mergeEngineClock(wallClockSnapshot(nowMs));
     clockRef.current = next;
@@ -317,17 +345,7 @@ export function GameProvider({ children }) {
       settleRoundRef.current(missed);
     }
 
-    const kinematic = computeBallKinematicSync(next, wheelAngleRef.current, wheelSpinSpeed);
-    const wheelAngle = computeWheelAngleSync(next, wheelSpinSpeed);
-    wheelAngleRef.current = wheelAngle;
-    ballResyncRef.current = {
-      token: ballResyncRef.current.token + 1,
-      snapshot: kinematic,
-    };
-    wheelResyncRef.current = {
-      token: ballResyncRef.current.token,
-      angle: wheelAngle,
-    };
+    bumpKinematicResync(next, { syncWheel: true });
 
     const state = resolveGameState(next);
     ballPhaseRef.current = state.ballPhase;
@@ -339,7 +357,7 @@ export function GameProvider({ children }) {
     if (state.message) setMessage(state.message);
 
     return next;
-  }, [wheelSpinSpeed]);
+  }, [wheelSpinSpeed, bumpKinematicResync]);
 
   const startClockTicker = useCallback(() => {
     if (clockIntervalRef.current) clearInterval(clockIntervalRef.current);
@@ -404,51 +422,14 @@ export function GameProvider({ children }) {
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, [syncWallClock, startClockTicker]);
 
-  useEffect(() => {
-    let cancelled = false;
-    const cid = clock.cycleId;
-
-    (async () => {
-      const commit = await resolveAuthoritativeCommit(cid);
-      if (!cancelled) setFairnessCommit(commit);
-      fairContextForCycle(cid);
-
-      if (!isAuthorityEnabled()) {
-        const next = outcomeForCycle(cid);
-        if (!cancelled) {
-          setTargetNumber(next);
-          targetNumberRef.current = next;
-        }
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [clock.cycleId]);
-
-  useEffect(() => {
-    if (!isAuthorityEnabled()) return;
-    const { cycleId, cycleSecond, name } = clock;
-    if (name !== 'spinning' || cycleSecond < BALL_DROP_AT) return;
-
-    let cancelled = false;
-    (async () => {
-      try {
-        const result = await fetchRemoteResult(cycleId);
-        if (!cancelled && Number.isInteger(result?.winningNumber)) {
-          setTargetNumber(result.winningNumber);
-          targetNumberRef.current = result.winningNumber;
-        }
-      } catch {
-        /* authority may not have unlocked result yet */
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [clock.cycleId, clock.cycleSecond, clock.name]);
+  useRoundSync({
+    clock,
+    bumpKinematicResync,
+    applyVisualTarget,
+    setFairnessCommit,
+    mergeEngineClock,
+    wallClockSnapshot,
+  });
 
   useEffect(() => {
     const result = ghostEngineRef.current.tick(clock, winningNumber);
@@ -642,6 +623,17 @@ export function GameProvider({ children }) {
 
     const currentBets = sanitizeBets(betsRef.current);
     const result = await resolveAuthoritativeOutcome(cycleId);
+    if (
+      import.meta.env.DEV &&
+      targetNumberRef.current != null &&
+      targetNumberRef.current !== result
+    ) {
+      console.warn(
+        '[round] visual target != settle outcome',
+        { visual: targetNumberRef.current, outcome: result, cycleId }
+      );
+    }
+    applyVisualTarget(result);
     setLastFairnessAudit(await resolveAuthoritativeAudit(cycleId, result));
     refreshFairRoundHistory();
 
@@ -711,7 +703,7 @@ export function GameProvider({ children }) {
     } else {
       setMessage(`Ball settled on ${result} (${color}).`);
     }
-  }, [commitWallet, registerCollisionShake, emitSpark, scheduleResultReveal, refreshFairRoundHistory, triggerWinFlash]);
+  }, [commitWallet, registerCollisionShake, emitSpark, scheduleResultReveal, refreshFairRoundHistory, triggerWinFlash, applyVisualTarget]);
 
   settleRoundRef.current = settleRound;
 
@@ -1184,6 +1176,7 @@ export function GameProvider({ children }) {
   );
 
   const hudPhase = useMemo(() => resolveHudPhaseFromClock(clock), [clock]);
+  const roundPhase = useMemo(() => resolveRoundPhase(clock), [clock]);
 
   const recoverWebGLContext = useCallback(() => {
     resetRapierCache();
@@ -1255,6 +1248,7 @@ export function GameProvider({ children }) {
       ghostBets,
       ghostConfetti,
       hudPhase,
+      roundPhase,
       fairnessCommit,
       lastFairnessAudit,
       fairRoundHistory,
@@ -1265,6 +1259,7 @@ export function GameProvider({ children }) {
       securityFrozen,
       simulationPaused,
       simulationPausedRef,
+      resyncPresentationKinematics,
       ballResyncRef,
       wheelResyncRef,
       watchdogJournalRef,
@@ -1275,6 +1270,7 @@ export function GameProvider({ children }) {
       clockRef,
       ballPhaseRef,
       targetNumberRef,
+      winningNumberRef,
       hoverHighlightRef,
       shakeRef,
       sparkQueueRef,
@@ -1371,6 +1367,7 @@ export function GameProvider({ children }) {
       ghostBets,
       ghostConfetti,
       hudPhase,
+      roundPhase,
       fairnessCommit,
       lastFairnessAudit,
       fairRoundHistory,
@@ -1407,6 +1404,7 @@ export function GameProvider({ children }) {
       onWheelAngle,
       onBallPosition,
       recoverWebGLContext,
+      resyncPresentationKinematics,
     ]
   );
 

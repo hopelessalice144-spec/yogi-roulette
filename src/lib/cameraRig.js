@@ -85,6 +85,31 @@ export function applyDistanceCompensation(position, lookAt, scale, out) {
   return out;
 }
 
+/** Design-time framing reference (desktop landscape HUD). */
+export const CAMERA_REFERENCE_ASPECT = 16 / 9;
+
+/**
+ * Pull camera back / widen FOV slightly on narrow viewports so wheel + felt stay in frame.
+ */
+export function aspectFramingScale(aspect) {
+  const a = THREE.MathUtils.clamp(aspect, 0.45, 2.4);
+  if (a >= CAMERA_REFERENCE_ASPECT) {
+    return { distanceScale: 1, fovScale: 1 };
+  }
+  const narrow = CAMERA_REFERENCE_ASPECT / a;
+  return {
+    distanceScale: Math.sqrt(narrow),
+    fovScale: 1 + (narrow - 1) * 0.11,
+  };
+}
+
+/** Apply viewport aspect compensation to a camera target position + FOV. */
+export function applyAspectFraming(position, lookAt, fov, aspect, outPos) {
+  const { distanceScale, fovScale } = aspectFramingScale(aspect);
+  applyDistanceCompensation(position, lookAt, distanceScale, outPos);
+  return { fov: fov * fovScale, distanceScale, fovScale };
+}
+
 /** Quaternion slerp toward look-at — delta-time independent. */
 export function slerpTowardLookAt(currentQuat, position, targetLookAt, up, lambda, delta) {
   _lookMat.lookAt(position, targetLookAt, up);

@@ -94,6 +94,29 @@ export async function resolveAuthoritativeCommit(
   return publicRoundCommit(cycleId);
 }
 
+/**
+ * Winning pocket for physics/camera guide — local store immediately, remote after lock.
+ * Returns null when authority is on but betting has not ended yet.
+ */
+export async function resolveVisualTargetNumber(cycleId: number): Promise<number | null> {
+  const cid = Math.floor(Number(cycleId));
+  if (!Number.isFinite(cid) || cid < 0) return null;
+
+  if (!isAuthorityEnabled()) {
+    return outcomeForCycle(cid);
+  }
+
+  try {
+    const remote = await fetchRemoteResult(cid);
+    if (remote && Number.isInteger(remote.winningNumber)) {
+      return remote.winningNumber;
+    }
+  } catch {
+    /* result_locked_until_betting_ends or network */
+  }
+  return null;
+}
+
 /** Winning pocket — remote reveal preferred. */
 export async function resolveAuthoritativeOutcome(cycleId: number): Promise<number> {
   try {

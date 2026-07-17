@@ -23,13 +23,13 @@ export const CAMERA_STATE = Object.freeze({
 
 /** Legacy mode presets — used by gamePhase hints & tests. */
 export const CAMERA_MODES = Object.freeze({
-  lounge: { fov: 55, stiffness: 2.4, dist: 5.85, height: 3.7, lift: 0, roll: 0 },
-  tension: { fov: 50, stiffness: 3.2, dist: 5.4, height: 3.45, lift: 0, roll: 0 },
-  rim: { fov: 38, stiffness: 7.5, dist: 1.05, height: 0.85, lift: 0.04, roll: 0.012 },
-  drop: { fov: 35, stiffness: 8.5, dist: 0.92, height: 0.72, lift: 0.03, roll: 0.01 },
-  chase: { fov: 35, stiffness: 9, dist: 0.88, height: 0.65, lift: 0.02, roll: 0.008 },
-  slowmo: { fov: 30, stiffness: 6, dist: 0.55, height: 0.38, lift: 0, roll: 0 },
-  macro: { fov: 22, stiffness: 5, dist: 0.32, height: 0.34, lift: 0, roll: 0 },
+  lounge: { fov: 48, stiffness: 2.1, dist: 5.2, height: 3.65, lift: 0, roll: 0 },
+  tension: { fov: 46, stiffness: 2.4, dist: 4.9, height: 3.45, lift: 0, roll: 0 },
+  rim: { fov: 42, stiffness: 3.2, dist: 3.8, height: 3.05, lift: 0, roll: 0 },
+  drop: { fov: 40, stiffness: 3.4, dist: 3.5, height: 2.95, lift: 0, roll: 0 },
+  chase: { fov: 40, stiffness: 3.6, dist: 3.35, height: 2.85, lift: 0, roll: 0 },
+  slowmo: { fov: 36, stiffness: 3, dist: 2.85, height: 2.55, lift: 0, roll: 0 },
+  macro: { fov: 32, stiffness: 2.6, dist: 1.05, height: 2.15, lift: 0, roll: 0 },
 });
 
 const _betPos = new THREE.Vector3();
@@ -40,15 +40,29 @@ const _settlePos = new THREE.Vector3();
 const _settleLook = new THREE.Vector3();
 const _outPos = new THREE.Vector3();
 const _outLook = new THREE.Vector3();
-const _tangent = new THREE.Vector3();
 const _normal = new THREE.Vector3();
-const _ballPos = new THREE.Vector3();
-const _ballVel = new THREE.Vector3();
 
 /** Fractional position within the 30s cycle (sub-second precision). */
 export function getCycleTimeFloat(nowMs = Date.now()) {
   return (nowMs / 1000) % 30;
 }
+
+/**
+ * Pocket number used for settle macro framing — authoritative win during reveal, else guide target.
+ */
+export function resolvePresentationOutcome({
+  winningNumber,
+  targetNumber,
+  settleWeight = 0,
+}) {
+  const settle = THREE.MathUtils.clamp(settleWeight, 0, 1);
+  if (settle > 0.08 && Number.isInteger(winningNumber)) return winningNumber;
+  if (Number.isInteger(targetNumber)) return targetNumber;
+  return null;
+}
+
+/** Cap spring velocity to avoid disorienting snaps after tab resume or phase jumps. */
+export const CAMERA_MAX_VELOCITY = 3.2;
 
 /** Resolve dominant cinematic state from wall-clock. */
 export function resolveCameraState(cycleSecFloat, phaseName) {
@@ -84,8 +98,8 @@ export function computeStateWeights(cycleSecFloat, phaseName) {
   }
 
   if (cycleSecFloat >= BALL_DROP_AT) {
-    const t = THREE.MathUtils.clamp(cycleSecFloat - BALL_DROP_AT, 0, 1.2);
-    const ease = t < 0.6 ? (t / 0.6) ** 2 * 0.85 : 0.85 + (t - 0.6) * 0.125;
+    const t = THREE.MathUtils.clamp(cycleSecFloat - BALL_DROP_AT, 0, 2.2);
+    const ease = 1 - Math.exp(-t * 1.35);
     w.spinDrop = THREE.MathUtils.clamp(ease, 0, 1);
     w.betting = 1 - w.spinDrop;
     return w;
@@ -117,57 +131,41 @@ export function springVec3(current, target, velocity, stiffness, damping, dt) {
   current.z += velocity.z * dt;
 }
 
-/** State 1 — majestic orbital dolly with crane breathing. */
+/** State 1 — stable casino overview (wheel + felt). */
 function bettingTargets(elapsedTime, out) {
-  const R = CAMERA_MODES.lounge.dist;
-  const ang = elapsedTime * 0.05;
-  const y = CAMERA_MODES.lounge.height + Math.sin(elapsedTime * 0.38) * 0.2;
-  out.position.set(Math.cos(ang) * R, y, Math.sin(ang) * R);
-  out.lookAt.set(0, 0.35, 0);
+  const drift = Math.sin(elapsedTime * 0.12) * 0.22;
+  const dist = CAMERA_MODES.lounge.dist;
+  out.position.set(0.35 + drift, CAMERA_MODES.lounge.height, dist);
+  out.lookAt.set(0, 0.3, 0);
   out.fov = CAMERA_MODES.lounge.fov;
   out.roll = 0;
   out.stiffness = CAMERA_MODES.lounge.stiffness;
 }
 
 /**
- * State 2 — F1 orbital chase: camera sweeps alongside ball, NO velocity lead on look-at.
+ * State 2 — elevated 3/4 follow during spin (no rim-hugging chase).
  */
-function spinDropTargets(ballPos, ballVel, dropProgress, out) {
-  _ballPos.set(ballPos.x || 0, Math.max(ballPos.y ?? 0.12, 0.1), ballPos.z || 0);
-  _ballVel.set(ballVel?.x ?? 0, ballVel?.y ?? 0, ballVel?.z ?? 0);
-
-  const rx = _ballPos.x;
-  const rz = _ballPos.z;
-  const r = Math.hypot(rx, rz) || 1;
-
-  _tangent.set(-rz / r, 0, rx / r);
-  const cross = rx * _ballVel.z - rz * _ballVel.x;
-  const side = cross >= 0 ? 1 : -1;
-
+function spinDropTargets(ballPos, dropProgress, out) {
   const p = THREE.MathUtils.clamp(dropProgress, 0, 1);
-  const chaseDist = THREE.MathUtils.lerp(1.2, 0.85, p);
-  const chaseHeight = THREE.MathUtils.lerp(2.35, 0.68, p);
+  const dist = THREE.MathUtils.lerp(CAMERA_MODES.lounge.dist, CAMERA_MODES.chase.dist, p);
+  const height = THREE.MathUtils.lerp(CAMERA_MODES.lounge.height, CAMERA_MODES.chase.height, p);
+  const side = THREE.MathUtils.lerp(0.55, 1.05, p);
 
-  out.position.set(
-    _ballPos.x + _tangent.x * side * chaseDist,
-    _ballPos.y + chaseHeight,
-    _ballPos.z + _tangent.z * side * chaseDist
-  );
+  const bx = THREE.MathUtils.clamp(ballPos?.x ?? 0, -1.1, 1.1);
+  const bz = THREE.MathUtils.clamp(ballPos?.z ?? 0, -1.1, 1.1);
 
-  // Wheel-hub biased look — never raw physics; EMA chain damps divider impacts
-  out.lookAt.set(_ballPos.x * 0.88, _ballPos.y * 0.92 + 0.04, _ballPos.z * 0.88);
-
-  out.fov = THREE.MathUtils.lerp(55, 35, p);
-  const angularVel = cross / (r * r);
-  out.roll = THREE.MathUtils.clamp(angularVel * 0.006, -0.025, 0.025);
-  out.stiffness = THREE.MathUtils.lerp(6, 9.5, p);
+  out.position.set(side, height, dist);
+  out.lookAt.set(bx * 0.42, 0.32, bz * 0.42);
+  out.fov = THREE.MathUtils.lerp(CAMERA_MODES.lounge.fov, CAMERA_MODES.chase.fov, p);
+  out.roll = 0;
+  out.stiffness = THREE.MathUtils.lerp(CAMERA_MODES.lounge.stiffness, CAMERA_MODES.chase.stiffness, p);
 }
 
-/** State 3 — macro pocket focus for settle & payout. */
+/** State 3 — readable pocket focus at settle. */
 function settleTargets(targetNumber, wheelAngle, out) {
   if (targetNumber == null) {
-    out.position.set(0.3, 0.34, 0.32);
-    out.lookAt.set(0, 0.1, 0);
+    out.position.set(0.2, CAMERA_MODES.macro.height, 2.4);
+    out.lookAt.set(0, 0.22, 0);
     out.fov = CAMERA_MODES.macro.fov;
     out.roll = 0;
     out.stiffness = CAMERA_MODES.macro.stiffness;
@@ -180,8 +178,8 @@ function settleTargets(targetNumber, wheelAngle, out) {
   _normal.set(Math.sin(pocketAngle), 0, Math.cos(pocketAngle));
   const d = CAMERA_MODES.macro.dist;
 
-  out.position.set(px + _normal.x * d, 0.34, pz + _normal.z * d);
-  out.lookAt.set(px, 0.09, pz);
+  out.position.set(px + _normal.x * d, CAMERA_MODES.macro.height, pz + _normal.z * d);
+  out.lookAt.set(px, 0.14, pz);
   out.fov = CAMERA_MODES.macro.fov;
   out.roll = 0;
   out.stiffness = CAMERA_MODES.macro.stiffness;
@@ -198,12 +196,18 @@ export function computeCameraTargets({
   ballVel,
   wheelAngle,
   targetNumber,
+  winningNumber,
   elapsedTime,
   cycleTimeFloat,
 }) {
   const phaseName = clock?.name ?? 'betting';
   const cycleSec = cycleTimeFloat ?? clock?.cycleSecond ?? 0;
   const weights = computeStateWeights(cycleSec, phaseName);
+  const presentationOutcome = resolvePresentationOutcome({
+    winningNumber,
+    targetNumber,
+    settleWeight: weights.settle,
+  });
 
   const betOut = { position: _betPos, lookAt: _betLook, fov: 55, roll: 0, stiffness: 3 };
   const spinOut = { position: _spinPos, lookAt: _spinLook, fov: 35, roll: 0, stiffness: 8 };
@@ -221,8 +225,8 @@ export function computeCameraTargets({
       ? THREE.MathUtils.clamp((cycleSec - BALL_DROP_AT) / 1.2, 0, 1)
       : 0;
 
-  spinDropTargets(ballPos, ballVel, dropProg, spinOut);
-  settleTargets(targetNumber, wheelAngle, settleOut);
+  spinDropTargets(ballPos, dropProg, spinOut);
+  settleTargets(presentationOutcome, wheelAngle, settleOut);
 
   // Three-way blend
   _outPos.copy(betOut.position).multiplyScalar(weights.betting);
@@ -246,10 +250,14 @@ export function computeCameraTargets({
     stiffness += settleOut.stiffness * weights.settle;
   }
 
-  // Legacy mode hint — rim/drop/chase still influence stiffness during spin
-  if (mode === 'rim' || mode === 'drop' || mode === 'chase' || mode === 'slowmo') {
+  // Legacy mode hint — only during active spin_drop (avoid fighting settle macro)
+  if (
+    weights.settle < 0.12 &&
+    weights.spinDrop > 0.15 &&
+    (mode === 'rim' || mode === 'drop' || mode === 'chase' || mode === 'slowmo')
+  ) {
     const hint = CAMERA_MODES[mode];
-    if (hint) stiffness = THREE.MathUtils.lerp(stiffness, hint.stiffness, 0.35);
+    if (hint) stiffness = THREE.MathUtils.lerp(stiffness, hint.stiffness, 0.28);
   }
 
   return {
@@ -258,8 +266,9 @@ export function computeCameraTargets({
     fov,
     roll,
     stiffness,
-    vertigoProgress: Math.max(weights.spinDrop * 0.65, dropVertigo),
+    vertigoProgress: Math.max(weights.spinDrop * 0.22, dropVertigo * 0.35),
     dropVertigoProgress: dropVertigo,
     stateWeights: weights,
+    presentationOutcome,
   };
 }

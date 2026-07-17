@@ -327,7 +327,7 @@ function AppInner() {
             frameloop={simulationPaused ? 'never' : 'always'}
             shadows={qualitySettings.shadows}
             dpr={[1, qualitySettings.dprMax]}
-            camera={{ position: [3.8, 3.2, 4.6], fov: 42, near: 0.1, far: 55 }}
+            camera={{ position: [0.35, 3.65, 5.2], fov: 48, near: 0.1, far: 55 }}
             gl={{
               antialias: qualitySettings.dprMax > 1,
               toneMapping: THREE.AgXToneMapping,

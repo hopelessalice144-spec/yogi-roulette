@@ -1,34 +1,47 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useMaterials } from './MaterialLibrary.jsx';
-import { orbitPose, BALL_RADIUS } from '../lib/trajectory.js';
+import { orbitPose } from '../lib/trajectory.js';
+import { computeBallKinematicSync } from '../lib/cycleResync.js';
 import { useGame } from '../context/GameContext.jsx';
+import { IvoryBallMesh } from './IvoryBallMesh.jsx';
 
-/** Kinematic orbit ball for betting / idle wheel — no Rapier required. */
-export function OrbitBallVisual({ spinSpeed = 0.42 }) {
-  const { ivoryBall } = useMaterials();
-  const { simulationPausedRef, wheelAngleRef } = useGame();
-  const meshRef = useRef();
-  const orbitAngleRef = useRef(Math.random() * Math.PI * 2);
-  const rollRef = useRef(0);
+/**
+ * Kinematic orbit ball for betting / idle wheel — no Rapier required.
+ * @param {boolean} [wheelLocal] — when true, parent group applies wheel rotation (use wheelAngle 0).
+ */
+export function OrbitBallVisual({ spinSpeed = 0.42, wheelLocal = false }) {
+  const { simulationPausedRef, wheelAngleRef, clock } = useGame();
+  const groupRef = useRef();
+  const orbitAngleRef = useRef(0);
+  const ballVelRef = useRef({ x: 0, y: 0, z: 0 });
+  const rollSpeedRef = useRef(0);
+
+  useEffect(() => {
+    const wheelAngle = wheelLocal ? 0 : (wheelAngleRef?.current ?? 0);
+    const snap = computeBallKinematicSync(clock, wheelAngle, spinSpeed);
+    orbitAngleRef.current = snap.orbitAngle;
+  }, [clock.cycleId, clock, spinSpeed, wheelAngleRef, wheelLocal]);
 
   useFrame((_, delta) => {
     if (simulationPausedRef?.current) return;
-    const wheelAngle = wheelAngleRef?.current ?? 0;
+    const wheelAngle = wheelLocal ? 0 : (wheelAngleRef?.current ?? 0);
     const pose = orbitPose(orbitAngleRef.current, wheelAngle, spinSpeed);
     orbitAngleRef.current += delta * pose.angular;
-    rollRef.current += delta * (pose.angular * 2.4 + spinSpeed * 0.35);
 
-    const mesh = meshRef.current;
-    if (!mesh) return;
-    mesh.position.set(pose.x, pose.y, pose.z);
-    mesh.rotation.x = rollRef.current;
-    mesh.rotation.z = rollRef.current * 0.62;
+    const tangential = pose.angular * 0.04;
+    ballVelRef.current = {
+      x: Math.cos(pose.angle) * tangential,
+      y: 0,
+      z: -Math.sin(pose.angle) * tangential,
+    };
+    rollSpeedRef.current = tangential;
+
+    groupRef.current?.position.set(pose.x, pose.y, pose.z);
   });
 
   return (
-    <mesh ref={meshRef} castShadow material={ivoryBall}>
-      <sphereGeometry args={[BALL_RADIUS, 24, 24]} />
-    </mesh>
+    <group ref={groupRef}>
+      <IvoryBallMesh velocityRef={ballVelRef} rollSpeedRef={rollSpeedRef} />
+    </group>
   );
 }

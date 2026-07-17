@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useGame } from '../context/GameContext.jsx';
 import {
+  CAMERA_MAX_VELOCITY,
   computeCameraTargets,
   emaVec3,
   getCycleTimeFloat,
@@ -12,6 +13,7 @@ import {
 } from '../lib/cameraDirector.js';
 import {
   adaptiveLookEmaLambda,
+  applyAspectFraming,
   applyDistanceCompensation,
   cinematicHandheld,
   computeImpactShake,
@@ -29,7 +31,7 @@ const _posVel = new THREE.Vector3();
 const _finalPos = new THREE.Vector3();
 const _viewDir = new THREE.Vector3();
 const _shakeOffset = new THREE.Vector3();
-const _rawLook = new THREE.Vector3();
+const _framedPos = new THREE.Vector3();
 const _shadowLook = new THREE.Vector3();
 
 /**
@@ -43,12 +45,13 @@ export function CinematicCamera() {
     ballVelRef,
     wheelAngleRef,
     targetNumberRef,
+    winningNumberRef,
     shakeRef,
     cameraModeRef,
   } = useGame();
 
   const initialized = useRef(false);
-  const smoothPos = useRef(new THREE.Vector3(4.2, 3.6, 5.4));
+  const smoothPos = useRef(new THREE.Vector3(0.35, 3.65, 5.2));
   const dampedLook = useRef(new THREE.Vector3(0, 0.35, 0));
   const shadowLook = useRef(new THREE.Vector3(0, 0.35, 0));
   const orientQuat = useRef(new THREE.Quaternion());
@@ -84,7 +87,8 @@ export function CinematicCamera() {
     const clock = clockRef.current;
     const mode = cameraModeRef.current || 'lounge';
     const elapsed = state.clock.elapsedTime;
-    const cycleTimeFloat = getCycleTimeFloat();
+    const cycleTimeFloat = getCycleTimeFloat(clock?.nowMs ?? Date.now());
+    const aspect = state.size.height > 0 ? state.size.width / state.size.height : 16 / 9;
 
     const ballVel = ballVelRef.current;
     const ballSpeed = Math.hypot(ballVel?.x ?? 0, ballVel?.y ?? 0, ballVel?.z ?? 0);
@@ -96,13 +100,26 @@ export function CinematicCamera() {
       ballVel,
       wheelAngle: wheelAngleRef.current,
       targetNumber: targetNumberRef.current,
+      winningNumber: winningNumberRef?.current ?? null,
       elapsedTime: elapsed,
       cycleTimeFloat,
     });
 
+    const framed = applyAspectFraming(
+      targets.position,
+      targets.lookAt,
+      targets.fov,
+      aspect,
+      _framedPos
+    );
+
     const stiffness = targets.stiffness ?? 3;
     const damping = 2 * Math.sqrt(stiffness);
-    springVec3(smoothPos.current, targets.position, _posVel, stiffness, damping, dt);
+    springVec3(smoothPos.current, _framedPos, _posVel, stiffness, damping, dt);
+    const velLen = _posVel.length();
+    if (velLen > CAMERA_MAX_VELOCITY) {
+      _posVel.multiplyScalar(CAMERA_MAX_VELOCITY / velLen);
+    }
 
     // Rule 1 — dual EMA shadow look-at: never bind to raw physics coordinates
     const lookLambda = adaptiveLookEmaLambda(ballSpeed, LOOK_EMA_LAMBDA);
@@ -111,10 +128,10 @@ export function CinematicCamera() {
 
     // Rule 2 — vertigo dolly zoom during T-5 drop (FOV decoupled from dolly position)
     const dropVertigo = dropVertigoProgress(cycleTimeFloat, clock?.name ?? 'betting');
-    const vertigoMix = Math.max(targets.vertigoProgress ?? 0, dropVertigo);
-    const vertigo = vertigoMix > 0.02 ? dollyZoomVertigo(vertigoMix, 55, 22) : null;
+    const vertigoMix = Math.min(targets.vertigoProgress ?? 0, dropVertigo * 0.45);
+    const vertigo = vertigoMix > 0.08 ? dollyZoomVertigo(vertigoMix, 48, 40) : null;
 
-    let targetFov = vertigo ? vertigo.fov : targets.fov;
+    let targetFov = vertigo ? vertigo.fov : framed.fov;
     _finalPos.copy(smoothPos.current);
 
     if (vertigo && vertigo.pullBack > 0.01) {
@@ -127,7 +144,7 @@ export function CinematicCamera() {
 
     // Rule 3 — continuous handheld operator motion (simplex + breathing sine)
     const weights = targets.stateWeights ?? { betting: 1, spinDrop: 0, settle: 0 };
-    const handheldAmp = 0.022;
+    const handheldAmp = 0.007;
     _finalPos.add(cinematicHandheld(elapsed, handheldAmp, weights));
 
     // Rule 2c — impact shake on divider collision: A × e^(-βt) × sin(ωt)

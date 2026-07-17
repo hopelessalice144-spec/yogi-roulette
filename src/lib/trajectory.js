@@ -12,7 +12,7 @@ export const TRACK_Y = 0.26;
 export const DESCENT_DURATION = 0.88;
 export const ORBIT_ANGULAR_BASE = 2.8;
 export const DESCENT_SPIRAL = 1.8;
-export const WHEEL_COUPLING = 0.2;
+export const WHEEL_COUPLING = 1;
 
 /** Cubic ease-in-out — C¹ continuous at handoff boundary. */
 export function easeInOutCubic(t) {
