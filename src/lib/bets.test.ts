@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { MAX_BET_PER_CELL } from './betSchema.js';
 import { evaluateBet } from './math.js';
-import { CHIP_VALUES, placeChip, settleAll, totalStaked } from './bets.js';
+import { CHIP_VALUES, mergePresetBets, placeChip, settleAll, totalStaked, undoFlashKey, scaleBoardWallet } from './bets.js';
 
 describe('bets', () => {
   describe('placeChip', () => {
@@ -62,6 +62,77 @@ describe('bets', () => {
     it('sums finite stake amounts', () => {
       expect(totalStaked([{ type: 'red', amount: 25 }, { type: 'odd', amount: 100 }])).toBe(125);
       expect(totalStaked([{ type: 'red', amount: Number.NaN }])).toBe(0);
+    });
+  });
+
+  describe('undoFlashKey', () => {
+    it('returns the cell that lost chips on undo', () => {
+      const current = [
+        { type: 'straight', value: 7, amount: 50 },
+        { type: 'red', amount: 25 },
+      ];
+      const restored = [{ type: 'red', amount: 25 }];
+      expect(undoFlashKey(current, restored)).toBe('straight:7');
+    });
+
+    it('returns reduced cell when partial chip removed', () => {
+      const current = [{ type: 'red', amount: 50 }];
+      const restored = [{ type: 'red', amount: 25 }];
+      expect(undoFlashKey(current, restored)).toBe('red:');
+    });
+  });
+
+  describe('scaleBoardWallet', () => {
+    it('halves all board stakes and refunds the difference', () => {
+      const result = scaleBoardWallet(
+        500,
+        [
+          { type: 'red', amount: 50 },
+          { type: 'straight', value: 7, amount: 30 },
+        ],
+        0.5,
+      );
+      expect(result.ok).toBe(true);
+      if (!result.ok || !('nextBalance' in result)) return;
+      expect(result.bets).toEqual([
+        { type: 'red', amount: 25 },
+        { type: 'straight', value: 7, amount: 15 },
+      ]);
+      expect(result.nextBalance).toBe(540);
+    });
+
+    it('doubles board stakes when balance allows', () => {
+      const result = scaleBoardWallet(500, [{ type: 'red', amount: 25 }], 2);
+      expect(result.ok).toBe(true);
+      if (!result.ok || !('nextBalance' in result)) return;
+      expect(result.bets).toEqual([{ type: 'red', amount: 50 }]);
+      expect(result.nextBalance).toBe(475);
+    });
+
+    it('rejects double when balance is insufficient', () => {
+      const result = scaleBoardWallet(10, [{ type: 'red', amount: 100 }], 2);
+      expect(result.ok).toBe(false);
+      if (result.ok || !('reason' in result)) return;
+      expect(result.reason).toBe('balance');
+    });
+  });
+
+  describe('mergePresetBets', () => {
+    it('merges preset stakes onto the board', () => {
+      const merged = mergePresetBets(
+        [{ type: 'red', amount: 10 }],
+        [{ type: 'straight', value: 7, amount: 25 }]
+      );
+      expect(merged).toHaveLength(2);
+      expect(totalStaked(merged)).toBe(35);
+    });
+
+    it('stacks preset amounts on existing cells', () => {
+      const merged = mergePresetBets(
+        [{ type: 'red', amount: 10 }],
+        [{ type: 'red', amount: 15 }]
+      );
+      expect(merged).toEqual([{ type: 'red', amount: 25 }]);
     });
   });
 

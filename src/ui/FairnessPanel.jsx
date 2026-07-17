@@ -1,5 +1,9 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { deriveWinningNumber } from '../core/provablyFair.js';
+import { shouldFairnessPanelReadyGlow } from '../lib/fairnessPanelReadyGlow.js';
+import { shouldFairnessPanelReadyEntryPulse } from '../lib/fairnessPanelReadyEntryPulse.js';
+import { shouldFairnessCustodyBadgeGlow } from '../lib/fairnessCustodyBadgeGlow.js';
+import { shouldFairnessCustodyBadgeReadyEntryPulse } from '../lib/fairnessCustodyBadgeReadyEntryPulse.js';
 import { IconShieldCheck } from './icons.jsx';
 
 function truncateHash(hash, head = 10, tail = 8) {
@@ -17,6 +21,31 @@ export function FairnessPanel({
   custodyBadge,
 }) {
   const status = audit?.verified ? 'verified' : commit ? 'committed' : 'pending';
+  const fairnessReadyGlow = shouldFairnessPanelReadyGlow(history, expanded);
+  const prevFairnessReadyRef = useRef(false);
+  const [fairnessReadyEntryPulsing, setFairnessReadyEntryPulsing] = useState(false);
+
+  useEffect(() => {
+    const prevFairnessReady = prevFairnessReadyRef.current;
+    prevFairnessReadyRef.current = fairnessReadyGlow;
+    if (!shouldFairnessPanelReadyEntryPulse(prevFairnessReady, fairnessReadyGlow)) return undefined;
+    setFairnessReadyEntryPulsing(true);
+    const timer = window.setTimeout(() => setFairnessReadyEntryPulsing(false), 620);
+    return () => window.clearTimeout(timer);
+  }, [fairnessReadyGlow]);
+
+  const custodyBadgeGlow = shouldFairnessCustodyBadgeGlow(history, custodyBadge, expanded);
+  const prevCustodyBadgeReadyRef = useRef(false);
+  const [custodyBadgeReadyEntryPulsing, setCustodyBadgeReadyEntryPulsing] = useState(false);
+
+  useEffect(() => {
+    const prevCustodyBadgeReady = prevCustodyBadgeReadyRef.current;
+    prevCustodyBadgeReadyRef.current = custodyBadgeGlow;
+    if (!shouldFairnessCustodyBadgeReadyEntryPulse(prevCustodyBadgeReady, custodyBadgeGlow)) return undefined;
+    setCustodyBadgeReadyEntryPulsing(true);
+    const timer = window.setTimeout(() => setCustodyBadgeReadyEntryPulsing(false), 620);
+    return () => window.clearTimeout(timer);
+  }, [custodyBadgeGlow]);
 
   const rows = useMemo(() => {
     if (!expanded) return [];
@@ -53,7 +82,13 @@ export function FairnessPanel({
     <section className={`fairness-panel status-${status}`} aria-label="Provably fair round">
       <button
         type="button"
-        className="fairness-toggle"
+        className={[
+          'fairness-toggle',
+          fairnessReadyGlow ? 'fairness-ready-glow-active' : '',
+          fairnessReadyEntryPulsing ? 'fairness-ready-entry-pulse' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
         onClick={onToggle}
         aria-expanded={expanded}
         aria-controls="fairness-details"
@@ -68,7 +103,14 @@ export function FairnessPanel({
         </span>
         {custodyBadge && (
           <span
-            className={`fairness-custody-badge custody-${custodyBadge.badge}`}
+            className={[
+              'fairness-custody-badge',
+              `custody-${custodyBadge.badge}`,
+              custodyBadgeGlow ? 'fairness-custody-badge-glow-active' : '',
+              custodyBadgeReadyEntryPulsing ? 'fairness-custody-badge-ready-entry-pulse' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
             title={custodyBadge.title}
           >
             {custodyBadge.label}

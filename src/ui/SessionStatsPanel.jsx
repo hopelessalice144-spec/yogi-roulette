@@ -1,32 +1,13 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   hotColdNumbers,
   plSeries,
   progressionAdvice,
   sessionTotals,
 } from '../lib/sessionStats.js';
-
-function PlSparkline({ series }) {
-  if (!series.length) {
-    return <p className="stats-empty">Play a few rounds to chart session P/L.</p>;
-  }
-  const peak = Math.max(...series.map((s) => Math.abs(s.cumulative)), 1);
-  return (
-    <div className="pl-sparkline" role="img" aria-label="Session profit and loss trend">
-      {series.map((point) => {
-        const h = Math.max(8, (Math.abs(point.cumulative) / peak) * 100);
-        return (
-          <span
-            key={point.cycleId}
-            className={`pl-bar ${point.cumulative >= 0 ? 'up' : 'down'}`}
-            style={{ height: `${h}%` }}
-            title={`Cycle ${point.cycleId}: ${point.cumulative >= 0 ? '+' : ''}$${point.cumulative}`}
-          />
-        );
-      })}
-    </div>
-  );
-}
+import { shouldStatsPanelReadyGlow } from '../lib/statsPanelReadyGlow.js';
+import { shouldStatsPanelReadyEntryPulse } from '../lib/statsPanelReadyEntryPulse.js';
+import { PlSparkline } from './PlSparkline.jsx';
 
 export function SessionStatsPanel({
   rounds,
@@ -40,23 +21,42 @@ export function SessionStatsPanel({
 }) {
   const totals = useMemo(() => sessionTotals(rounds), [rounds]);
   const { hot, cold } = useMemo(() => hotColdNumbers(rounds, 5), [rounds]);
-  const series = useMemo(() => plSeries(rounds, 20), [rounds]);
+  const series = useMemo(() => plSeries(rounds, 24), [rounds]);
   const advice = useMemo(
     () => progressionAdvice({ rounds, chipValues, selectedChip, balance }),
     [rounds, chipValues, selectedChip, balance]
   );
 
   const netLabel = totals.net >= 0 ? `+$${totals.net}` : `-$${Math.abs(totals.net)}`;
+  const statsReadyGlow = shouldStatsPanelReadyGlow(rounds, expanded);
+  const prevStatsReadyRef = useRef(false);
+  const [statsReadyEntryPulsing, setStatsReadyEntryPulsing] = useState(false);
+
+  useEffect(() => {
+    const prevStatsReady = prevStatsReadyRef.current;
+    prevStatsReadyRef.current = statsReadyGlow;
+    if (!shouldStatsPanelReadyEntryPulse(prevStatsReady, statsReadyGlow)) return undefined;
+    setStatsReadyEntryPulsing(true);
+    const timer = window.setTimeout(() => setStatsReadyEntryPulsing(false), 620);
+    return () => window.clearTimeout(timer);
+  }, [statsReadyGlow]);
 
   return (
     <section className={`session-stats ${expanded ? 'expanded' : ''}`} data-testid="session-stats-panel">
       <button
         type="button"
-        className="session-stats-toggle"
+        className={[
+          'session-stats-toggle',
+          statsReadyGlow ? 'stats-ready-glow-active' : '',
+          statsReadyEntryPulsing ? 'stats-ready-entry-pulse' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
         onClick={onToggle}
         aria-expanded={expanded}
       >
         <span className="session-stats-label">Session Stats</span>
+        <PlSparkline series={series} variant="mini" />
         <span className={`session-net-badge ${totals.net >= 0 ? 'up' : totals.net < 0 ? 'down' : ''}`}>
           {rounds.length > 0 ? netLabel : '—'}
         </span>
@@ -131,7 +131,7 @@ export function SessionStatsPanel({
 
           <div className="stats-chart-block">
             <h4 className="stats-section-title">P/L trend</h4>
-            <PlSparkline series={series} />
+            <PlSparkline series={series} variant="full" />
           </div>
 
           <div className="progression-card">

@@ -3,7 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { getColor } from '../lib/math.js';
-import { pocketIndicesForHighlight, warmGlowColorForHighlight } from '../lib/highlight.js';
+import { UI_THEME_LOUNGE } from '../lib/uiTheme.js';
+import { pocketIndicesForHighlight, neonGlowColorForHighlight, warmGlowColorForHighlight } from '../lib/highlight.js';
 import { useGame } from '../context/GameContext.jsx';
 import {
   EUROPEAN_SEQUENCE,
@@ -25,7 +26,7 @@ import { blendWheelSpinVelocity } from '../lib/wheelSpinEase.js';
 /** Rapier-free wheel for betting phase — defers WASM until lock. */
 export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onWheelAngle }) {
   const mats = useMaterials();
-  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock } = useGame();
+  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock, uiTheme } = useGame();
 
   const pocketMats = useMemo(
     () => EUROPEAN_SEQUENCE.map((num) => mats.pocket[getColor(num)].clone()),
@@ -98,7 +99,11 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
     const hasHover = highlighted.size > 0;
     const glowAlpha = dampFactor(hasHover ? 48 : 14, delta);
     const colorAlpha = dampFactor(hasHover ? 32 : 10, delta);
-    glowColor.current.set(warmGlowColorForHighlight(hoverHighlightRef.current));
+    glowColor.current.set(
+      uiTheme === UI_THEME_LOUNGE
+        ? warmGlowColorForHighlight(hoverHighlightRef.current)
+        : neonGlowColorForHighlight(hoverHighlightRef.current, uiTheme),
+    );
     const winTarget = winIdx >= 0 ? 1 : 0;
     winPulse.current += (winTarget - winPulse.current) * dampFactor(6, delta);
     const winBeat = winIdx >= 0 ? 0.35 + Math.sin(state.clock.elapsedTime * 8) * 0.25 : 0;

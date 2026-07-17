@@ -1,22 +1,2270 @@
 # AI_STATE — Turbo Roulette External Brain
 
-> Last updated: 2026-07-17 · Session 291 · Execution_Counter: 11
+> Last updated: 2026-07-17 · Session 335 · Execution_Counter: 3
 
 ## Phase
 
-**Core Feature & UI Polish** — System hardening complete. No further `verify.js` micro-assertion guards unless a new feature breaks the build.
+**Core Feature & UI Polish** — Phase 2 self-generated backlog active.
 
 ## Current Task
 
-**[DONE]** TASK-3 — Session stats panel: hot/cold numbers, P/L trend, progression helper
+**[PENDING]** TASK-256 — BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from `magneticGlow*` to `panelPointer*`
 
 ## Feature Backlog
 
 | ID | Priority | Task | Status |
 |----|----------|------|--------|
-| TASK-1 | P1 | Enhance visual roulette wheel with smooth 3D-like CSS/Canvas animations and ball physics | **DONE** |
-| TASK-2 | P1 | Modern betting board UI — drag-and-drop / click chips on Split, Street, Corner, Line bets | **DONE** |
-| TASK-3 | P2 | Session stats panel — hot/cold numbers, win/loss graphs, betting progression helpers | **DONE** |
+| TASK-14 | P2 | Persistent recent-results rail — always-visible history strip with streak highlights | **DONE** |
+| TASK-15 | P2 | Chip undo — remove last placed bet before lock with spring animation | **DONE** |
+| TASK-16 | P3 | Repeat last round — one-tap restore previous bet layout | **DONE** |
+| TASK-17 | P2 | Quick stake controls — ½x / 2x board multiplier before lock | **DONE** |
+| TASK-18 | P2 | Mobile portrait betting drawer — collapsible panel + chip dock | **DONE** |
+| TASK-19 | P3 | Session win-streak HUD badge — consecutive winning rounds indicator | **DONE** |
+| TASK-20 | P2 | Balance settle pulse — green/red wallet flash on round result | **DONE** |
+| TASK-21 | P3 | Bet lock countdown ring — circular timer around phase pill during betting | **DONE** |
+| TASK-22 | P2 | Session P/L sparkline — mini cumulative profit chart in stats panel | **DONE** |
+| TASK-23 | P2 | At-risk stake warning — panel header pulse when staked > 50% balance | **DONE** |
+| TASK-24 | P3 | Keyboard shortcuts overlay — ? key opens bet controls help | **DONE** |
+| TASK-25 | P2 | Lock phase banner — subtle no-more-bets toast at betting close | **DONE** |
+| TASK-26 | P2 | Spin-focus board dim — fade betting panel during live spin | **DONE** |
+| TASK-27 | P3 | Favorite preset hotkeys — F1–F3 apply saved bet layouts | **DONE** |
+| TASK-28 | P2 | Result pill fly-in — winning number slides into panel header on reveal | **DONE** |
+| TASK-29 | P3 | Canvas settle rim glow — warm wheel rim pulse when result lands | **DONE** |
+| TASK-30 | P3 | Winning cell cascade — staggered pulse across winning bet cells on reveal | **DONE** |
+| TASK-31 | P3 | Payout toast sync — align payout toast timing with result pill fly-in | **DONE** |
+| TASK-32 | P3 | Recent results streak chip — highlight hot color runs on results rail | **DONE** |
+| TASK-33 | P3 | Bet clear shake — brief panel shake when clearing all bets | **DONE** |
+| TASK-34 | P3 | Chip select bounce — spring pop on chip rack selection change | **DONE** |
+| TASK-35 | P3 | Scale board pulse — brief glow on ½× / 2× stake multiplier apply | **DONE** |
+| TASK-36 | P3 | Favorite apply pulse — brief header glow when applying saved bet preset | **DONE** |
+| TASK-37 | P3 | Undo cell recoil — spring shrink on removed bet cell | **DONE** |
+| TASK-38 | P3 | Repeat round pulse — brief header glow when restoring last round bets | **DONE** |
+| TASK-39 | P3 | Faucet refill pulse — brief wallet glow on balance refill | **DONE** |
+| TASK-40 | P3 | Status line flash — brief highlight when status message updates | **DONE** |
+| TASK-41 | P3 | Faucet ready glow — subtle pulse on refill button when balance is zero | **DONE** |
+| TASK-42 | P3 | Repeat ready glow — subtle pulse on Repeat button when last round is restorable | **DONE** |
+| TASK-43 | P3 | Undo ready glow — subtle pulse on Undo button when bets can be reverted | **DONE** |
+| TASK-44 | P3 | Scale ready glow — subtle pulse on ½×/2× cluster when scaling is available | **DONE** |
+| TASK-45 | P3 | Clear ready glow — subtle pulse on Clear button when bets are on the board | **DONE** |
+| TASK-46 | P3 | Cycle drop urgency — warm pulse on cycle track in final seconds before ball drop | **DONE** |
+| TASK-47 | P3 | Lock phase pill urgency — warm pulse on phase pill during no-more-bets lock window | **DONE** |
+| TASK-48 | P3 | Chip rack betting glow — subtle idle pulse on chip rack when betting is open | **DONE** |
+| TASK-49 | P3 | Stake commit pulse — brief header flash when placing a new bet chip | **DONE** |
+| TASK-50 | P3 | Batch stake pulse — brief header flash when racetrack or neighbor batch commits | **DONE** |
+| TASK-51 | P3 | Spin phase pill glow — subtle pulse on phase pill during live wheel spin | **DONE** |
+| TASK-52 | P3 | Mobile drawer open glow — pulse on drawer tab when betting opens with panel collapsed | **DONE** |
+| TASK-53 | P3 | Settle reveal header bloom — warm flash on panel header when winning number is revealed | **DONE** |
+| TASK-54 | P3 | Betting phase pill glow — subtle idle pulse on phase pill during open betting window | **DONE** |
+| TASK-55 | P3 | Board mode tab glow — pulse on active layout tab while betting is open | **DONE** |
+| TASK-56 | P3 | Stats panel ready glow — pulse on stats toggle when session has round history | **DONE** |
+| TASK-57 | P3 | Favorites panel ready glow — pulse on favorites toggle when saved presets exist | **DONE** |
+| TASK-58 | P3 | Fairness panel ready glow — pulse on fairness toggle when audit history is available | **DONE** |
+| TASK-59 | P3 | Save preset ready glow — pulse on favorite save button when bets can be saved | **DONE** |
+| TASK-60 | P3 | Shortcuts overlay ready glow — pulse on ? help hint when betting is open | **DONE** |
+| TASK-61 | P3 | Win streak badge pulse — brief glow when streak tier increases | **DONE** |
+| TASK-62 | P3 | Recent streak chip pulse — brief glow when color streak tier increases | **DONE** |
+| TASK-63 | P3 | Chip select pulse — brief rack flash when active chip denomination changes | **DONE** |
+| TASK-64 | P3 | Balance low glow — subtle wallet pulse when balance falls below minimum bet | **DONE** |
+| TASK-65 | P3 | Staked label pulse — brief flash on staked total when a bet commits | **DONE** |
+| TASK-66 | P3 | Result pill ready glow — pulse on result pill while awaiting first spin | **DONE** |
+| TASK-67 | P3 | Quality badge tier pulse — brief glow when adaptive quality tier steps up | **DONE** |
+| TASK-68 | P3 | Audio toggle ready glow — pulse on mute button when audio is muted | **DONE** |
+| TASK-69 | P3 | Theme toggle ready glow — subtle pulse on theme button after first session round | **DONE** |
+| TASK-70 | P3 | Lock banner ready glow — pulse on no-more-bets banner during lock window | **DONE** |
+| TASK-71 | P3 | Payout toast ready glow — pulse on payout toast when a win is pending reveal | **DONE** |
+| TASK-72 | P3 | Install prompt ready glow — pulse on PWA install hint when installable | **DONE** |
+| TASK-73 | P3 | Brand subtitle pulse — brief flash on theme subtitle when UI theme changes | **DONE** |
+| TASK-74 | P3 | Phase label pulse — brief flash on ball phase label when phase changes | **DONE** |
+| TASK-75 | P3 | Fairness custody badge glow — pulse when audit history is available | **DONE** |
+| TASK-76 | P3 | Mobile drawer meta pulse — flash on at-risk meta when staked total changes | **DONE** |
+| TASK-77 | P3 | Cycle track urgency pulse — brief flash on cycle progress when second ticks | **DONE** |
+| TASK-78 | P3 | Status line ready glow — pulse on status line when betting opens | **DONE** |
+| TASK-79 | P3 | Repeat round ready pulse — brief flash when repeat becomes available | **DONE** |
+| TASK-80 | P3 | Undo round ready pulse — brief flash when undo becomes available | **DONE** |
+| TASK-81 | P3 | Clear ready pulse — brief flash when first bet commits and clear is eligible | **DONE** |
+| TASK-82 | P3 | Scale ready pulse — brief flash when ½×/2× scaling becomes available | **DONE** |
+| TASK-83 | P3 | Faucet ready pulse — brief flash when balance refill becomes eligible | **DONE** |
+| TASK-84 | P3 | Balance low pulse — brief flash when balance drops below minimum chip | **DONE** |
+| TASK-85 | P3 | Mobile drawer open pulse — brief flash when drawer tab becomes actionable | **DONE** |
+| TASK-86 | P3 | Stats panel ready pulse — brief flash when session stats become available | **DONE** |
+| TASK-87 | P3 | Favorites panel ready pulse — brief flash when saved presets become available | **DONE** |
+| TASK-88 | P3 | Fairness panel ready pulse — brief flash when audit history becomes available | **DONE** |
+| TASK-89 | P3 | Save preset ready pulse — brief flash when preset save becomes eligible | **DONE** |
+| TASK-90 | P3 | Shortcuts overlay ready pulse — brief flash when betting opens with help closed | **DONE** |
+| TASK-91 | P3 | Board mode tab ready pulse — brief flash when layout tabs become actionable | **DONE** |
+| TASK-92 | P3 | Audio toggle ready pulse — brief flash when audio mute becomes actionable | **DONE** |
+| TASK-93 | P3 | Theme toggle ready pulse — brief flash when theme switch becomes eligible | **DONE** |
+| TASK-94 | P3 | Chip rack ready pulse — brief flash when chip rack becomes actionable | **DONE** |
+| TASK-95 | P3 | Install prompt ready pulse — brief flash when PWA install becomes available | **DONE** |
+| TASK-96 | P3 | Lock banner ready pulse — brief flash when no-more-bets banner appears | **DONE** |
+| TASK-97 | P3 | Payout toast ready pulse — brief flash when win payout toast appears | **DONE** |
+| TASK-98 | P3 | Result pill ready pulse — brief flash when result pill becomes actionable | **DONE** |
+| TASK-99 | P3 | Fairness custody badge ready pulse — brief flash when custody badge becomes actionable | **DONE** |
+| TASK-100 | P3 | Status line ready pulse — brief flash when status line becomes actionable on betting open | **DONE** |
+| TASK-101 | P3 | Payout toast pending glow ready pulse — brief flash when win payout is queued before reveal | **DONE** |
+| TASK-102 | P3 | Betting phase pill pulse — brief flash when betting phase opens | **DONE** |
+| TASK-103 | P3 | Lock phase pill urgency pulse — brief flash when no-more-bets lock phase starts | **DONE** |
+| TASK-104 | P3 | Spin phase pill pulse — brief flash when wheel spin phase starts | **DONE** |
+| TASK-105 | P3 | Cycle drop urgency entry pulse — brief flash when final-seconds urgency begins | **DONE** |
+| TASK-106 | P3 | Lock countdown urgent entry pulse — brief flash when bet lock countdown enters urgent window | **DONE** |
+| TASK-107 | P3 | Phase countdown entry pulse — brief flash when bet lock countdown ring first appears | **DONE** |
+| TASK-108 | P3 | Settle rim glow entry pulse — brief flash when canvas rim glow activates on reveal | **DONE** |
+| TASK-109 | P3 | Spin-active canvas entry pulse — brief flash when canvas spin ring activates | **DONE** |
+| TASK-110 | P3 | Spin-focus board entry pulse — brief flash when betting panel enters spin-focus dim | **DONE** |
+| TASK-111 | P3 | Stake risk warning entry pulse — brief flash when at-risk stake warning activates | **DONE** |
+| TASK-112 | P3 | Spin-dim-soft board entry pulse — brief flash when betting panel enters soft spin dim | **DONE** |
+| TASK-113 | P3 | Settle-reveal panel entry pulse — brief flash when betting panel enters settle-reveal | **DONE** |
+| TASK-114 | P3 | Win streak tier entry pulse — brief flash when win streak badge enters hot tier | **DONE** |
+| TASK-115 | P3 | Payout toast sync entry pulse — brief flash when synced payout toast appears on reveal | **DONE** |
+| TASK-116 | P3 | Recent streak hot entry pulse — brief flash when recent color-streak chip enters hot tier | **DONE** |
+| TASK-117 | P3 | Balance settle entry pulse — brief flash when balance win/loss settle pulse activates | **DONE** |
+| TASK-118 | P3 | Winning cell cascade entry pulse — brief flash when winning cell cascade begins on reveal | **DONE** |
+| TASK-119 | P3 | Pathway cascade entry pulse — brief flash when pathway highlight cascade begins on reveal | **DONE** |
+| TASK-120 | P3 | Lock banner settle entry pulse — brief flash when lock phase banner appears on betting close | **DONE** |
+| TASK-121 | P3 | Pathway-lit cell entry pulse — brief flash when bet cell enters pathway-lit highlight | **DONE** |
+| TASK-122 | P3 | Settle header bloom entry pulse — brief flash when panel header settle bloom activates | **DONE** |
+| TASK-123 | P3 | Pathway-source cell entry pulse — brief flash when bet cell becomes pathway source on hover | **DONE** |
+| TASK-124 | P3 | Chip landed entry pulse — brief flash when bet chip lands on a cell | **DONE** |
+| TASK-125 | P3 | Repeat flash entry pulse — brief flash when repeat-round restores bets on a cell | **DONE** |
+| TASK-126 | P3 | Chip undo recoil entry pulse — brief flash when undo recoil activates on a cell | **DONE** |
+| TASK-127 | P3 | Chip undo clear entry pulse — brief flash when undo clears a cell bet | **DONE** |
+| TASK-128 | P3 | Drop target entry pulse — brief flash when a cell becomes chip drop target | **DONE** |
+| TASK-129 | P3 | Chip select entry pulse — brief flash when chip dock selection changes | **DONE** |
+| TASK-130 | P3 | Ghost chip landed entry pulse — brief flash when ghost preview chip lands on a cell | **DONE** |
+| TASK-131 | P3 | Chip rack betting glow entry pulse — brief flash when chip rack enters betting glow | **DONE** |
+| TASK-132 | P3 | Ghost chip falling entry pulse — brief flash when ghost preview chip starts falling | **DONE** |
+| TASK-133 | P3 | Mobile drawer open entry pulse — brief flash when mobile betting drawer opens | **DONE** |
+| TASK-134 | P3 | Mobile drawer collapse entry pulse — brief flash when mobile betting drawer collapses | **DONE** |
+| TASK-135 | P3 | Drawer meta entry pulse — brief flash when drawer at-risk stake meta updates | **DONE** |
+| TASK-136 | P3 | Mobile drawer tab entry pulse — brief flash when collapsed drawer tab becomes actionable | **DONE** |
+| TASK-137 | P3 | Chip rack select entry pulse — brief flash when chip rack selection changes | **DONE** |
+| TASK-138 | P3 | Staked label entry pulse — brief flash when at-risk staked total updates in panel header | **DONE** |
+| TASK-139 | P3 | Stake commit entry pulse — brief flash when panel header stake commit activates | **DONE** |
+| TASK-140 | P3 | Batch stake entry pulse — brief flash when panel header batch stake activates | **DONE** |
+| TASK-141 | P3 | Repeat round entry pulse — brief flash when panel header repeat round activates | **DONE** |
+| TASK-142 | P3 | Favorite apply entry pulse — brief flash when panel header favorite apply activates | **DONE** |
+| TASK-143 | P3 | Scale board entry pulse — brief flash when stake scale cluster scales board stakes | **DONE** |
+| TASK-144 | P3 | Scale ready entry pulse — brief flash when stake scale cluster becomes actionable | **DONE** |
+| TASK-145 | P3 | Clear ready entry pulse — brief flash when clear button becomes actionable | **DONE** |
+| TASK-146 | P3 | Undo round ready entry pulse — brief flash when undo button becomes actionable | **DONE** |
+| TASK-147 | P3 | Faucet ready entry pulse — brief flash when refill button becomes actionable | **DONE** |
+| TASK-148 | P3 | Repeat round ready entry pulse — brief flash when repeat button becomes actionable | **DONE** |
+| TASK-149 | P3 | Balance low entry pulse — brief flash when wallet low-glow becomes active | **DONE** |
+| TASK-150 | P3 | Status line ready entry pulse — brief flash when status line becomes actionable | **DONE** |
+| TASK-151 | P3 | Result pill ready entry pulse — brief flash when result pill becomes actionable | **DONE** |
+| TASK-152 | P3 | Stats panel ready entry pulse — brief flash when stats toggle becomes actionable | **DONE** |
+| TASK-153 | P3 | Favorites panel ready entry pulse — brief flash when favorites toggle becomes actionable | **DONE** |
+| TASK-154 | P3 | Save preset ready entry pulse — brief flash when save button becomes actionable | **DONE** |
+| TASK-155 | P3 | Fairness panel ready entry pulse — brief flash when fairness toggle becomes actionable | **DONE** |
+| TASK-156 | P3 | Fairness custody badge ready entry pulse — brief flash when custody badge becomes actionable | **DONE** |
+| TASK-157 | P3 | Shortcuts overlay ready entry pulse — brief flash when help hint becomes actionable | **DONE** |
+| TASK-158 | P3 | Audio toggle ready entry pulse — brief flash when mute button becomes actionable | **DONE** |
+| TASK-159 | P3 | Theme toggle ready entry pulse — brief flash when theme button becomes actionable | **DONE** |
+| TASK-160 | P3 | Install prompt ready entry pulse — brief flash when PWA install hint becomes actionable | **DONE** |
+| TASK-161 | P3 | Payout toast pending ready entry pulse — brief flash when win-pending toast becomes actionable | **DONE** |
+| TASK-162 | P3 | Board mode tab ready entry pulse — brief flash when layout tab becomes actionable | **DONE** |
+| TASK-163 | P3 | Orphan ready-pulse CSS purge — remove dead keyframes after entry-pulse migration | **DONE** |
+| TASK-164 | P3 | Tier pulse entry migration — win-streak and recent-streak tier pulses to entry variants | **DONE** |
+| TASK-165 | P3 | Phase pill pulse entry migration — betting/lock/spin phase pulses to entry variants | **DONE** |
+| TASK-166 | P3 | Phase label entry pulse — brief flash when phase label text changes | **DONE** |
+| TASK-167 | P3 | Brand subtitle entry pulse — brief flash when theme subtitle changes | **DONE** |
+| TASK-168 | P3 | Quality badge tier entry pulse — brief flash when adaptive quality tier steps up | **DONE** |
+| TASK-169 | P3 | Cycle track tick entry pulse — brief flash when cycle second ticks | **DONE** |
+| TASK-170 | P3 | Faucet refill entry pulse — brief wallet glow on balance refill | **DONE** |
+| TASK-171 | P3 | Stake risk entry pulse — brief at-risk flash on staked total warning | **DONE** |
+| TASK-172 | P3 | Status line flash entry pulse — brief highlight when status message updates | **DONE** |
+| TASK-173 | P3 | Bet clear shake entry pulse — brief panel shake when clearing all bets | **DONE** |
+| TASK-174 | P3 | Balance settle win entry pulse — green wallet flash on winning round result | **DONE** |
+| TASK-175 | P3 | Balance settle loss entry pulse — red wallet flash on losing round result | **DONE** |
+| TASK-176 | P3 | Repeat flash entry pulse — brief cell flash when restoring last round bets | **DONE** |
+| TASK-177 | P3 | Settle reveal bloom entry pulse — warm panel header flash on winning number reveal | **DONE** |
+| TASK-178 | P3 | Chip landed entry pulse — brief cell flash when placing a new bet chip | **DONE** |
+| TASK-179 | P3 | Chip undo recoil entry pulse — spring shrink on removed bet cell | **DONE** |
+| TASK-180 | P3 | Chip undo clear entry pulse — brief flash when undo clears a cell | **DONE** |
+| TASK-181 | P3 | Drop target entry pulse — brief highlight when cell is drag target | **DONE** |
+| TASK-182 | P3 | Pathway lit entry pulse — brief highlight when straight pathway lights up | **DONE** |
+| TASK-183 | P3 | Pathway source entry pulse — brief highlight when outside pathway source lights up | **DONE** |
+| TASK-184 | P3 | Ghost chip landed entry pulse — brief flash when ghost preview chip lands | **DONE** |
+| TASK-185 | P3 | Ghost chip falling entry pulse — brief flash when ghost preview chip starts falling | **DONE** |
+| TASK-186 | P3 | Winning cascade entry pulse — staggered pulse on winning bet cells on reveal | **DONE** |
+| TASK-187 | P3 | Pathway cascade entry pulse — brief column flash when pathway cascade lights up | **DONE** |
+| TASK-188 | P3 | Result reveal entry pulse — brief flash when winning number appears in result pill | **DONE** |
+| TASK-189 | P3 | Spin focus entry pulse cleanup — panel dim state uses entry-only spin-focus variant | **DONE** |
+| TASK-190 | P3 | Spin dim soft entry pulse cleanup — panel soft-dim state uses entry-only spin-dim-soft variant | **DONE** |
+| TASK-191 | P3 | Settle reveal entry pulse cleanup — panel settle state uses entry-only settle-reveal variant | **DONE** |
+| TASK-192 | P3 | Winning cell entry pulse cleanup — winning cell glow uses entry-only winning-cell-active variant | **DONE** |
+| TASK-193 | P3 | Chip rack betting glow entry pulse cleanup — rack glow state uses entry-only chip-rack-betting-glow-active variant | **DONE** |
+| TASK-194 | P3 | Drawer open glow entry pulse cleanup — mobile drawer tab glow uses entry-only drawer-open-glow-active variant | **DONE** |
+| TASK-195 | P3 | Cycle drop urgency entry pulse cleanup — cycle track urgency uses entry-only cycle-drop-urgency-active variant | **DONE** |
+| TASK-196 | P3 | Stake risk warning entry pulse cleanup — panel header warning uses entry-only stake-risk-warning-active variant | **DONE** |
+| TASK-197 | P3 | Result pill ready glow entry pulse cleanup — result pill idle glow uses entry-only result-pill-ready-glow-active variant | **DONE** |
+| TASK-198 | P3 | Board mode tab glow entry pulse cleanup — layout tab idle glow uses entry-only board-mode-tab-glow-active variant | **DONE** |
+| TASK-199 | P3 | Scale ready glow entry pulse cleanup — scale cluster idle glow uses entry-only scale-ready-glow-active variant | **DONE** |
+| TASK-200 | P3 | Repeat ready glow entry pulse cleanup — repeat button idle glow uses entry-only repeat-ready-glow-active variant | **DONE** |
+| TASK-201 | P3 | Undo ready glow entry pulse cleanup — undo button idle glow uses entry-only undo-ready-glow-active variant | **DONE** |
+| TASK-202 | P3 | Clear ready glow entry pulse cleanup — clear button idle glow uses entry-only clear-ready-glow-active variant | **DONE** |
+| TASK-203 | P3 | Faucet ready glow entry pulse cleanup — faucet button idle glow uses entry-only faucet-ready-glow-active variant | **DONE** |
+| TASK-204 | P3 | Status line ready glow entry pulse cleanup — status line idle glow uses entry-only status-line-ready-glow-active variant | **DONE** |
+| TASK-205 | P3 | Balance low glow entry pulse cleanup — wallet low-balance glow uses entry-only balance-low-glow-active variant | **DONE** |
+| TASK-206 | P3 | Lock banner ready glow entry pulse cleanup — lock banner idle glow uses entry-only lock-banner-ready-glow-active variant | **DONE** |
+| TASK-207 | P3 | Stats panel ready glow entry pulse cleanup — stats toggle idle glow uses entry-only stats-ready-glow-active variant | **DONE** |
+| TASK-208 | P3 | Favorites panel ready glow entry pulse cleanup — favorites toggle idle glow uses entry-only favorites-ready-glow-active variant | **DONE** |
+| TASK-209 | P3 | Fairness panel ready glow entry pulse cleanup — fairness toggle idle glow uses entry-only fairness-ready-glow-active variant | **DONE** |
+| TASK-210 | P3 | Save preset ready glow entry pulse cleanup — save button idle glow uses entry-only save-preset-ready-glow-active variant | **DONE** |
+| TASK-211 | P3 | Payout toast ready glow entry pulse cleanup — payout toast idle glow uses entry-only payout-toast-ready-glow-active variant | **DONE** |
+| TASK-212 | P3 | Install prompt ready glow entry pulse cleanup — install hint idle glow uses entry-only install-prompt-ready-glow-active variant | **DONE** |
+| TASK-213 | P3 | Fairness custody badge glow entry pulse cleanup — custody badge idle glow uses entry-only fairness-custody-badge-glow-active variant | **DONE** |
+| TASK-214 | P3 | Betting phase pill glow entry pulse cleanup — phase pill betting glow uses entry-only betting-phase-glow-active variant | **DONE** |
+| TASK-215 | P3 | Spin phase pill glow entry pulse cleanup — phase pill spin glow uses entry-only spin-phase-glow-active variant | **DONE** |
+| TASK-216 | P3 | Lock phase urgency entry pulse cleanup — phase pill lock urgency uses entry-only lock-phase-urgency-active variant | **DONE** |
+| TASK-217 | P3 | Countdown urgent entry pulse cleanup — phase pill countdown urgency uses entry-only countdown-urgent-active variant | **DONE** |
+| TASK-218 | P3 | Theme toggle ready glow entry pulse cleanup — theme button idle glow uses entry-only theme-toggle-ready-glow-active variant | **DONE** |
+| TASK-219 | P3 | Audio toggle ready glow entry pulse cleanup — audio button idle glow uses entry-only audio-toggle-ready-glow-active variant | **DONE** |
+| TASK-220 | P3 | Shortcuts ready glow entry pulse cleanup — shortcuts hint idle glow uses entry-only shortcuts-ready-glow-active variant | **DONE** |
+| TASK-221 | P3 | Settle rim glow entry pulse cleanup — canvas rim glow uses entry-only settle-rim-glow-active variant | **DONE** |
+| TASK-222 | P3 | Spin active entry pulse cleanup — canvas spin vignette uses entry-only spin-active-active variant | **DONE** |
+| TASK-223 | P3 | Win streak hot tier entry pulse cleanup — hot tier idle glow uses entry-only tier-hot-active variant | **DONE** |
+| TASK-224 | P3 | Recent streak hot tier entry pulse cleanup — recent streak badge hot tier idle glow uses entry-only tier-hot-active variant | **DONE** |
+| TASK-225 | P3 | Recent rail hot streak strip entry pulse cleanup — rail container hot tier strip glow uses entry-only tier-hot-active variant | **DONE** |
+| TASK-226 | P3 | Quality badge tier glow entry pulse cleanup — quality badge idle tier glow uses entry-only tier-high-active variant | **DONE** |
+| TASK-227 | P3 | Recent streak hot chip entry pulse cleanup — hot streak chips idle glow uses entry-only streak-run-hot-active variant | **DONE** |
+| TASK-228 | P3 | Recent streak warm chip entry pulse cleanup — warm streak chips idle glow uses entry-only streak-run-chip-active variant | **DONE** |
+| TASK-229 | P3 | Win streak warm tier entry pulse cleanup — warm tier badge styling uses entry-only tier-warm-active variant | **DONE** |
+| TASK-230 | P3 | Recent streak warm badge entry pulse cleanup — warm tier badge styling uses entry-only tier-warm-active variant | **DONE** |
+| TASK-231 | P3 | Quality badge medium tier entry pulse cleanup — medium tier badge styling uses entry-only tier-medium-active variant | **DONE** |
+| TASK-232 | P3 | Quality badge low tier entry pulse cleanup — low tier badge styling uses entry-only tier-low-active variant | **DONE** |
+| TASK-233 | P3 | Recent rail warm tier container entry pulse cleanup — rail container warm tier uses tier-warm-active variant | **DONE** |
+| TASK-234 | P3 | Win streak mild tier entry pulse cleanup — mild tier badge styling uses entry-only tier-mild-active variant | **DONE** |
+| TASK-235 | P3 | Quality badge tier class cleanup — remove legacy tier-* fallback now that all tiers use -active variants | **DONE** |
+| TASK-236 | P3 | Win streak tier class cleanup — consolidate tier-*-active mapping and remove legacy fallbacks | **DONE** |
+| TASK-237 | P3 | Recent streak tier class cleanup — consolidate tier-*-active mapping on rail and badge | **DONE** |
+| TASK-238 | P3 | Payout toast tier class cleanup — rename payout-tier-* to payout-tier-*-active for mega/legendary spark styling | **DONE** |
+| TASK-239 | P3 | BettingBoard sector-glow entry pulse cleanup — pathway cell sector glow uses entry-only sector-glow-active variant | **DONE** |
+| TASK-240 | P3 | BettingBoard chip-glow entry pulse cleanup — magnetic chip glow uses entry-only chip-glow-active variant | **DONE** |
+| TASK-241 | P3 | BettingBoard magnetic-glow entry pulse cleanup — panel magnetic glow uses entry-only magnetic-glow-active variant | **DONE** |
+| TASK-242 | P3 | BettingBoard neon-underline entry pulse cleanup — pathway cell underline uses entry-only neon-underline-active variant | **DONE** |
+| TASK-243 | P3 | Payout toast tier spark entry pulse — mega/legendary tier sparks use standalone payout-tier-*-entry-pulse on toast sync | **DONE** |
+| TASK-244 | P3 | Payout toast legendary coins entry pulse — legendary tier coin burst uses standalone payout-tier-legendary-coins-entry-pulse on toast sync | **DONE** |
+| TASK-245 | P3 | Payout toast mega coins entry pulse — mega tier coin burst uses standalone payout-tier-mega-coins-entry-pulse on toast sync | **DONE** |
+| TASK-246 | P3 | Payout toast tier coins polish sweep — consolidate mega/legendary coin-active hooks and verify payout tier entry-pulse coverage | **DONE** |
+| TASK-247 | P3 | BettingBoard bet-shine entry pulse cleanup — bet cell shine sweep uses entry-only bet-shine-active variant on hover | **DONE** |
+| TASK-248 | P3 | BettingBoard bet-spotlight entry pulse cleanup — bet cell spotlight uses entry-only bet-spotlight-active variant on hover | **DONE** |
+| TASK-249 | P3 | BettingBoard bet-glow-casing entry pulse cleanup — bet cell glow casing uses entry-only bet-glow-casing-active variant on hover | **DONE** |
+| TASK-250 | P3 | BettingBoard bet-glass-depth entry pulse cleanup — bet cell glass depth uses entry-only bet-glass-depth-active variant on hover | **DONE** |
+| TASK-251 | P3 | BettingBoard bet hover layer polish — rename shared hover entry pulse state from betShine* to betHover* across decorative spans | **DONE** |
+| TASK-252 | P3 | BettingBoard panel glass-sheen entry pulse cleanup — panel glass sheen uses entry-only glass-sheen-active variant on pointer enter | **DONE** |
+| TASK-253 | P3 | BettingBoard panel glass-reflection entry pulse cleanup — panel glass reflection uses entry-only glass-reflection-active variant on pointer enter | **DONE** |
+| TASK-254 | P3 | BettingBoard panel holo-border entry pulse cleanup — panel holo border uses entry-only holo-border-active variant on pointer enter | **DONE** |
+| TASK-255 | P3 | BettingBoard panel glass-depth-layer entry pulse cleanup — panel glass depth layer uses entry-only glass-depth-layer-active variant on pointer enter | **DONE** |
+| TASK-256 | P3 | BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from magneticGlow* to panelPointer* | **PENDING** |
+
+## TASK-255 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — panel glass depth layer moved to `glass-depth-layer-active`; entry flash via standalone `glass-depth-layer-entry-pulse` (620ms, reuses panel pointer entry pulse state)
+- `src/index.css` — `.glass-depth-layer` renamed to `.glass-depth-layer-active`; standalone `glass-depth-layer-entry-pulse` keyframes; betting-panel child z-index selector updated
+- `verify.js` — added `glass-depth-layer-active` coverage assert
+
+**Panel holographic layer sweep complete (TASK-252–255)** — glass sheen, glass reflection, holo border, glass depth, and magnetic glow now use `-active` + standalone entry pulses on panel pointer enter.
+
+## TASK-254 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — panel holo border moved to `holo-border-active`; entry flash via standalone `holo-border-entry-pulse` (620ms, reuses panel pointer entry pulse state)
+- `src/index.css` — `.holo-border` renamed to `.holo-border-active`; idle `holo-shift` via `:not(.holo-border-entry-pulse)` guard; standalone `holo-border-entry-pulse` keyframes; settle-reveal/spin-focus/theme selectors updated
+- `verify.js` — holographic border assert updated for `holo-border-active`
+
+## TASK-253 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — panel glass reflection moved to `glass-reflection-active`; entry flash via standalone `glass-reflection-entry-pulse` (620ms, reuses panel pointer entry pulse state)
+- `src/index.css` — `.glass-reflection` renamed to `.glass-reflection-active`; standalone `glass-reflection-entry-pulse` keyframes; betting-panel child z-index selector + light theme selector updated
+- `verify.js` — added `glass-reflection-active` coverage assert
+
+## TASK-252 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — panel glass sheen moved to `glass-sheen-active`; entry flash via standalone `glass-sheen-entry-pulse` (620ms, reuses panel pointer entry pulse state from magnetic glow)
+- `src/index.css` — `.glass-sheen` renamed to `.glass-sheen-active`; standalone `glass-sheen-entry-pulse` keyframes; betting-panel child z-index selector updated
+- `verify.js` — added `glass-sheen-active` coverage assert
+
+**Panel holographic layer sweep started (TASK-252)** — glass sheen now uses `-active` + standalone entry pulse on panel pointer enter.
+
+## TASK-251 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — shared hover state renamed `betHoverActive` / `betHoverEntryPulsing` (was `betShine*`); drives entry pulses on shine, spotlight, glow casing, and glass depth spans
+- `verify.js` — added bet cell hover layer coverage asserts (`bet-shine-active`, `betHoverActive`, `betHoverEntryPulsing`)
+
+## TASK-250 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — bet cell glass depth moved to `bet-glass-depth-active` on `BetBtn`; entry flash via standalone `bet-glass-depth-entry-pulse` (620ms, reuses hover entry pulse state from shine)
+- `src/index.css` — `.bet-glass-depth` renamed to `.bet-glass-depth-active`; spotlit/hover visibility via `:not(.bet-glass-depth-entry-pulse)` guard; standalone `bet-glass-depth-entry-pulse` keyframes
+- `verify.js` — added `bet-glass-depth-active` coverage assert
+
+**Bet cell decorative layer sweep complete (TASK-247–250)** — shine, spotlight, glow casing, and glass depth now use `-active` + standalone entry pulses on hover.
+
+## TASK-249 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — bet cell glow casing moved to `bet-glow-casing-active` on `BetBtn`; entry flash via standalone `bet-glow-casing-entry-pulse` (620ms, reuses hover entry pulse state from shine)
+- `src/index.css` — `.bet-glow-casing` renamed to `.bet-glow-casing-active`; spotlit/hover visibility via `:not(.bet-glow-casing-entry-pulse)` guard; standalone `bet-glow-casing-entry-pulse` keyframes
+- `verify.js` — dual-layer glow casing assert updated for `bet-glow-casing-active`
+
+## TASK-248 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — bet cell spotlight moved to `bet-spotlight-active` on `BetBtn`; entry flash via standalone `bet-spotlight-entry-pulse` (620ms, reuses hover entry pulse state from shine)
+- `src/index.css` — `.bet-spotlight` renamed to `.bet-spotlight-active`; spotlit/hover visibility via `:not(.bet-spotlight-entry-pulse)` guard; standalone `bet-spotlight-entry-pulse` keyframes
+- `verify.js` — kinetic spotlight assert updated for `bet-spotlight-active`
+
+## TASK-247 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — bet cell shine moved to `bet-shine-active` on `BetBtn`; entry flash via standalone `bet-shine-entry-pulse` (620ms) on pointer enter; `betShineActive` state tracks hover
+- `src/index.css` — `.bet-shine` renamed to `.bet-shine-active`; hover sweep via `:not(.bet-shine-entry-pulse)` guard; standalone `bet-shine-entry-pulse` keyframes; light theme selector updated
+
+## TASK-246 Shipped (Session 335)
+
+- `src/ui/PayoutToast.jsx` — consolidated `TIER_PREMIUM_TIERS` + `payoutTierEntryPulseClass()` helper; spark/coins entry pulses unified via `` `payout-tier-${tierId}-${suffix}` `` template (`entry-pulse`, `coins-entry-pulse`)
+- `verify.js` — added payout tier spark/coins active + mega/legendary entry-pulse coverage asserts; payout toast JSX parity checks for tier-active class and entry-pulse helper
+
+**Payout toast tier polish sweep complete (TASK-238, TASK-243–246)** — tier class hooks, spark/coins entry pulses, and verify coverage now follow a single premium-tier convention.
+
+## TASK-245 Shipped (Session 335)
+
+- `src/ui/PayoutToast.jsx` — mega coin burst uses `payout-toast-coins-active`; entry flash via standalone `payout-tier-mega-coins-entry-pulse` (620ms, reuses toast sync entry pulse state); `hasTierCoins` covers mega + legendary
+- `src/index.css` — tier-scoped `.payout-tier-mega-active` / `.payout-tier-legendary-active` coin sizing; standalone `payout-tier-mega-coins-entry-pulse` keyframes
+
+**Payout toast tier coin entry pulses complete (TASK-244–245)** — mega and legendary coin bursts now use `-active` + standalone entry pulses on toast sync.
+
+## TASK-244 Shipped (Session 335)
+
+- `src/ui/PayoutToast.jsx` — legendary coin burst uses `payout-toast-coins-active`; entry flash via standalone `payout-tier-legendary-coins-entry-pulse` (620ms, reuses toast sync entry pulse state)
+- `src/index.css` — parent `.payout-tier-legendary-active .payout-toast-coins i` sizing moved to `.payout-toast-coins-active i`; standalone `payout-tier-legendary-coins-entry-pulse` keyframes override default `coin-burst` during sync entry
+
+## TASK-243 Shipped (Session 335)
+
+- `src/ui/PayoutToast.jsx` — mega/legendary sparks use `payout-toast-spark-active`; entry flash via standalone `payout-tier-mega-entry-pulse` / `payout-tier-legendary-entry-pulse` (620ms, reuses toast sync entry pulse state)
+- `src/index.css` — parent `.payout-tier-*-active .payout-toast-spark` gradient moved to `.payout-toast-spark-active`; `:not(.payout-tier-*-entry-pulse)` guard suppresses default `payout-spark` during tier entry pulse; standalone tier spark keyframes
+
+**Payout toast tier polish continued (TASK-238, TASK-243)** — tier class hooks and mega/legendary spark entry pulses now follow the `-active` + standalone entry-pulse convention.
+
+## TASK-242 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — bet cell underline moved to `neon-underline-active` on `BetBtn`; entry flash via standalone `neon-underline-entry-pulse` (620ms, reuses pathway source entry pulse state)
+- `src/index.css` — `.neon-underline` renamed to `.neon-underline-active`; pathway-source and hover visibility via `:not(.neon-underline-entry-pulse)` guard; standalone `neon-underline-entry-pulse` keyframes; light theme selector updated
+
+## TASK-241 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — panel cursor glow moved to `magnetic-glow-active`; entry flash via standalone `magnetic-glow-entry-pulse` (620ms) on first pointer enter; `magneticGlowActive` state tracks `--glow-opacity` visibility
+- `src/index.css` — `.magnetic-glow` renamed to `.magnetic-glow-active`; standalone `magnetic-glow-entry-pulse` keyframes; betting-panel child z-index selector updated
+- `verify.js` — design audit assertion updated for `magnetic-glow-active`
+
+**BettingBoard decorative glow sweep complete (TASK-239–241)** — sector-glow, chip-glow, and magnetic-glow now use `-active` + standalone entry pulses.
+
+## TASK-240 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — magnetic chip glow moved to `chip-glow-active` on `MagneticChip`; entry flash via standalone `chip-glow-entry-pulse` (620ms, reuses chip select entry pulse state)
+- `src/index.css` — `.chip-glow` renamed to `.chip-glow-active`; hover/active visibility via `:not(.chip-glow-entry-pulse)` guard; standalone `chip-glow-entry-pulse` keyframes
+
+## TASK-239 Shipped (Session 335)
+
+- `src/ui/BettingBoard.jsx` — pathway sector glow moved to `sector-glow-active` on `BetBtn`; entry flash via standalone `sector-glow-entry-pulse` (620ms, reuses pathway lit/source entry pulse state)
+- `src/index.css` — parent `.bet-cell.pathway-*` sector-glow descendant selectors removed; standalone `sector-glow-active` idle pulse + `sector-glow-entry-pulse` keyframes
+
+**BettingBoard decorative glow sweep started (TASK-239)** — pathway cell sector glow now uses `-active` + standalone entry pulse on the span.
+
+## TASK-238 Shipped (Session 335)
+
+- `src/ui/PayoutToast.jsx` — tier class renamed to `` `payout-tier-${t.tierId}-active` `` (all win tiers; mega/legendary spark styling)
+- `src/index.css` — `.payout-tier-mega-active` / `.payout-tier-legendary-active` spark and coin selectors updated
+
+**Payout toast tier class cleanup complete (TASK-238)** — payout toast tier hooks now follow the `-active` naming convention used across HUD tier surfaces.
+
+## DEBUG-50 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1240** passed · vitest **1188** passed (274 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **209.32 KB raw / 30.65 KB gzip** (10 KB limit) · app **219.62 KB raw / 68.74 KB gzip** (50 KB limit) — over limit (cumulative growth; no regression fix this cycle)
+- Review: payout toast tier polish sweep verified (TASK-238, TASK-243–246); bet cell decorative layer sweep verified (TASK-247–251, `betHoverActive` shared state); panel pointer-entry layers verified (`magnetic-glow-active`, `glass-sheen-active`); no legacy decorative class names without `-active` remain in `src/`; panel layers still pending (`glass-reflection`, `holo-border`, `glass-depth-layer`)
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-253
+
+**Post-DEBUG-49 decorative layer sweeps verified (TASK-238–252)** — payout toast tiers, bet cell hover layers, and panel glass sheen now use `-active` + standalone entry pulses.
+
+## DEBUG-49 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1227** passed · vitest **1188** passed (274 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.78 KB raw / 30.06 KB gzip** (10 KB limit) · app **70.09 KB raw / 68.45 KB gzip** (50 KB limit) — over limit (cumulative growth; no regression fix this cycle)
+- Review: tier/streak `-active` sweep verified complete (TASK-223–237); no legacy `tier-hot`, `tier-warm`, `streak-run-hot`, or `streak-run-chip` class names remain in `src/ui` or `src/App.jsx`; uniform `` `tier-${tier}-active` `` mapping on quality badge, win streak, and recent streak surfaces; decorative glow spans on `BettingBoard.jsx` (`sector-glow`, `chip-glow`, `magnetic-glow`) unchanged
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-238
+
+**Post-DEBUG-48 tier/streak `-active` sweep verified (TASK-223–237)** — HUD tier badges, recent rail strip, and streak chips now use `-active` + standalone entry pulses.
+
+## TASK-237 Shipped (Session 335)
+
+- `src/ui/RecentResultsRail.jsx` — rail container and badge tier classes simplified to `` `tier-${streakRun.tier}-active` `` (warm/hot covered; nested ternaries + legacy fallbacks removed)
+
+**Tier class cleanup sweep complete (TASK-235–237)** — quality badge, win streak, and recent streak surfaces now use uniform `` `tier-${tier}-active` `` mapping.
+
+## TASK-236 Shipped (Session 335)
+
+- `src/ui/WinStreakBadge.jsx` — tier class simplified to `` `tier-${tier}-active` `` (mild/warm/hot covered; nested ternary + legacy fallback removed)
+
+## TASK-235 Shipped (Session 335)
+
+- `src/App.jsx` — quality badge tier class simplified to `` `tier-${qualityTier}-active` `` (high/medium/low all covered; legacy `` `tier-${qualityTier}` `` fallback removed)
+
+## TASK-234 Shipped (Session 335)
+
+- `src/lib/winStreakTierEntryPulse.js` — already present; `shouldWinStreakTierEntryPulse()` on tier step-up (non-hot)
+- `src/ui/WinStreakBadge.jsx` — mild tier persistent class moved to `tier-mild-active`; entry flash via standalone `win-streak-tier-entry-pulse` (680ms)
+- `src/index.css` — no mild-tier override rules (inherits base badge styling)
+
+**Win-streak tier sweep complete (TASK-223–234)** — mild, warm, and hot tiers now use `-active` + standalone entry pulses.
+
+## TASK-233 Shipped (Session 335)
+
+- `src/lib/recentStreakTierEntryPulse.js` — already present; reuses `shouldRecentStreakTierEntryPulse()` for rail entry flash on tier step-up
+- `src/ui/RecentResultsRail.jsx` — rail container warm tier moved to `tier-warm-active`; entry flash via standalone `recent-streak-tier-entry-pulse` on rail (680ms)
+- `src/index.css` — no warm strip gradient rule (inherits base `has-color-streak` strip); hot strip remains on `.tier-hot-active`
+
+**Recent streak tier container sweep complete (TASK-225–233)** — hot and warm rail containers now use `-active` + standalone entry pulses.
+
+## TASK-232 Shipped (Session 335)
+
+- `src/lib/qualityBadgeTierEntryPulse.js` — already present; `shouldQualityBadgeTierEntryPulse()` on upward tier step
+- `src/App.jsx` — low tier persistent class moved to `tier-low-active`; entry flash via standalone `quality-badge-tier-entry-pulse` (680ms)
+- `src/index.css` — renamed low-tier color selectors to `.tier-low-active` (base)
+
+**Quality badge tier sweep complete (TASK-226–232)** — high, medium, and low tiers now use `-active` + standalone entry pulses.
+
+## TASK-231 Shipped (Session 335)
+
+- `src/lib/qualityBadgeTierEntryPulse.js` — already present; `shouldQualityBadgeTierEntryPulse()` on upward tier step
+- `src/App.jsx` — medium tier persistent class moved to `tier-medium-active`; entry flash via standalone `quality-badge-tier-entry-pulse` (680ms)
+- `src/index.css` — renamed medium-tier color selectors to `.tier-medium-active` (base)
+
+## TASK-230 Shipped (Session 335)
+
+- `src/lib/recentStreakTierEntryPulse.js` — already present; `shouldRecentStreakTierEntryPulse()` on tier step-up (non-hot)
+- `src/ui/RecentResultsRail.jsx` — warm tier badge persistent class moved to `tier-warm-active`; entry flash via standalone `recent-streak-tier-entry-pulse` (680ms)
+- `src/index.css` — renamed warm-tier badge selector to `.tier-warm-active` (base)
+
+**Warm-tier badge sweep complete (TASK-229–230)** — win-streak and recent-streak warm badges now use `tier-warm-active` + standalone entry pulses.
+
+## TASK-229 Shipped (Session 335)
+
+- `src/lib/winStreakTierEntryPulse.js` — already present; `shouldWinStreakTierEntryPulse()` on tier step-up (non-hot)
+- `src/ui/WinStreakBadge.jsx` — warm tier persistent class moved to `tier-warm-active`; entry flash via standalone `win-streak-tier-entry-pulse` (680ms)
+- `src/index.css` — renamed warm-tier color selectors to `.tier-warm-active` (base)
+
+## TASK-228 Shipped (Session 335)
+
+- `src/lib/recentStreakTierEntryPulse.js` — already present; `shouldRecentStreakTierEntryPulse()` on tier step-up (non-hot)
+- `src/ui/RecentResultsRail.jsx` — streak chips moved to `streak-run-chip-active`; entry flash via standalone `streak-run-chip-entry-pulse` (680ms, staggered via `--streak-i`)
+- `src/index.css` — renamed idle warm-chip glow to `.streak-run-chip-active` with `:not(.streak-run-chip-entry-pulse)` guard; standalone entry-pulse keyframes (base/light/neon)
+
+**Recent streak full sweep complete (TASK-224–228)** — badge, rail strip, hot chips, and warm chips now use `-active` + standalone entry pulses.
+
+## TASK-227 Shipped (Session 335)
+
+- `src/lib/recentStreakHotEntryPulse.js` — already present; reuses `shouldRecentStreakHotEntryPulse()` for chip entry flash on warm→hot
+- `src/ui/RecentResultsRail.jsx` — hot streak chips moved to `streak-run-hot-active`; entry flash via standalone `streak-run-hot-entry-pulse` (620ms, staggered via `--streak-i`)
+- `src/index.css` — renamed idle hot-chip glow to `.streak-run-hot-active` with `:not(.streak-run-hot-entry-pulse)` guard; standalone entry-pulse keyframes (base/neon)
+
+**Recent streak hot-tier sweep complete (TASK-224–227)** — badge, rail strip, and hot chips now use `-active` + standalone entry pulses.
+
+## TASK-226 Shipped (Session 335)
+
+- `src/lib/qualityBadgeTierEntryPulse.js` — already present; `shouldQualityBadgeTierEntryPulse()` on upward tier step (low→medium, medium→high)
+- `src/App.jsx` — high tier persistent class moved to `tier-high-active`; entry flash via standalone `quality-badge-tier-entry-pulse` (680ms)
+- `src/index.css` — renamed high-tier color selectors to `.tier-high-active`; entry-pulse high variant chained on active class (base/light/neon)
+
+## TASK-225 Shipped (Session 335)
+
+- `src/lib/recentStreakHotEntryPulse.js` — already present; reuses `shouldRecentStreakHotEntryPulse()` for rail strip entry flash on warm→hot
+- `src/ui/RecentResultsRail.jsx` — rail container hot tier moved to `tier-hot-active`; entry flash via standalone `recent-streak-hot-entry-pulse` on rail (620ms)
+- `src/index.css` — renamed strip gradient selector to `.tier-hot-active`; standalone `recent-rail-strip-hot-entry-pulse` keyframes on rail entry pulse
+
+**Recent streak hot-tier sweep complete (TASK-224–225)** — badge and rail strip now use `tier-hot-active` + standalone entry pulses.
+
+## TASK-224 Shipped (Session 335)
+
+- `src/lib/recentStreakHotEntryPulse.js` — already present; `shouldRecentStreakHotEntryPulse()` when color streak tier newly enters hot from warm
+- `src/ui/RecentResultsRail.jsx` — hot tier badge persistent class moved to `tier-hot-active`; entry flash via standalone `recent-streak-hot-entry-pulse` (620ms)
+- `src/index.css` — renamed idle hot-tier badge glow selectors to `.tier-hot-active`; `:not(.recent-streak-hot-entry-pulse)` guard suppresses infinite glow during entry (base/light/neon)
+
+## TASK-223 Shipped (Session 335)
+
+- `src/lib/winStreakHotEntryPulse.js` — already present; `shouldWinStreakHotEntryPulse()` when streak tier newly enters hot from warm
+- `src/ui/WinStreakBadge.jsx` — hot tier persistent class moved to `tier-hot-active`; entry flash via standalone `win-streak-hot-entry-pulse` (620ms)
+- `src/index.css` — renamed idle hot-tier glow selectors to `.tier-hot-active`; `:not(.win-streak-hot-entry-pulse)` guard suppresses infinite glow during entry (base/light/neon)
+
+## DEBUG-48 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1227** passed · vitest **1188** passed (274 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.49 KB / 10 KB** · app **70.06 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-213–222 entry-pulse / `-active` modules; all HUD ready-glow JSX hooks migrated to `-active` variants; phase pill + canvas wrap state sweeps verified; win-streak/recent-streak `tier-hot` idle pulses remain on legacy class names
+- Counter reset to **0** — next turn resumed BUILD MODE on TASK-223
+
+**Post-DEBUG-47 full ready-glow + canvas sweep verified (TASK-208–222)** — panel toggles, phase pill states, App HUD toggles, and canvas wrap surfaces now use `-active` + standalone entry pulses.
+
+## TASK-222 Shipped (Session 335)
+
+- `src/lib/spinActiveEntryPulse.js` — already present; `shouldSpinActiveEntryPulse()` when wheel spin vignette newly activates
+- `src/App.jsx` — persistent canvas spin state moved to `spin-active-active`; entry flash via standalone `spin-active-entry-pulse` (620ms)
+- `src/index.css` — renamed persistent vignette ring/ambient/canvas filter selectors to `-active`; standalone entry-pulse on canvas (base/light/neon)
+
+**Canvas wrap state sweep complete (TASK-221–222)** — settle rim glow and spin vignette now use `-active` + standalone entry pulses.
+
+## TASK-221 Shipped (Session 335)
+
+- `src/lib/settleRimGlowEntryPulse.js` — already present; `shouldSettleRimGlowEntryPulse()` when settle rim glow newly activates on reveal
+- `src/App.jsx` — persistent canvas rim state moved to `settle-rim-glow-active`; entry flash via standalone `settle-rim-glow-entry-pulse` (620ms)
+- `src/index.css` — renamed persistent canvas filter rule to `-active`; standalone entry-pulse on canvas (base/light/neon)
+
+## TASK-220 Shipped (Session 335)
+
+- `src/lib/shortcutsOverlayReadyEntryPulse.js` — already present; `shouldShortcutsOverlayReadyEntryPulse()` when shortcuts hint glow newly activates during betting
+- `src/App.jsx` — persistent hint glow moved to `shortcuts-ready-glow-active`; entry flash via standalone `shortcuts-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.shortcuts-help-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+**App HUD toggle ready-glow sweep complete (TASK-218–220)** — theme, audio, and shortcuts toggles now use `-active` + standalone entry pulses.
+
+## TASK-219 Shipped (Session 335)
+
+- `src/lib/audioToggleReadyEntryPulse.js` — already present; `shouldAudioToggleReadyEntryPulse()` when audio toggle glow newly activates while muted
+- `src/App.jsx` — persistent toggle glow moved to `audio-toggle-ready-glow-active`; entry flash via standalone `audio-toggle-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.audio-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-218 Shipped (Session 335)
+
+- `src/lib/themeToggleReadyEntryPulse.js` — already present; `shouldThemeToggleReadyEntryPulse()` when theme toggle glow newly activates after first round
+- `src/App.jsx` — persistent toggle glow moved to `theme-toggle-ready-glow-active`; entry flash via standalone `theme-toggle-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.theme-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-217 Shipped (Session 335)
+
+- `src/lib/lockCountdownUrgentEntryPulse.js` — already present; `shouldLockCountdownUrgentEntryPulse()` when countdown ring urgency newly activates
+- `src/ui/PhasePill.jsx` — persistent wrap urgency moved to `countdown-urgent-active`; entry flash via standalone `countdown-urgent-entry-pulse` on wrap (620ms)
+- `src/index.css` — renamed stroke + idle ring pulse selectors to `-active`; standalone entry-pulse on progress ring (base/light/neon)
+
+**Phase pill state sweep complete (TASK-214–217)** — betting glow, spin glow, lock urgency, and countdown urgency now use `-active` + standalone entry pulses.
+
+## TASK-216 Shipped (Session 335)
+
+- `src/lib/lockPhasePillUrgencyEntryPulse.js` — already present; `shouldLockPhasePillUrgencyEntryPulse()` when lock phase urgency newly activates
+- `src/ui/PhasePill.jsx` — persistent wrap urgency moved to `lock-phase-urgency-active`; entry flash via standalone `lock-phase-urgency-entry-pulse` on wrap (620ms)
+- `src/index.css` — renamed idle urgency selectors on `.phase-pill-wrap` to `-active`; standalone entry-pulse selectors (base/light/neon); strong label tint rules updated
+
+## TASK-215 Shipped (Session 335)
+
+- `src/lib/spinPhasePillEntryPulse.js` — already present; `shouldSpinPhasePillEntryPulse()` when spin phase pill glow newly activates
+- `src/ui/PhasePill.jsx` — persistent wrap glow moved to `spin-phase-glow-active`; entry flash via `spin-phase-entry-pulse` on wrap (620ms)
+- `src/index.css` — renamed idle glow selectors on `.phase-pill-wrap` to `-active`; `:not()` guard suppresses infinite glow during entry pulse; strong label tint rules updated (base/light/neon)
+
+## TASK-214 Shipped (Session 335)
+
+- `src/lib/bettingPhasePillEntryPulse.js` — already present; `shouldBettingPhasePillEntryPulse()` when betting phase pill glow newly activates
+- `src/ui/PhasePill.jsx` — persistent wrap glow moved to `betting-phase-glow-active`; entry flash via `betting-phase-entry-pulse` on wrap (620ms)
+- `src/index.css` — renamed idle glow selectors on `.phase-pill-wrap` to `-active`; `:not()` guard suppresses infinite glow during entry pulse; strong label tint rules updated (base/light/neon)
+
+## TASK-213 Shipped (Session 335)
+
+- `src/lib/fairnessCustodyBadgeReadyEntryPulse.js` — already present; `shouldFairnessCustodyBadgeReadyEntryPulse()` when custody badge glow newly activates
+- `src/ui/FairnessPanel.jsx` — persistent badge glow moved to `fairness-custody-badge-glow-active`; entry flash via standalone `fairness-custody-badge-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.fairness-custody-badge` to `-active`; standalone entry-pulse selectors (base/light/neon)
+
+## TASK-212 Shipped (Session 335)
+
+- `src/lib/installPromptReadyEntryPulse.js` — already present; `shouldInstallPromptReadyEntryPulse()` when install prompt glow newly activates
+- `src/ui/InstallPrompt.jsx` — persistent panel glow moved to `install-prompt-ready-glow-active`; entry flash via standalone `install-prompt-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.install-prompt-panel` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon/portrait)
+
+**HUD panel ready-glow sweep complete (TASK-208–212)** — favorites, fairness toggle, save preset, payout toast, and install prompt now use `-active` + standalone entry pulses.
+
+## TASK-211 Shipped (Session 335)
+
+- `src/lib/payoutToastPendingReadyEntryPulse.js` — already present; `shouldPayoutToastPendingReadyEntryPulse()` when payout pending glow newly activates
+- `src/ui/PayoutToast.jsx` — layer state `payout-toast-ready-glow-active`; pending orb glow `payout-toast-pending-glow-active`; entry flash via standalone `payout-toast-pending-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle pending-glow selectors to `-active`; standalone entry-pulse selectors (base/light/neon)
+
+## TASK-210 Shipped (Session 335)
+
+- `src/lib/savePresetReadyEntryPulse.js` — already present; `shouldSavePresetReadyEntryPulse()` when save preset button glow newly activates
+- `src/ui/FavoriteBetsPanel.jsx` — persistent save button glow moved to `save-preset-ready-glow-active`; entry flash via standalone `save-preset-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.favorite-save-btn` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-209 Shipped (Session 335)
+
+- `src/lib/fairnessPanelReadyEntryPulse.js` — already present; `shouldFairnessPanelReadyEntryPulse()` when fairness toggle glow newly activates
+- `src/ui/FairnessPanel.jsx` — persistent toggle glow moved to `fairness-ready-glow-active`; entry flash via standalone `fairness-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.fairness-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-208 Shipped (Session 335)
+
+- `src/lib/favoritesPanelReadyEntryPulse.js` — already present; `shouldFavoritesPanelReadyEntryPulse()` when favorites toggle glow newly activates
+- `src/ui/FavoriteBetsPanel.jsx` — persistent toggle glow moved to `favorites-ready-glow-active`; entry flash via standalone `favorites-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.favorite-bets-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## DEBUG-47 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1227** passed · vitest **1188** passed (274 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.47 KB / 10 KB** · app **70.06 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-196–207 entry-pulse / ready-glow modules; BettingBoard + LockPhaseBanner + SessionStatsPanel ready-glow surfaces now use `-active` persistent classes with standalone entry pulses; five HUD panel ready-glow hooks remain (`favorites`, `fairness`, `payout-toast`, `install-prompt`, `save-preset`)
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-208
+
+**Post-DEBUG-46 ready-glow sweep verified (TASK-196–207)** — balance low, lock banner, stats toggle, and BettingBoard action/status ready-glow surfaces now use `-active` + standalone entry pulses.
+
+## TASK-207 Shipped (Session 335)
+
+- `src/lib/statsPanelReadyEntryPulse.js` — already present; `shouldStatsPanelReadyEntryPulse()` when stats toggle glow newly activates
+- `src/ui/SessionStatsPanel.jsx` — persistent toggle glow moved to `stats-ready-glow-active`; entry flash via standalone `stats-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.session-stats-toggle` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-206 Shipped (Session 335)
+
+- `src/lib/lockBannerSettleEntryPulse.js` — already present; `shouldLockBannerSettleEntryPulse()` when lock banner ready glow newly activates
+- `src/ui/LockPhaseBanner.jsx` — persistent banner glow moved to `lock-banner-ready-glow-active`; entry flash via standalone `lock-banner-settle-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.lock-phase-banner` to `-active`; chained with `lock-banner-in`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-205 Shipped (Session 335)
+
+- `src/lib/balanceLowEntryPulse.js` — already present; `shouldBalanceLowEntryPulse()` when low-balance glow newly activates
+- `src/ui/BettingBoard.jsx` — persistent wallet glow moved to `balance-low-glow-active` (guarded against settle/faucet entry pulses); entry flash via standalone `balance-low-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.balance-value` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-204 Shipped (Session 335)
+
+- `src/lib/statusLineReadyEntryPulse.js` — already present; `shouldStatusLineReadyEntryPulse()` when status line ready glow newly activates during betting
+- `src/ui/BettingBoard.jsx` — persistent status glow moved to `status-line-ready-glow-active`; entry flash via standalone `status-line-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.status-line` to `-active`; `:not()` guards suppress infinite glow during status line entry pulses (base/light/neon)
+
+## TASK-203 Shipped (Session 335)
+
+- `src/lib/faucetReadyEntryPulse.js` — already present; `shouldFaucetReadyEntryPulse()` when faucet becomes available
+- `src/ui/BettingBoard.jsx` — persistent faucet button glow moved to `faucet-ready-glow-active`; entry flash via standalone `faucet-ready-entry-pulse` (720ms)
+- `src/index.css` — renamed idle glow selectors on `.btn.gold` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+**Action-button ready-glow sweep complete (TASK-200–203)** — repeat, undo, clear, and faucet buttons now use `-active` + standalone entry pulses.
+
+## TASK-202 Shipped (Session 335)
+
+- `src/lib/clearReadyEntryPulse.js` — already present; `shouldClearReadyEntryPulse()` when clear becomes available
+- `src/ui/BettingBoard.jsx` — persistent clear button glow moved to `clear-ready-glow-active`; entry flash via standalone `clear-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.btn-clear` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-201 Shipped (Session 335)
+
+- `src/lib/undoRoundReadyEntryPulse.js` — already present; `shouldUndoRoundReadyEntryPulse()` when undo becomes available
+- `src/ui/BettingBoard.jsx` — persistent undo button glow moved to `undo-ready-glow-active`; entry flash via standalone `undo-round-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.btn-undo` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-200 Shipped (Session 335)
+
+- `src/lib/repeatRoundReadyEntryPulse.js` — already present; `shouldRepeatRoundReadyEntryPulse()` when repeat becomes available
+- `src/ui/BettingBoard.jsx` — persistent repeat button glow moved to `repeat-ready-glow-active`; entry flash via standalone `repeat-round-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.btn-repeat` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-199 Shipped (Session 335)
+
+- `src/lib/scaleReadyEntryPulse.js` — already present; `shouldScaleReadyEntryPulse()` when scale cluster glow newly activates
+- `src/ui/BettingBoard.jsx` — persistent cluster glow moved to `scale-ready-glow-active`; entry flash via standalone `scale-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.stake-scale-cluster` to `-active`; `:not()` guards suppress infinite glow during scale board/ready entry pulses (base/light/neon)
+
+## TASK-198 Shipped (Session 335)
+
+- `src/lib/boardModeTabReadyEntryPulse.js` — already present; `shouldBoardModeTabReadyEntryPulse()` when active layout tab glow newly activates (classic + racetrack refs)
+- `src/ui/BettingBoard.jsx` — persistent tab glow moved to `board-mode-tab-glow-active`; entry flash via standalone `board-mode-tab-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors on `.board-mode-tab.active` to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-197 Shipped (Session 335)
+
+- `src/lib/resultPillReadyEntryPulse.js` — already present; `shouldResultPillReadyEntryPulse()` when awaiting-first-spin glow newly activates
+- `src/ui/BettingBoard.jsx` — persistent pill glow moved to `result-pill-ready-glow-active`; entry flash via standalone `result-pill-ready-entry-pulse` (620ms)
+- `src/index.css` — renamed idle `.result-text` glow selectors to `-active`; `:not()` guard suppresses infinite glow during entry pulse (base/light/neon)
+
+## TASK-196 Shipped (Session 335)
+
+- `src/lib/stakeRiskWarningEntryPulse.js` — already present; header warning entry paired with `shouldStakeRiskEntryPulse()` on `showStakeWarning` (620ms shared timeout)
+- `src/ui/BettingBoard.jsx` — persistent header warning moved to `stake-risk-warning-active`; entry flash via standalone `stake-risk-warning-entry-pulse`
+- `src/index.css` — renamed persistent header/staked-strong selectors to `-active`; standalone entry-pulse selectors (base/light/neon)
+
+## TASK-195 Shipped (Session 335)
+
+- `src/lib/cycleDropUrgencyEntryPulse.js` — already present; `shouldCycleDropUrgencyEntryPulse()` when final-seconds drop urgency newly begins
+- `src/ui/BettingBoard.jsx` — persistent urgency moved to `cycle-drop-urgency-active`; entry flash via standalone `cycle-drop-urgency-entry-pulse` (620ms)
+- `src/index.css` — renamed idle urgency/fill/label selectors to `-active`; standalone entry-pulse selectors preserved (base/light/neon)
+
+## TASK-194 Shipped (Session 335)
+
+- `src/lib/mobileDrawerTabEntryPulse.js` — already present; `shouldMobileDrawerTabEntryPulse()` when drawer open glow newly activates on toggle tab
+- `src/ui/BettingBoard.jsx` — persistent tab glow moved to `drawer-open-glow-active`; entry flash via standalone `mobile-drawer-tab-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow selectors to `-active`; `:not()` guards suppress infinite glow during tab/collapse entry pulses (portrait media, base/light/neon)
+
+## TASK-193 Shipped (Session 335)
+
+- `src/lib/chipRackBettingGlowEntryPulse.js` — already present; `shouldChipRackBettingGlowEntryPulse()` when rack betting glow newly activates
+- `src/ui/BettingBoard.jsx` — persistent rack glow moved to `chip-rack-betting-glow-active`; entry flash via standalone `chip-rack-betting-glow-entry-pulse` (620ms)
+- `src/index.css` — renamed idle glow/hover selectors to `-active`; `:not()` guards suppress infinite glow during entry/select pulses (base/light/neon)
+
+## DEBUG-46 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1227** passed · vitest **1188** passed (274 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.44 KB / 10 KB** · app **70.05 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-189–192 entry-pulse modules (`spin-focus/spin-dim-soft/settle-reveal-entry-pulse`, `winning-cascade-entry-pulse`); panel dim trio + winning-cell now use `-active` persistent classes with standalone entry pulses; ref+timeout edge-trigger patterns safe across `BettingBoard`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-193
+
+**Post-DEBUG-45 panel-state entry-pulse sweep verified (TASK-189–192)** — spin-focus, spin-dim-soft, settle-reveal, and winning-cell surfaces now use `-active` + standalone entry pulses.
+
+## TASK-192 Shipped (Session 335)
+
+- `src/lib/winningCellCascadeEntryPulse.js` — already present; cascade entry pulse on lead cell only (620ms)
+- `src/ui/BettingBoard.jsx` — persistent winning glow moved to `winning-cell-active`; cascade entry pulse standalone on lead cell
+- `src/index.css` — renamed `.bet-cell/.inside-zone.winning-cell` → `winning-cell-active`; standalone `winning-cascade-entry-pulse` selectors (base/light/neon); idle infinite glow retained on `-active` state
+
+**Panel dim + settle entry-pulse trio complete (TASK-189–191)** — spin-focus, spin-dim-soft, and settle-reveal panel states now use `-active` + standalone entry pulses.
+
+## TASK-191 Shipped (Session 335)
+
+- `src/lib/settleRevealEntryPulse.js` — already present; `shouldSettleRevealEntryPulse()` when settle-reveal newly becomes active
+- `src/ui/BettingBoard.jsx` — persistent panel state moved to `settle-reveal-active`; entry flash via standalone `settle-reveal-entry-pulse` (620ms)
+- `src/index.css` — renamed `.betting-panel.settle-reveal` → `settle-reveal-active`; standalone entry-pulse selectors for panel/holo-border (base/light/neon)
+
+## TASK-190 Shipped (Session 335)
+
+- `src/lib/spinDimSoftEntryPulse.js` — already present; `shouldSpinDimSoftEntryPulse()` when soft spin dim newly becomes active
+- `src/ui/BettingBoard.jsx` — persistent panel dim moved to `spin-dim-soft-active`; entry flash via standalone `spin-dim-soft-entry-pulse` (620ms)
+- `src/index.css` — renamed `.betting-panel.spin-dim-soft` → `spin-dim-soft-active`; standalone entry-pulse selectors (base/light/neon)
+
+## TASK-189 Shipped (Session 335)
+
+- `src/lib/spinFocusEntryPulse.js` — already present; `shouldSpinFocusEntryPulse()` when spin-focus dim newly becomes active
+- `src/ui/BettingBoard.jsx` — persistent panel dim moved to `spin-focus-active`; entry flash via standalone `spin-focus-entry-pulse` (620ms)
+- `src/index.css` — renamed `.betting-panel.spin-focus` → `spin-focus-active`; standalone entry-pulse selectors (base/light/neon/mobile-drawer)
+- `verify.js` — pointer-events assertion updated for `spin-focus-active *`
+
+## TASK-188 Shipped (Session 335)
+
+- `src/lib/resultPillRevealEntryPulse.js` — `shouldResultPillRevealEntryPulse()` when result reveal newly becomes eligible
+- `src/lib/resultPillRevealEntryPulse.test.ts` — result reveal entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `result-reveal-active` + `result-fly-in-entry-pulse` replace `result-reveal` / `result-fly-in` on result pill
+- `src/index.css` — renamed selectors/keyframes (fly-in, ball pop, mobile/neon/light variants)
+
+## TASK-187 Shipped (Session 335)
+
+- `src/lib/pathwayCascadeEntryPulse.js` — already present; `shouldPathwayCascadeEntryPulse()` when pathway column cascade newly begins
+- `src/ui/BettingBoard.jsx` — persistent column state moved to `pathway-cascade-active`; entry flash via `pathway-cascade-entry-pulse` only (620ms timeout added)
+- `src/index.css` — standalone entry-pulse selector chained with pathway-cascade keyframes
+
+## TASK-186 Shipped (Session 335)
+
+- `src/lib/winningCellCascadeEntryPulse.js` — already present; `shouldWinningCellCascadeEntryPulse()` when winning cascade newly begins on settle reveal
+- `src/ui/BettingBoard.jsx` — persistent stagger state moved to `winning-cascade-active`; entry flash via `winning-cascade-entry-pulse` on lead cell only (620ms)
+- `src/index.css` — standalone entry-pulse selectors; active-state + ripple delay rules renamed from `winning-cascade` (base/neon/light)
+
+## TASK-185 Shipped (Session 335)
+
+- `src/lib/ghostChipFallingEntryPulse.js` — already present; `shouldGhostChipFallingEntryPulse()` when ghost chip newly starts falling
+- `src/ui/GhostBetLayer.jsx` — persistent falling state moved to `ghost-chip-falling-active`; entry flash via `ghost-chip-falling-entry-pulse` only (620ms)
+- `src/index.css` — standalone entry-pulse selector chained with drop-spring; removed idle `ghost-chip-falling` selectors
+
+## TASK-184 Shipped (Session 335)
+
+- `src/lib/ghostChipLandedEntryPulse.js` — already present; `shouldGhostChipLandedEntryPulse()` when ghost chip newly lands
+- `src/ui/GhostBetLayer.jsx` — persistent landed state moved to `ghost-chip-landed-active`; entry flash via `ghost-chip-landed-entry-pulse` only (620ms)
+- `src/index.css` — standalone entry-pulse selector; landed opacity rule renamed from `ghost-chip-landed`
+
+## TASK-183 Shipped (Session 335)
+
+- `src/lib/pathwaySourceEntryPulse.js` — already present; `shouldPathwaySourceEntryPulse()` when pathway-source becomes active on a cell
+- `src/ui/BettingBoard.jsx` — persistent hover state moved to `pathway-source-active`; entry flash via `pathway-source-entry-pulse` only (620ms)
+- `src/index.css` — standalone entry-pulse selector; active-state, sector-glow, and neon-underline rules renamed from `pathway-source`
+
+## TASK-182 Shipped (Session 335)
+
+- `src/lib/pathwayLitEntryPulse.js` — already present; `shouldPathwayLitEntryPulse()` when pathway-lit becomes active on a cell
+- `src/ui/BettingBoard.jsx` — persistent hover state moved to `pathway-lit-active`; entry flash via `pathway-lit-entry-pulse` only (620ms)
+- `src/index.css` — standalone entry-pulse selector; active-state + sector-glow rules renamed from `pathway-lit`
+
+## TASK-181 Shipped (Session 335)
+
+- `src/lib/dropTargetEntryPulse.js` — already present; `shouldDropTargetEntryPulse()` when cell newly becomes drop target
+- `src/ui/BettingBoard.jsx` — persistent drag state moved to `drop-target-active`; entry flash via `drop-target-entry-pulse` only (620ms)
+- `src/index.css` — standalone entry-pulse selectors; inside-zone/bet-cell active-state rules renamed from `drop-target`
+
+## TASK-180 Shipped (Session 335)
+
+- `src/lib/chipUndoClearEntryPulse.js` — already present; `shouldChipUndoClearEntryPulse()` when undo clear newly activates on a cell
+- `src/ui/BettingBoard.jsx` — removed always-on `chip-undone-clear` from BetCell/InsideZone; entry pulse only via `chip-undone-clear-entry-pulse` (620ms)
+- `src/index.css` — single chained clear rule with light/neon theme overrides
+
+## TASK-179 Shipped (Session 335)
+
+- `src/lib/chipUndoRecoilEntryPulse.js` — already present; `shouldChipUndoRecoilEntryPulse()` when undo recoil newly activates on a cell
+- `src/ui/BettingBoard.jsx` — removed always-on `chip-undone-recoil` from BetCell/InsideZone; entry pulse only via `chip-undone-recoil-entry-pulse` (620ms)
+- `src/index.css` — single chained recoil rule + stack-chip recoil child selector updated to entry class
+
+## TASK-178 Shipped (Session 335)
+
+- `src/lib/chipLandedEntryPulse.js` — already present; `shouldChipLandedEntryPulse()` when a chip newly lands on a cell
+- `src/ui/BettingBoard.jsx` — removed always-on `chip-landed` from BetCell/InsideZone; entry pulse only via `chip-landed-entry-pulse` (620ms)
+- `src/index.css` — single chained land-bounce + flash rule; removed idle `chip-landed` selectors
+
+## DEBUG-45 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 846 modules)
+- Tests: verify **1227** passed · vitest **1187** passed (273 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.55 KB / 10 KB** · app **70.06 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-167–177 entry-pulse modules; zero always-on pulse/flash JSX hooks remain; ref+timeout edge-trigger patterns safe across `BettingBoard`, `App`, `GameContext`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-178
+
+**Post-DEBUG-44 entry-pulse sweep verified (TASK-167–177)** — brand subtitle through settle header bloom now use one-shot entry variants only.
+
+## TASK-177 Shipped (Session 335)
+
+- `src/lib/settleHeaderBloomEntryPulse.js` — already present; `shouldSettleHeaderBloomEntryPulse()` when settle-reveal header bloom key changes
+- `src/ui/BettingBoard.jsx` — removed always-on `settle-reveal-bloom`; entry pulse only via `settle-header-bloom-entry-pulse` (720ms)
+- `src/index.css` — single chained header bloom rule with light/neon theme overrides
+
+## TASK-176 Shipped (Session 335)
+
+- `src/lib/repeatFlashEntryPulse.js` — already present; `shouldRepeatFlashEntryPulse()` when repeat restores a cell
+- `src/ui/BettingBoard.jsx` — removed always-on `repeat-flash` class from BetCell/InsideZone; entry pulse only via `repeat-flash-entry-pulse` (620ms)
+- `src/index.css` — single chained cell flash rule; removed idle `repeat-flash` selectors
+
+## TASK-175 Shipped (Session 335)
+
+- `src/lib/balanceSettleLossEntryPulse.js` — `shouldBalanceSettleLossEntryPulse()` when settle key steps up with loss tone
+- `src/lib/balanceSettleLossEntryPulse.test.ts` — balance settle loss entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `balance-settle-loss-entry-pulse` replaces always-on `balance-pulse-loss` + layered loss entry brightness (850ms timeout)
+- `src/index.css` — chained red settle flash with light/neon theme overrides
+
+**Balance settle entry-pulse sweep complete (TASK-174–175)** — win/loss wallet flashes now use one-shot entry variants only.
+
+## TASK-174 Shipped (Session 335)
+
+- `src/lib/balanceSettleWinEntryPulse.js` — `shouldBalanceSettleWinEntryPulse()` when settle key steps up with win tone
+- `src/lib/balanceSettleWinEntryPulse.test.ts` — balance settle win entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `balance-settle-win-entry-pulse` replaces always-on `balance-pulse-win` + layered win entry brightness (850ms timeout)
+- `src/index.css` — chained green settle flash with light/neon theme overrides; loss settle rules preserved for TASK-175
+
+## TASK-173 Shipped (Session 335)
+
+- `src/lib/betClearShakeEntryPulse.js` — `shouldBetClearShakeEntryPulse()` when clear refunds staked chips
+- `src/lib/betClearShakeEntryPulse.test.ts` — bet clear shake entry pulse trigger unit test
+- `src/context/GameContext.jsx` — uses entry lib to bump `betClearShake` signal key
+- `src/ui/BettingBoard.jsx` — `bet-clear-shake-entry-pulse` replaces `bet-clear-shake` on betting panel (480ms)
+- `src/index.css` — panel shake animation with light/neon theme box-shadow overrides
+
+## TASK-172 Shipped (Session 335)
+
+- `src/lib/statusLineEntryPulse.js` — `shouldStatusLineEntryPulse()` for non-empty status messages
+- `src/lib/statusLineEntryPulse.test.ts` — status line entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `status-line-entry-pulse` replaces `status-line-flash` via ref+effect on `message` (520ms, skip-first preserved)
+- `src/index.css` — one-shot status highlight with light/neon theme overrides; ready-glow `:not()` guards updated
+
+## TASK-171 Shipped (Session 335)
+
+- `src/lib/stakeRiskEntryPulse.js` — `shouldStakeRiskEntryPulse()` when at-risk warning becomes active
+- `src/lib/stakeRiskEntryPulse.test.ts` — stake risk entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `stake-risk-entry-pulse` replaces infinite `stake-risk-pulse` on staked label; shared 620ms effect with header warning entry pulse
+- `src/index.css` — one-shot staked-label flash with light/neon theme overrides; removed idle infinite stake-risk-pulse rule
+
+**Non-entry pulse JSX sweep complete (TASK-167–171)** — all remaining `*-pulse` JSX hooks now use one-shot entry variants.
+
+## TASK-170 Shipped (Session 335)
+
+- `src/lib/faucetRefillEntryPulse.js` — `shouldFaucetRefillEntryPulse()` when faucet grants funds
+- `src/lib/faucetRefillEntryPulse.test.ts` — faucet refill entry pulse trigger unit test
+- `src/context/GameContext.jsx` — uses entry lib to bump `faucetRefillPulse` signal key
+- `src/ui/BettingBoard.jsx` — `faucet-refill-entry-pulse` replaces `faucet-refill-pulse` on balance value (720ms)
+- `src/index.css` — wallet refill flash with light/neon theme overrides
+
+## TASK-169 Shipped (Session 335)
+
+- `src/lib/cycleTrackTickEntryPulse.js` — `shouldCycleTrackTickEntryPulse()` when floored cycle second changes
+- `src/lib/cycleTrackTickEntryPulse.test.ts` — cycle track tick entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `cycle-track-tick-entry-pulse` replaces `cycle-track-tick-pulse` via ref+effect on `clock.cycleSecond` (580ms, skip-first-tick preserved)
+- `src/index.css` — fill/label tick flash with light/neon theme overrides
+
+## TASK-168 Shipped (Session 335)
+
+- `src/lib/qualityBadgeTierEntryPulse.js` — `shouldQualityBadgeTierEntryPulse()` on upward tier step (low→medium, medium→high)
+- `src/lib/qualityBadgeTierEntryPulse.test.ts` — quality badge tier entry pulse trigger unit test
+- `src/App.jsx` — `quality-badge-tier-entry-pulse` replaces `quality-badge-tier-pulse` on quality badge via ref+effect on `qualityTier` (680ms)
+- `src/index.css` — tier step-up flash with high-tier, light, and neon theme overrides
+
+## TASK-167 Shipped (Session 335)
+
+- `src/lib/brandSubtitleEntryPulse.js` — `shouldBrandSubtitleEntryPulse()` when UI theme changes
+- `src/lib/brandSubtitleEntryPulse.test.ts` — brand subtitle entry pulse trigger unit test
+- `src/App.jsx` — `brand-subtitle-entry-pulse` replaces `brand-subtitle-pulse` on theme subtitle via ref+effect on `uiTheme`
+- `src/index.css` — gold one-shot subtitle flash with light/neon theme overrides
+
+## TASK-166 Shipped (Session 335)
+
+- `src/lib/phaseLabelEntryPulse.js` — `shouldPhaseLabelEntryPulse()` when ball phase label text changes
+- `src/lib/phaseLabelEntryPulse.test.ts` — phase label entry pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `phase-label-entry-pulse` replaces `phase-label-pulse` on phase label span via ref+effect on `phaseLabel`
+- `src/index.css` — gold one-shot label flash (0.58s) with light/neon theme overrides
+
+**Phase pill entry-pulse sweep complete (TASK-165–166)** — phase glows, countdown urgency, and phase label now use one-shot entry variants.
+
+## TASK-165 Shipped (Session 335)
+
+- `src/lib/bettingPhasePillEntryPulse.js` — `shouldBettingPhasePillEntryPulse()` when betting phase glow newly activates
+- `src/lib/lockPhasePillUrgencyEntryPulse.js` — `shouldLockPhasePillUrgencyEntryPulse()` when lock urgency newly activates
+- `src/lib/spinPhasePillEntryPulse.js` — `shouldSpinPhasePillEntryPulse()` when spin phase glow newly activates
+- `src/lib/*EntryPulse.test.ts` (×3) — phase pill entry pulse trigger unit tests
+- `src/ui/PhasePill.jsx` — `betting-phase-entry-pulse`, `lock-phase-urgency-entry-pulse`, `spin-phase-entry-pulse` replace pulse variants
+- `src/index.css` — phase pill one-shot keyframes with light/neon theme overrides; idle glows suppressed during entry
+
+**Phase pill entry-pulse sweep complete (TASK-165)** — betting, lock urgency, and spin phase surfaces now use one-shot entry variants alongside countdown entry pulses.
+
+## TASK-164 Shipped (Session 335)
+
+- `src/lib/winStreakTierEntryPulse.js` — `shouldWinStreakTierEntryPulse()` on upward win-streak tier steps (mild/warm; hot uses existing hot-entry)
+- `src/lib/winStreakTierEntryPulse.test.ts` — win streak tier entry pulse trigger unit test
+- `src/lib/recentStreakTierEntryPulse.js` — `shouldRecentStreakTierEntryPulse()` on upward color-streak tier steps
+- `src/lib/recentStreakTierEntryPulse.test.ts` — recent streak tier entry pulse trigger unit test
+- `src/ui/WinStreakBadge.jsx` — `win-streak-tier-entry-pulse` replaces `win-streak-tier-pulse`
+- `src/ui/RecentResultsRail.jsx` — `recent-streak-tier-entry-pulse` replaces `recent-streak-tier-pulse`
+- `src/index.css` — tier entry keyframes with light/neon theme overrides (680ms timing preserved)
+
+**Streak tier entry-pulse pair complete (TASK-164)** — mild/warm tier steps and hot-tier entry pulses now use one-shot entry variants on both badges.
+
+## TASK-163 Shipped (Session 335)
+
+- `src/index.css` — purged orphaned `lock-banner-ready-pulse` family (base/neon/light rules + keyframes); simplified lock-banner glow `:not()` guards to settle-entry only
+- `src/index.css` — purged orphaned `payout-toast-ready-pulse` family (base/neon/light rules + keyframes); `payout-toast-sync-entry-pulse` retained as active hook
+- Build + verify green post-purge; css bundle **30.58 KB gzip** (−0.22 KB vs DEBUG-44)
+
+## DEBUG-44 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 843 modules)
+- Tests: verify **1227** passed · vitest **1172** passed (258 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.08 KB / 10 KB** · app **68.38 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-149–162 entry-pulse modules (`balance-low-entry-pulse`, `status-line-ready-entry-pulse`, `result-pill-ready-entry-pulse`, `stats-ready-entry-pulse`, `favorites-ready-entry-pulse`, `save-preset-ready-entry-pulse`, `fairness-ready-entry-pulse`, `fairness-custody-badge-ready-entry-pulse`, `shortcuts-ready-entry-pulse`, `audio-toggle-ready-entry-pulse`, `theme-toggle-ready-entry-pulse`, `install-prompt-ready-entry-pulse`, `payout-toast-pending-ready-entry-pulse`, `board-mode-tab-entry-pulse`); zero `*-ready-pulse` class hooks remain in JSX; ref+timeout edge-trigger patterns safe across `BettingBoard`, `App`, panel components
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-163
+
+**Ready-pulse → entry-pulse migration verified (TASK-121–162)** — full sweep complete; orphaned legacy CSS candidates flagged for TASK-163 purge (`lock-banner-ready-pulse`, `payout-toast-ready-pulse` families).
+
+## TASK-162 Shipped (Session 335)
+
+- `src/lib/boardModeTabReadyEntryPulse.js` — `shouldBoardModeTabReadyEntryPulse()` when layout tab newly becomes actionable
+- `src/lib/boardModeTabReadyEntryPulse.test.ts` — board mode tab ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `board-mode-tab-entry-pulse` replaces `board-mode-tab-pulse` on classic/racetrack tabs via ref+effect on tab glow
+- `src/index.css` — gold one-shot tab flash with light/neon theme overrides; idle board-mode-tab-glow suppressed during entry
+
+**Ready-pulse → entry-pulse migration sweep complete (TASK-149–162)** — all UI `*-ready-pulse` class hooks migrated to one-shot entry variants.
+
+## TASK-161 Shipped (Session 335)
+
+- `src/lib/payoutToastPendingReadyEntryPulse.js` — `shouldPayoutToastPendingReadyEntryPulse()` when payout pending glow newly becomes actionable
+- `src/lib/payoutToastPendingReadyEntryPulse.test.ts` — payout toast pending ready entry pulse trigger unit test
+- `src/ui/PayoutToast.jsx` — `payout-toast-pending-ready-entry-pulse` replaces `payout-toast-pending-ready-pulse` on pending glow layer via ref+effect on `payoutToastReadyGlow`
+- `src/index.css` — gold one-shot pending glow flash with light/neon theme overrides; idle payout-toast-pending-glow suppressed during entry
+
+## TASK-160 Shipped (Session 335)
+
+- `src/lib/installPromptReadyEntryPulse.js` — `shouldInstallPromptReadyEntryPulse()` when install prompt newly becomes actionable
+- `src/lib/installPromptReadyEntryPulse.test.ts` — install prompt ready entry pulse trigger unit test
+- `src/ui/InstallPrompt.jsx` — `install-prompt-ready-entry-pulse` replaces `install-prompt-ready-pulse` on install panel via ref+effect on `installPromptReadyGlow`
+- `src/index.css` — teal one-shot panel flash (0.72s) with light/neon theme overrides and reduced-motion parity; idle install-prompt-ready-glow suppressed during entry
+
+## TASK-159 Shipped (Session 335)
+
+- `src/lib/themeToggleReadyEntryPulse.js` — `shouldThemeToggleReadyEntryPulse()` when theme toggle newly becomes actionable
+- `src/lib/themeToggleReadyEntryPulse.test.ts` — theme toggle ready entry pulse trigger unit test
+- `src/App.jsx` — `theme-toggle-ready-entry-pulse` replaces `theme-toggle-ready-pulse` on theme button via ref+effect on `themeToggleReadyGlow`
+- `src/index.css` — gold one-shot theme button flash with light/neon theme overrides; idle theme-toggle-ready-glow suppressed during entry
+
+**Top HUD ready-pulse sweep complete (TASK-157–159)** — shortcuts, audio, and theme toggle surfaces now use one-shot entry variants.
+
+## TASK-158 Shipped (Session 335)
+
+- `src/lib/audioToggleReadyEntryPulse.js` — `shouldAudioToggleReadyEntryPulse()` when mute toggle newly becomes actionable
+- `src/lib/audioToggleReadyEntryPulse.test.ts` — audio toggle ready entry pulse trigger unit test
+- `src/App.jsx` — `audio-toggle-ready-entry-pulse` replaces `audio-toggle-ready-pulse` on mute button via ref+effect on `audioToggleReadyGlow`
+- `src/index.css` — coral one-shot mute button flash with light/neon theme overrides; idle audio-toggle-ready-glow suppressed during entry
+
+## TASK-157 Shipped (Session 335)
+
+- `src/lib/shortcutsOverlayReadyEntryPulse.js` — `shouldShortcutsOverlayReadyEntryPulse()` when shortcuts help newly becomes actionable
+- `src/lib/shortcutsOverlayReadyEntryPulse.test.ts` — shortcuts overlay ready entry pulse trigger unit test
+- `src/App.jsx` — `shortcuts-ready-entry-pulse` replaces `shortcuts-ready-pulse` on ? help toggle via ref+effect on `shortcutsReadyGlow`
+- `src/index.css` — gold one-shot help toggle flash with light/neon theme overrides; idle shortcuts-ready-glow suppressed during entry
+
+## TASK-156 Shipped (Session 335)
+
+- `src/lib/fairnessCustodyBadgeReadyEntryPulse.js` — `shouldFairnessCustodyBadgeReadyEntryPulse()` when custody badge newly becomes actionable
+- `src/lib/fairnessCustodyBadgeReadyEntryPulse.test.ts` — fairness custody badge ready entry pulse trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-custody-badge-ready-entry-pulse` replaces `fairness-custody-badge-ready-pulse` on custody badge via ref+effect on `custodyBadgeGlow`
+- `src/index.css` — gold one-shot badge flash with light/neon theme overrides; idle fairness-custody-badge-glow suppressed during entry
+
+**Fairness panel entry-pulse pair complete (TASK-155–156)** — fairness toggle and custody badge surfaces now have paired one-shot entry pulses.
+
+## TASK-155 Shipped (Session 335)
+
+- `src/lib/fairnessPanelReadyEntryPulse.js` — `shouldFairnessPanelReadyEntryPulse()` when fairness toggle newly becomes actionable
+- `src/lib/fairnessPanelReadyEntryPulse.test.ts` — fairness panel ready entry pulse trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-ready-entry-pulse` replaces `fairness-ready-pulse` on fairness toggle via ref+effect on `fairnessReadyGlow`
+- `src/index.css` — teal one-shot toggle flash with light/neon theme overrides; idle fairness-ready-glow suppressed during entry
+
+## TASK-154 Shipped (Session 335)
+
+- `src/lib/savePresetReadyEntryPulse.js` — `shouldSavePresetReadyEntryPulse()` when save preset newly becomes actionable
+- `src/lib/savePresetReadyEntryPulse.test.ts` — save preset ready entry pulse trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `save-preset-ready-entry-pulse` replaces `save-preset-ready-pulse` on Save button via ref+effect on `savePresetReadyGlow`
+- `src/index.css` — purple one-shot button flash with light/neon theme overrides; idle save-preset-ready-glow suppressed during entry
+
+**Favorites panel entry-pulse pair complete (TASK-153–154)** — favorites toggle and save preset surfaces now have paired one-shot entry pulses.
+
+## TASK-153 Shipped (Session 335)
+
+- `src/lib/favoritesPanelReadyEntryPulse.js` — `shouldFavoritesPanelReadyEntryPulse()` when favorites toggle newly becomes actionable
+- `src/lib/favoritesPanelReadyEntryPulse.test.ts` — favorites panel ready entry pulse trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `favorites-ready-entry-pulse` replaces `favorites-ready-pulse` on favorites toggle via ref+effect on `favoritesReadyGlow`
+- `src/index.css` — gold one-shot toggle flash with light/neon theme overrides; idle favorites-ready-glow suppressed during entry
+
+## TASK-152 Shipped (Session 335)
+
+- `src/lib/statsPanelReadyEntryPulse.js` — `shouldStatsPanelReadyEntryPulse()` when stats toggle newly becomes actionable
+- `src/lib/statsPanelReadyEntryPulse.test.ts` — stats panel ready entry pulse trigger unit test
+- `src/ui/SessionStatsPanel.jsx` — `stats-ready-entry-pulse` replaces `stats-ready-pulse` on stats toggle via ref+effect on `statsReadyGlow` (fixed merged import line)
+- `src/index.css` — teal one-shot toggle flash with light/neon theme overrides; idle stats-ready-glow suppressed during entry
+
+## TASK-151 Shipped (Session 335)
+
+- `src/lib/resultPillReadyEntryPulse.js` — `shouldResultPillReadyEntryPulse()` when result pill newly becomes actionable
+- `src/lib/resultPillReadyEntryPulse.test.ts` — result pill ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `result-pill-ready-entry-pulse` replaces `result-pill-ready-pulse` on result pill via ref+effect on `resultPillReadyGlow`
+- `src/index.css` — gold one-shot `.result-text` flash with light/neon theme overrides; idle result-pill-ready-glow suppressed during entry
+
+**BettingBoard HUD ready-pulse sweep complete (TASK-149–151)** — balance low, status line, and result pill ready pulses now use one-shot entry variants.
+
+## TASK-150 Shipped (Session 335)
+
+- `src/lib/statusLineReadyEntryPulse.js` — `shouldStatusLineReadyEntryPulse()` when status line newly becomes actionable
+- `src/lib/statusLineReadyEntryPulse.test.ts` — status line ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `status-line-ready-entry-pulse` replaces `status-line-ready-pulse` on status line via ref+effect on `statusLineReadyGlow`
+- `src/index.css` — gold one-shot status flash with light/neon theme overrides; idle status-line-ready-glow suppressed during entry (coexists with status-line-flash)
+
+## TASK-149 Shipped (Session 335)
+
+- `src/lib/balanceLowEntryPulse.js` — `shouldBalanceLowEntryPulse()` when balance low glow newly becomes active
+- `src/lib/balanceLowEntryPulse.test.ts` — balance low entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `balance-low-entry-pulse` replaces `balance-low-pulse` on wallet value via ref+effect on `balanceLowGlow`
+- `src/index.css` — coral one-shot wallet flash (0.68s) with light/neon theme overrides; idle balance-low-glow suppressed during entry
+
+## DEBUG-43 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 843 modules)
+- Tests: verify **1227** passed · vitest **1158** passed (244 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.07 KB / 10 KB** · app **68.38 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-135–148 entry-pulse modules (`drawer-meta-entry-pulse`, `mobile-drawer-tab-entry-pulse`, `chip-rack-select-entry-pulse`, `staked-label-entry-pulse`, `stake-commit-entry-pulse`, `batch-stake-entry-pulse`, `repeat-round-entry-pulse`, `favorite-apply-entry-pulse`, `scale-board-entry-pulse`, `scale-ready-entry-pulse`, `clear-ready-entry-pulse`, `undo-round-ready-entry-pulse`, `faucet-ready-entry-pulse`, `repeat-round-ready-entry-pulse`); ref+timeout edge-trigger patterns safe across `BettingBoard` panel header, chip dock, and action buttons
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-149
+
+**Panel header + action entry-pulse sweep complete (TASK-135–148)** — drawer meta/tab, rack select, staked label, stake commit/batch, repeat/favorite apply, scale board/ready, and Clear/Undo/Faucet/Repeat ready surfaces now have paired one-shot entry pulses.
+
+## TASK-148 Shipped (Session 335)
+
+- `src/lib/repeatRoundReadyEntryPulse.js` — `shouldRepeatRoundReadyEntryPulse()` when repeat newly becomes actionable
+- `src/lib/repeatRoundReadyEntryPulse.test.ts` — repeat round ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `repeat-round-ready-entry-pulse` replaces `repeat-round-ready-pulse` on Repeat button via ref+effect on `canRepeatLastRound`
+- `src/index.css` — teal one-shot button flash with light/neon theme overrides; idle repeat-ready-glow suppressed during entry
+
+**Panel action entry-pulse sweep complete (TASK-145–148)** — Clear, Undo, Faucet, and Repeat ready pulses now use one-shot entry variants.
+
+## TASK-147 Shipped (Session 335)
+
+- `src/lib/faucetReadyEntryPulse.js` — `shouldFaucetReadyEntryPulse()` when faucet newly becomes actionable
+- `src/lib/faucetReadyEntryPulse.test.ts` — faucet ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `faucet-ready-entry-pulse` replaces `faucet-ready-pulse` on Refill button via ref+effect on `faucetReadyGlow`
+- `src/index.css` — gold one-shot button flash (0.72s) with light/neon theme overrides; idle faucet-ready-glow suppressed during entry
+
+**Panel action entry-pulse sweep (TASK-145–147)** — Clear, Undo, and Faucet ready pulses now use one-shot entry variants.
+
+## TASK-146 Shipped (Session 335)
+
+- `src/lib/undoRoundReadyEntryPulse.js` — `shouldUndoRoundReadyEntryPulse()` when undo newly becomes actionable
+- `src/lib/undoRoundReadyEntryPulse.test.ts` — undo round ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `undo-round-ready-entry-pulse` replaces `undo-round-ready-pulse` on Undo button via ref+effect on `canUndoBet`
+- `src/index.css` — gold one-shot button flash with light/neon theme overrides; idle undo-ready-glow suppressed during entry
+
+## TASK-145 Shipped (Session 335)
+
+- `src/lib/clearReadyEntryPulse.js` — `shouldClearReadyEntryPulse()` when clear newly becomes actionable
+- `src/lib/clearReadyEntryPulse.test.ts` — clear ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `clear-ready-entry-pulse` replaces `clear-ready-pulse` on Clear button via ref+effect on `clearReadyGlow`
+- `src/index.css` — coral one-shot button flash with light/neon theme overrides; idle clear-ready-glow suppressed during entry
+
+## TASK-144 Shipped (Session 335)
+
+- `src/lib/scaleReadyEntryPulse.js` — `shouldScaleReadyEntryPulse()` when scale controls newly become actionable
+- `src/lib/scaleReadyEntryPulse.test.ts` — scale ready entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `scale-ready-entry-pulse` replaces `scale-ready-pulse` on stake-scale cluster via ref+effect on `scaleReadyGlow`
+- `src/index.css` — teal one-shot cluster flash with light/neon theme overrides; idle scale-ready-glow suppressed during entry
+
+**Stake scale entry-pulse pair complete (TASK-143–144)** — scale board and scale-ready surfaces now have paired one-shot entry pulses.
+
+## TASK-143 Shipped (Session 335)
+
+- `src/lib/scaleBoardEntryPulse.js` — `shouldScaleBoardEntryPulse()` + `scaleBoardEntryPulseMode()` when scale key activates
+- `src/lib/scaleBoardEntryPulse.test.ts` — scale board entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `scale-board-entry-pulse` replaces `scale-board-pulse` on stake-scale cluster via ref+effect on `scaleBoardPulse.key`
+- `src/index.css` — half/double teal/gold one-shot cluster flash chained into `scale-btn-pop`; idle scale-ready glow suppressed during entry
+
+## TASK-142 Shipped (Session 335)
+
+- `src/lib/favoriteApplyEntryPulse.js` — `shouldFavoriteApplyEntryPulse()` when favorite apply key activates
+- `src/lib/favoriteApplyEntryPulse.test.ts` — favorite apply entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `favorite-apply-entry-pulse` replaces `favorite-apply-pulse` on panel header via ref+effect on `favoriteApplyPulse.key`
+- `src/index.css` — violet one-shot header flash with light/neon theme overrides
+
+**Panel header action entry-pulse sweep (TASK-141–142)** — repeat round and favorite apply surfaces now have paired one-shot entry pulses.
+
+## TASK-141 Shipped (Session 335)
+
+- `src/lib/repeatRoundEntryPulse.js` — `shouldRepeatRoundEntryPulse()` when repeat round key activates
+- `src/lib/repeatRoundEntryPulse.test.ts` — repeat round entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `repeat-round-entry-pulse` replaces `repeat-round-pulse` on panel header via ref+effect on `repeatRoundPulse.key`
+- `src/index.css` — teal one-shot header flash with light/neon theme overrides
+
+## TASK-140 Shipped (Session 335)
+
+- `src/lib/batchStakeEntryPulse.js` — `shouldBatchStakeEntryPulse()` when batch stake key activates
+- `src/lib/batchStakeEntryPulse.test.ts` — batch stake entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `batch-stake-entry-pulse` replaces `batch-stake-pulse` on panel header via ref+effect on `batchStakePulse.key`
+- `src/index.css` — teal one-shot header flash with light/neon theme overrides
+
+**Panel header stake entry-pulse pair complete (TASK-138–140)** — staked label, stake commit, and batch stake surfaces now have paired one-shot entry pulses.
+
+## TASK-139 Shipped (Session 335)
+
+- `src/lib/stakeCommitEntryPulse.js` — `shouldStakeCommitEntryPulse()` when stake commit key activates
+- `src/lib/stakeCommitEntryPulse.test.ts` — stake commit entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `stake-commit-entry-pulse` replaces `stake-commit-pulse` on panel header via ref+effect on `stakeCommitPulse.key`
+- `src/index.css` — gold one-shot header flash with light/neon theme overrides (620ms timing)
+
+## TASK-138 Shipped (Session 335)
+
+- `src/lib/stakedLabelEntryPulse.js` — `shouldStakedLabelEntryPulse()` + `stakedLabelEntryPulseKey()` when stake/batch commits update at-risk label
+- `src/lib/stakedLabelEntryPulse.test.ts` — staked label entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `staked-label-entry-pulse` replaces `staked-label-pulse` on at-risk label via ref+effect on combined commit keys
+- `src/index.css` — gold one-shot label flash with light/neon theme overrides (620ms timing)
+
+## TASK-137 Shipped (Session 335)
+
+- `src/lib/chipRackSelectEntryPulse.js` — `shouldChipRackSelectEntryPulse()` when rack denomination changes
+- `src/lib/chipRackSelectEntryPulse.test.ts` — chip rack select entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-rack-select-entry-pulse` replaces `chip-select-pulse` on `ChipRack` via ref+effect on `selectedChip`
+- `src/index.css` — teal/gold one-shot rack flash with light/neon theme overrides; idle betting-glow suppressed during select entry
+
+**Chip rack entry-pulse pair complete (TASK-129–131, 137)** — chip select, rack select, and betting-glow surfaces now have paired one-shot entry pulses.
+
+## TASK-136 Shipped (Session 335)
+
+- `src/lib/mobileDrawerTabEntryPulse.js` — `shouldMobileDrawerTabEntryPulse()` when collapsed drawer tab newly actionable
+- `src/lib/mobileDrawerTabEntryPulse.test.ts` — mobile drawer tab entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `mobile-drawer-tab-entry-pulse` replaces `drawer-open-pulse` on drawer toggle via ref+effect on `drawerOpenGlow`
+- `src/index.css` — gold one-shot tab flash with light/neon theme overrides; idle drawer-open-glow suppressed during tab entry
+
+**Mobile drawer entry-pulse sweep complete (TASK-133–136)** — open, collapse, meta, and tab-actionable surfaces now have paired one-shot entry pulses.
+
+## TASK-135 Shipped (Session 335)
+
+- `src/lib/drawerMetaEntryPulse.js` — `shouldDrawerMetaEntryPulse()` when at-risk staked total changes
+- `src/lib/drawerMetaEntryPulse.test.ts` — drawer meta entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `drawer-meta-entry-pulse` replaces `drawer-meta-pulse` on drawer toggle meta via ref+effect on `staked`
+- `src/index.css` — gold one-shot meta flash with light/neon theme overrides (620ms timing aligned with entry-pulse sweep)
+
+## DEBUG-42 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 838 modules)
+- Tests: verify **1227** passed · vitest **1142** passed (230 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **30.04 KB / 10 KB** · app **68.33 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-121–134 entry-pulse modules (`pathway-lit/source-entry-pulse`, `chip-landed/repeat-flash/undo-recoil/undo-clear-entry-pulse`, `drop-target-entry-pulse`, `chip-select-entry-pulse`, `ghost-chip-falling/landed-entry-pulse`, `chip-rack-betting-glow-entry-pulse`, `mobile-drawer-open/collapse-entry-pulse`); ref+timeout edge-trigger patterns safe across `BettingBoard`, `GhostBetLayer`, `ChipRack`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-135
+
+**Entry-pulse sweep complete (TASK-121–134)** — pathway, chip-action, ghost-preview, rack-glow, and mobile-drawer surfaces now have paired one-shot entry pulses.
+
+## TASK-134 Shipped (Session 335)
+
+- `src/lib/mobileDrawerCollapseEntryPulse.js` — `shouldMobileDrawerCollapseEntryPulse()` when mobile drawer newly collapses
+- `src/lib/mobileDrawerCollapseEntryPulse.test.ts` — mobile drawer collapse entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `mobile-drawer-collapse-entry-pulse` on drawer toggle via ref+effect on `isPortraitMobile && drawerCollapsed`
+- `src/index.css` — cool one-shot toggle flash with light/neon theme overrides; idle drawer-open-glow suppressed during collapse entry
+
+**Mobile drawer entry-pulse pair complete (TASK-133–134)** — open and collapse drawer transitions now have paired one-shot entry pulses.
+
+Next DEBUG cycle at Execution_Counter **15** (DEBUG-49) — **due now**.
+
+## TASK-133 Shipped (Session 335)
+
+- `src/lib/mobileDrawerOpenEntryPulse.js` — `shouldMobileDrawerOpenEntryPulse()` when mobile drawer newly expands
+- `src/lib/mobileDrawerOpenEntryPulse.test.ts` — mobile drawer open entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `mobile-drawer-open-entry-pulse` on drawer body via ref+effect on `isPortraitMobile && !drawerCollapsed`
+- `src/index.css` — gold one-shot drawer body flash with light/neon theme overrides (portrait media query)
+
+## TASK-132 Shipped (Session 335)
+
+- `src/lib/ghostChipFallingEntryPulse.js` — `shouldGhostChipFallingEntryPulse()` when ghost chip newly starts falling
+- `src/lib/ghostChipFallingEntryPulse.test.ts` — ghost chip falling entry pulse trigger unit test
+- `src/ui/GhostBetLayer.jsx` — `ghost-chip-falling-entry-pulse` on `GhostChip` via ref+effect on `!bet.landed`
+- `src/index.css` — hue-aware one-shot falling flash chained into `ghost-drop-spring` (idle ring pulse suppressed during entry)
+
+**Ghost chip entry-pulse pair complete (TASK-130–132)** — falling and landed ghost preview chips now have paired one-shot entry pulses.
+
+## TASK-131 Shipped (Session 335)
+
+- `src/lib/chipRackBettingGlowEntryPulse.js` — `shouldChipRackBettingGlowEntryPulse()` when chip rack newly enters betting glow
+- `src/lib/chipRackBettingGlowEntryPulse.test.ts` — chip rack betting glow entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-rack-betting-glow-entry-pulse` replaces `chip-rack-ready-pulse` on `ChipRack`
+- `src/index.css` — one-shot rack glow flash chained into betting glow idle (light/neon theme overrides; idle glow suppressed during entry)
+
+## TASK-130 Shipped (Session 335)
+
+- `src/lib/ghostChipLandedEntryPulse.js` — `shouldGhostChipLandedEntryPulse()` when ghost chip newly lands
+- `src/lib/ghostChipLandedEntryPulse.test.ts` — ghost chip landed entry pulse trigger unit test
+- `src/ui/GhostBetLayer.jsx` — `ghost-chip-landed-entry-pulse` on `GhostChip` via ref+effect on `bet.landed`
+- `src/index.css` — hue-aware one-shot ghost chip flash (idle ring pulse suppressed during entry)
+
+## TASK-129 Shipped (Session 335)
+
+- `src/lib/chipSelectEntryPulse.js` — `shouldChipSelectEntryPulse()` when dock chip newly becomes active
+- `src/lib/chipSelectEntryPulse.test.ts` — chip select entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-select-entry-pulse` on `MagneticChip` via ref+effect on `active`
+- `src/index.css` — gold one-shot chip flash chained into `chip-select-bounce` with light/neon theme overrides
+
+## TASK-128 Shipped (Session 335)
+
+- `src/lib/dropTargetEntryPulse.js` — `shouldDropTargetEntryPulse()` when cell newly becomes drop target
+- `src/lib/dropTargetEntryPulse.test.ts` — drop target entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `drop-target-entry-pulse` on `BetBtn` and `InsideZoneBtn` via ref+effect on `isDropTarget`
+- `src/index.css` — gold/teal one-shot drop flash with separate inside-zone keyframes and light theme overrides
+
+## TASK-127 Shipped (Session 335)
+
+- `src/lib/chipUndoClearEntryPulse.js` — `shouldChipUndoClearEntryPulse()` when cell newly enters undo clear
+- `src/lib/chipUndoClearEntryPulse.test.ts` — chip undo clear entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-undone-clear-entry-pulse` on `BetBtn` and `InsideZoneBtn` via ref+effect on `justUndoneClear`
+- `src/index.css` — gold one-shot clear flash chained into `undo-cell-clear-pulse` with light/neon theme overrides
+
+**Chip action entry-pulse sweep (TASK-124–127)** — landed, repeat, undo recoil, and undo clear surfaces now have paired one-shot entry pulses.
+
+## TASK-126 Shipped (Session 335)
+
+- `src/lib/chipUndoRecoilEntryPulse.js` — `shouldChipUndoRecoilEntryPulse()` when cell newly enters undo recoil
+- `src/lib/chipUndoRecoilEntryPulse.test.ts` — chip undo recoil entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-undone-recoil-entry-pulse` on `BetBtn` and `InsideZoneBtn` via ref+effect on `justUndoneRecoil`
+- `src/index.css` — gold one-shot cell flash chained into `undo-cell-recoil-pulse`
+
+## TASK-125 Shipped (Session 335)
+
+- `src/lib/repeatFlashEntryPulse.js` — `shouldRepeatFlashEntryPulse()` when cell newly enters repeat-flash
+- `src/lib/repeatFlashEntryPulse.test.ts` — repeat flash entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `repeat-flash-entry-pulse` on `BetBtn` and `InsideZoneBtn` via ref+effect on `justRepeated`
+- `src/index.css` — teal one-shot cell flash chained into `repeat-round-flash`
+
+## TASK-124 Shipped (Session 335)
+
+- `src/lib/chipLandedEntryPulse.js` — `shouldChipLandedEntryPulse()` when cell newly receives placed chip
+- `src/lib/chipLandedEntryPulse.test.ts` — chip landed entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-landed-entry-pulse` on `BetBtn` and `InsideZoneBtn` via ref+effect on `justPlaced`
+- `src/index.css` — gold one-shot cell flash chained into `chip-land-bounce` (inside-zone parity added)
+
+## TASK-123 Shipped (Session 335)
+
+- `src/lib/pathwaySourceEntryPulse.js` — `shouldPathwaySourceEntryPulse()` when cell newly enters pathway-source
+- `src/lib/pathwaySourceEntryPulse.test.ts` — pathway-source entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `pathway-source-entry-pulse` on `BetBtn` via ref+effect per cell on `pathwayClass`
+- `src/index.css` — gold one-shot source cell flash (idle sector-glow pulse suppressed during entry)
+
+**Pathway highlight entry-pulse sweep complete (TASK-121–123)** — pathway-lit, settle header bloom, and pathway-source surfaces now have paired one-shot entry pulses.
+
+## TASK-122 Shipped (Session 335)
+
+- `src/lib/settleHeaderBloomEntryPulse.js` — `shouldSettleHeaderBloomEntryPulse()` when header bloom key newly activates
+- `src/lib/settleHeaderBloomEntryPulse.test.ts` — settle header bloom entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `settle-header-bloom-entry-pulse` on panel header via ref+effect on `settleHeaderBloomKey`
+- `src/index.css` — warm gold one-shot header flash chained into `settle-reveal-bloom`, light/neon theme overrides
+
+## TASK-121 Shipped (Session 335)
+
+- `src/lib/pathwayLitEntryPulse.js` — `shouldPathwayLitEntryPulse()` when cell newly enters pathway-lit
+- `src/lib/pathwayLitEntryPulse.test.ts` — pathway-lit entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `pathway-lit-entry-pulse` on `BetBtn` via ref+effect per cell on `pathwayClass`
+- `src/index.css` — teal one-shot cell glow flash chained into `sector-glow-in` (idle sector-glow pulse suppressed during entry)
+
+## DEBUG-41 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 825 modules)
+- Tests: verify **1227** passed · vitest **1128** passed (216 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **28.79 KB / 10 KB** · app **67.41 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-106–120 entry-pulse modules (`phase-countdown/urgent-entry-pulse`, `settle-rim/spin-active-entry-pulse`, `spin-focus/stake-risk/spin-dim-soft/settle-reveal-entry-pulse`, `win-streak/recent-streak-hot-entry-pulse`, `payout-toast-sync-entry-pulse`, `balance-settle-entry-pulse`, `winning-cascade/pathway-cascade-entry-pulse`, `lock-banner-settle-entry-pulse`); ref+timeout edge-trigger patterns safe across `BettingBoard`, `PayoutToast`, `WinStreakBadge`, `RecentResultsRail`, `LockPhaseBanner`, `App`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-121
+
+**Entry-pulse sweep complete (TASK-106–120)** — countdown, canvas, board-state, reveal-sync, streak, balance, cascade, and lock-banner surfaces now have paired one-shot entry pulses.
+
+## TASK-120 Shipped (Session 335)
+
+- `src/lib/lockBannerSettleEntryPulse.js` — `shouldLockBannerSettleEntryPulse()` when lock banner newly visible
+- `src/lib/lockBannerSettleEntryPulse.test.ts` — lock banner settle entry pulse trigger unit test
+- `src/ui/LockPhaseBanner.jsx` — `lock-banner-settle-entry-pulse` via ref+effect on `lockBannerReadyGlow` (replaces ready-pulse on appear)
+- `src/index.css` — amber one-shot banner flash chained into `lock-banner-in`, light/neon theme overrides
+
+## TASK-119 Shipped (Session 335)
+
+- `src/lib/pathwayCascadeEntryPulse.js` — `shouldPathwayCascadeEntryPulse()` when pathway columns newly cascade
+- `src/lib/pathwayCascadeEntryPulse.test.ts` — pathway cascade entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `pathway-cascade-entry-pulse` on lit pathway columns via ref+effect on `pathwayCascadeActive`
+- `src/index.css` — teal one-shot column glow flash chained into `pathway-cascade` entrance
+
+## TASK-118 Shipped (Session 335)
+
+- `src/lib/winningCellCascadeEntryPulse.js` — `shouldWinningCellCascadeEntryPulse()` when cascade newly active
+- `src/lib/winningCellCascadeEntryPulse.test.ts` — winning cell cascade entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `winning-cascade-entry-pulse` on lead cascade cell (index 0) via ref+effect on `cascadeActive`
+- `src/index.css` — gold one-shot cell flash keyframes (idle cascade glow suppressed during entry on lead cell), light/neon theme overrides
+
+## TASK-117 Shipped (Session 335)
+
+- `src/lib/balanceSettleEntryPulse.js` — `shouldBalanceSettleEntryPulse()` when settle win/loss pulse key increments
+- `src/lib/balanceSettleEntryPulse.test.ts` — balance settle entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `balance-settle-entry-pulse-win/loss` on balance value via ref+effect on `balancePulse.key`
+- `src/index.css` — filter brightness one-shot flash chained into idle balance-pulse-win/loss, light/neon theme overrides
+
+## TASK-116 Shipped (Session 335)
+
+- `src/lib/recentStreakHotEntryPulse.js` — `shouldRecentStreakHotEntryPulse()` when recent streak tier newly enters hot
+- `src/lib/recentStreakHotEntryPulse.test.ts` — recent streak hot entry pulse trigger unit test
+- `src/ui/RecentResultsRail.jsx` — `recent-streak-hot-entry-pulse` via ref+effect on hot tier transition (replaces tier-pulse for warm→hot)
+- `src/index.css` — gold one-shot streak-badge flash keyframes (idle `streak-badge-hot` suppressed during entry), light/neon theme overrides
+
+## TASK-115 Shipped (Session 335)
+
+- `src/lib/payoutToastSyncEntryPulse.js` — `shouldPayoutToastSyncEntryPulse()` when synced toast count increases
+- `src/lib/payoutToastSyncEntryPulse.test.ts` — payout toast sync entry pulse trigger unit test
+- `src/ui/PayoutToast.jsx` — `payout-toast-sync-entry-pulse` on synced toast via ref+effect on toast count (replaces ready-pulse on reveal sync)
+- `src/index.css` — gold one-shot synced toast text-shadow flash chained into `payout-float-synced`, light/neon theme overrides
+
+**Reveal-sync entry-pulse sweep complete (TASK-113–115)** — settle-reveal panel, win-streak hot tier, and payout toast sync surfaces now have paired one-shot entry pulses.
+
+## TASK-114 Shipped (Session 335)
+
+- `src/lib/winStreakHotEntryPulse.js` — `shouldWinStreakHotEntryPulse()` when streak tier newly enters hot
+- `src/lib/winStreakHotEntryPulse.test.ts` — win streak hot entry pulse trigger unit test
+- `src/ui/WinStreakBadge.jsx` — `win-streak-hot-entry-pulse` via ref+effect on hot tier transition (replaces tier-pulse for warm→hot)
+- `src/index.css` — gold one-shot hot-tier flash keyframes (idle `win-streak-glow-hot` suppressed during entry), light/neon theme overrides
+
+## TASK-113 Shipped (Session 335)
+
+- `src/lib/settleRevealEntryPulse.js` — `shouldSettleRevealEntryPulse()` when settle-reveal newly active
+- `src/lib/settleRevealEntryPulse.test.ts` — settle-reveal entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `settle-reveal-entry-pulse` on panel via ref+effect on `isSettleReveal`
+- `src/index.css` — warm gold holo-border flash + panel shadow boost (avoids fighting settle-panel-bounce), light/neon theme overrides
+
+**Board-state entry-pulse sweep complete (TASK-110–113)** — spin-focus, stake-risk, soft-dim, and settle-reveal surfaces now have paired one-shot entry pulses.
+
+## TASK-112 Shipped (Session 335)
+
+- `src/lib/spinDimSoftEntryPulse.js` — `shouldSpinDimSoftEntryPulse()` when soft spin dim newly active
+- `src/lib/spinDimSoftEntryPulse.test.ts` — spin-dim-soft entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `spin-dim-soft-entry-pulse` on panel via ref+effect on `isSpinDimSoft`
+- `src/index.css` — muted gold one-shot panel border/shadow flash keyframes on `.betting-panel.spin-dim-soft`, light/neon theme overrides
+
+## TASK-111 Shipped (Session 335)
+
+- `src/lib/stakeRiskWarningEntryPulse.js` — `shouldStakeRiskWarningEntryPulse()` when at-risk warning newly active
+- `src/lib/stakeRiskWarningEntryPulse.test.ts` — stake risk warning entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `stake-risk-warning-entry-pulse` on panel header via ref+effect on `showStakeWarning`
+- `src/index.css` — amber one-shot header inset/shadow flash keyframes (idle stake-risk-pulse suppressed during entry), light/neon theme overrides
+
+**Board-state entry-pulse sweep (TASK-110–112)** — spin-focus, stake-risk, and soft-dim surfaces now have paired one-shot entry pulses.
+
+## TASK-110 Shipped (Session 335)
+
+- `src/lib/spinFocusEntryPulse.js` — `shouldSpinFocusEntryPulse()` when spin-focus dim newly active
+- `src/lib/spinFocusEntryPulse.test.ts` — spin-focus entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `spin-focus-entry-pulse` on panel via ref+effect on `isSpinFocus`
+- `src/index.css` — coral one-shot panel border/shadow flash keyframes on `.betting-panel.spin-focus`, light/neon theme overrides
+
+## TASK-109 Shipped (Session 335)
+
+- `src/lib/spinActiveEntryPulse.js` — `shouldSpinActiveEntryPulse()` when spin ring newly active
+- `src/lib/spinActiveEntryPulse.test.ts` — spin-active entry pulse trigger unit test
+- `src/App.jsx` — `spin-active-entry-pulse` on canvas wrap via ref+effect on `isWheelSpinning`
+- `src/index.css` — teal one-shot canvas filter flash keyframes chained into idle spin-active filter, light/neon theme overrides
+
+## TASK-108 Shipped (Session 335)
+
+- `src/lib/settleRimGlowEntryPulse.js` — `shouldSettleRimGlowEntryPulse()` when settle rim glow newly active
+- `src/lib/settleRimGlowEntryPulse.test.ts` — settle rim glow entry pulse trigger unit test
+- `src/App.jsx` — `settle-rim-glow-entry-pulse` on canvas wrap via ref+effect on `settleRimGlow`
+- `src/index.css` — warm one-shot canvas filter flash keyframes chained into idle rim glow, light/neon theme overrides
+
+**Entry-pulse sweep complete (TASK-106–108)** — countdown and settle-rim surfaces now have paired one-shot entry pulses.
+
+## TASK-107 Shipped (Session 335)
+
+- `src/lib/phaseCountdownEntryPulse.js` — `shouldPhaseCountdownEntryPulse()` when countdown ring newly active
+- `src/lib/phaseCountdownEntryPulse.test.ts` — phase countdown entry pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `phase-countdown-entry-pulse` on wrap via ref+effect on `countdown.active`
+- `src/index.css` — gold one-shot ring flash keyframes on `.phase-countdown-progress`, light/neon theme overrides
+
+## TASK-106 Shipped (Session 335)
+
+- `src/lib/lockCountdownUrgentEntryPulse.js` — `shouldLockCountdownUrgentEntryPulse()` when countdown newly urgent
+- `src/lib/lockCountdownUrgentEntryPulse.test.ts` — lock countdown urgent entry pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `countdown-urgent-entry-pulse` on wrap via ref+effect on `countdown.urgent`
+- `src/index.css` — coral one-shot ring flash keyframes on `.phase-countdown-progress` (suppressed during idle urgent pulse), light/neon theme overrides
+
+## DEBUG-40 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 812 modules)
+- Tests: verify **1227** passed · vitest **1113** passed (201 files) · 0 failed
+- Typecheck: clean
+- Bundle budget: css **26.82 KB / 10 KB** · app **66.64 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-91–105 pulse modules (`board-mode-tab-pulse`, `audio/theme-toggle-ready-pulse`, `chip-rack-ready-pulse`, `install/lock-banner-ready-pulse`, `payout-toast-ready/pending-ready-pulse`, `result-pill-ready-pulse`, `fairness-custody-badge-ready-pulse`, `status-line-ready-pulse`, `betting/lock/spin-phase-pulse`, `cycle-drop-urgency-entry-pulse`); ref+timeout edge-trigger patterns safe across `PhasePill`, `PayoutToast`, `FairnessPanel`, `BettingBoard`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-106
+
+## TASK-105 Shipped (Session 335)
+
+- `src/lib/cycleDropUrgencyEntryPulse.js` — `shouldCycleDropUrgencyEntryPulse()` when drop urgency newly begins
+- `src/lib/cycleDropUrgencyEntryPulse.test.ts` — cycle drop urgency entry pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `cycle-drop-urgency-entry-pulse` on cycle track via ref+effect on `cycleDropUrgent`
+- `src/index.css` — amber one-shot track flash keyframes (suppressed during idle urgency glow), light/neon theme overrides
+
+**Phase-pill transition pulse sweep complete (TASK-102–105).**
+
+## TASK-104 Shipped (Session 335)
+
+- `src/lib/spinPhasePillPulse.js` — `shouldSpinPhasePillPulse()` when spin phase newly starts
+- `src/lib/spinPhasePillPulse.test.ts` — spin phase pill pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `spin-phase-pulse` on wrap via ref+effect on `spinGlow`
+- `src/index.css` — rose one-shot phase-pill flash keyframes (suppressed during idle glow), light/neon theme overrides
+
+## TASK-103 Shipped (Session 335)
+
+- `src/lib/lockPhasePillUrgencyPulse.js` — `shouldLockPhasePillUrgencyPulse()` when lock phase newly starts
+- `src/lib/lockPhasePillUrgencyPulse.test.ts` — lock phase pill urgency pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `lock-phase-urgency-pulse` on wrap via ref+effect on `lockUrgent`
+- `src/index.css` — amber one-shot phase-pill flash keyframes (suppressed during idle urgency glow), light/neon theme overrides
+
+## TASK-102 Shipped (Session 335)
+
+- `src/lib/bettingPhasePillPulse.js` — `shouldBettingPhasePillPulse()` when betting phase newly opens
+- `src/lib/bettingPhasePillPulse.test.ts` — betting phase pill pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `betting-phase-pulse` on wrap via ref+effect on `bettingGlow`
+- `src/index.css` — gold one-shot phase-pill flash keyframes (suppressed during idle glow), light/neon theme overrides
+
+## TASK-101 Shipped (Session 335)
+
+- `src/lib/payoutToastPendingReadyPulse.js` — `shouldPayoutToastPendingReadyPulse()` when pending glow newly eligible
+- `src/lib/payoutToastPendingReadyPulse.test.ts` — pending glow ready pulse trigger unit test
+- `src/ui/PayoutToast.jsx` — `payout-toast-pending-ready-pulse` on pending glow via ref+effect on `payoutToastReadyGlow`
+- `src/index.css` — gold one-shot pending orb flash keyframes (suppressed during idle glow), light/neon theme overrides
+
+**Ready-pulse sweep complete** — all ready-glow surfaces (TASK-77–101) now have paired one-shot ready pulses.
+
+## TASK-100 Shipped (Session 335)
+
+- `src/lib/statusLineReadyPulse.js` — `shouldStatusLineReadyPulse()` when betting window opens
+- `src/lib/statusLineReadyPulse.test.ts` — status line ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `status-line-ready-pulse` on status line via ref+effect on `statusLineReadyGlow`
+- `src/index.css` — teal one-shot status flash keyframes (suppressed during idle glow and message flash), light/neon theme overrides
+
+## TASK-99 Shipped (Session 335)
+
+- `src/lib/fairnessCustodyBadgeReadyPulse.js` — `shouldFairnessCustodyBadgeReadyPulse()` when custody badge newly actionable
+- `src/lib/fairnessCustodyBadgeReadyPulse.test.ts` — custody badge ready pulse trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-custody-badge-ready-pulse` on badge via ref+effect on `custodyBadgeGlow`
+- `src/index.css` — teal one-shot badge flash keyframes (suppressed during idle glow), light/neon theme overrides
+
+## TASK-98 Shipped (Session 335)
+
+- `src/lib/resultPillReadyPulse.js` — `shouldResultPillReadyPulse()` when result pill newly actionable
+- `src/lib/resultPillReadyPulse.test.ts` — result pill ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `result-pill-ready-pulse` on result pill via ref+effect on `resultPillReadyGlow`
+- `src/index.css` — gold one-shot text flash keyframes on `.result-text` (suppressed during idle glow), light/neon theme overrides
+
+## TASK-97 Shipped (Session 335)
+
+- `src/lib/payoutToastReadyPulse.js` — `shouldPayoutToastReadyPulse()` when toast count increases
+- `src/lib/payoutToastReadyPulse.test.ts` — payout toast ready pulse trigger unit test
+- `src/ui/PayoutToast.jsx` — `payout-toast-ready-pulse` on newest toast via ref+effect on toast count
+- `src/index.css` — gold one-shot toast flash keyframes chained after `payout-float-synced`, light/neon theme overrides
+
+## TASK-96 Shipped (Session 335)
+
+- `src/lib/lockBannerReadyPulse.js` — `shouldLockBannerReadyPulse()` when lock banner newly visible
+- `src/lib/lockBannerReadyPulse.test.ts` — lock banner ready pulse trigger unit test
+- `src/ui/LockPhaseBanner.jsx` — `lock-banner-ready-pulse` on banner via ref+effect on `lockBannerReadyGlow`
+- `src/index.css` — amber one-shot toast flash keyframes chained after `lock-banner-in` (suppressed during idle glow), light/neon theme overrides
+
+## TASK-95 Shipped (Session 335)
+
+- `src/lib/installPromptReadyPulse.js` — `shouldInstallPromptReadyPulse()` when install newly available
+- `src/lib/installPromptReadyPulse.test.ts` — install prompt ready pulse trigger unit test
+- `src/ui/InstallPrompt.jsx` — `install-prompt-ready-pulse` on panel via ref+effect on `installPromptReadyGlow`
+- `src/index.css` — teal one-shot panel flash keyframes (suppressed during `install-prompt-ready-glow`), light/neon theme overrides
+
+## TASK-94 Shipped (Session 335)
+
+- `src/lib/chipRackReadyPulse.js` — `shouldChipRackReadyPulse()` when chip rack newly actionable
+- `src/lib/chipRackReadyPulse.test.ts` — chip rack ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-rack-ready-pulse` on `ChipRack` via ref+effect on `chipRackBettingGlow`
+- `src/index.css` — halo `::before` one-shot flash keyframes (suppressed during `chip-rack-betting-glow` / `chip-select-pulse`), light/neon theme overrides
+
+## TASK-93 Shipped (Session 335)
+
+- `src/lib/themeToggleReadyPulse.js` — `shouldThemeToggleReadyPulse()` when theme switch newly eligible
+- `src/lib/themeToggleReadyPulse.test.ts` — theme toggle ready pulse trigger unit test
+- `src/App.jsx` — `theme-toggle-ready-pulse` on theme button via ref+effect on `themeToggleReadyGlow`
+- `src/index.css` — gold one-shot button flash keyframes (suppressed during `theme-toggle-ready-glow`), light/neon theme overrides
+
+## TASK-92 Shipped (Session 335)
+
+- `src/lib/audioToggleReadyPulse.js` — `shouldAudioToggleReadyPulse()` when mute newly actionable
+- `src/lib/audioToggleReadyPulse.test.ts` — audio toggle ready pulse trigger unit test
+- `src/App.jsx` — `audio-toggle-ready-pulse` on mute button via ref+effect on `audioToggleReadyGlow`
+- `src/index.css` — coral one-shot button flash keyframes (suppressed during `audio-toggle-ready-glow`), light/neon theme overrides
+
+## TASK-91 Shipped (Session 335)
+
+- `src/lib/boardModeTabReadyPulse.js` — `shouldBoardModeTabReadyPulse()` when active tab newly actionable
+- `src/lib/boardModeTabReadyPulse.test.ts` — board mode tab ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `board-mode-tab-pulse` on Classic/Racetrack tabs via ref+effect per tab glow
+- `src/index.css` — gold one-shot tab flash keyframes (suppressed during `board-mode-tab-glow`), light/neon theme overrides
+
+## TASK-90 Shipped (Session 335)
+
+- `src/lib/shortcutsOverlayReadyPulse.js` — `shouldShortcutsOverlayReadyPulse()` when help newly actionable
+- `src/lib/shortcutsOverlayReadyPulse.test.ts` — shortcuts overlay ready pulse trigger unit test
+- `src/App.jsx` — `shortcuts-ready-pulse` on `?` toggle via ref+effect on `shortcutsReadyGlow`
+- `src/index.css` — gold one-shot help button flash keyframes (suppressed during `shortcuts-ready-glow`), light/neon theme overrides
+
+## TASK-89 Shipped (Session 335)
+
+- `src/lib/savePresetReadyPulse.js` — `shouldSavePresetReadyPulse()` when save newly eligible
+- `src/lib/savePresetReadyPulse.test.ts` — save preset ready pulse trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `save-preset-ready-pulse` on Save button via ref+effect on `savePresetReadyGlow`
+- `src/index.css` — violet one-shot button flash keyframes (suppressed during `save-preset-ready-glow`), light/neon theme overrides
+
+## TASK-88 Shipped (Session 335)
+
+- `src/lib/fairnessPanelReadyPulse.js` — `shouldFairnessPanelReadyPulse()` when audit history newly available
+- `src/lib/fairnessPanelReadyPulse.test.ts` — fairness panel ready pulse trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-ready-pulse` on toggle via ref+effect on `fairnessReadyGlow`
+- `src/index.css` — teal one-shot toggle flash keyframes (suppressed during `fairness-ready-glow`), light/neon theme overrides
+
+## TASK-87 Shipped (Session 335)
+
+- `src/lib/favoritesPanelReadyPulse.js` — `shouldFavoritesPanelReadyPulse()` when favorites newly available
+- `src/lib/favoritesPanelReadyPulse.test.ts` — favorites panel ready pulse trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `favorites-ready-pulse` on toggle via ref+effect on `favoritesReadyGlow`
+- `src/index.css` — violet one-shot toggle flash keyframes (suppressed during `favorites-ready-glow`), light/neon theme overrides
+
+## TASK-86 Shipped (Session 335)
+
+- `src/lib/statsPanelReadyPulse.js` — `shouldStatsPanelReadyPulse()` when stats newly available
+- `src/lib/statsPanelReadyPulse.test.ts` — stats panel ready pulse trigger unit test
+- `src/ui/SessionStatsPanel.jsx` — `stats-ready-pulse` on toggle via ref+effect on `statsReadyGlow`
+- `src/index.css` — teal one-shot toggle flash keyframes (suppressed during `stats-ready-glow`), light/neon theme overrides
+
+## TASK-85 Shipped (Session 335)
+
+- `src/lib/mobileDrawerOpenPulse.js` — `shouldMobileDrawerOpenPulse()` when drawer tab newly actionable
+- `src/lib/mobileDrawerOpenPulse.test.ts` — drawer open pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `drawer-open-pulse` on `.mobile-drawer-toggle` via ref+effect on `drawerOpenGlow`
+- `src/index.css` — portrait drawer tab flash keyframes (suppressed during `drawer-open-glow`), light/neon theme overrides
+
+## TASK-84 Shipped (Session 335)
+
+- `src/lib/balanceLowPulse.js` — `shouldBalanceLowPulse()` when low-balance warning newly eligible
+- `src/lib/balanceLowPulse.test.ts` — balance low pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `balance-low-pulse` on `.balance-value` via ref+effect on `balanceLowGlow`
+- `src/index.css` — coral wallet flash keyframes (suppressed during `balance-low-glow` / settle pulses), light/neon theme overrides
+
+## TASK-83 Shipped (Session 335)
+
+- `src/lib/faucetReadyPulse.js` — `shouldFaucetReadyPulse()` when faucet newly eligible
+- `src/lib/faucetReadyPulse.test.ts` — faucet ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `faucet-ready-pulse` on refill button via ref+effect on `faucetReadyGlow`
+- `src/index.css` — gold one-shot button flash keyframes (suppressed during `faucet-ready-glow`), light/neon theme overrides
+
+## TASK-82 Shipped (Session 335)
+
+- `src/lib/scaleReadyPulse.js` — `shouldScaleReadyPulse()` when scaling newly available
+- `src/lib/scaleReadyPulse.test.ts` — scale ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `scale-ready-pulse` on `.stake-scale-cluster` via ref+effect on `scaleReadyGlow`
+- `src/index.css` — teal one-shot cluster flash keyframes (suppressed during `scale-ready-glow` / `scale-board-pulse`), light/neon theme overrides
+
+## TASK-81 Shipped (Session 335)
+
+- `src/lib/clearReadyPulse.js` — `shouldClearReadyPulse()` when clear newly eligible
+- `src/lib/clearReadyPulse.test.ts` — clear ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `clear-ready-pulse` on Clear button via ref+effect on `clearReadyGlow`
+- `src/index.css` — coral one-shot button flash keyframes (suppressed during `clear-ready-glow`), light/neon theme overrides
+
+## TASK-80 Shipped (Session 335)
+
+- `src/lib/undoRoundReadyPulse.js` — `shouldUndoRoundReadyPulse()` when undo newly available
+- `src/lib/undoRoundReadyPulse.test.ts` — undo ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `undo-round-ready-pulse` on Undo button via ref+effect on `canUndoBet`
+- `src/index.css` — gold one-shot button flash keyframes (suppressed during `undo-ready-glow`), light/neon theme overrides
+
+## TASK-79 Shipped (Session 335)
+
+- `src/lib/repeatRoundReadyPulse.js` — `shouldRepeatRoundReadyPulse()` when repeat newly available
+- `src/lib/repeatRoundReadyPulse.test.ts` — repeat ready pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `repeat-round-ready-pulse` on Repeat button via ref+effect on `canRepeatLastRound`
+- `src/index.css` — teal one-shot button flash keyframes (suppressed during `repeat-ready-glow`), light/neon theme overrides
+
+## TASK-78 Shipped (Session 335)
+
+- `src/lib/statusLineReadyGlow.js` — `shouldStatusLineReadyGlow()` while betting window open
+- `src/lib/statusLineReadyGlow.test.ts` — status line ready glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `status-line-ready-glow` on `.status-line` when betting open
+- `src/index.css` — teal idle pulse keyframes (suppressed during `status-line-flash`), light/neon theme overrides
+
+## TASK-77 Shipped (Session 335)
+
+- `src/lib/cycleTrackTickPulse.js` — `shouldCycleTrackTickPulse()` when floored cycle second changes
+- `src/lib/cycleTrackTickPulse.test.ts` — tick pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `cycle-track-tick-pulse` on `.cycle-track` each second tick (skips mount flash)
+- `src/index.css` — fill/label tick flash keyframes on child elements (avoids clash with `cycle-drop-urgency`), light/neon theme overrides
+
+## TASK-76 Shipped (Session 335)
+
+- `src/lib/drawerMetaPulse.js` — `shouldDrawerMetaPulse()` when staked total changes
+- `src/lib/drawerMetaPulse.test.ts` — drawer meta pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `drawer-meta-pulse` on mobile drawer at-risk meta
+- `src/index.css` — portrait drawer meta flash keyframes, light/neon theme overrides
+
+## TASK-75 Shipped (Session 335)
+
+- `src/lib/fairnessCustodyBadgeGlow.js` — `shouldFairnessCustodyBadgeGlow()` when history exists + panel collapsed
+- `src/lib/fairnessCustodyBadgeGlow.test.ts` — custody badge glow trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-custody-badge-glow` on seed custody pill
+- `src/index.css` — custody badge idle pulse keyframes, light/neon theme overrides
+
+## TASK-74 Shipped (Session 335)
+
+- `src/lib/phaseLabelPulse.js` — `shouldPhaseLabelPulse()` on ball phase label change
+- `src/lib/phaseLabelPulse.test.ts` — phase-label pulse trigger unit test
+- `src/ui/PhasePill.jsx` — `phase-label-pulse` on ball phase text in HUD pill
+- `src/index.css` — label flash keyframes, light/neon theme overrides
+
+## TASK-73 Shipped (Session 335)
+
+- `src/lib/brandSubtitlePulse.js` — `shouldBrandSubtitlePulse()` on UI theme change
+- `src/lib/brandSubtitlePulse.test.ts` — theme-change pulse trigger unit test
+- `src/App.jsx` — `brand-subtitle-pulse` on HUD theme subtitle after cycle
+- `src/index.css` — subtitle flash keyframes, light/neon theme overrides
+
+## TASK-72 Shipped (Session 335)
+
+- `src/lib/installPromptReadyGlow.js` — `shouldInstallPromptReadyGlow()` when install banner is visible
+- `src/lib/installPromptReadyGlow.test.ts` — installable glow trigger unit test
+- `src/ui/InstallPrompt.jsx` — `install-prompt-ready-glow` on PWA install panel
+- `src/index.css` — teal install-panel idle pulse, light/neon theme overrides, reduced-motion guard
+
+## TASK-71 Shipped (Session 335)
+
+- `src/lib/payoutToastReadyGlow.js` — `shouldPayoutToastReadyGlow()` when win burst is queued before reveal
+- `src/lib/payoutToastReadyGlow.test.ts` — pending-reveal glow trigger unit test
+- `src/ui/PayoutToast.jsx` — `payout-toast-pending-glow` orb before synced toast appears
+- `src/index.css` — gold pending-win pulse keyframes, light/neon theme overrides
+
+## TASK-70 Shipped (Session 335)
+
+- `src/lib/lockBannerReadyGlow.js` — `shouldLockBannerReadyGlow()` when banner visible in locked phase
+- `src/lib/lockBannerReadyGlow.test.ts` — lock-window glow trigger unit test
+- `src/ui/LockPhaseBanner.jsx` — `lock-banner-ready-glow` during no-more-bets toast
+- `src/index.css` — warm banner idle pulse layered after fly-in, light/neon theme overrides
+
+## TASK-69 Shipped (Session 335)
+
+- `src/lib/themeToggleReadyGlow.js` — `shouldThemeToggleReadyGlow()` when session has round history
+- `src/lib/themeToggleReadyGlow.test.ts` — post-first-round glow trigger unit test
+- `src/App.jsx` — `theme-toggle-ready-glow` on HUD theme button after first round
+- `src/index.css` — gold theme-button idle pulse keyframes, light/neon theme overrides
+
+## TASK-68 Shipped (Session 335)
+
+- `src/lib/audioToggleReadyGlow.js` — `shouldAudioToggleReadyGlow()` when audio is muted
+- `src/lib/audioToggleReadyGlow.test.ts` — mute glow trigger unit test
+- `src/App.jsx` — `audio-toggle-ready-glow` on HUD mute button while muted
+- `src/index.css` — soft red mute-button idle pulse, light/neon theme overrides
+
+## TASK-67 Shipped (Session 335)
+
+- `src/lib/qualityBadgeTierPulse.js` — `shouldQualityBadgeTierPulse()` for low→medium→high transitions
+- `src/lib/qualityBadgeTierPulse.test.ts` — upward tier pulse trigger unit test
+- `src/App.jsx` — `quality-badge-tier-pulse` on HUD quality badge when tier steps up
+- `src/index.css` — tier step-up flash keyframes, light/neon theme overrides
+
+## TASK-66 Shipped (Session 335)
+
+- `src/lib/resultPillReadyGlow.js` — `shouldResultPillReadyGlow()` when no result yet + empty session history
+- `src/lib/resultPillReadyGlow.test.ts` — first-spin glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `result-pill-ready-glow` on awaiting-spin pill before first round
+- `src/index.css` — muted label idle pulse keyframes, light/neon theme overrides
+
+## TASK-65 Shipped (Session 335)
+
+- `src/lib/stakedLabelPulse.js` — `stakedLabelPulseKey()` merges stake + batch commit keys
+- `src/lib/stakedLabelPulse.test.ts` — pulse key merge unit tests
+- `src/ui/BettingBoard.jsx` — `staked-label-pulse` on at-risk total when single or batch bet commits
+- `src/index.css` — gold staked-amount flash keyframes, light/neon theme overrides
+
+## TASK-64 Shipped (Session 335)
+
+- `src/lib/balanceLowGlow.js` — `minChipBet()` + `shouldBalanceLowGlow()` when balance < smallest chip
+- `src/lib/balanceLowGlow.test.ts` — min bet + glow trigger unit tests
+- `src/ui/BettingBoard.jsx` — `balance-low-glow` on wallet when broke (defers to settle/refill pulses)
+- `src/index.css` — warm warning wallet idle pulse, light/neon theme overrides
+
+## TASK-63 Shipped (Session 335)
+
+- `src/lib/chipSelectPulse.js` — `shouldChipSelectPulse()` reuses chip-select change detection
+- `src/lib/chipSelectPulse.test.ts` — pulse trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-select-pulse` on `.chip-rack` when denomination changes (click + keyboard 1–5)
+- `src/index.css` — rack radial flash keyframes, light/neon theme overrides
+
+## TASK-62 Shipped (Session 335)
+
+- `src/lib/recentStreakTierPulse.js` — `shouldRecentStreakTierPulse()` for none→warm→hot transitions
+- `src/lib/recentStreakTierPulse.test.ts` — upward tier pulse trigger unit test
+- `src/ui/RecentResultsRail.jsx` — `recent-streak-tier-pulse` class on streak chip tier step-up
+- `src/index.css` — one-shot streak chip pulse keyframes, light/neon theme overrides
+
+## TASK-61 Shipped (Session 335)
+
+- `src/lib/winStreakTierPulse.js` — `winStreakTier()` + `shouldWinStreakTierPulse()` for upward tier transitions
+- `src/lib/winStreakTierPulse.test.ts` — tier mapping + pulse trigger unit tests
+- `src/ui/WinStreakBadge.jsx` — `win-streak-tier-pulse` class on mild/warm/hot tier step-up
+- `src/index.css` — one-shot tier pulse keyframes, light/neon theme overrides
+
+## TASK-60 Shipped (Session 335)
+
+- `src/lib/shortcutsOverlayReadyGlow.js` — `shouldShortcutsOverlayReadyGlow()` when betting open and overlay closed
+- `src/lib/shortcutsOverlayReadyGlow.test.ts` — glow trigger unit test
+- `src/App.jsx` — `shortcuts-ready-glow` on `.shortcuts-help-toggle` in TopHud
+- `src/index.css` — gold ?-button idle pulse keyframes, light/neon theme overrides
+
+## TASK-59 Shipped (Session 335)
+
+- `src/lib/savePresetReadyGlow.js` — `shouldSavePresetReadyGlow()` when betting open + staked > 0
+- `src/lib/savePresetReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `save-preset-ready-glow` on Save button when eligible
+- `src/index.css` — violet save-button idle pulse keyframes, light/neon theme overrides
+
+## TASK-58 Shipped (Session 335)
+
+- `src/lib/fairnessPanelReadyGlow.js` — `shouldFairnessPanelReadyGlow()` when history exists and collapsed
+- `src/lib/fairnessPanelReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/FairnessPanel.jsx` — `fairness-ready-glow` on `.fairness-toggle`
+- `src/index.css` — teal toggle idle pulse keyframes, light/neon theme overrides
+
+## TASK-57 Shipped (Session 335)
+
+- `src/lib/favoritesPanelReadyGlow.js` — `shouldFavoritesPanelReadyGlow()` when presets exist and collapsed
+- `src/lib/favoritesPanelReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/FavoriteBetsPanel.jsx` — `favorites-ready-glow` on `.favorite-bets-toggle`
+- `src/index.css` — violet toggle idle pulse keyframes, light/neon theme overrides
+
+## TASK-56 Shipped (Session 335)
+
+- `src/lib/statsPanelReadyGlow.js` — `shouldStatsPanelReadyGlow()` when rounds exist and collapsed
+- `src/lib/statsPanelReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/SessionStatsPanel.jsx` — `stats-ready-glow` on `.session-stats-toggle`
+- `src/index.css` — teal toggle idle pulse keyframes, light/neon theme overrides
+
+## TASK-55 Shipped (Session 335)
+
+- `src/lib/boardModeTabGlow.js` — `shouldBoardModeTabGlow()` on active tab while betting open
+- `src/lib/boardModeTabGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `board-mode-tab-glow` on active `.board-mode-tab`
+- `src/index.css` — gold tab idle pulse keyframes, light/neon theme overrides
+
+## TASK-54 Shipped (Session 335)
+
+- `src/lib/bettingPhasePillGlow.js` — `shouldBettingPhasePillGlow()` during betting phase
+- `src/lib/bettingPhasePillGlow.test.ts` — phase gate unit test
+- `src/ui/PhasePill.jsx` — `betting-phase-glow` on `.phase-pill-wrap` when betting open
+- `src/index.css` — soft gold idle pulse keyframes, light/neon theme overrides
+
+## TASK-53 Shipped (Session 335)
+
+- `src/lib/settleRevealHeaderBloom.js` — `shouldSettleRevealHeaderBloom()` + replay key per result
+- `src/lib/settleRevealHeaderBloom.test.ts` — bloom trigger + key unit tests
+- `src/ui/BettingBoard.jsx` — `settle-reveal-bloom` on `.panel-header` via settle key effect
+- `src/index.css` — warm header bloom keyframes, light/neon theme overrides
+
+## TASK-52 Shipped (Session 335)
+
+- `src/lib/mobileDrawerOpenGlow.js` — `shouldMobileDrawerOpenGlow()` on portrait + betting + collapsed
+- `src/lib/mobileDrawerOpenGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `drawer-open-glow` on `.mobile-drawer-toggle`
+- `src/index.css` — drawer tab idle pulse in portrait media query, light/neon overrides
+
+## TASK-51 Shipped (Session 335)
+
+- `src/lib/spinPhasePillGlow.js` — `shouldSpinPhasePillGlow()` during spinning phase
+- `src/lib/spinPhasePillGlow.test.ts` — phase gate unit test
+- `src/ui/PhasePill.jsx` — `spin-phase-glow` on `.phase-pill-wrap` when spinning
+- `src/index.css` — crimson idle pulse keyframes, light/neon theme overrides
+
+## TASK-50 Shipped (Session 335)
+
+- `src/lib/batchStakePulse.js` — `shouldBatchStakePulse()` on successful batch commit
+- `src/lib/batchStakePulse.test.ts` — pulse trigger unit test
+- `src/context/GameContext.jsx` — `batchStakePulse` bump in `placeBetsBatch` (racetrack + neighbors)
+- `src/ui/BettingBoard.jsx` — `batch-stake-pulse` on `.panel-header`
+- `src/index.css` — teal header flash keyframes, light/neon theme overrides
+
+## TASK-49 Shipped (Session 335)
+
+- `src/lib/stakeCommitPulse.js` — `shouldStakeCommitPulse()` on successful single-chip commit
+- `src/lib/stakeCommitPulse.test.ts` — pulse trigger unit test
+- `src/context/GameContext.jsx` — `stakeCommitPulse` bump in `placeBet`
+- `src/ui/BettingBoard.jsx` — `stake-commit-pulse` on `.panel-header`
+- `src/index.css` — gold header flash keyframes, light/neon theme overrides
+
+## TASK-48 Shipped (Session 335)
+
+- `src/lib/chipRackBettingGlow.js` — `shouldChipRackBettingGlow()` when betting window open
+- `src/lib/chipRackBettingGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-rack-betting-glow` on `.chip-rack` via `bettingGlow` prop
+- `src/index.css` — radial halo idle pulse on rack `::before`, light/neon theme overrides
+
+## TASK-47 Shipped (Session 335)
+
+- `src/lib/lockPhasePillUrgency.js` — `shouldLockPhasePillUrgency()` during locked phase
+- `src/lib/lockPhasePillUrgency.test.ts` — phase gate unit test
+- `src/ui/PhasePill.jsx` — `lock-phase-urgency` on `.phase-pill-wrap` when locked
+- `src/index.css` — warm pill pulse keyframes, light/neon theme overrides
+
+## TASK-46 Shipped (Session 335)
+
+- `src/lib/cycleDropUrgency.js` — `shouldCycleDropUrgency()` when ≤5s to ball drop during betting/lock
+- `src/lib/cycleDropUrgency.test.ts` — countdown + urgency window unit tests
+- `src/ui/BettingBoard.jsx` — `cycle-drop-urgency` on `.cycle-track` when urgent
+- `src/index.css` — warm track/fill pulse keyframes, light/neon theme overrides
+
+## TASK-45 Shipped (Session 335)
+
+- `src/lib/clearReadyGlow.js` — `shouldClearReadyGlow()` when betting open + staked > 0
+- `src/lib/clearReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `clear-ready-glow` on Clear button when eligible
+- `src/index.css` — warm idle pulse keyframes, light/neon theme overrides
+
+## TASK-44 Shipped (Session 334)
+
+- `src/lib/scaleReadyGlow.js` — `shouldScaleReadyGlow()` when half or double available
+- `src/lib/scaleReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `scale-ready-glow` on `.stake-scale-cluster`
+- `src/index.css` — teal idle pulse (suppressed during action pulse), light/neon overrides
+
+## TASK-43 Shipped (Session 333)
+
+- `src/lib/undoReadyGlow.js` — `shouldUndoReadyGlow()` when `canUndoBet`
+- `src/lib/undoReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `undo-ready-glow` on Undo button when enabled
+- `src/index.css` — gold idle pulse keyframes, light/neon theme overrides
+
+## TASK-42 Shipped (Session 332)
+
+- `src/lib/repeatReadyGlow.js` — `shouldRepeatReadyGlow()` when `canRepeatLastRound`
+- `src/lib/repeatReadyGlow.test.ts` — glow trigger unit test
+- `src/ui/BettingBoard.jsx` — `repeat-ready-glow` on Repeat button when enabled
+- `src/index.css` — teal idle pulse keyframes, light/neon theme overrides
+
+## TASK-41 Shipped (Session 331)
+
+- `src/lib/faucetReadyGlow.js` — `shouldFaucetReadyGlow()` at/below trigger balance
+- `src/lib/faucetReadyGlow.test.ts` — glow + security-hold unit tests
+- `src/ui/BettingBoard.jsx` — `faucet-ready-glow` on `$1,000 Refill` when eligible
+- `src/index.css` — gold idle pulse keyframes, light/neon theme overrides
+
+## TASK-40 Shipped (Session 330)
+
+- `src/lib/statusLineFlash.js` — `shouldStatusLineFlash()` for non-empty messages
+- `src/lib/statusLineFlash.test.ts` — flash trigger unit test
+- `src/ui/BettingBoard.jsx` — `status-line-flash` on message change (skips initial mount)
+- `src/index.css` — teal status highlight keyframes, light/neon theme overrides
+
+## TASK-39 Shipped (Session 329)
+
+- `src/lib/faucetRefillPulse.js` — `shouldFaucetRefillPulse()` on successful claim
+- `src/lib/faucetRefillPulse.test.ts` — pulse trigger unit test
+- `src/context/GameContext.jsx` — `faucetRefillPulse` bump in `requestFaucet`
+- `src/ui/BettingBoard.jsx` — `faucet-refill-pulse` class on `.balance-value`
+- `src/index.css` — gold wallet spring glow, light/neon theme overrides
+
+## TASK-38 Shipped (Session 328)
+
+- `src/lib/repeatRoundPulse.js` — `shouldRepeatRoundPulse()` on successful repeat
+- `src/lib/repeatRoundPulse.test.ts` — pulse trigger unit test
+- `src/context/GameContext.jsx` — `repeatRoundPulse` bump in `repeatLastRound` (button + R hotkey)
+- `src/ui/BettingBoard.jsx` — `repeat-round-pulse` class on `.panel-header`
+- `src/index.css` — teal header glow keyframes, light/neon theme overrides
+
+## TASK-37 Shipped (Session 327)
+
+- `src/lib/undoCellRecoil.js` — `undoCellRecoilMeta()` clear vs reduce + `shouldUndoCellRecoil()`
+- `src/lib/undoCellRecoil.test.ts` — clear/reduce/skip unit tests
+- `src/context/GameContext.jsx` — `undoCellRecoil` pulse in `undoLastBet` (button + U hotkey)
+- `src/ui/BettingBoard.jsx` — `chip-undone-recoil` / `chip-undone-clear` + vanishing ghost chip
+- `src/index.css` — stack shrink + ghost vanish keyframes, light/neon theme overrides
+
+## TASK-36 Shipped (Session 326)
+
+- `src/lib/favoriteApplyPulse.js` — `shouldFavoriteApplyPulse()` on successful preset apply
+- `src/lib/favoriteApplyPulse.test.ts` — pulse trigger unit test
+- `src/context/GameContext.jsx` — `favoriteApplyPulse` bump in `applyFavoriteBets` (panel + F1–F3 hotkeys)
+- `src/ui/BettingBoard.jsx` — `favorite-apply-pulse` class on `.panel-header`
+- `src/index.css` — header glow keyframes, light/neon theme overrides
+
+## TASK-35 Shipped (Session 325)
+
+- `src/lib/scaleBoardPulse.js` — `shouldScaleBoardPulse()` + `scaleBoardPulseMode()` half/double
+- `src/lib/scaleBoardPulse.test.ts` — pulse trigger + mode unit tests
+- `src/context/GameContext.jsx` — `scaleBoardPulse` bump on successful `scaleBoardStake` (button + `[`/`]` hotkeys)
+- `src/ui/BettingBoard.jsx` — `scale-board-pulse` classes on `.stake-scale-cluster`
+- `src/index.css` — cluster glow + button pop keyframes, light/neon theme overrides
+
+## TASK-34 Shipped (Session 323)
+
+- `src/lib/chipSelectBounce.js` — `shouldChipSelectBounce()` on selection change
+- `src/lib/chipSelectBounce.test.ts` — bounce trigger unit test
+- `src/ui/BettingBoard.jsx` — `chip-select-bounce` animation on newly selected rack chip (click + keyboard 1–5)
+- `src/index.css` — spring pop + ring burst keyframes, light/neon theme overrides
+
+## DEBUG MODE
+
+Next DEBUG cycle at Execution_Counter **15** (DEBUG-49) — **due now**.
+
+## DEBUG-39 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 797 modules)
+- Tests: verify **1227** passed · vitest **1098** passed · 0 failed
+- Typecheck: clean
+- Bundle budget: css **24.78 KB / 10 KB** · app **65.87 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-77–90 ready-pulse modules (`cycle-track-tick-pulse`, `status-line-ready-glow`, repeat/undo/clear/scale/faucet ready-pulse family, `balance-low-pulse`, `drawer-open-pulse`, panel ready-pulse family, `shortcuts-ready-pulse`); ref+timeout edge-trigger patterns safe across `BettingBoard`, `App`, `SessionStatsPanel`, `FavoriteBetsPanel`, `FairnessPanel`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-91
+
+## DEBUG-38 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 783 modules)
+- Tests: verify **1227** passed · vitest **1084** passed · 0 failed
+- Typecheck: clean
+- Bundle budget: css **22.91 KB / 10 KB** · app **65.13 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-63–76 pulse modules (`chip-select-pulse`, `balance-low-glow`, `staked-label-pulse`, `result-pill-ready-glow`, `quality-badge-tier-pulse`, HUD ready-glow family, `drawer-meta-pulse`); ref+timeout pulse patterns safe across `BettingBoard`, `App`, `PhasePill`, `PayoutToast`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-77
+
+## DEBUG-37 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 769 modules)
+- Tests: verify **1227** passed · vitest **1067** passed · 0 failed
+- Typecheck: fixed discriminated-union narrowing in `bets.test.ts` (`scaleBoardWallet` `nextBalance`/`reason` guards) and `favoriteBets.test.ts` (explicit callback param type)
+- Bundle budget: css **21.16 KB / 10 KB** · app **64.38 KB / 50 KB** — over limit (cumulative growth; no regression fix this cycle)
+- Review: no duplicate `@keyframes` for TASK-49–62 pulse modules (`stake-commit-pulse`, `batch-stake-pulse`, ready-glow family, `win-streak-tier-pulse`, `recent-streak-tier-pulse`); tier-pulse ref+timeout pattern safe in `WinStreakBadge` / `RecentResultsRail`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-63
+
+## DEBUG-36 (Session 335) — Execution_Counter 15
+
+- Build: clean (vite production, 755 modules)
+- Tests: verify **1227** passed · vitest **1051** passed · 0 failed
+- Review: no duplicate `@keyframes` in `index.css` for TASK-35–48 modules (`scale-board-pulse`, `favorite-apply-pulse`, `undo-cell-recoil`, `repeat-round-pulse`, `faucet-refill-pulse`, `status-line-flash`, ready-glow family, `cycle-drop-urgency`, `lock-phase-urgency`, `chip-rack-betting-glow`); lib/hooks/ui parity gates green
+- No hardening required — pulse state safe defaults intact in `BettingBoard` destructuring; phase/cycle urgency gates mutually exclusive by phase
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-49
+
+## DEBUG-35 (Session 324) — Execution_Counter 15
+
+- Build: clean (vite production, 743 modules)
+- Tests: verify **1227** passed · vitest **1032** passed · 0 failed
+- Review: no duplicate `@keyframes` in `index.css` for sessions 314–323 modules (`bet-clear-shake`, `chip-select-bounce`, `color-streak`, `winning-cascade`, `payout-toast-sync`); lib/hooks/ui parity gates green
+- No hardening required — `balancePulse` / `betClearShake` safe defaults already in `BettingBoard` destructuring
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-35
+
+## TASK-33 Shipped (Session 322)
+
+- `src/lib/betClearShake.js` — `shouldBetClearShake()` when refund > 0
+- `src/lib/betClearShake.test.ts` — clear shake trigger unit test
+- `src/context/GameContext.jsx` — `betClearShake` pulse on successful clear (button + keyboard C)
+- `src/ui/BettingBoard.jsx` — `bet-clear-shake` panel class on clear pulse
+- `src/index.css` — horizontal shake keyframes, light/neon theme overrides
+
+## TASK-32 Shipped (Session 321)
+
+- `src/lib/colorStreakChip.js` — `colorStreakRun()` warm/hot tiers + streak chip index helper
+- `src/lib/colorStreakChip.test.ts` — tier + highlight metadata unit tests
+- `src/ui/RecentResultsRail.jsx` — streak badge tiers, `streak-run-chip` highlights, `data-testid="recent-streak-chip"`
+- `src/index.css` — connecting streak links, glow/hot pulse on run chips, light/neon theme overrides
+
+## TASK-31 Shipped (Session 320)
+
+- `src/lib/payoutToastSync.js` — `shouldSyncPayoutToast()` + 300ms offset aligned to result pill fly-in peak
+- `src/lib/payoutToastSync.test.ts` — sync trigger + delay unit tests
+- `src/ui/PayoutToast.jsx` — defers toast until settle reveal; `payout-toast-synced` class + `data-testid`
+- `src/index.css` — `payout-float-synced` entry animation; tier overrides for jackpot/big/legendary
+
+## TASK-30 Shipped (Session 319)
+
+- `src/lib/winningCellCascade.js` — board-order cascade map + 70ms stagger steps
+- `src/lib/winningCellCascade.test.ts` — winner detection + cascade index unit tests
+- `src/ui/BettingBoard.jsx` — `--cascade-delay` on winning cells, `winning-cascade` class
+- `src/index.css` — staggered settle-pop, glow, and ripple delays per cascade slot
+
+## TASK-29 Shipped (Session 318)
+
+- `src/lib/settleRimGlow.js` — `shouldSettleRimGlow()` + `settleRimGlowKey()` on settle reveal
+- `src/lib/settleRimGlow.test.ts` — rim glow trigger + key unit tests
+- `src/App.jsx` — `canvas-settle-rim` overlay + `settle-rim-glow` class on canvas wrap
+- `src/index.css` — warm radial rim pulse animation, canvas saturation lift, light/neon theme overrides
+
+## TASK-28 Shipped (Session 317)
+
+- `src/lib/resultPillFlyIn.js` — `shouldResultPillFlyIn()` + `resultPillRevealKey()` for settle reveal
+- `src/lib/resultPillFlyIn.test.ts` — fly-in trigger + key unit tests
+- `src/ui/BettingBoard.jsx` — `result-fly-in` class, remount key, `data-testid="result-pill"`
+- `src/index.css` — slide-in from wheel (desktop) / from above (mobile portrait), glow trail, staggered ball + label pop, light/neon overrides
+
+## TASK-27 Shipped (Session 316)
+
+- `src/lib/favoriteHotkeys.js` — F1–F3 slot mapping, sorted preset lookup, overlay labels
+- `src/lib/favoriteHotkeys.test.ts` — hotkey index + label unit tests
+- `src/hooks/useBetShortcuts.js` — F1–F3 apply favorite during betting phase
+- `src/lib/keyboardShortcuts.js` — F1–F3 row in help catalog
+- `src/ui/ShortcutsOverlay.jsx` — live preset names in help detail
+- `src/App.jsx` — favorites + `applyFavoriteBets` wired to shortcut hook
+
+## TASK-26 Shipped (Session 315)
+
+- `src/lib/spinFocusDim.js` — `spinFocusDimLevel()` soft/deep dim + `spinFocusCssVars()` from APP_CONFIG.hud
+- `src/lib/spinFocusDim.test.ts` — dim level + CSS var unit tests
+- `src/ui/BettingBoard.jsx` — body-only fade during spin-focus, chip dock stays bright, `data-spin-dim`, locked-phase soft dim
+- `src/index.css` — `spin-focus-body-dim` overlay, `spin-dim-soft` locked prelude, light/neon theme overrides
+- `verify.js` — spin-focus assert updated for `--spin-focus-opacity` body dim pattern
+
+## TASK-25 Shipped (Session 314)
+
+- `src/lib/lockPhaseBanner.js` — `shouldShowLockBanner()` on betting→locked transition
+- `src/lib/lockPhaseBanner.test.ts` — lock banner unit tests
+- `src/ui/LockPhaseBanner.jsx` — amber pill toast below HUD, auto-dismiss ~3.2s
+- `src/ui/LockPhaseBanner.test.tsx` — parity export test
+- `src/App.jsx` — banner wired beside payout toast layer
+- `src/index.css` — lock banner slide-in + pulsing dot, light/neon theme overrides
+
+## TASK-24 Shipped (Session 313)
+
+- `src/lib/keyboardShortcuts.js` — toggle/action key helpers + help row catalog
+- `src/lib/keyboardShortcuts.test.ts` — shortcut key parsing unit tests
+- `src/hooks/useBetShortcuts.js` — global keydown wiring for bet controls
+- `src/hooks/useBetShortcuts.test.ts` — hook export test
+- `src/ui/ShortcutsOverlay.jsx` — modal help overlay with kbd list + live chip map
+- `src/ui/ShortcutsOverlay.test.tsx` — parity export test
+- `src/App.jsx` — `?` HUD button, overlay wired to undo/repeat/clear/scale/chip select
+- `src/index.css` — overlay panel, help toggle, light/neon theme overrides
+- `src/core/vitestCoverage.test.ts` — hooks parity includes `useBetShortcuts`
+
+## TASK-23 Shipped (Session 312)
+
+- `src/lib/stakeRisk.js` — `stakeRiskLevel()` high-risk check (>50% balance staked)
+- `src/lib/stakeRisk.test.ts` — stake risk unit tests
+- `src/ui/BettingBoard.jsx` — `stake-risk-warning` on panel header during betting when over threshold
+- `src/index.css` — amber pulse on at-risk amount, inset warning ring, light/neon overrides
+
+## TASK-22 Shipped (Session 311)
+
+- `src/lib/plSparkline.js` — `sparklineGeometry()` SVG path builder with zero baseline
+- `src/lib/plSparkline.test.ts` — geometry unit tests
+- `src/ui/PlSparkline.jsx` — cumulative P/L SVG sparkline (`mini` + `full` variants)
+- `src/ui/PlSparkline.test.tsx` — parity export test
+- `src/ui/SessionStatsPanel.jsx` — mini sparkline in collapsed toggle + full chart in body
+- `src/index.css` — sparkline line/area/dot styling, chart block, light/neon overrides
+
+## TASK-21 Shipped (Session 310)
+
+- `src/lib/betLockCountdown.js` — betting-phase seconds-left + ring progress helper
+- `src/lib/betLockCountdown.test.ts` — countdown unit tests
+- `src/ui/PhasePill.jsx` — SVG countdown ring around phase pill (urgent pulse ≤5s)
+- `src/ui/PhasePill.test.tsx` — parity export test
+- `src/App.jsx` — `PhasePill` replaces inline phase pill markup
+- `src/index.css` — ring track/progress, urgent pulse, light/neon theme overrides
+
+## DEBUG-34 (Session 309) — Execution_Counter 15
+
+- Build: clean (vite production, 724 modules)
+- Tests: verify **1227** passed · vitest **993** passed · 0 failed
+- Review: no duplicate `@keyframes` in `index.css`; lib/hooks/ui parity gates green for sessions 306–308 modules (`usePortraitMobile`, `WinStreakBadge`, `balancePulse`)
+- Hardened: `balancePulse` default in `BettingBoard` destructuring (safe fallback if context field absent)
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-21
+
+## TASK-20 Shipped (Session 308)
+
+- `src/lib/balancePulse.js` — `balanceSettleTone()` win/loss tone from net + risked
+- `src/lib/balancePulse.test.ts` — settle tone unit tests
+- `src/context/GameContext.jsx` — `balancePulse` state set on settle, cleared on new betting phase
+- `src/ui/BettingBoard.jsx` — `balance-pulse-win` / `balance-pulse-loss` classes on wallet value
+- `src/index.css` — green/red spring pulse animations; light/neon theme variants
+
+## TASK-19 Shipped (Session 307)
+
+- `src/lib/sessionStats.js` — `winStreak()` consecutive profitable rounds helper
+- `src/lib/sessionStats.test.ts` — win streak unit tests
+- `src/ui/WinStreakBadge.jsx` — HUD badge (2+ wins, tiered mild/warm/hot glow)
+- `src/ui/WinStreakBadge.test.tsx` — parity export test
+- `src/ui/icons.jsx` — `IconWinStreak` star vector
+- `src/App.jsx` — badge wired into `TopHud` between phase pill and controls
+- `src/index.css` — gold streak badge, pop/glow animations, light/neon/mobile overrides
+
+## TASK-18 Shipped (Session 306)
+
+- `src/hooks/usePortraitMobile.js` — portrait phone media-query hook (`PORTRAIT_MOBILE_MQ`)
+- `src/hooks/usePortraitMobile.test.ts` — export + media query constant test
+- `src/ui/BettingBoard.jsx` — collapsible `mobile-drawer` with toggle, auto-collapse on spin-focus, expand on settle-reveal; chip dock stays pinned
+- `src/index.css` — portrait drawer layout, collapse transitions, light/neon dock theming
+- `src/core/vitestCoverage.test.ts` — hooks parity gate includes `usePortraitMobile`
+
+## TASK-17 Shipped (Session 305)
+
+- `src/lib/bets.js` — `scaleBoardBets`, `scaleBoardWallet` with per-cell and table limits
+- `src/lib/bets.test.ts` — half/double wallet unit tests
+- `src/context/GameContext.jsx` — `scaleBoardStake`, `canScaleBoardHalf`, `canScaleBoardDouble`
+- `src/ui/BettingBoard.jsx` — ½× / 2× quick controls in chip dock actions
+- `src/index.css` — stake-scale cluster styling
+
+## TASK-16 Shipped (Session 304)
+
+- `src/lib/lastRoundBets.js` — capture on settle, `repeatRoundWallet`, sessionStorage persistence
+- `src/lib/lastRoundBets.test.ts` — repeat wallet unit tests
+- `src/context/GameContext.jsx` — saves layout on settle, `repeatLastRound`, `canRepeatLastRound`
+- `src/ui/BettingBoard.jsx` — Repeat button + `repeat-flash` on restored cells
+- `src/index.css` — repeat-round flash animation + Repeat button styling
+
+## TASK-15 Shipped (Session 303)
+
+- `src/lib/bets.js` — `undoFlashKey` for cell-level undo animation targeting
+- `src/lib/bets.test.ts` — undo flash key unit tests
+- `src/context/GameContext.jsx` — bet undo snapshot stack, `undoLastBet`, `canUndoBet`; clears on lock/clear
+- `src/ui/BettingBoard.jsx` — Undo button, `chip-undone` spring on affected cells
+- `src/index.css` — `chip-undo-spring` animation + undo button styling
+
+## TASK-14 Shipped (Session 302)
+
+- `src/lib/sessionStats.js` — `colorStreak` helper for consecutive color runs
+- `src/lib/sessionStats.test.ts` — color streak unit test
+- `src/ui/RecentResultsRail.jsx` — scrollable always-visible recent winning numbers rail
+- `src/ui/RecentResultsRail.test.tsx` — parity export test
+- `src/ui/BettingBoard.jsx` — rail wired above panel header
+- `src/index.css` — rail, streak badge, latest-chip pop; light/neon theme overrides
+
+## TASK-13 Shipped (Session 301)
+
+- `src/lib/uiTheme.js` — `UI_THEME_LIGHT`, 3-way `cycleUiTheme`, `themeSubtitle`
+- `src/lib/uiTheme.test.ts` — lounge/neon/daylight cycle unit tests
+- `src/lib/chipDragAudio.js` — daylight timbre profile (crisp, minimal whoosh)
+- `src/lib/highlight.js` — high-contrast gold/teal hover glow for daylight theme
+- `src/lib/feedbackBridge.js` — timbre routing via `chipTimbreForTheme`
+- `src/App.jsx` — 3-way theme toggle (lounge → neon → daylight), dynamic subtitle
+- `src/ui/icons.jsx` — `IconThemeLight` sun icon
+- `src/index.css` — `[data-theme="light"]` token overrides, flat white panel, readable bet cells
+- `src/scene/WheelSectorNeon.jsx` / wheel components — subdued daylight wheel glow
+
+## TASK-12 Shipped (Session 300)
+
+- `src/ui/BettingBoard.jsx` — `winning-ripple` span on straight/outside + inside winning cells at settle-reveal
+- `src/index.css` — gold settle pop (`winning-cell-settle-pop`), dual-ring ripple (`winning-settle-ripple`), inside-zone gold glow parity
+
+## TASK-11 Shipped (Session 300)
+
+- `src/lib/highlight.js` — `neonGlowColorForHighlight`, `samplePocketIndices`, wheel-set + inside-bet warm glow tints
+- `src/lib/highlight.test.ts` — neon glow + pocket sampling unit tests
+- `src/scene/WheelSectorNeon.jsx` — instanced ring glows + point lights synced to hover, theme-aware colors
+- `src/scene/EuropeanWheel.jsx` / `EuropeanWheelVisual.jsx` — pocket emissive uses theme-aware neon/warm glow
+
+## TASK-10 Shipped (Session 299)
+
+- `src/ui/ChipDragLayer.jsx` — trail dots, streak segments, velocity-scaled comet tail on ghost
+- `src/ui/ChipDragLayer.test.tsx` — parity export test
+- `src/ui/BettingBoard.jsx` — trail buffer on drag move, ChipDragLayer integration
+- `src/index.css` — trail dot/streak/comet styles, neon theme + reduced-motion overrides
+
+## TASK-9 Shipped (Session 298)
+
+- `src/lib/sessionStats.js` — `wheelHeatLevels` hot/warm/cool/cold tiers from session frequency
+- `src/lib/sessionStats.test.ts` — heatmap level unit test
+- `src/ui/RacetrackPanel.jsx` — heat tint on pockets, Heat toggle, legend strip
+- `src/ui/BettingBoard.jsx` — `sessionRounds` passed to racetrack
+- `src/index.css` — heat pocket glows, legend + toggle styling
+
+## TASK-8 Shipped (Session 297)
+
+- `src/lib/chipDragAudio.js` — lounge/neon timbre profiles, pitch + whoosh intensity helpers
+- `src/lib/chipDragAudio.test.ts` — timbre/pitch/whoosh unit tests
+- `src/lib/audioSynth.js` — `playChipLand`, `playChipDragWhoosh` (denom + theme aware)
+- `src/lib/feedbackBridge.js` — `chipDragStart`, `chipDragMove`, themed `chipPlace`
+- `src/context/GameContext.jsx` — drag feedback hooks, themed chip place on all bet paths
+- `src/ui/BettingBoard.jsx` — drag velocity whoosh on pointer move
+
+## TASK-7 Shipped (Session 296)
+
+- `src/lib/uiTheme.js` — lounge/neon profiles, localStorage persistence, `data-theme` application
+- `src/lib/uiTheme.test.ts` — theme normalize/toggle unit tests
+- `src/main.jsx` — apply saved theme before first paint (no FOUC)
+- `src/context/GameContext.jsx` — `uiTheme` state + `cycleUiTheme`
+- `src/App.jsx` — HUD theme toggle button, dynamic brand subtitle
+- `src/ui/icons.jsx` — `IconThemeNeon`, `IconThemeLounge`
+- `src/index.css` — neon token overrides, ambient shell glow, panel/spin/racetrack neon styling
+
+## DEBUG-23 (Session 295) — Execution_Counter 15
+
+- Build: clean (vite production, 716 modules)
+- Tests: 1227 passed, 0 failed (verify.js parity restored for sessions 292–294 modules)
+- Fixed: duplicate `@keyframes payout-jackpot-pulse` in `index.css`
+- Added: parity/unit tests for `favoriteBets`, `racetrack`, `winCelebration`, `FavoriteBetsPanel`, `RacetrackPanel`, `mergePresetBets`
+- Counter reset to **0** — next turn resumes BUILD MODE on TASK-7
+
+## TASK-6 Shipped (Session 294)
+
+- `src/lib/favoriteBets.js` — localStorage presets (max 10), name sanitization, add/remove helpers
+- `src/lib/bets.js` — `mergePresetBets` for atomic preset application onto board
+- `src/ui/FavoriteBetsPanel.jsx` — save/apply/delete collapsible preset panel
+- `src/context/GameContext.jsx` — `favorites` state, `saveFavoriteBet`, `deleteFavoriteBet`, `applyFavoriteBets`
+- `src/ui/BettingBoard.jsx` — FavoriteBetsPanel wired below SessionStatsPanel
+- `src/index.css` — favorite bets panel styling
+
+## TASK-5 Shipped (Session 293)
+
+- `src/lib/winCelebration.js` — tier thresholds (small→legendary), shake/particle/spark/flash scales
+- `src/context/GameContext.jsx` — `winCelebration` state, tiered shake + spark on settle, extended win flash
+- `src/scene/WinParticles.jsx` — particle count/velocity/size scales with celebration tier
+- `src/scene/FloatingWinText.jsx` — tier-colored floating win text with scaled pulse
+- `src/ui/PayoutToast.jsx` — tiered toast labels (NICE WIN / BIG WIN / JACKPOT / LEGENDARY)
+- `src/App.jsx` — canvas `win-shake` CSS keyed by celebration pulse + tier
+- `src/index.css` — screen-shake keyframes, neon payout glow, legendary pulse animations
+
+## TASK-4 Shipped (Session 292)
+
+- `src/lib/racetrack.js` — wheel-order layout, sector definitions, neighbor spread, call-bet leg tables
+- `src/ui/RacetrackPanel.jsx` — oval racetrack UI, ±1/2/3 neighbor picker, announced-bet buttons
+- `src/lib/highlight.js` — `wheel-set` highlight type for racetrack sector/neighbor glow
+- `src/context/GameContext.jsx` — `placeBetsBatch`, `placeCallBet`, `placeNeighbors` atomic multi-chip placement
+- `src/ui/BettingBoard.jsx` — Classic/Racetrack tab switch, RacetrackPanel wired
+- `src/index.css` — racetrack oval, pocket chips, sector tints, call-bet grid, board mode tabs
 
 ## TASK-3 Shipped (Session 291)
 
@@ -68,13 +2316,20 @@ Technical debt backlog for verify.js guard chain: **cleared** — pivot to featu
 
 ## Next Task
 
-Feature backlog **complete** for current polish phase. Await user direction for next scope.
+**TASK-110** — Spin-focus board entry pulse — brief flash when betting panel enters spin-focus dim.
 
 ## Completed This Session (feature)
 
 | ID | Task | Result |
 |----|------|--------|
-| TASK-3 | Session stats panel — hot/cold, P/L trend, progression helper, sessionStorage | [DONE] |
+| TASK-17 | Quick stake ½× / 2× board controls | [DONE] |
+| TASK-9 | Racetrack heatmap — session hot/cold pocket tints | [DONE] |
+
+| ID | Task | Result |
+|----|------|--------|
+| TASK-6 | Favorite bet presets — save, apply, delete, localStorage | [DONE] |
+| TASK-5 | Win celebration tiers — shake, particles, neon payout glow | [DONE] |
+| TASK-4 | Racetrack board — wheel layout, neighbors, call bets, batch placement | [DONE] |
 
 ## Completed This Session (archived hardening)
 
@@ -3043,4 +5298,4 @@ Feature backlog **complete** for current polish phase. Await user direction for 
 - Report flat fields: **6/6** — `SURFACE_FLAT_REPORT_FLAT_FIELD_COUNT === 6`.
 - Dedupe-block vitest-audits-ok-jsx-entry-parity-balance-surface-full-surface-td09-resolved-resolved-register-fairness-custody-css-immediate→FairnessPanel-custody-badge-prop boundary locked with zero intervening asserts.
 - Milestones: 312 (`VITEST_COMPLETED_UPGRADE_COUNT`).
-- **DEBUG MODE** at counter **15** (7 steps until **DEBUG-34**).
+- **DEBUG MODE** at counter **15** (DEBUG-41).

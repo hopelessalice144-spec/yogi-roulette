@@ -35,6 +35,13 @@ export function numbersForHighlight({ type, value }) {
     case 'corner':
     case 'line':
       return insideNumbers(type, value);
+    case 'wheel-set': {
+      if (value === undefined || value === null || value === '') return [];
+      return String(value)
+        .split(',')
+        .map((part) => Number(part.trim()))
+        .filter((n) => Number.isInteger(n) && n >= 0 && n <= 36);
+    }
     default:
       return [];
   }
@@ -114,7 +121,85 @@ export function warmGlowColorForHighlight(highlight) {
       return '#ffbb55';
     case 'dozen':
       return '#ff8866';
+    case 'column':
+      return '#77bbff';
+    case 'split':
+      return '#66ffee';
+    case 'street':
+      return '#88ddff';
+    case 'corner':
+      return '#ffcc77';
+    case 'line':
+      return '#ffaa88';
+    case 'wheel-set':
+      return '#00e8c8';
     default:
       return '#ffaa44';
   }
+}
+
+/** Theme-aware neon color for 3D wheel sector lights. */
+export function neonGlowColorForHighlight(highlight, uiTheme = 'lounge') {
+  if (!highlight?.type) {
+    if (uiTheme === 'neon') return '#ff7ec8';
+    if (uiTheme === 'light') return '#c9a227';
+    return '#ffaa44';
+  }
+  if (uiTheme === 'light') {
+    switch (highlight.type) {
+      case 'red':
+        return '#c62828';
+      case 'black':
+        return '#37474f';
+      case 'straight':
+        return highlight.value === 0 ? '#00796b' : '#b8860b';
+      case 'wheel-set':
+        return '#00796b';
+      case 'split':
+      case 'street':
+      case 'corner':
+      case 'line':
+        return '#8d6e14';
+      case 'dozen':
+      case 'column':
+        return '#5d4e37';
+      default:
+        return '#b8860b';
+    }
+  }
+  if (uiTheme === 'neon') {
+    switch (highlight.type) {
+      case 'red':
+        return '#ff2d95';
+      case 'black':
+        return '#66ccff';
+      case 'straight':
+        return highlight.value === 0 ? '#00ffff' : '#ffe566';
+      case 'wheel-set':
+        return '#00ffff';
+      case 'split':
+      case 'street':
+      case 'corner':
+      case 'line':
+        return '#ff9ed8';
+      case 'dozen':
+      case 'column':
+        return '#c084fc';
+      default:
+        return '#ff7ec8';
+    }
+  }
+  return warmGlowColorForHighlight(highlight);
+}
+
+/** Evenly sample pocket indices when highlight spans more than max slots. */
+export function samplePocketIndices(indices, max = 20) {
+  const list = [...indices].sort((a, b) => a - b);
+  if (list.length <= max) return list;
+  const out = [];
+  const step = list.length / max;
+  for (let i = 0; i < max; i += 1) {
+    out.push(list[Math.floor(i * step)]);
+  }
+  return out;
 }

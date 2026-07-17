@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   appendSessionRound,
+  colorStreak,
   hotColdNumbers,
   plSeries,
   progressionAdvice,
   sessionTotals,
+  winStreak,
+  wheelHeatLevels,
 } from './sessionStats.js';
 
 describe('sessionStats', () => {
@@ -67,5 +70,55 @@ describe('sessionStats', () => {
     });
     expect(advice.mode).toBe('recover');
     expect(advice.chip).toBe(100);
+  });
+
+  it('builds wheel heat levels from session rounds', () => {
+    const rounds = [
+      { cycleId: 5, number: 7, net: 0, risked: 0 },
+      { cycleId: 4, number: 7, net: 0, risked: 0 },
+      { cycleId: 3, number: 7, net: 0, risked: 0 },
+      { cycleId: 2, number: 1, net: 0, risked: 0 },
+      { cycleId: 1, number: 2, net: 0, risked: 0 },
+    ];
+    const { levels, ready } = wheelHeatLevels(rounds);
+    expect(ready).toBe(true);
+    expect(levels.get(7)).toBe('hot');
+    expect(levels.get(36)).toBe('cold');
+  });
+
+  it('counts consecutive color streaks from latest results', () => {
+    expect(colorStreak([])).toEqual({ color: null, length: 0 });
+    expect(
+      colorStreak([
+        { color: 'red' },
+        { color: 'red' },
+        { color: 'black' },
+      ]),
+    ).toEqual({ color: 'red', length: 2 });
+    expect(
+      colorStreak([
+        { color: 'black' },
+        { color: 'black' },
+        { color: 'black' },
+        { color: 'red' },
+      ]),
+    ).toEqual({ color: 'black', length: 3 });
+  });
+
+  it('counts consecutive winning rounds from session history', () => {
+    expect(winStreak([])).toEqual({ length: 0, totalWon: 0 });
+    expect(
+      winStreak([
+        { net: 50, risked: 25 },
+        { net: 30, risked: 10 },
+        { net: -10, risked: 10 },
+      ]),
+    ).toEqual({ length: 2, totalWon: 80 });
+    expect(
+      winStreak([
+        { net: 0, risked: 0 },
+        { net: 25, risked: 25 },
+      ]),
+    ).toEqual({ length: 0, totalWon: 0 });
   });
 });

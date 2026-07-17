@@ -701,7 +701,12 @@ describe('vitestCoverage', () => {
 
     it('includes hooks modules in the parity gate', () => {
       const hooks = listJsModules(SRC_ROOT, ['hooks']);
-      expect(hooks).toEqual(['hooks/useLiveClock.js', 'hooks/useWebGLRecovery.js']);
+      expect(hooks).toEqual([
+        'hooks/useBetShortcuts.js',
+        'hooks/useLiveClock.js',
+        'hooks/usePortraitMobile.js',
+        'hooks/useWebGLRecovery.js',
+      ]);
       expect(findModulesMissingTests(SRC_ROOT, ['hooks'])).toEqual([]);
     });
 

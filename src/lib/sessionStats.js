@@ -77,6 +77,39 @@ export function hotColdNumbers(rounds, top = 5) {
   return { hot, cold, spins: rounds.length };
 }
 
+const HEAT_MIN_SPINS = 3;
+
+/** Per-pocket heat tier for racetrack heatmap tinting. */
+export function wheelHeatLevels(rounds) {
+  const levels = new Map();
+  if (!rounds?.length || rounds.length < HEAT_MIN_SPINS) {
+    for (let n = 0; n <= 36; n += 1) levels.set(n, 'neutral');
+    return { levels, spins: rounds?.length ?? 0, ready: false };
+  }
+
+  const freq = numberFrequency(rounds);
+  const maxCount = Math.max(1, ...freq.map((f) => f.count));
+  const { hot, cold } = hotColdNumbers(rounds, 7);
+  const hotSet = new Set(hot.map((h) => h.number));
+  const coldCutoff = cold[Math.min(4, cold.length - 1)]?.count ?? 0;
+
+  for (const { number, count } of freq) {
+    if (hotSet.has(number) && count >= maxCount * 0.7) {
+      levels.set(number, 'hot');
+    } else if (count === 0 || count <= coldCutoff) {
+      levels.set(number, 'cold');
+    } else if (count >= maxCount * 0.55) {
+      levels.set(number, 'warm');
+    } else if (count <= maxCount * 0.3) {
+      levels.set(number, 'cool');
+    } else {
+      levels.set(number, 'neutral');
+    }
+  }
+
+  return { levels, spins: rounds.length, ready: true };
+}
+
 export function sessionTotals(rounds) {
   let net = 0;
   let wins = 0;
@@ -138,6 +171,33 @@ export function progressionAdvice({ rounds, chipValues, selectedChip, balance })
     label: chip > base ? `Step to $${chip}` : `Hold $${base}`,
     detail: `Lost $${last.risked} — optional recovery step (not auto-placed)`,
   };
+}
+
+/** Consecutive same-color results from most recent spin backward. */
+export function colorStreak(recentResults) {
+  if (!recentResults?.length) return { color: null, length: 0 };
+  const color = recentResults[0].color;
+  if (!color) return { color: null, length: 0 };
+  let length = 0;
+  for (const round of recentResults) {
+    if (round.color !== color) break;
+    length += 1;
+  }
+  return { color, length };
+}
+
+/** Consecutive winning rounds (net > 0) from most recent backward. */
+export function winStreak(rounds) {
+  if (!rounds?.length) return { length: 0, totalWon: 0 };
+  let length = 0;
+  let totalWon = 0;
+  for (const round of rounds) {
+    const net = Math.floor(Number(round.net) || 0);
+    if (net <= 0) break;
+    length += 1;
+    totalWon += net;
+  }
+  return { length, totalWon };
 }
 
 console.assert(numberFrequency([{ number: 7 }, { number: 7 }])[7].count === 2, 'freq');

@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { evaluateBet, getColor } from '../lib/math.js';
-import { placeChip, settleAll, totalStaked, CHIP_VALUES } from '../lib/bets.js';
+import { placeChip, settleAll, totalStaked, mergePresetBets, undoFlashKey, scaleBoardWallet, CHIP_VALUES } from '../lib/bets.js';
 import {
   claimFaucet,
   loadBalance,
@@ -31,6 +31,20 @@ import { createAudioEngine } from '../lib/audioSynth.js';
 import { createFeedbackBridge } from '../lib/feedbackBridge.js';
 import { loadFeedbackPrefs } from '../core/feedbackConfig.js';
 import { impactShakeIntensity } from '../lib/cameraRig.js';
+import { winCelebrationTier } from '../lib/winCelebration.js';
+import { balanceSettleTone } from '../lib/balancePulse.js';
+import { shouldBetClearShakeEntryPulse } from '../lib/betClearShakeEntryPulse.js';
+import { shouldFaucetRefillEntryPulse } from '../lib/faucetRefillEntryPulse.js';
+import { shouldRepeatRoundPulse } from '../lib/repeatRoundPulse.js';
+import { shouldStakeCommitPulse } from '../lib/stakeCommitPulse.js';
+import { shouldBatchStakePulse } from '../lib/batchStakePulse.js';
+import { scaleBoardPulseMode, shouldScaleBoardPulse } from '../lib/scaleBoardPulse.js';
+import {
+  applyUiTheme,
+  cycleUiTheme,
+  loadUiTheme,
+  saveUiTheme,
+} from '../lib/uiTheme.js';
 import { createHoverBridge } from '../lib/hoverBridge.js';
 import { createGhostEngine } from '../lib/ghostPlayers.js';
 import { wallClockSnapshot, computeBallKinematicSync, computeWheelAngleSync, missedSettleCycle } from '../lib/cycleResync.js';
@@ -41,6 +55,16 @@ import {
   loadSessionRounds,
   saveSessionRounds,
 } from '../lib/sessionStats.js';
+import {
+  addFavorite,
+  loadFavorites,
+  removeFavorite,
+} from '../lib/favoriteBets.js';
+import {
+  loadLastRoundBets,
+  repeatRoundWallet,
+  saveLastRoundBets,
+} from '../lib/lastRoundBets.js';
 import {
   createGameClock,
   resolveHudPhaseFromClock,
@@ -127,6 +151,8 @@ function mergeTickClock(tick) {
   });
 }
 
+const MAX_UNDO_SNAPSHOTS = 48;
+
 export function GameProvider({ children }) {
   const integrityGuardRef = useRef(null);
   if (!integrityGuardRef.current) {
@@ -151,6 +177,7 @@ export function GameProvider({ children }) {
   const [message, setMessage] = useState('Place your bets.');
   const [lastWin, setLastWin] = useState(0);
   const [particleBurst, setParticleBurst] = useState(0);
+  const [winCelebration, setWinCelebration] = useState({ tier: 'none', pulse: 0 });
   const [ballPhase, setBallPhase] = useState('orbit');
   const [wheelSpinSpeed, setWheelSpinSpeed] = useState(0.45);
   const [targetNumber, setTargetNumber] = useState(() => cycleTargetNumber(getCycleId()));
@@ -161,7 +188,23 @@ export function GameProvider({ children }) {
   const [hoverHighlight, setHoverHighlightState] = useState(null);
   const [qualityTier, setQualityTier] = useState('high');
   const [settleFlash, setSettleFlash] = useState(false);
+  const [balancePulse, setBalancePulse] = useState({ key: 0, tone: null });
+  const [betClearShake, setBetClearShake] = useState({ key: 0 });
+  const [scaleBoardPulse, setScaleBoardPulse] = useState({ key: 0, mode: null });
+  const [favoriteApplyPulse, setFavoriteApplyPulse] = useState({ key: 0 });
+  const [undoCellRecoil, setUndoCellRecoil] = useState({
+    key: 0,
+    cellKey: null,
+    kind: null,
+    removedAmount: 0,
+  });
+  const [repeatRoundPulse, setRepeatRoundPulse] = useState({ key: 0 });
+  const [stakeCommitPulse, setStakeCommitPulse] = useState({ key: 0 });
+  const [batchStakePulse, setBatchStakePulse] = useState({ key: 0 });
+  const [faucetRefillPulse, setFaucetRefillPulse] = useState({ key: 0 });
   const [sessionRounds, setSessionRounds] = useState(() => SESSION_BOOT.rounds);
+  const [favorites, setFavorites] = useState(loadFavorites);
+  const [uiTheme, setUiTheme] = useState(loadUiTheme);
   const [recentResults, setRecentResults] = useState(() => SESSION_BOOT.recent);
   const [audioMuted, setAudioMuted] = useState(() => loadFeedbackPrefs().audioMuted);
   const [liveFps, setLiveFps] = useState(60);
@@ -169,6 +212,8 @@ export function GameProvider({ children }) {
   const [ghostConfetti, setGhostConfetti] = useState([]);
   const [godModeStep, setGodModeStep] = useState(0);
   const [simulationPaused, setSimulationPaused] = useState(false);
+  const [undoCount, setUndoCount] = useState(0);
+  const [lastRoundBets, setLastRoundBets] = useState(() => loadLastRoundBets());
   const [fairRoundHistory, setFairRoundHistory] = useState([]);
   const seedCustodyBadge = useMemo(
     () => resolveSeedCustodyBadge(auditSeedCustody()),
@@ -179,6 +224,7 @@ export function GameProvider({ children }) {
   const settledCycle = useRef(null);
   const betsRef = useRef(bets);
   const balanceRef = useRef(balance);
+  const undoStackRef = useRef([]);
   const wheelAngleRef = useRef(0);
   const ballPosRef = useRef({ x: 0, y: 0.29, z: 1.15 });
   const ballVelRef = useRef({ x: 0, y: 0, z: 0 });
@@ -243,6 +289,12 @@ export function GameProvider({ children }) {
   useEffect(() => {
     feedbackRef.current?.setAudioMuted(audioMuted);
   }, [audioMuted]);
+
+  useEffect(() => {
+    applyUiTheme(uiTheme);
+    saveUiTheme(uiTheme);
+    feedbackRef.current?.setChipDragTheme?.(uiTheme);
+  }, [uiTheme]);
 
   useEffect(() => {
     const prev = lastClockPhaseRef.current;
@@ -440,6 +492,22 @@ export function GameProvider({ children }) {
     [persist]
   );
 
+  const clearUndoStack = useCallback(() => {
+    undoStackRef.current = [];
+    setUndoCount(0);
+  }, []);
+
+  const pushBetUndo = useCallback(() => {
+    undoStackRef.current.push({
+      bets: sanitizeBets(betsRef.current),
+      balance: balanceRef.current,
+    });
+    if (undoStackRef.current.length > MAX_UNDO_SNAPSHOTS) {
+      undoStackRef.current.shift();
+    }
+    setUndoCount(undoStackRef.current.length);
+  }, []);
+
   useEffect(() => {
     if (skipVerifyRef.current) {
       skipVerifyRef.current = false;
@@ -503,6 +571,12 @@ export function GameProvider({ children }) {
     if (sparkQueueRef.current.length > 40) sparkQueueRef.current.shift();
   }, []);
 
+  const triggerWinFlash = useCallback((tier) => {
+    if (!tier?.flashMs) return;
+    setSettleFlash(true);
+    window.setTimeout(() => setSettleFlash(false), tier.flashMs);
+  }, []);
+
   const triggerSettleFlash = useCallback(() => {
     setSettleFlash(true);
     window.setTimeout(() => setSettleFlash(false), 420);
@@ -548,6 +622,10 @@ export function GameProvider({ children }) {
     setAudioMuted(next);
   }, [audioMuted]);
 
+  const cycleUiThemeHandler = useCallback(() => {
+    setUiTheme((prev) => cycleUiTheme(prev));
+  }, []);
+
   const refreshFairRoundHistory = useCallback(() => {
     setFairRoundHistory(
       listFairRoundHistory()
@@ -588,6 +666,11 @@ export function GameProvider({ children }) {
     const returned = settleAll(currentBets, result, evaluateBet);
     const net = returned - risked;
 
+    if (currentBets.length > 0) {
+      const saved = saveLastRoundBets(currentBets);
+      setLastRoundBets(saved);
+    }
+
     const roundEntry = { number: result, color, net, cycleId, risked };
     setRecentResults((prev) => [roundEntry, ...prev.slice(0, MAX_RECENT - 1)]);
     setSessionRounds((prev) => {
@@ -597,6 +680,12 @@ export function GameProvider({ children }) {
     });
 
     commitWallet(clampBalance(balanceRef.current + returned), []);
+
+    const pulseTone = balanceSettleTone(net, risked);
+    if (pulseTone) {
+      setBalancePulse((prev) => ({ key: prev.key + 1, tone: pulseTone }));
+    }
+
     ballPhaseRef.current = 'orbit';
     setBallPhase('orbit');
     cameraModeRef.current = 'lounge';
@@ -604,17 +693,25 @@ export function GameProvider({ children }) {
     setWheelSpinSpeed(0.42);
 
     if (returned > 0) {
+      const tier = winCelebrationTier(net);
+      setWinCelebration((prev) => ({ tier: tier.id, pulse: prev.pulse + 1 }));
       setLastWin(net);
       setParticleBurst((n) => n + 1);
+      if (tier.shakeImpulse > 0) {
+        registerCollisionShake(tier.shakeImpulse);
+      }
+      emitSpark(pos.x, pos.y + 0.06, pos.z, tier.sparkPower);
+      triggerWinFlash(tier);
       feedbackRef.current?.win();
       setMessage(`Winner ${result} (${color})! Net ${net >= 0 ? '+' : ''}$${net}`);
     } else if (risked > 0) {
+      setWinCelebration({ tier: 'none', pulse: 0 });
       setLastWin(0);
       setMessage(`Ball on ${result} (${color}). Lost $${risked}.`);
     } else {
       setMessage(`Ball settled on ${result} (${color}).`);
     }
-  }, [commitWallet, registerCollisionShake, emitSpark, scheduleResultReveal, refreshFairRoundHistory]);
+  }, [commitWallet, registerCollisionShake, emitSpark, scheduleResultReveal, refreshFairRoundHistory, triggerWinFlash]);
 
   settleRoundRef.current = settleRound;
 
@@ -622,6 +719,8 @@ export function GameProvider({ children }) {
     if (clock.cycleSecond === 0) {
       pocketSettlePlayedRef.current = false;
       if (clock.name === 'betting') {
+        setWinCelebration({ tier: 'none', pulse: 0 });
+        setBalancePulse((prev) => ({ ...prev, tone: null }));
         setWinningNumber(null);
         setWinningColor(null);
         setRevealedWinningNumber(null);
@@ -710,15 +809,211 @@ export function GameProvider({ children }) {
           setMessage('Bets locked.');
           return;
         }
+        pushBetUndo();
         const nextBal = clampBalance(balance - selectedChip);
         commitWallet(nextBal, nextBets);
-        await feedbackRef.current?.chipPlace();
+        await feedbackRef.current?.chipPlace({ chipValue: selectedChip, uiTheme });
+        if (shouldStakeCommitPulse(true)) {
+          setStakeCommitPulse((prev) => ({ key: prev.key + 1 }));
+        }
         setMessage(`+$${selectedChip} on ${target.type}${target.value ?? ''}`);
       } finally {
         mutex.release();
       }
     },
-    [balance, bets, commitWallet, securityFrozen, selectedChip]
+    [balance, bets, commitWallet, pushBetUndo, securityFrozen, selectedChip, uiTheme]
+  );
+
+  const placeBetsBatch = useCallback(
+    async (legs, label) => {
+      const mutex = betMutexRef.current;
+      if (!mutex.tryAcquire()) return false;
+
+      try {
+        let rejectReason = betRejectionReason(clockRef.current);
+        if (rejectReason) {
+          setMessage(rejectReason);
+          return false;
+        }
+
+        await audioRef.current?.ensureContextActive();
+
+        if (securityFrozen || integrityGuardRef.current.isFrozen()) {
+          setMessage('Security hold — betting disabled.');
+          return false;
+        }
+        if (!isBettingOpen(clockRef.current, Date.now())) {
+          setMessage('Bets locked.');
+          return false;
+        }
+        if (!validateChipValue(selectedChip)) {
+          setMessage('Invalid chip.');
+          return false;
+        }
+
+        const normalized = [];
+        let totalUnits = 0;
+        for (const leg of legs) {
+          const units = leg.units ?? 1;
+          if (!Number.isInteger(units) || units < 1) return false;
+          const target = { type: leg.type, value: leg.value };
+          if (!validateBetTarget(target)) {
+            setMessage('Invalid bet.');
+            return false;
+          }
+          for (let u = 0; u < units; u += 1) {
+            normalized.push(target);
+            totalUnits += 1;
+          }
+        }
+
+        const totalCost = selectedChip * totalUnits;
+        if (totalCost > balance) {
+          setMessage('Insufficient balance.');
+          return false;
+        }
+        if (totalStaked(bets) + totalCost > MAX_TOTAL_STAKED) {
+          setMessage('Table limit reached.');
+          return false;
+        }
+
+        let nextBets = bets;
+        for (const target of normalized) {
+          const attempt = placeChip(nextBets, target, selectedChip);
+          if (attempt === nextBets) {
+            setMessage('Bet rejected.');
+            return false;
+          }
+          nextBets = attempt;
+        }
+
+        if (!isBettingOpen(clockRef.current, Date.now())) {
+          setMessage('Bets locked.');
+          return false;
+        }
+
+        pushBetUndo();
+        const nextBal = clampBalance(balance - totalCost);
+        commitWallet(nextBal, nextBets);
+        await feedbackRef.current?.chipPlace({ chipValue: selectedChip, uiTheme });
+        if (shouldBatchStakePulse(true)) {
+          setBatchStakePulse((prev) => ({ key: prev.key + 1 }));
+        }
+        setMessage(label ?? `+$${totalCost} racetrack (${totalUnits} chips)`);
+        return true;
+      } finally {
+        mutex.release();
+      }
+    },
+    [balance, bets, commitWallet, pushBetUndo, securityFrozen, selectedChip, uiTheme]
+  );
+
+  const placeCallBet = useCallback(
+    async (sector) => {
+      if (!sector?.legs?.length) return;
+      await placeBetsBatch(sector.legs, `+$${selectedChip * sector.legs.reduce((s, l) => s + (l.units ?? 1), 0)} ${sector.short}`);
+    },
+    [placeBetsBatch, selectedChip]
+  );
+
+  const placeNeighbors = useCallback(
+    async (numbers) => {
+      if (!numbers?.length) return;
+      const legs = numbers.map((n) => ({ type: 'straight', value: n, units: 1 }));
+      await placeBetsBatch(legs, `+$${selectedChip * numbers.length} neighbors`);
+    },
+    [placeBetsBatch, selectedChip]
+  );
+
+  const saveFavoriteBet = useCallback(
+    (name) => {
+      const current = sanitizeBets(bets);
+      if (!current.length) {
+        setMessage('No bets to save.');
+        return false;
+      }
+      const next = addFavorite(favorites, name, current);
+      if (next.length === favorites.length) {
+        setMessage('Could not save preset.');
+        return false;
+      }
+      setFavorites(next);
+      const saved = next[0];
+      setMessage(`Saved preset "${saved.name}" ($${saved.total}).`);
+      return true;
+    },
+    [bets, favorites]
+  );
+
+  const deleteFavoriteBet = useCallback((id) => {
+    const next = removeFavorite(favorites, id);
+    setFavorites(next);
+    setMessage('Preset removed.');
+  }, [favorites]);
+
+  const applyFavoriteBets = useCallback(
+    async (favorite) => {
+      const mutex = betMutexRef.current;
+      if (!mutex.tryAcquire()) return false;
+
+      try {
+        const preset = sanitizeBets(favorite?.bets ?? []);
+        if (!preset.length) {
+          setMessage('Empty preset.');
+          return false;
+        }
+
+        let rejectReason = betRejectionReason(clockRef.current);
+        if (rejectReason) {
+          setMessage(rejectReason);
+          return false;
+        }
+
+        await audioRef.current?.ensureContextActive();
+
+        if (securityFrozen || integrityGuardRef.current.isFrozen()) {
+          setMessage('Security hold — betting disabled.');
+          return false;
+        }
+        if (!isBettingOpen(clockRef.current, Date.now())) {
+          setMessage('Bets locked.');
+          return false;
+        }
+
+        const cost = totalStaked(preset);
+        if (cost > balance) {
+          setMessage('Insufficient balance for preset.');
+          return false;
+        }
+        if (totalStaked(bets) + cost > MAX_TOTAL_STAKED) {
+          setMessage('Table limit reached.');
+          return false;
+        }
+
+        const nextBets = mergePresetBets(bets, preset);
+        if (nextBets === bets) {
+          setMessage('Preset rejected.');
+          return false;
+        }
+        if (!isBettingOpen(clockRef.current, Date.now())) {
+          setMessage('Bets locked.');
+          return false;
+        }
+
+        pushBetUndo();
+        const nextBal = clampBalance(balance - cost);
+        commitWallet(nextBal, nextBets);
+        await feedbackRef.current?.chipPlace({ chipValue: selectedChip, uiTheme });
+        setMessage(`Applied "${favorite.name}" (+$${cost}).`);
+        if (shouldFavoriteApplyPulse(true)) {
+          setFavoriteApplyPulse((prev) => ({ key: prev.key + 1 }));
+        }
+        return true;
+      } finally {
+        mutex.release();
+      }
+    },
+    [balance, bets, commitWallet, pushBetUndo, securityFrozen, selectedChip, uiTheme]
   );
 
   const clearBets = useCallback(() => {
@@ -726,9 +1021,143 @@ export function GameProvider({ children }) {
     const safeBets = sanitizeBets(bets);
     const refund = totalStaked(safeBets);
     const nextBal = clampBalance(balance + refund);
+    clearUndoStack();
     commitWallet(nextBal, []);
+    if (shouldBetClearShakeEntryPulse(refund)) {
+      setBetClearShake((prev) => ({ key: prev.key + 1 }));
+    }
     setMessage(refund ? `Refunded $${refund}.` : 'No bets to clear.');
-  }, [balance, bets, commitWallet, securityFrozen]);
+  }, [balance, bets, clearUndoStack, commitWallet, securityFrozen]);
+
+  const undoLastBet = useCallback(async () => {
+    const mutex = betMutexRef.current;
+    if (!mutex.tryAcquire()) return null;
+
+    try {
+      if (securityFrozen || integrityGuardRef.current.isFrozen()) {
+        setMessage('Security hold — undo disabled.');
+        return null;
+      }
+      if (!isBettingOpen(clockRef.current, Date.now())) {
+        setMessage('Bets locked.');
+        return null;
+      }
+
+      const entry = undoStackRef.current.pop();
+      if (!entry) {
+        setUndoCount(0);
+        setMessage('Nothing to undo.');
+        return null;
+      }
+      setUndoCount(undoStackRef.current.length);
+
+      const flashKey = undoFlashKey(bets, entry.bets);
+      const recoilMeta = undoCellRecoilMeta(bets, entry.bets);
+      commitWallet(entry.balance, entry.bets);
+      if (shouldUndoCellRecoil(recoilMeta)) {
+        setUndoCellRecoil((prev) => ({
+          key: prev.key + 1,
+          cellKey: recoilMeta.cellKey,
+          kind: recoilMeta.kind,
+          removedAmount: recoilMeta.removedAmount,
+        }));
+      }
+      setMessage('Last bet undone.');
+      return flashKey;
+    } finally {
+      mutex.release();
+    }
+  }, [bets, commitWallet, securityFrozen]);
+
+  const repeatLastRound = useCallback(async () => {
+    const mutex = betMutexRef.current;
+    if (!mutex.tryAcquire()) return null;
+
+    try {
+      if (securityFrozen || integrityGuardRef.current.isFrozen()) {
+        setMessage('Security hold — repeat disabled.');
+        return null;
+      }
+      if (!isBettingOpen(clockRef.current, Date.now())) {
+        setMessage('Bets locked.');
+        return null;
+      }
+      if (!lastRoundBets.length) {
+        setMessage('No previous round to repeat.');
+        return null;
+      }
+
+      const result = repeatRoundWallet(balance, bets, lastRoundBets);
+      if (!result.ok) {
+        if (result.reason === 'balance') setMessage('Insufficient balance to repeat last round.');
+        else if (result.reason === 'limit') setMessage('Table limit reached.');
+        else setMessage('No previous round to repeat.');
+        return null;
+      }
+
+      pushBetUndo();
+      commitWallet(result.nextBalance, result.bets);
+      await feedbackRef.current?.chipPlace({ chipValue: selectedChip, uiTheme });
+      setMessage(`Repeated last round (+$${result.cost}).`);
+      if (shouldRepeatRoundPulse(result.bets)) {
+        setRepeatRoundPulse((prev) => ({ key: prev.key + 1 }));
+      }
+      return result.bets;
+    } finally {
+      mutex.release();
+    }
+  }, [balance, bets, commitWallet, lastRoundBets, pushBetUndo, securityFrozen, selectedChip, uiTheme]);
+
+  const scaleBoardStake = useCallback(
+    async (factor) => {
+      const mutex = betMutexRef.current;
+      if (!mutex.tryAcquire()) return null;
+
+      try {
+        if (securityFrozen || integrityGuardRef.current.isFrozen()) {
+          setMessage('Security hold — stake scale disabled.');
+          return null;
+        }
+        if (!isBettingOpen(clockRef.current, Date.now())) {
+          setMessage('Bets locked.');
+          return null;
+        }
+        if (!bets.length) {
+          setMessage('No bets to scale.');
+          return null;
+        }
+
+        const result = scaleBoardWallet(balance, bets, factor);
+        if (!result.ok) {
+          if (result.reason === 'balance') setMessage('Insufficient balance to double stakes.');
+          else if (result.reason === 'cell_limit' || result.reason === 'limit') {
+            setMessage('Table limit reached.');
+          } else if (result.reason === 'empty_after_scale') {
+            setMessage('Stakes too small to halve.');
+          } else {
+            setMessage('Could not scale board.');
+          }
+          return null;
+        }
+
+        pushBetUndo();
+        commitWallet(result.nextBalance, result.bets);
+        await feedbackRef.current?.chipPlace({ chipValue: selectedChip, uiTheme });
+        const label = factor === 0.5 ? 'Halved' : 'Doubled';
+        setMessage(`${label} board stakes ($${result.cost} at risk).`);
+        if (shouldScaleBoardPulse(result.bets)) {
+          setScaleBoardPulse((prev) => ({
+            key: prev.key + 1,
+            mode: scaleBoardPulseMode(factor),
+          }));
+        }
+        return result.bets;
+      } finally {
+        mutex.release();
+      }
+    },
+    [balance, bets, commitWallet, pushBetUndo, securityFrozen, selectedChip, uiTheme]
+  );
 
   const requestFaucet = useCallback(() => {
     if (securityFrozen) {
@@ -742,6 +1171,9 @@ export function GameProvider({ children }) {
     }
     const nextBal = clampBalance(result.balance);
     commitWallet(nextBal, bets);
+    if (shouldFaucetRefillEntryPulse(result.claimed, result.amount)) {
+      setFaucetRefillPulse((prev) => ({ key: prev.key + 1 }));
+    }
     setMessage(`Free refill +$${result.amount}!`);
   }, [balance, bets, commitWallet, securityFrozen]);
 
@@ -767,6 +1199,12 @@ export function GameProvider({ children }) {
   }, [refreshFairRoundHistory]);
 
   useEffect(() => {
+    if (clock.name !== 'betting') {
+      clearUndoStack();
+    }
+  }, [clock.name, clearUndoStack]);
+
+  useEffect(() => {
     return () => {
       if (clockIntervalRef.current) clearInterval(clockIntervalRef.current);
       sparkQueueRef.current.length = 0;
@@ -790,6 +1228,7 @@ export function GameProvider({ children }) {
       message,
       lastWin,
       particleBurst,
+      winCelebration,
       ballPhase,
       wheelSpinSpeed,
       targetNumber,
@@ -797,9 +1236,20 @@ export function GameProvider({ children }) {
       qualityTier,
       qualitySettings,
       settleFlash,
+      balancePulse,
+      betClearShake,
+      scaleBoardPulse,
+      favoriteApplyPulse,
+      undoCellRecoil,
+      repeatRoundPulse,
+      stakeCommitPulse,
+      batchStakePulse,
+      faucetRefillPulse,
       recentResults,
       sessionRounds,
+      favorites,
       audioMuted,
+      uiTheme,
       liveFps,
       godModeStep,
       ghostBets,
@@ -835,8 +1285,36 @@ export function GameProvider({ children }) {
       feedbackRef,
       chipValues: CHIP_VALUES,
       feedbackChipHover: () => feedbackRef.current?.chipHover(),
+      feedbackChipDragStart: (chipValue) =>
+        feedbackRef.current?.chipDragStart?.(chipValue, uiTheme),
+      feedbackChipDragMove: (speed) => feedbackRef.current?.chipDragMove?.(speed, uiTheme),
       placeBet,
+      placeCallBet,
+      placeNeighbors,
+      saveFavoriteBet,
+      deleteFavoriteBet,
+      applyFavoriteBets,
       clearBets,
+      undoLastBet,
+      canUndoBet: undoCount > 0 && isBettingOpen(clock) && !securityFrozen,
+      repeatLastRound,
+      lastRoundBets,
+      canRepeatLastRound:
+        lastRoundBets.length > 0 &&
+        isBettingOpen(clock) &&
+        !securityFrozen &&
+        repeatRoundWallet(balance, bets, lastRoundBets).ok,
+      scaleBoardStake,
+      canScaleBoardHalf:
+        bets.length > 0 &&
+        isBettingOpen(clock) &&
+        !securityFrozen &&
+        bets.some((bet) => bet.amount >= 2),
+      canScaleBoardDouble:
+        bets.length > 0 &&
+        isBettingOpen(clock) &&
+        !securityFrozen &&
+        scaleBoardWallet(balance, bets, 2).ok,
       requestFaucet,
       setHoverHighlight,
       clearHoverHighlight,
@@ -846,6 +1324,7 @@ export function GameProvider({ children }) {
       updateQualityTier,
       updateLiveFps,
       toggleAudio,
+      cycleUiTheme: cycleUiThemeHandler,
       onPocketHit,
       onWheelAngle,
       onBallPosition,
@@ -865,6 +1344,7 @@ export function GameProvider({ children }) {
       message,
       lastWin,
       particleBurst,
+      winCelebration,
       ballPhase,
       wheelSpinSpeed,
       targetNumber,
@@ -872,9 +1352,20 @@ export function GameProvider({ children }) {
       qualityTier,
       qualitySettings,
       settleFlash,
+      balancePulse,
+      betClearShake,
+      scaleBoardPulse,
+      favoriteApplyPulse,
+      undoCellRecoil,
+      repeatRoundPulse,
+      stakeCommitPulse,
+      batchStakePulse,
+      faucetRefillPulse,
       recentResults,
       sessionRounds,
+      favorites,
       audioMuted,
+      uiTheme,
       liveFps,
       godModeStep,
       ghostBets,
@@ -890,7 +1381,17 @@ export function GameProvider({ children }) {
       securityFrozen,
       simulationPaused,
       placeBet,
+      placeCallBet,
+      placeNeighbors,
+      saveFavoriteBet,
+      deleteFavoriteBet,
+      applyFavoriteBets,
       clearBets,
+      undoLastBet,
+      undoCount,
+      repeatLastRound,
+      lastRoundBets,
+      scaleBoardStake,
       requestFaucet,
       ensureAudioActive,
       setHoverHighlight,
@@ -901,6 +1402,7 @@ export function GameProvider({ children }) {
       updateQualityTier,
       updateLiveFps,
       toggleAudio,
+      cycleUiThemeHandler,
       onPocketHit,
       onWheelAngle,
       onBallPosition,

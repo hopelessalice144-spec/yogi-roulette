@@ -17,6 +17,7 @@ import {
   vibratePayout,
   vibrateSettle,
 } from './haptics.js';
+import { chipTimbreForTheme } from './chipDragAudio.js';
 
 /**
  * @param {{ audio: import('./audioSynth.js').RouletteAudioEngine | null, initialPrefs?: { audioMuted?: boolean, hapticsMuted?: boolean } }} opts
@@ -25,6 +26,8 @@ export function createFeedbackBridge({ audio, initialPrefs = {} }) {
   let audioMuted = initialPrefs.audioMuted === true;
   let hapticsMuted = initialPrefs.hapticsMuted === true;
   let lastPhase = null;
+  let dragTimbre = 'lounge';
+  let dragChipValue = 25;
 
   const syncHaptics = () => {
     setHapticsEnabled(!hapticsMuted && !prefersReducedFeedback());
@@ -88,8 +91,30 @@ export function createFeedbackBridge({ audio, initialPrefs = {} }) {
       vibrateChipHover();
     },
 
-    async chipPlace() {
-      await audio?.playChipPlace?.();
+    setChipDragTheme(uiTheme) {
+      dragTimbre = chipTimbreForTheme(uiTheme).id;
+    },
+
+    async chipDragStart(chipValue, uiTheme) {
+      dragChipValue = chipValue ?? 25;
+      dragTimbre = chipTimbreForTheme(uiTheme).id;
+      await audio?.ensureContextActive?.();
+    },
+
+    chipDragMove(speedPxPerMs, uiTheme) {
+      if (audioMuted) return;
+      const theme = uiTheme ? chipTimbreForTheme(uiTheme).id : dragTimbre;
+      void audio?.playChipDragWhoosh?.(speedPxPerMs, theme);
+    },
+
+    async chipPlace(opts) {
+      const chipValue = typeof opts === 'object' && opts ? opts.chipValue : undefined;
+      const uiTheme = typeof opts === 'object' && opts ? opts.uiTheme : undefined;
+      if (audio?.playChipLand) {
+        await audio.playChipLand(chipValue ?? dragChipValue ?? 25, uiTheme ?? dragTimbre);
+      } else {
+        await audio?.playChipPlace?.(chipValue, uiTheme);
+      }
       vibrateBet();
     },
 

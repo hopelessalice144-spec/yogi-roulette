@@ -4,6 +4,11 @@
  */
 
 import { FEEDBACK_CONFIG } from '../core/feedbackConfig.js';
+import {
+  chipDragWhooshIntensity,
+  chipLandPitch,
+  chipTimbreForTheme,
+} from './chipDragAudio.js';
 
 const MAX_CLACK_VOICES = FEEDBACK_CONFIG.audio.maxClackVoices;
 const ROLL_BASE_HZ = FEEDBACK_CONFIG.audio.rollBaseHz;
@@ -40,6 +45,7 @@ export class RouletteAudioEngine {
     this._clackVoices = [];
     this._noiseBuffer = null;
     this._settlePlaying = false;
+    this._lastChipWhooshAt = 0;
   }
 
   /** Build graph only after explicit user gesture unlock. */
@@ -699,16 +705,24 @@ export class RouletteAudioEngine {
   }
 
   /** Ceramic chip stack tick on bet placement. */
-  async playChipPlace() {
+  async playChipPlace(chipValue, uiTheme) {
+    return this.playChipLand(chipValue ?? 25, uiTheme);
+  }
+
+  /**
+   * Chip land tick — denomination-aware pitch, theme timbre.
+   */
+  async playChipLand(chipValue = 25, uiTheme) {
     if (!(await this.ensureContextActive()) || this.muted || !this.master) return;
 
+    const profile = chipTimbreForTheme(uiTheme);
+    const { high, low } = chipLandPitch(chipValue, profile);
     const ctx = this.ctx;
     const t = ctx.currentTime;
-    const base = FEEDBACK_CONFIG.audio.chipPlaceHz;
 
     for (const [offset, freq, amp] of [
-      [0, base, 0.08],
-      [0.012, base * 0.78, 0.055],
+      [0, high, profile.landPeak],
+      [0.011, low, profile.landPeak * 0.68],
     ]) {
       const start = t + offset;
       const g = ctx.createGain();
@@ -716,27 +730,68 @@ export class RouletteAudioEngine {
       const o = ctx.createOscillator();
       o.type = 'triangle';
       o.frequency.setValueAtTime(freq, start);
-      o.frequency.exponentialRampToValueAtTime(freq * 0.62, start + 0.035);
+      o.frequency.exponentialRampToValueAtTime(freq * 0.62, start + 0.038);
       const hp = ctx.createBiquadFilter();
       hp.type = 'highpass';
-      hp.frequency.value = 520;
+      hp.frequency.value = profile.id === 'neon' ? 640 : 520;
       g.gain.setValueAtTime(0.0001, start);
       g.gain.exponentialRampToValueAtTime(amp, start + 0.003);
-      g.gain.exponentialRampToValueAtTime(0.0001, start + 0.048);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + 0.05);
       o.connect(hp);
       hp.connect(g);
       o.start(start);
-      o.stop(start + 0.052);
+      o.stop(start + 0.054);
       this._scheduleVoiceTeardown([o, hp, g], offset + 0.07);
     }
 
     const nodes = this._playTransientNoise({
       t,
-      duration: 0.02,
-      peak: 0.04,
-      hpHz: 900,
+      duration: 0.022,
+      peak: profile.landPeak * 0.48,
+      bpHz: profile.id === 'neon' ? high * 0.85 : null,
+      hpHz: profile.id === 'neon' ? null : 900,
+      bpQ: profile.whooshQ,
     });
-    this._scheduleVoiceTeardown(nodes, 0.04);
+    this._scheduleVoiceTeardown(nodes, 0.05);
+  }
+
+  /** Air whoosh while dragging a chip across the felt. */
+  async playChipDragWhoosh(speedPxPerMs = 0.4, uiTheme) {
+    if (!(await this.ensureContextActive()) || this.muted || !this.master) return;
+
+    const ctx = this.ctx;
+    const now = ctx.currentTime;
+    if (now - this._lastChipWhooshAt < 0.042) return;
+    this._lastChipWhooshAt = now;
+
+    const profile = chipTimbreForTheme(uiTheme);
+    const intensity = chipDragWhooshIntensity(speedPxPerMs);
+    const t = now;
+    const peak = profile.whooshPeak * intensity;
+
+    const nodes = this._playTransientNoise({
+      t,
+      duration: 0.028 + intensity * 0.02,
+      peak,
+      bpHz: profile.whooshBp + intensity * 180,
+      bpQ: profile.whooshQ,
+    });
+
+    const g = ctx.createGain();
+    g.connect(this.master);
+    const o = ctx.createOscillator();
+    o.type = 'sine';
+    const sweep = profile.whooshBp * (0.9 + intensity * 0.15);
+    o.frequency.setValueAtTime(sweep, t);
+    o.frequency.exponentialRampToValueAtTime(Math.max(180, sweep * 0.55), t + 0.03);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak * 0.55, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.034);
+    o.connect(g);
+    o.start(t);
+    o.stop(t + 0.038);
+
+    this._scheduleVoiceTeardown([o, g, ...nodes], 0.06);
   }
 
   /** Dealer "no more bets" — double wooden table knock. */

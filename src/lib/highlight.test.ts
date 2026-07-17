@@ -7,8 +7,10 @@ import {
   isOutsideSource,
   isStraightPathwayLit,
   numbersForHighlight,
+  neonGlowColorForHighlight,
   pocketIndicesForHighlight,
   rowForNumber,
+  samplePocketIndices,
   warmGlowColorForHighlight,
 } from './highlight.js';
 
@@ -51,6 +53,10 @@ describe('highlight', () => {
       expect(numbersForHighlight({ type: 'line', value: '1,2,3,4,5,6' })).toEqual([
         1, 2, 3, 4, 5, 6,
       ]);
+    });
+
+    it('maps wheel-set highlights from racetrack hover', () => {
+      expect(numbersForHighlight({ type: 'wheel-set', value: '7,8,9' })).toEqual([7, 8, 9]);
     });
   });
 
@@ -115,6 +121,27 @@ describe('highlight', () => {
       expect(warmGlowColorForHighlight({ type: 'straight', value: 0 })).toBe('#44ffbb');
       expect(warmGlowColorForHighlight({ type: 'straight', value: 7 })).toBe('#ffcc66');
       expect(warmGlowColorForHighlight(null)).toBe('#ffaa44');
+    });
+  });
+
+  describe('neonGlowColorForHighlight', () => {
+    it('returns lounge and neon tint presets', () => {
+      expect(neonGlowColorForHighlight({ type: 'red' }, 'lounge')).toBe('#ff5544');
+      expect(neonGlowColorForHighlight({ type: 'red' }, 'neon')).toBe('#ff2d95');
+      expect(neonGlowColorForHighlight({ type: 'red' }, 'light')).toBe('#c62828');
+      expect(neonGlowColorForHighlight({ type: 'wheel-set', value: '7,8,9' }, 'neon')).toBe(
+        '#00ffff',
+      );
+      expect(neonGlowColorForHighlight(null, 'neon')).toBe('#ff7ec8');
+      expect(neonGlowColorForHighlight(null, 'light')).toBe('#c9a227');
+    });
+  });
+
+  describe('samplePocketIndices', () => {
+    it('caps large pocket sets while preserving order', () => {
+      const all = new Set([0, 5, 10, 15, 20, 25, 30]);
+      expect(samplePocketIndices(all, 3)).toEqual([0, 10, 20]);
+      expect(samplePocketIndices(all, 10)).toEqual([0, 5, 10, 15, 20, 25, 30]);
     });
   });
 });
