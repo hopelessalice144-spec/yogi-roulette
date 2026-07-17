@@ -98,6 +98,17 @@ export function GameScene() {
     });
   }, [mountPhysics, setPhysicsLoadState]);
 
+  useEffect(() => {
+    if (!mountPhysics) return;
+    let cancelled = false;
+    void isRapierReady().then((ready) => {
+      if (!cancelled && ready) setStageReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [mountPhysics]);
+
   const showPhysics = mountPhysics && stageReady;
 
   return (

@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-262 — Gold bet-cell spotlight/casing; keep physicsLoadState ready after WASM prefetch
+**[DONE]** TASK-263 — Instant Rapier stage when WASM cached at lock; gold panel pointer and pathway underlines
 
 ## Feature Backlog
 
@@ -263,6 +263,7 @@
 | TASK-260 | P2 | Tab-focus Rapier prefetch resume — re-kick WASM load after background cancel; gold bet hover chrome | **DONE** |
 | TASK-261 | P2 | Inside-bet zone gold felt hover — splits/streets/corners match board highlight language | **DONE** |
 | TASK-262 | P2 | Bet-cell hover decorative layers gold felt; physicsLoadState stays ready when WASM cached | **DONE** |
+| TASK-263 | P2 | Hot-cache physics mount at lock — stageReady when WASM prefetched; gold panel pointer underline | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 

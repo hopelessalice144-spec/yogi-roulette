@@ -3507,9 +3507,9 @@ html.frame-blocked body {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(0, 255, 200, 0.14) 0%,
-    rgba(245, 215, 142, 0.06) 40%,
-    transparent 70%
+    rgba(245, 215, 142, 0.16) 0%,
+    rgba(245, 215, 142, 0.06) 42%,
+    transparent 72%
   );
   opacity: var(--glow-opacity);
   transition: opacity 0.25s ease;
@@ -6731,12 +6731,12 @@ html.frame-blocked body {
 .bet-cell.pathway-source-active .neon-underline-active:not(.neon-underline-entry-pulse) {
   opacity: 1;
   transform: scaleX(1);
-  background: linear-gradient(90deg, transparent, #f5d78e, #00ffc8, transparent);
+  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
 }
 
 .bet-cell.pathway-source-active .neon-underline-active.neon-underline-entry-pulse {
   opacity: 1;
-  background: linear-gradient(90deg, transparent, #f5d78e, #00ffc8, transparent);
+  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
   animation: neon-underline-entry-pulse 0.62s var(--chip-spring) both;
 }
 
