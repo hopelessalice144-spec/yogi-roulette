@@ -1983,41 +1983,64 @@ html.frame-blocked body {
 
 .neighbor-btn {
   min-width: 2.2rem;
-  padding: 0.2rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: inherit;
+  padding: 0.28rem 0.5rem;
+  border-radius: 0.4rem;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.22);
+  color: #e8f0f8;
   font: inherit;
   font-size: 0.68rem;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.neighbor-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 215, 142, 0.28),
+    0 3px 10px rgba(0, 0, 0, 0.22);
 }
 
 .neighbor-btn.active {
-  border-color: rgba(0, 220, 185, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(0, 220, 185, 0.45);
   background: rgba(0, 220, 185, 0.14);
   color: #6ee7d6;
-  box-shadow: 0 0 12px rgba(0, 220, 185, 0.18);
 }
 
 .heatmap-toggle {
   margin-left: 0.35rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: inherit;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.4rem;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.22);
+  color: #e8f0f8;
   font: inherit;
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.heatmap-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 215, 142, 0.28),
+    0 3px 10px rgba(0, 0, 0, 0.22);
 }
 
 .heatmap-toggle.active {
-  border-color: rgba(255, 100, 60, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 100, 60, 0.45);
   background: linear-gradient(90deg, rgba(255, 90, 60, 0.18), rgba(80, 160, 255, 0.14));
   color: #ffd4c8;
 }
@@ -3464,7 +3487,7 @@ html.frame-blocked body {
   }
 }
 
-.magnetic-glow-active {
+.panel-pointer-active {
   pointer-events: none;
   position: absolute;
   left: var(--mx);
@@ -3484,11 +3507,11 @@ html.frame-blocked body {
   z-index: 0;
 }
 
-.magnetic-glow-active.magnetic-glow-entry-pulse {
-  animation: magnetic-glow-entry-pulse 0.62s var(--chip-spring) both;
+.panel-pointer-active.panel-pointer-entry-pulse {
+  animation: panel-pointer-entry-pulse 0.62s var(--chip-spring) both;
 }
 
-@keyframes magnetic-glow-entry-pulse {
+@keyframes panel-pointer-entry-pulse {
   0% {
     filter: brightness(1);
     transform: scale(0.85);
@@ -3537,7 +3560,7 @@ html.frame-blocked body {
   }
 }
 
-.betting-panel > *:not(.magnetic-glow-active):not(.glass-sheen-active):not(.holo-border-active):not(.glass-depth-layer-active):not(.glass-reflection-active) {
+.betting-panel > *:not(.panel-pointer-active):not(.glass-sheen-active):not(.holo-border-active):not(.glass-depth-layer-active):not(.glass-reflection-active) {
   position: relative;
   z-index: 1;
 }

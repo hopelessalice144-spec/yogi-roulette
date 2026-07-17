@@ -877,9 +877,9 @@ export function BettingBoard() {
   } = useGame();
 
   const panelRef = useRef(null);
-  const prevMagneticGlowActiveRef = useRef(false);
-  const [magneticGlowActive, setMagneticGlowActive] = useState(false);
-  const [magneticGlowEntryPulsing, setMagneticGlowEntryPulsing] = useState(false);
+  const prevPanelPointerActiveRef = useRef(false);
+  const [panelPointerActive, setPanelPointerActive] = useState(false);
+  const [panelPointerEntryPulsing, setPanelPointerEntryPulsing] = useState(false);
   const [dropTargetKey, setDropTargetKey] = useState(null);
   const [dragGhost, setDragGhost] = useState(null);
   const [dragTrail, setDragTrail] = useState([]);
@@ -1509,18 +1509,18 @@ export function BettingBoard() {
   }, [dragGhost, clearHoverHighlight]);
 
   useEffect(() => {
-    const prevMagneticGlowActive = prevMagneticGlowActiveRef.current;
-    prevMagneticGlowActiveRef.current = magneticGlowActive;
-    if (!prevMagneticGlowActive && magneticGlowActive) {
-      setMagneticGlowEntryPulsing(true);
-      const timer = window.setTimeout(() => setMagneticGlowEntryPulsing(false), 620);
+    const prevPanelPointerActive = prevPanelPointerActiveRef.current;
+    prevPanelPointerActiveRef.current = panelPointerActive;
+    if (!prevPanelPointerActive && panelPointerActive) {
+      setPanelPointerEntryPulsing(true);
+      const timer = window.setTimeout(() => setPanelPointerEntryPulsing(false), 620);
       return () => window.clearTimeout(timer);
     }
-    if (!magneticGlowActive) {
-      setMagneticGlowEntryPulsing(false);
+    if (!panelPointerActive) {
+      setPanelPointerEntryPulsing(false);
     }
     return undefined;
-  }, [magneticGlowActive]);
+  }, [panelPointerActive]);
 
   const handlePanelMove = useCallback((e) => {
     const el = panelRef.current;
@@ -1529,11 +1529,11 @@ export function BettingBoard() {
     el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
     el.style.setProperty('--my', `${e.clientY - rect.top}px`);
     el.style.setProperty('--glow-opacity', '1');
-    setMagneticGlowActive(true);
+    setPanelPointerActive(true);
   }, []);
 
   const handlePanelLeave = useCallback(() => {
-    setMagneticGlowActive(false);
+    setPanelPointerActive(false);
     panelRef.current?.style.setProperty('--glow-opacity', '0');
   }, []);
 
@@ -1638,7 +1638,7 @@ export function BettingBoard() {
         <div
           className={[
             'holo-border-active',
-            magneticGlowEntryPulsing ? 'holo-border-entry-pulse' : '',
+            panelPointerEntryPulsing ? 'holo-border-entry-pulse' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -1647,7 +1647,7 @@ export function BettingBoard() {
         <div
           className={[
             'glass-reflection-active',
-            magneticGlowEntryPulsing ? 'glass-reflection-entry-pulse' : '',
+            panelPointerEntryPulsing ? 'glass-reflection-entry-pulse' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -1655,8 +1655,8 @@ export function BettingBoard() {
         />
         <div
           className={[
-            'magnetic-glow-active',
-            magneticGlowEntryPulsing ? 'magnetic-glow-entry-pulse' : '',
+            'panel-pointer-active',
+            panelPointerEntryPulsing ? 'panel-pointer-entry-pulse' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -1665,7 +1665,7 @@ export function BettingBoard() {
         <div
           className={[
             'glass-sheen-active',
-            magneticGlowEntryPulsing ? 'glass-sheen-entry-pulse' : '',
+            panelPointerEntryPulsing ? 'glass-sheen-entry-pulse' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -1674,7 +1674,7 @@ export function BettingBoard() {
         <div
           className={[
             'glass-depth-layer-active',
-            magneticGlowEntryPulsing ? 'glass-depth-layer-entry-pulse' : '',
+            panelPointerEntryPulsing ? 'glass-depth-layer-entry-pulse' : '',
           ]
             .filter(Boolean)
             .join(' ')}

@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[PENDING]** TASK-256 — BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from `magneticGlow*` to `panelPointer*`
+**[DONE]** TASK-256 — BettingBoard panel pointer layer polish — `panelPointer*` state and `panel-pointer-*` CSS (was `magneticGlow*` / `magnetic-glow-*`)
 
 ## Feature Backlog
 

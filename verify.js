@@ -223,7 +223,7 @@ assert(FAUCET_TRIGGER_BALANCE === 0, 'faucet at $0');
 assert(fs.existsSync(path.join(__dirname, 'src/ui/BettingBoard.jsx')), 'betting board');
 const uiCss = fs.readFileSync(path.join(__dirname, 'src/index.css'), 'utf8');
 assert(uiCss.includes('pathway-lit'), 'neon pathway cells');
-assert(uiCss.includes('magnetic-glow-active'), 'magnetic cursor glow');
+assert(uiCss.includes('panel-pointer-active'), 'panel pointer cursor glow');
 assert(uiCss.includes('panel-enter'), 'panel entrance animation');
 assert(uiCss.includes('holo-border-active'), 'holographic iridescent border');
 assert(uiCss.includes('glass-sheen-active'), 'panel glass sheen layer');
