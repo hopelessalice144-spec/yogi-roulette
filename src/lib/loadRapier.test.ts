@@ -70,6 +70,35 @@ describe('loadRapier', () => {
         shouldPrefetchPhysics({ name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_LOW }, 'high'),
       ).toBe(false);
     });
+
+    it('prefetches between low and high on medium tier', async () => {
+      const { shouldPrefetchPhysics, RAPIER_PREFETCH_AT_MEDIUM, RAPIER_PREFETCH_AT_LOW } =
+        await loadModule();
+      expect(
+        shouldPrefetchPhysics({ name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_MEDIUM }, 'medium'),
+      ).toBe(true);
+      expect(
+        shouldPrefetchPhysics(
+          { name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_MEDIUM - 1 },
+          'medium',
+        ),
+      ).toBe(false);
+      expect(
+        shouldPrefetchPhysics(
+          { name: 'betting', cycleSecond: RAPIER_PREFETCH_AT_LOW },
+          'medium',
+        ),
+      ).toBe(false);
+    });
+
+    it('maps quality tier to prefetch second', async () => {
+      const { rapierPrefetchAt, RAPIER_PREFETCH_AT, RAPIER_PREFETCH_AT_MEDIUM, RAPIER_PREFETCH_AT_LOW } =
+        await loadModule();
+      expect(rapierPrefetchAt('low')).toBe(RAPIER_PREFETCH_AT_LOW);
+      expect(rapierPrefetchAt('medium')).toBe(RAPIER_PREFETCH_AT_MEDIUM);
+      expect(rapierPrefetchAt('high')).toBe(RAPIER_PREFETCH_AT);
+      expect(rapierPrefetchAt()).toBe(RAPIER_PREFETCH_AT);
+    });
   });
 
   describe('shouldMountPhysics', () => {

@@ -724,13 +724,21 @@ assert(gameSceneSrc.includes('EuropeanWheelVisual'), 'idle visual wheel');
 assert(!gameSceneSrc.includes("from '@react-three/rapier'"), 'GameScene rapier-free');
 assert(ctxSrc.includes('physicsLoadState'), 'physics load state in context');
 assert(pkgJson.includes('"typecheck"'), 'typecheck script');
-assert(loadRapierSrc.includes('RAPIER_PREFETCH_AT_LOW'), 'low-tier prefetch timing');
+assert(loadRapierSrc.includes('RAPIER_PREFETCH_AT_MEDIUM'), 'medium-tier prefetch timing');
 assert(gameSceneSrc.includes('shouldPrefetchPhysics(clock, qualityTier)'), 'tier-aware prefetch');
-const { shouldPrefetchPhysics, shouldMountPhysics, RAPIER_PREFETCH_AT, RAPIER_PREFETCH_AT_LOW } = await import('./src/lib/loadRapier.js');
+const {
+  shouldPrefetchPhysics,
+  shouldMountPhysics,
+  RAPIER_PREFETCH_AT,
+  RAPIER_PREFETCH_AT_LOW,
+  RAPIER_PREFETCH_AT_MEDIUM,
+} = await import('./src/lib/loadRapier.js');
 assert(RAPIER_PREFETCH_AT === 17, 'prefetch at second 17');
 assert(RAPIER_PREFETCH_AT_LOW === 15, 'low-tier prefetch at second 15');
+assert(RAPIER_PREFETCH_AT_MEDIUM === 16, 'medium-tier prefetch at second 16');
 assert(shouldPrefetchPhysics({ name: 'betting', cycleSecond: 16 }) === false, 'no prefetch early betting');
 assert(shouldPrefetchPhysics({ name: 'betting', cycleSecond: 15 }, 'low') === true, 'low-tier prefetch earlier');
+assert(shouldPrefetchPhysics({ name: 'betting', cycleSecond: 16 }, 'medium') === true, 'medium-tier prefetch');
 assert(shouldMountPhysics({ name: 'locked', cycleSecond: 20 }) === true, 'mount at lock');
 const { markProfile, measureProfile, resetProfileSnapshot } = await import('./src/core/profileHarness.js');
 markProfile('verify-start');

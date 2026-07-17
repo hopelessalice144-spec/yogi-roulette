@@ -58,6 +58,9 @@ export const RAPIER_PREFETCH_AT = 17;
 /** Earlier prefetch on low tier — more time for WASM on constrained devices. */
 export const RAPIER_PREFETCH_AT_LOW = 15;
 
+/** Slightly earlier on medium tier — balances bandwidth vs. spin readiness. */
+export const RAPIER_PREFETCH_AT_MEDIUM = 16;
+
 /** Clear cached WASM/stage promises after WebGL context loss. */
 export { resetRapierCache } from './rapierCache.js';
 
@@ -69,7 +72,9 @@ export function shouldMountPhysics(clock) {
 
 /** Betting-phase second when prefetch should start for the given quality tier. */
 export function rapierPrefetchAt(qualityTier = 'high') {
-  return qualityTier === 'low' ? RAPIER_PREFETCH_AT_LOW : RAPIER_PREFETCH_AT;
+  if (qualityTier === 'low') return RAPIER_PREFETCH_AT_LOW;
+  if (qualityTier === 'medium') return RAPIER_PREFETCH_AT_MEDIUM;
+  return RAPIER_PREFETCH_AT;
 }
 
 /** Whether to start prefetching WASM during late betting. */
@@ -84,4 +89,8 @@ console.assert(shouldPrefetchPhysics({ name: 'betting', cycleSecond: 17 }), 'pre
 console.assert(
   shouldPrefetchPhysics({ name: 'betting', cycleSecond: 15 }, 'low'),
   'low-tier prefetch at T-15'
+);
+console.assert(
+  shouldPrefetchPhysics({ name: 'betting', cycleSecond: 16 }, 'medium'),
+  'medium-tier prefetch at T-14'
 );
