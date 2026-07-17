@@ -132,7 +132,7 @@ export function warmGlowColorForHighlight(highlight) {
     case 'line':
       return '#ffaa88';
     case 'wheel-set':
-      return '#00e8c8';
+      return '#f5d78e';
     default:
       return '#ffaa44';
   }

@@ -120,6 +120,7 @@ describe('highlight', () => {
       expect(warmGlowColorForHighlight({ type: 'black' })).toBe('#88aaff');
       expect(warmGlowColorForHighlight({ type: 'straight', value: 0 })).toBe('#44ffbb');
       expect(warmGlowColorForHighlight({ type: 'straight', value: 7 })).toBe('#ffcc66');
+      expect(warmGlowColorForHighlight({ type: 'wheel-set', value: '7,8,9' })).toBe('#f5d78e');
       expect(warmGlowColorForHighlight(null)).toBe('#ffaa44');
     });
   });

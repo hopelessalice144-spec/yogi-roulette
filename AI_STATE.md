@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-258 — Medium-tier Rapier prefetch (T-14); racetrack toolbar wrap and calmer lit-pocket highlight
+**[DONE]** TASK-259 — Unified gold felt pathway highlights (classic board + racetrack stakes + 3D wheel-set glow)
 
 ## Feature Backlog
 
@@ -259,6 +259,7 @@
 | TASK-256 | P3 | BettingBoard panel pointer layer polish — rename shared panel pointer entry pulse state from magneticGlow* to panelPointer* | **DONE** |
 | TASK-257 | P2 | Low-tier Rapier WASM prefetch — start at betting second 15 (T-15) on adaptive low tier | **DONE** |
 | TASK-258 | P2 | Medium-tier Rapier WASM prefetch — start at betting second 16 (T-14) on adaptive medium tier | **DONE** |
+| TASK-259 | P2 | Gold felt pathway highlight parity — classic board pathway-lit, racetrack staked pockets, wheel-set 3D glow | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
