@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-268 — Felt trays for favorites/fairness panels; gold lounge ready-glow accents
+**[DONE]** TASK-269 — Gold repeat + ½×/2× stake cluster felt styling (lounge theme)
 
 ## Feature Backlog
 
@@ -269,6 +269,7 @@
 | TASK-266 | P2 | WebGL recovery stage reset — stageReady clears when physicsLoadState idle; felt cycle/results rail | **DONE** |
 | TASK-267 | P2 | Physics load error handling — stageReady clears on error; felt stats + chip rack trays | **DONE** |
 | TASK-268 | P2 | Favorites/fairness panel felt trays — gold verified state and lounge ready-glow accents | **DONE** |
+| TASK-269 | P2 | Repeat button + stake scale cluster — gold felt chrome and inset tray (lounge) | **DONE** |
 
 ## TASK-255 Shipped (Session 335)
 
