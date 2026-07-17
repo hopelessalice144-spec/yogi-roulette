@@ -6088,6 +6088,11 @@ assert(installUiSrc.includes("from '@core/config.js'"), 'install prompt imports 
 assert(appSrc.includes('InstallPrompt'), 'App renders install prompt');
 assert(indexHtml.includes('manifest.webmanifest'), 'index links manifest');
 assert(indexHtml.includes('theme-color'), 'index theme-color meta');
+const uiThemeSrc = fs.readFileSync(path.join(__dirname, 'src/lib/uiTheme.js'), 'utf8');
+assert(uiThemeSrc.includes('themeColor'), 'ui theme color map');
+assert(uiThemeSrc.includes('meta[name="theme-color"]'), 'applyUiTheme syncs theme-color meta');
+assert(uiCss.includes('--felt-gold'), 'felt gold design token');
+assert(uiCss.includes('--ghost-hue-default'), 'ghost hue default token');
 assert(indexHtml.includes('apple-mobile-web-app-capable'), 'iOS standalone meta');
 assert(uiCss.includes('.install-prompt'), 'install prompt CSS');
 

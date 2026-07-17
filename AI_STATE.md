@@ -8,7 +8,7 @@
 
 ## Current Task
 
-**[DONE]** TASK-274 — Bet underline, wheel warm glow, PWA icons gold lounge
+**[DONE]** TASK-275 — Ghost VIP gold hues, felt tokens, theme-color sync
 
 ## Feature Backlog
 
@@ -275,6 +275,13 @@
 | TASK-272 | P2 | Sector glow + inside drop-target + cycle tick pulses — gold lounge (pathway column CSS aligned) | **DONE** |
 | TASK-273 | P2 | Root `--neon-accent` / holo border / spin canvas / glass depth / tier-high badge — gold lounge default | **DONE** |
 | TASK-274 | P2 | Bet neon underline + warm wheel glow map + PWA icon accents — gold lounge | **DONE** |
+| TASK-275 | P2 | Felt gold CSS tokens, ghost VIP default hue, progression tray, `theme-color` meta sync | **DONE** |
+
+## TASK-275 Shipped (Session 335)
+
+- `src/index.css` — `--felt-gold` / `--ghost-hue-default`; progression-card gold inset; ghost chip/confetti defaults gold
+- `src/lib/ghostPlayers.js` — Aurora VIP hue aligned to lounge gold
+- `src/lib/uiTheme.js` — `themeColor()` + `applyUiTheme` updates `meta[name=theme-color]`
 
 ## TASK-274 Shipped (Session 335)
 

@@ -22,7 +22,7 @@ function betSnapshot(bets: Array<{ vipId: string; type: string; value?: number; 
 describe('ghostPlayers', () => {
   it('exports five frozen VIP lounge profiles', () => {
     expect(GHOST_VIPS).toHaveLength(5);
-    expect(GHOST_VIPS[0]).toEqual({ id: 'aurora', name: 'Aurora', hue: 168 });
+    expect(GHOST_VIPS[0]).toEqual({ id: 'aurora', name: 'Aurora', hue: 42 });
     expect(GHOST_VIPS.map((v) => v.id)).toEqual(['aurora', 'stacks', 'neon', 'baron', 'velvet']);
   });
 

@@ -4,6 +4,7 @@ import {
   DEFAULT_UI_THEME,
   loadUiTheme,
   normalizeUiTheme,
+  themeColor,
   themeLabel,
   themeSubtitle,
   UI_THEME_LIGHT,
@@ -32,5 +33,11 @@ describe('uiTheme', () => {
     expect(themeLabel(UI_THEME_LOUNGE)).toBe('Lounge');
     expect(themeSubtitle(UI_THEME_LIGHT)).toContain('Daylight');
     expect(loadUiTheme()).toBeTruthy();
+  });
+
+  it('maps theme profiles to browser theme-color', () => {
+    expect(themeColor(UI_THEME_LOUNGE)).toBe('#0a0814');
+    expect(themeColor(UI_THEME_NEON)).toBe('#06040f');
+    expect(themeColor(UI_THEME_LIGHT)).toBe('#e8eef5');
   });
 });

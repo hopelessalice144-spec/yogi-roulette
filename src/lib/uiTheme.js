@@ -35,11 +35,21 @@ export function saveUiTheme(theme) {
   }
 }
 
+/** Browser chrome / PWA status bar tint per theme profile. */
+export function themeColor(theme) {
+  const normalized = normalizeUiTheme(theme);
+  if (normalized === UI_THEME_NEON) return '#06040f';
+  if (normalized === UI_THEME_LIGHT) return '#e8eef5';
+  return '#0a0814';
+}
+
 /** Apply `data-theme` on the document root for CSS token overrides. */
 export function applyUiTheme(theme) {
   if (typeof document === 'undefined' || !document.documentElement) return;
   const normalized = normalizeUiTheme(theme);
   document.documentElement.dataset.theme = normalized;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', themeColor(normalized));
 }
 
 /** Cycle lounge → neon → daylight → lounge. */

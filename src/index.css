@@ -10,6 +10,9 @@
   --glass-border: rgba(255, 255, 255, 0.12);
   --neon-accent: rgba(245, 215, 142, 0.4);
   --neon-glow: rgba(245, 215, 142, 0.14);
+  --felt-gold: #f5d78e;
+  --felt-gold-mid: #e8c878;
+  --ghost-hue-default: 42deg;
   --focus-ring-color: #7c3aed;
   --focus-ring: 0 0 0 2px var(--focus-ring-color), 0 0 0 4px rgba(124, 58, 237, 0.35);
   --text-on-glass: #f0f4fa;
@@ -1392,9 +1395,9 @@ html.frame-blocked body {
 .progression-card {
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.22);
   border: none;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(245, 215, 142, 0.12);
 }
 
 .progression-label {
@@ -5815,7 +5818,7 @@ html.frame-blocked body {
   bottom: 3px;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
+  background: linear-gradient(90deg, transparent, var(--felt-gold), var(--felt-gold-mid), transparent);
   opacity: 0;
   transform: scaleX(0.3);
   transition:
@@ -6735,12 +6738,12 @@ html.frame-blocked body {
 .bet-cell.pathway-source-active .neon-underline-active:not(.neon-underline-entry-pulse) {
   opacity: 1;
   transform: scaleX(1);
-  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
+  background: linear-gradient(90deg, transparent, var(--felt-gold), var(--felt-gold-mid), transparent);
 }
 
 .bet-cell.pathway-source-active .neon-underline-active.neon-underline-entry-pulse {
   opacity: 1;
-  background: linear-gradient(90deg, transparent, #f5d78e, #e8c878, transparent);
+  background: linear-gradient(90deg, transparent, var(--felt-gold), var(--felt-gold-mid), transparent);
   animation: neon-underline-entry-pulse 0.62s var(--chip-spring) both;
 }
 
@@ -8731,22 +8734,22 @@ html.frame-blocked body {
   border-radius: 50%;
   font-size: 0.45rem;
   font-weight: 700;
-  color: hsl(var(--ghost-hue, 168deg) 90% 88%);
+  color: hsl(var(--ghost-hue, var(--ghost-hue-default)) 90% 88%);
   transform: translateY(var(--ghost-drop, 0)) scale(var(--ghost-scale, 1));
   opacity: 0.62;
   transition: transform var(--chip-spring), opacity 0.35s ease;
-  filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, 168deg) 80% 60% / 0.55));
+  filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, var(--ghost-hue-default)) 80% 60% / 0.55));
 }
 
 .ghost-chip-ring {
   position: absolute;
   inset: -2px;
   border-radius: 50%;
-  border: 1px solid hsl(var(--ghost-hue, 168deg) 70% 65% / 0.65);
+  border: 1px solid hsl(var(--ghost-hue, var(--ghost-hue-default)) 70% 65% / 0.65);
   background: radial-gradient(
     circle at 35% 30%,
-    hsl(var(--ghost-hue, 168deg) 60% 70% / 0.35),
-    hsl(var(--ghost-hue, 168deg) 50% 35% / 0.15) 70%
+    hsl(var(--ghost-hue, var(--ghost-hue-default)) 60% 70% / 0.35),
+    hsl(var(--ghost-hue, var(--ghost-hue-default)) 50% 35% / 0.15) 70%
   );
   animation: ghost-pulse 2.4s ease-in-out infinite;
 }
@@ -8767,15 +8770,15 @@ html.frame-blocked body {
 
 @keyframes ghost-chip-falling-entry-pulse {
   0% {
-    filter: drop-shadow(0 0 4px hsl(var(--ghost-hue, 168deg) 80% 60% / 0.35));
+    filter: drop-shadow(0 0 4px hsl(var(--ghost-hue, var(--ghost-hue-default)) 80% 60% / 0.35));
     opacity: 0.35;
   }
   38% {
-    filter: drop-shadow(0 0 14px hsl(var(--ghost-hue, 168deg) 92% 68% / 0.82));
+    filter: drop-shadow(0 0 14px hsl(var(--ghost-hue, var(--ghost-hue-default)) 92% 68% / 0.82));
     opacity: 0.88;
   }
   100% {
-    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, 168deg) 80% 60% / 0.55));
+    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, var(--ghost-hue-default)) 80% 60% / 0.55));
     opacity: 0.62;
   }
 }
@@ -8794,15 +8797,15 @@ html.frame-blocked body {
 
 @keyframes ghost-chip-landed-entry-pulse {
   0% {
-    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, 168deg) 80% 60% / 0.55));
+    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, var(--ghost-hue-default)) 80% 60% / 0.55));
     opacity: 0.72;
   }
   38% {
-    filter: drop-shadow(0 0 16px hsl(var(--ghost-hue, 168deg) 95% 72% / 0.92));
+    filter: drop-shadow(0 0 16px hsl(var(--ghost-hue, var(--ghost-hue-default)) 95% 72% / 0.92));
     opacity: 0.96;
   }
   100% {
-    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, 168deg) 80% 60% / 0.55));
+    filter: drop-shadow(0 0 6px hsl(var(--ghost-hue, var(--ghost-hue-default)) 80% 60% / 0.55));
     opacity: 0.72;
   }
 }
@@ -8837,8 +8840,8 @@ html.frame-blocked body {
   width: 5px;
   height: 5px;
   border-radius: 1px;
-  background: hsl(var(--gc-hue, 168deg) 85% 65%);
-  box-shadow: 0 0 8px hsl(var(--gc-hue, 168deg) 90% 60% / 0.8);
+  background: hsl(var(--gc-hue, var(--ghost-hue-default)) 85% 65%);
+  box-shadow: 0 0 8px hsl(var(--gc-hue, var(--ghost-hue-default)) 90% 60% / 0.8);
   animation: ghost-confetti-pop 1.2s var(--chip-spring) both;
   animation-delay: calc(var(--gc-i) * 0.04s);
 }

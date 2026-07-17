@@ -5,7 +5,7 @@ import { CHIP_VALUES } from './bets.js';
 import { evaluateBet } from './math.js';
 
 export const GHOST_VIPS = Object.freeze([
-  { id: 'aurora', name: 'Aurora', hue: 168 },
+  { id: 'aurora', name: 'Aurora', hue: 42 },
   { id: 'stacks', name: 'SirStacks', hue: 45 },
   { id: 'neon', name: 'NeonQueen', hue: 320 },
   { id: 'baron', name: 'CryptoBaron', hue: 210 },
