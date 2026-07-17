@@ -45,7 +45,12 @@ export function BallFrictionVapor() {
       return;
     }
 
-    if (speed > 0.8 || phase === 'orbit') {
+    if (speed < 0.35 && phase === 'orbit') {
+      if (meshRef.current) meshRef.current.visible = false;
+      return;
+    }
+
+    if (speed > 0.8 || phase === 'descent') {
       trail.current.push({ x: pos.x, y: pos.y, z: pos.z, t: state.clock.elapsedTime });
       if (trail.current.length > MAX_TRAIL) trail.current.shift();
     }

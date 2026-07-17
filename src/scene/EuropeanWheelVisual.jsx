@@ -26,7 +26,7 @@ import { blendWheelSpinVelocity } from '../lib/wheelSpinEase.js';
 /** Rapier-free wheel for betting phase — defers WASM until lock. */
 export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onWheelAngle }) {
   const mats = useMaterials();
-  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock, uiTheme } = useGame();
+  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, wheelAngleRef, clock, uiTheme } = useGame();
 
   const pocketMats = useMemo(
     () => EUROPEAN_SEQUENCE.map((num) => mats.pocket[getColor(num)].clone()),
@@ -39,7 +39,7 @@ export function EuropeanWheelVisual({ spinSpeed = 0.4, winningNumber = null, onW
 
   const visualGroupRef = useRef();
   const spindleRef = useRef();
-  const angleRef = useRef(0);
+  const angleRef = useRef(wheelAngleRef?.current ?? 0);
   const spinVelRef = useRef(spinSpeed);
   const pocketGlow = useRef(new Float32Array(37));
   const winPulse = useRef(0);
