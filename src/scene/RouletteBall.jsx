@@ -10,8 +10,6 @@ import {
   synchronizeHandoffState,
   orbitPose,
   predictPocketTarget,
-  DESCENT_DURATION,
-  BALL_RADIUS,
 } from '../lib/trajectory.js';
 import {
   BALL_PHYSICS,
@@ -37,6 +35,7 @@ import {
 import { resetTimestepAccumulator } from '../lib/disposeUtils.js';
 import { impactToClackIntensity } from '../lib/audioSynth.js';
 import { computeBallKinematicSync } from '../lib/cycleResync.js';
+import { resolveKinematicBallState } from '../lib/ballKinematics.js';
 import { isPhysicsHitch, postHitchSimulationDelta } from '../lib/simulationHitch.js';
 
 const RB_DYNAMIC = 0;
@@ -82,10 +81,32 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
   phaseRef.current = phase;
 
   useEffect(() => {
+    if (phase !== 'orbit' && phase !== 'descent') return;
     const snap = computeBallKinematicSync(clock, wheelAngleRef.current ?? 0, wheelSpinSpeed);
     orbitAngle.current = snap.orbitAngle;
     descentT.current = snap.descentT ?? 0;
-  }, [clock.cycleId, clock, wheelSpinSpeed, wheelAngleRef]);
+  }, [clock.cycleId, clock, wheelSpinSpeed, wheelAngleRef, phase]);
+
+  useEffect(() => {
+    if (phase === 'guided') guidedEnterMs.current = Date.now();
+    if (phase === 'free' || phase === 'guided') return;
+    releasedRef.current = false;
+    lockedRef.current = false;
+    captureStageRef.current = CAPTURE_STAGE.GUIDE;
+    lastSpeedRef.current = 0;
+    settleAlpha.current = 0;
+    guidedEnterMs.current = 0;
+    settlePhaseEnterMs.current = 0;
+    pocketLockPlayedRef.current = false;
+    stuckSinceMs.current = 0;
+    lastMovingMs.current = Date.now();
+    const rb = bodyRef.current;
+    if (rb && phase === 'orbit') {
+      rb.setBodyType(RB_KINEMATIC_POSITION, true);
+      rb.setLinvel({ x: 0, y: 0, z: 0 }, true);
+      rb.setAngvel({ x: 0, y: 0, z: 0 }, true);
+    }
+  }, [phase]);
 
   const enterKinematicLock = (rb) => {
     if (!rb || lockedRef.current) return;
@@ -98,13 +119,20 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
   };
 
   const applyMomentumHandoff = (rb) => {
-    const handoff = synchronizeHandoffState(
-      orbitAngle.current,
+    const clockSnap = clockRef?.current ?? clock;
+    const kin = resolveKinematicBallState(
+      clockSnap,
       wheelAngleRef.current,
       wheelSpinSpeed,
-      Math.min(1, descentT.current)
     );
+    orbitAngle.current = kin.orbitAngle;
     descentT.current = 1;
+    const handoff = synchronizeHandoffState(
+      kin.orbitAngle,
+      wheelAngleRef.current,
+      wheelSpinSpeed,
+      1,
+    );
     rb.setTranslation({ x: handoff.x, y: handoff.y, z: handoff.z }, true);
     rb.setLinvel(
       { x: handoff.velocity.x, y: handoff.velocity.y, z: handoff.velocity.z },
@@ -180,33 +208,6 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
       rb.setBodyType(RB_DYNAMIC, true);
     }
   };
-
-  useEffect(() => {
-    if (phase === 'orbit' || phase === 'descent') {
-      releasedRef.current = false;
-      lockedRef.current = false;
-      captureStageRef.current = CAPTURE_STAGE.GUIDE;
-      descentT.current = 0;
-      lastSpeedRef.current = 0;
-      settleAlpha.current = 0;
-      guidedEnterMs.current = 0;
-      settlePhaseEnterMs.current = 0;
-      pocketLockPlayedRef.current = false;
-      stuckSinceMs.current = 0;
-      lastMovingMs.current = Date.now();
-      const rb = bodyRef.current;
-      if (rb && phase === 'orbit') {
-        rb.setBodyType(RB_KINEMATIC_POSITION, true);
-        rb.setLinvel({ x: 0, y: 0, z: 0 }, true);
-        rb.setAngvel({ x: 0, y: 0, z: 0 }, true);
-      }
-    }
-    if (phase === 'guided') guidedEnterMs.current = Date.now();
-  }, [phase]);
-
-  useEffect(() => {
-    if (phase === 'descent') descentT.current = 0;
-  }, [phase]);
 
   useEffect(() => {
     if (phase !== 'free' || releasedRef.current) return;
@@ -321,37 +322,29 @@ export function RouletteBall({ phase, targetNumber, wheelSpinSpeed = 2, onBallPo
   const simulateStep = (dt, rb) => {
     const currentPhase = phaseRef.current;
     const stepDt = dt * (timeScaleRef?.current ?? 1);
+    const clockSnap = clockRef?.current ?? clock;
+    const wheelAngle = wheelAngleRef.current ?? 0;
 
-    if (currentPhase === 'orbit') {
-      orbitAngle.current += stepDt * orbitPose(0, 0, wheelSpinSpeed).angular;
-      const pose = orbitPose(orbitAngle.current, wheelAngleRef.current, wheelSpinSpeed);
-      rb.setNextKinematicTranslation({ x: pose.x, y: pose.y, z: pose.z });
-      rollSpeedRef.current = pose.angular * BALL_PHYSICS.radius * 28;
-      audioRef?.current?.setRollingVelocity({
-        x: Math.cos(pose.angle) * rollSpeedRef.current,
-        y: 0,
-        z: -Math.sin(pose.angle) * rollSpeedRef.current,
-      });
-      return;
-    }
-
-    if (currentPhase === 'descent') {
-      descentT.current = Math.min(1, descentT.current + stepDt / DESCENT_DURATION);
-      const pose = descentPose(
-        descentT.current,
-        orbitAngle.current,
-        wheelAngleRef.current,
-        wheelSpinSpeed
-      );
-      rb.setNextKinematicTranslation({ x: pose.x, y: pose.y, z: pose.z });
-      const vel = descentVelocity(
-        descentT.current,
-        orbitAngle.current,
-        wheelAngleRef.current,
-        wheelSpinSpeed
-      );
-      rollSpeedRef.current = vel.speed;
-      audioRef?.current?.setRollingVelocity(vel);
+    if (currentPhase === 'orbit' || currentPhase === 'descent') {
+      const kin = resolveKinematicBallState(clockSnap, wheelAngle, wheelSpinSpeed);
+      orbitAngle.current = kin.orbitAngle;
+      descentT.current = kin.descentT ?? 0;
+      const { x, y, z } = kin.position;
+      rb.setNextKinematicTranslation({ x, y, z });
+      if (currentPhase === 'descent') {
+        const vel = descentVelocity(kin.descentT, kin.orbitAngle, wheelAngle, wheelSpinSpeed);
+        rollSpeedRef.current = vel.speed;
+        audioRef?.current?.setRollingVelocity(vel);
+        ballVelRef.current = { x: vel.x, y: vel.y, z: vel.z };
+      } else {
+        const pose = orbitPose(kin.orbitAngle, wheelAngle, wheelSpinSpeed);
+        rollSpeedRef.current = pose.angular * BALL_PHYSICS.radius * 28;
+        audioRef?.current?.setRollingVelocity({
+          x: Math.cos(pose.angle) * rollSpeedRef.current,
+          y: 0,
+          z: -Math.sin(pose.angle) * rollSpeedRef.current,
+        });
+      }
       return;
     }
 

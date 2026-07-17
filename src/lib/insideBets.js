@@ -195,7 +195,7 @@ export function buildInsideBetZones() {
 export function insideZoneStyle(zone) {
   const colW = 100 / COLS;
   const rowH = 100 / ROWS;
-  const hit = 4.2;
+  const hit = 5;
 
   switch (zone.kind) {
     case 'split-h':

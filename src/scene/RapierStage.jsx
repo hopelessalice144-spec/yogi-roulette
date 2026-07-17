@@ -20,7 +20,7 @@ export function RapierStage() {
   } = useGame();
 
   useEffect(() => {
-    resyncPresentationKinematics?.();
+    resyncPresentationKinematics?.({ syncWheel: false });
   }, [resyncPresentationKinematics]);
   return (
     <Physics

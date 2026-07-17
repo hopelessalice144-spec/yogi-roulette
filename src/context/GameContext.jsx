@@ -324,8 +324,9 @@ export function GameProvider({ children }) {
     [wheelSpinSpeed]
   );
 
-  const resyncPresentationKinematics = useCallback(() => {
-    bumpKinematicResync(mergeEngineClock(wallClockSnapshot()), { syncWheel: true });
+  const resyncPresentationKinematics = useCallback((options = {}) => {
+    const syncWheel = options.syncWheel !== false;
+    bumpKinematicResync(mergeEngineClock(wallClockSnapshot()), { syncWheel });
   }, [bumpKinematicResync]);
 
   const applyVisualTarget = useCallback((n) => {
@@ -365,7 +366,7 @@ export function GameProvider({ children }) {
       if (simulationPausedRef.current) return;
       if (syncModeRef.current === SYNC_MODES.AUTHORITATIVE_STREAM) return;
       applyClock(mergeEngineClock(wallClockSnapshot()));
-    }, 100);
+    }, 50);
   }, [applyClock]);
 
   useEffect(() => {

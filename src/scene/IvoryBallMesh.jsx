@@ -5,6 +5,8 @@ import { useMaterials } from './MaterialLibrary.jsx';
 import { BALL_RADIUS } from '../lib/trajectory.js';
 
 const _axis = new THREE.Vector3();
+const _vel = new THREE.Vector3();
+const _up = new THREE.Vector3(0, 1, 0);
 const _deltaQ = new THREE.Quaternion();
 
 /**
@@ -33,7 +35,12 @@ export function IvoryBallMesh({ velocityRef, rollSpeedRef, castShadow = true }) 
     if (speed < 0.004) return;
 
     const angle = (speed / BALL_RADIUS) * delta;
-    _axis.set(vz / speed, 0, -vx / speed);
+    _vel.set(vx, vy, vz);
+    _axis.crossVectors(_vel, _up);
+    if (_axis.lengthSq() < 1e-8) {
+      _axis.set(vz, 0, -vx);
+    }
+    _axis.normalize();
     _deltaQ.setFromAxisAngle(_axis, angle);
     rollQuat.current.multiplyQuaternions(_deltaQ, rollQuat.current);
     mesh.quaternion.copy(rollQuat.current);

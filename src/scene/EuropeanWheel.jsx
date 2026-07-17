@@ -31,7 +31,7 @@ export function EuropeanWheel({
   onWheelAngle,
 }) {
   const mats = useMaterials();
-  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, clock, uiTheme } = useGame();
+  const { hoverHighlightRef, simulationPausedRef, wheelResyncRef, wheelAngleRef, clock, uiTheme } = useGame();
 
   const pocketMats = useMemo(
     () => EUROPEAN_SEQUENCE.map((num) => mats.pocket[getColor(num)].clone()),
@@ -44,7 +44,7 @@ export function EuropeanWheel({
 
   const bodyRef = useRef();
   const spindleRef = useRef();
-  const angleRef = useRef(0);
+  const angleRef = useRef(wheelAngleRef?.current ?? 0);
   const spinVelRef = useRef(spinSpeed);
   const pocketGlow = useRef(new Float32Array(37));
   const winPulse = useRef(0);
@@ -57,6 +57,13 @@ export function EuropeanWheel({
     green: new THREE.Color('#00ffc8'),
   });
   const lastWheelResyncToken = useRef(0);
+
+  useEffect(() => {
+    const a = wheelAngleRef?.current;
+    if (Number.isFinite(a)) {
+      angleRef.current = a;
+    }
+  }, [wheelAngleRef]);
 
   useEffect(() => {
     return () => {
@@ -223,8 +230,6 @@ export function EuropeanWheel({
             </group>
           );
         })}
-
-        <WheelNumberRing />
 
         <CuboidCollider
           args={[WHEEL.outerRadius, 0.05, 0.04]}

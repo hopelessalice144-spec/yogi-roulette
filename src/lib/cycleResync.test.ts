@@ -11,7 +11,9 @@ import {
   missedSettleCycle,
   wallClockSnapshot,
 } from './cycleResync.js';
-import { ORBIT_ANGULAR_BASE, ORBIT_RADIUS, ORBIT_Y, orbitPose } from './trajectory.js';
+import { orbitAngleAtCycleTime } from './ballKinematics.js';
+import { resolveSpinState } from './gamePhase.js';
+import { orbitPose, physicsHandoff } from './trajectory.js';
 
 const SNAPSHOT_MS = 1_000_000_000;
 
@@ -30,8 +32,9 @@ describe('cycleResync', () => {
   describe('computeBallKinematicSync', () => {
     it('returns orbital pose during betting', () => {
       const clock = { name: 'betting' as const, cycleSecond: 10 };
-      const orbitAngle = (10 * ORBIT_ANGULAR_BASE * 1.1) % (Math.PI * 2);
-      const pose = orbitPose(orbitAngle, 0, 0.42);
+      const spin = 0.42;
+      const orbitAngle = orbitAngleAtCycleTime(10, spin);
+      const pose = orbitPose(orbitAngle, 0, spin);
       expect(computeBallKinematicSync(clock)).toEqual({
         phase: 'orbit',
         orbitAngle,
@@ -53,16 +56,17 @@ describe('cycleResync', () => {
     it('returns free-phase position with completed descent', () => {
       const clock = { name: 'spinning' as const, cycleSecond: BALL_PHYSICS_AT };
       const sync = computeBallKinematicSync(clock);
-      const orbitAngle = (BALL_DROP_AT * ORBIT_ANGULAR_BASE) % (Math.PI * 2);
-      const angle = orbitAngle;
+      const spin = resolveSpinState(BALL_PHYSICS_AT).wheelSpinSpeed;
+      const orbitAngle = orbitAngleAtCycleTime(BALL_DROP_AT, spin);
+      const handoff = physicsHandoff(orbitAngle, 0, spin, 1);
       expect(sync).toEqual({
         phase: 'free',
         orbitAngle,
         descentT: 1,
         position: {
-          x: Math.sin(angle) * (ORBIT_RADIUS - 0.05),
-          y: ORBIT_Y - 0.04,
-          z: Math.cos(angle) * (ORBIT_RADIUS - 0.05),
+          x: handoff.x,
+          y: handoff.y,
+          z: handoff.z,
         },
         forceGuidedLock: false,
       });

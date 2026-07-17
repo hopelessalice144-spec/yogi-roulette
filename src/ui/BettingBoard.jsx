@@ -3,7 +3,6 @@ import { getColor } from '../lib/math.js';
 import { CYCLE_SECONDS, BALL_DROP_AT } from '@core/timer.js';
 import {
   boardHighlightSet,
-  columnForNumber,
   isOutsideSource,
   isStraightPathwayLit,
 } from '../lib/highlight.js';
@@ -76,7 +75,6 @@ import { shouldSpinFocusEntryPulse } from '../lib/spinFocusEntryPulse.js';
 import { shouldSpinDimSoftEntryPulse } from '../lib/spinDimSoftEntryPulse.js';
 import { shouldSettleRevealEntryPulse } from '../lib/settleRevealEntryPulse.js';
 import { shouldWinningCellCascadeEntryPulse } from '../lib/winningCellCascadeEntryPulse.js';
-import { shouldPathwayCascadeEntryPulse } from '../lib/pathwayCascadeEntryPulse.js';
 import { shouldPathwayLitEntryPulse } from '../lib/pathwayLitEntryPulse.js';
 import { shouldPathwaySourceEntryPulse } from '../lib/pathwaySourceEntryPulse.js';
 import { shouldChipLandedEntryPulse } from '../lib/chipLandedEntryPulse.js';
@@ -926,8 +924,6 @@ export function BettingBoard() {
   const [balanceSettleLossEntryPulsing, setBalanceSettleLossEntryPulsing] = useState(false);
   const prevCascadeActiveRef = useRef(false);
   const [winningCascadeEntryPulsing, setWinningCascadeEntryPulsing] = useState(false);
-  const prevPathwayCascadeActiveRef = useRef(false);
-  const [pathwayCascadeEntryPulsing, setPathwayCascadeEntryPulsing] = useState(false);
   const prevDrawerOpenRef = useRef(false);
   const [mobileDrawerTabEntryPulsing, setMobileDrawerTabEntryPulsing] = useState(false);
   const prevMobileDrawerExpandedRef = useRef(false);
@@ -1311,29 +1307,6 @@ export function BettingBoard() {
     () => boardHighlightSet(hoverHighlight),
     [hoverHighlight]
   );
-
-  const litColumns = useMemo(() => {
-    if (!hoverHighlight?.type) return new Set();
-    const cols = new Set();
-    for (const n of pathwayNumbers) {
-      const c = columnForNumber(n);
-      if (c) cols.add(c);
-    }
-    return cols;
-  }, [hoverHighlight, pathwayNumbers]);
-  const pathwayCascadeActive = litColumns.size > 0;
-
-  useEffect(() => {
-    const prevPathwayCascadeActive = prevPathwayCascadeActiveRef.current;
-    prevPathwayCascadeActiveRef.current = pathwayCascadeActive;
-    if (!shouldPathwayCascadeEntryPulse(prevPathwayCascadeActive, pathwayCascadeActive)) {
-      if (!pathwayCascadeActive) setPathwayCascadeEntryPulsing(false);
-      return undefined;
-    }
-    setPathwayCascadeEntryPulsing(true);
-    const timer = window.setTimeout(() => setPathwayCascadeEntryPulsing(false), 620);
-    return () => window.clearTimeout(timer);
-  }, [pathwayCascadeActive]);
 
   const betAmount = (type, value) =>
     bets.find((b) => b.type === type && String(b.value ?? '') === String(value ?? ''))?.amount ?? 0;
@@ -1934,26 +1907,6 @@ export function BettingBoard() {
           onFocus={handleBoardPointer}
           onBlur={handleBoardLeave}
         >
-          {litColumns.size > 0 && (
-            <div className="pathway-overlay" aria-hidden>
-              {[1, 2, 3].map((c) =>
-                litColumns.has(c) ? (
-                  <div
-                    key={c}
-                    className={[
-                      'pathway-column',
-                      `col-${c}`,
-                      'pathway-cascade-active',
-                      pathwayCascadeEntryPulsing ? 'pathway-cascade-entry-pulse' : '',
-                    ]
-                      .filter(Boolean)
-                      .join(' ')}
-                  />
-                ) : null
-              )}
-            </div>
-          )}
-
           <div className="inside-board-wrap">
             <div className="number-grid-wrap">
               <BetBtn
@@ -1969,6 +1922,7 @@ export function BettingBoard() {
                 {...betBtnProps('straight', 0)}
               />
 
+              <div className="number-grid-stack">
               <div className="number-grid">
                 {[col3, col2, col1].map((col, ri) => (
                   <div key={ri} className="number-row">
@@ -2013,6 +1967,7 @@ export function BettingBoard() {
                       />
                     );
                   })}
+              </div>
               </div>
             </div>
           </div>

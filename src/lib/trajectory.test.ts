@@ -27,7 +27,7 @@ describe('trajectory', () => {
     expect(TRACK_RADIUS).toBeCloseTo(WHEEL.trackRadius - 0.1, 8);
     expect(ORBIT_Y).toBe(0.29);
     expect(TRACK_Y).toBe(0.26);
-    expect(DESCENT_DURATION).toBe(0.88);
+    expect(DESCENT_DURATION).toBe(1);
     expect(ORBIT_ANGULAR_BASE).toBe(2.8);
   });
 
